@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER</title>
+  <title>ANIME CARD CODE BUILDER · Critical Rate v40</title>
   <style>
     :root{
       color-scheme:dark;
@@ -107,7 +107,7 @@
           <section class="section">
             <div class="section-head"><div><h2>3. ความสามารถ</h2><p>การ์ดหนึ่งใบเพิ่มได้หลายความสามารถ และแต่ละความสามารถเพิ่มได้หลายเอฟเฟกต์</p></div><button class="btn green" id="addAbility" type="button">＋ เพิ่มความสามารถ</button></div>
             <div class="grid" style="margin-bottom:8px">
-              <div class="field-wrap span-5"><label for="abilityTemplate">แม่แบบด่วน</label><select class="field" id="abilityTemplate"><option value="">เลือกแม่แบบ…</option><option value="passiveAtk">Passive · ATK ทีม +20%</option><option value="activeAtk">Active · ครบ 3 ครั้ง ATK +50%</option><option value="activeExtraHits">Active · ครบ 3 ครั้ง โจมตีเพิ่ม 2 ฮิต</option><option value="activeHeal">Active · ครบ 3 ครั้ง ฟื้น HP 20%</option><option value="activeShield">Active · ครบ 3 ครั้ง ฟื้นโล่ 2 ฮิต</option><option value="enemyDef">ลด DEF ศัตรู 20%</option><option value="costSelf">ลดคอส Active ตนเอง 1</option><option value="enemyCost">เพิ่มคอส Active ศัตรู 2</option><option value="targetCost">ลดคอสการ์ดตาม ID 1</option><option value="costWaterAllies">ลดคอสพันธมิตรธาตุน้ำ 1 (ไม่รวมตัวเอง)</option><option value="partner">ต้องมีคู่หูตาม Card ID</option><option value="hakariRail">รางดาวซ่อนแอบ · Hakari #1033</option></select></div>
+              <div class="field-wrap span-5"><label for="abilityTemplate">แม่แบบด่วน</label><select class="field" id="abilityTemplate"><option value="">เลือกแม่แบบ…</option><option value="passiveAtk">Passive · ATK ทีม +20%</option><option value="activeAtk">Active · ครบ 3 ครั้ง ATK +50%</option><option value="activeExtraHits">Active · ครบ 3 ครั้ง โจมตีเพิ่ม 2 ฮิต</option><option value="activeHeal">Active · ครบ 3 ครั้ง ฟื้น HP 20%</option><option value="activeShield">Active · ครบ 3 ครั้ง ฟื้นโล่ 2 ฮิต</option><option value="enemyDef">ลด DEF ศัตรู 20%</option><option value="critSelf">คริติคอลตนเอง +30%</option><option value="critTeam">คริติคอลทั้งฝ่ายเรา +20%</option><option value="critAllies">คริติคอลเพื่อนร่วมทีม +20% (ไม่รวมตัวเอง)</option><option value="critEnemy">ลดคริติคอลฝ่ายตรงข้าม 25%</option><option value="critGroupAlly">คริติคอลกลุ่มไฟ/EX/SC ฝ่ายเรา +25%</option><option value="critGroupEnemy">ลดคริติคอลกลุ่มไฟ/EX/SC ศัตรู 25%</option><option value="costSelf">ลดคอส Active ตนเอง 1</option><option value="enemyCost">เพิ่มคอส Active ศัตรู 2</option><option value="targetCost">ลดคอสการ์ดตาม ID 1</option><option value="costWaterAllies">ลดคอสพันธมิตรธาตุน้ำ 1 (ไม่รวมตัวเอง)</option><option value="partner">ต้องมีคู่หูตาม Card ID</option><option value="hakariRail">รางดาวซ่อนแอบ · Hakari #1033</option></select></div>
               <div class="field-wrap span-3"><label>&nbsp;</label><button class="btn gold" id="applyAbilityTemplate" type="button" style="width:100%">ใช้แม่แบบ</button></div>
               <div class="field-wrap span-4"><label>&nbsp;</label><div class="status ok">รองรับ <b id="effectCountInline">45</b> เอฟเฟกต์ · <b id="conditionCountInline">24</b> เงื่อนไข · <b id="effectFieldCountInline">8</b> ฟิลด์เสริม</div></div>
             </div>
@@ -127,7 +127,7 @@
             <button class="btn" id="downloadCard" type="button">⬇ JSON</button>
             <button class="btn danger" id="resetCard" type="button">ล้างฟอร์ม</button>
           </div>
-          <div class="footer-note">ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล v39</div>
+          <div class="footer-note">ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล v40 · Critical Rate</div>
         </aside>
       </div>
     </section>
@@ -154,7 +154,7 @@
         <article class="help-card"><h3>3) คัดลอกไปวาง</h3><p>เลือกรูปแบบ <b>วัตถุการ์ด + จุลภาค</b> แล้วนำโค้ดไปวางภายใน <code>const CARDS = [ ... ]</code> ของเกม</p></article>
         <article class="help-card"><h3>4) อัปเดตฐาน ID</h3><p>เมื่อเกมมีการ์ดใหม่ ให้นำเข้าไฟล์ HTML ล่าสุดในหน้า <b>ฐาน ID</b> แอปจะอ่าน ID เพื่อป้องกันการสร้างซ้ำ</p></article>
         <article class="help-card"><h3>Firebase Cloud Firestore</h3><p>คลังออนไลน์ใช้คอลเลกชัน <code>animeCardCodeBuilderCards</code> และใช้ Card ID เป็น Document ID การแก้ไข ID เดิมจึงอัปเดตข้อมูลใบเดิมแบบเรียลไทม์</p></article><article class="help-card"><h3>ชีทหลักของระบบ</h3><p>ให้อ้างอิง <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener" class="accent"><b>Google Sheet ระบบสกิลและเงื่อนไข</b></a> เป็นข้อมูลหลักสำหรับเอฟเฟกต์ เงื่อนไข และการอัปเดตครั้งถัดไป</p></article>
-        <article class="help-card"><h3>การใช้ค่าเปอร์เซ็นต์</h3><p><code>0.20</code> หมายถึง +20%, <code>-0.20</code> หมายถึง -20%, และ <code>7.77</code> หมายถึง +777%</p></article>
+        <article class="help-card"><h3>การใช้ค่าเปอร์เซ็นต์</h3><p><code>0.20</code> หมายถึง +20%, <code>-0.20</code> หมายถึง -20%, และ <code>7.77</code> หมายถึง +777%</p></article><article class="help-card"><h3>อัตราคริติคอล</h3><p>ใช้ <code>criticalRate</code> โดยค่าบวกเพิ่มและค่าลบลดเรทคริติคอล เลือก <code>targetSide</code> เป็น self / ally / enemy และกรองด้วย Card ID, ธาตุ, ระดับ, any/all หรือ <code>excludeSelf</code> ได้ ค่า <code>luckRate</code> เดิมยังถูกแปลงเป็นคริติคอลเพื่อรองรับการ์ดเก่า</p></article>
         <article class="help-card"><h3>Active Skill</h3><p><code>afterOwnAttacks: 3</code> คือสะสมการโจมตีปกติ 3 ครั้ง แล้วเอฟเฟกต์ทำงานในการโจมตีครั้งถัดไป ส่วน <code>repeat: true</code> คือเริ่มนับใหม่วนซ้ำ</p></article><article class="help-card"><h3>โจมตีเพิ่ม / ตีตอบ</h3><p>เลือก <code>nextAttackHits</code> เพื่อเพิ่มฮิตในเทิร์นที่ Active ทำงาน เช่น value <code>2</code> คือเพิ่มอีก 2 ฮิต ระบบปัจจุบันนับเป็นฮิตเสริมในเทิร์นเดิม ไม่ใช่สร้างเทิร์นสวนแยก</p></article>
       </div>
     </section>
@@ -234,14 +234,14 @@
       "exampleCode": "{ \"type\": \"enemyDefenseRate\", \"value\": -0.08 }"
     },
     {
-      "category": "สุ่มต่อสู้",
-      "type": "luckRate",
-      "meaning": "เพิ่ม/ลดค่าโชคของความแปรปรวนต่อสู้",
-      "exampleValue": 0.12,
-      "fields": "-",
+      "category": "คริติคอล",
+      "type": "criticalRate",
+      "meaning": "เพิ่ม/ลดอัตราคริติคอลของเป้าหมาย",
+      "exampleValue": 0.2,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf",
       "suitableModes": "tower, arena",
-      "note": "ไม่เปลี่ยนเรทกาชา",
-      "exampleCode": "{ \"type\": \"luckRate\", \"value\": 0.12 }"
+      "note": "ค่าบวกเพิ่มเรทคริติคอล; ค่าลบลดเรทคริติคอล; targetSide ally รวมเจ้าของสกิล เว้นแต่ excludeSelf: true; เรทรวมถูกจำกัด 0–100%; luckRate ยังรองรับเป็นชื่อเก่า",
+      "exampleCode": "{ \"type\": \"criticalRate\", \"value\": 0.20, \"targetSide\": \"ally\" }"
     },
     {
       "category": "กาชา",
@@ -1888,12 +1888,12 @@
   ],
   "sourceInfo": {
     "sheetTitle": "Anime Card Collection - ระบบสกิลและเงื่อนไข",
-    "sheetUpdated": "2026-06-19",
-    "gameFile": "index (5).html",
+    "sheetUpdated": "2026-06-19-critical-rate-v40",
+    "gameFile": "anime_card_collection_critical_rate.html",
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
     "sheetRole": "primary",
-    "builderUpdated": "2026-06-19-complete-options"
+    "builderUpdated": "2026-06-19-critical-rate-v40"
   }
 }</script>
 <script>
@@ -1908,7 +1908,7 @@ const effectCatalog = DATA.effects;
 const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
 const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions']);
 const activeEffectTypes = new Set(['nextAttackPowerRate','nextAttackPowerFlat','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','increaseAttackRateStack']);
-const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack']));
+const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['criticalRate','luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack']));
 const integerEffectTypes = new Set(['shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost']);
 const flatEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Flat$/.test(t)));
 const el = id=>document.getElementById(id);
@@ -2150,6 +2150,7 @@ function optionalNumberControlHtml(field,initial){
 }
 function readOptionalNumberControl(scope){const select=scope?.querySelector('.optional-number-preset');if(!select||select.value==='')return null;const value=select.value==='custom'?num(scope.querySelector('.optional-number-custom')?.value):num(select.value);return Math.max(1,Math.min(99,int(value,1)))}
 function addEffectRow(container,initial={}){
+  if(initial?.type==='luckRate')initial={...initial,type:'criticalRate'};
   const meta=effectByType.get(initial.type);const category=meta?.category||'ทั้งหมด';const row=document.createElement('div');row.className='effect-row';
   row.innerHTML=`<button class="btn sm danger row-remove" type="button">×</button><div class="row-pad"><div class="grid"><div class="field-wrap span-4"><label>หมวดเอฟเฟกต์</label><select class="field effect-category">${effectCategories().map(x=>option(x,x,x===category)).join('')}</select></div><div class="field-wrap span-8"><label>ชนิดเอฟเฟกต์ <span class="req">*</span></label><select class="field effect-type">${effectTypeOptions(category,initial.type||'')}</select></div><div class="field-wrap span-4 effect-value-wrap"><label>ค่า value</label><div class="effect-value-control"></div></div><div class="field-wrap span-8"><label>สรุป</label><div class="status warn effect-summary">เลือกเอฟเฟกต์</div></div></div><div class="effect-note">เลือกเอฟเฟกต์เพื่อดูวิธีใช้</div><details class="advanced effect-advanced"><summary>เป้าหมาย ตัวกรอง และ Active Trigger</summary><div class="grid"><div class="field-wrap span-3 target-side-wrap"><label>targetSide</label><select class="field effect-target-side"><option value="">ไม่ระบุ</option><option value="self">self · ตัวเอง</option><option value="ally">ally · ฝ่ายเรา</option><option value="enemy">enemy · ฝ่ายตรงข้าม</option></select></div><div class="field-wrap span-3 exclude-self-wrap hidden"><label>excludeSelf</label><select class="field effect-exclude-self"><option value="">รวมเจ้าของสกิล</option>${option('true','true · เฉพาะเพื่อนร่วมทีม',initial.excludeSelf===true)}</select><small class="hint">ใช้ได้เมื่อ targetSide เป็น ally</small></div><div class="field-wrap span-3"><label>targetMatch</label><select class="field effect-target-match"><option value="any">any · ตรงอย่างใดอย่างหนึ่ง</option><option value="all">all · ต้องตรงทุกตัวกรอง</option></select></div><div class="field-wrap span-3 effect-trigger-control"><label>afterOwnAttacks</label>${optionalNumberControlHtml('afterOwnAttacks',initial.condition?.afterOwnAttacks)}</div><div class="field-wrap span-3"><label>repeat</label><select class="field effect-repeat">${option('true','วนซ้ำ',initial.condition?.repeat!==false)}${option('false','ครั้งเดียว',initial.condition?.repeat===false)}</select></div><div class="field-wrap span-6"><label>targetCardIds</label>${createTokenPicker('cards',initial.targetCardIds||[])}</div><div class="field-wrap span-3"><label>targetElements</label>${createTokenPicker('elements',initial.targetElements||[])}</div><div class="field-wrap span-3"><label>targetRarities</label>${createTokenPicker('rarities',initial.targetRarities||[])}</div><div class="field-wrap span-3 persistent-wrap"><label>persistentAfterActivation</label><select class="field effect-persistent"><option value="">ไม่ใส่</option>${option('true','true · ทำต่อเนื่อง',initial.persistentAfterActivation===true)}${option('false','false',initial.persistentAfterActivation===false)}</select></div><div class="field-wrap span-3 max-stacks-wrap"><label>maxStacks</label><select class="field effect-max-stacks">${[1,2,3,4,5,7,10,15,20].map(v=>option(v,v,v===num(initial.maxStacks,5))).join('')}</select></div></div></details></div>`;
   container.appendChild(row);row.querySelectorAll('.token-picker').forEach(renderTokenPicker);row.querySelector('.effect-target-side').value=initial.targetSide||'';row.querySelector('.effect-target-match').value=initial.targetMatch||'any';renderEffectRow(row,initial.value);return row;
@@ -2285,6 +2286,12 @@ function applyTemplate(key){
   if(key==='activeHeal')ability={name:'ฟื้นฟูต่อเนื่อง',description:'เมื่อโจมตีครบ 3 ครั้ง ฟื้น HP 20% แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'healHpRate',value:.2}]};
   if(key==='activeShield')ability={name:'กำแพงคืนสภาพ',description:'เมื่อโจมตีครบ 3 ครั้ง ฟื้นโล่ 2 ฮิต แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'restoreShieldHits',value:2}]};
   if(key==='enemyDef')ability={name:'เจาะเกราะ',description:'ลด DEF ฝ่ายตรงข้าม 20%',activeIn:['tower','arena'],effects:[{type:'enemyDefenseRate',value:-.2}]};
+  if(key==='critSelf')ability={name:'จุดสังหารแม่นยำ',description:'เพิ่มอัตราคริติคอลของตนเอง 30%',activeIn:['tower','arena'],effects:[{type:'criticalRate',value:.30,targetSide:'self'}]};
+  if(key==='critTeam')ability={name:'คำสั่งโจมตีจุดตาย',description:'เพิ่มอัตราคริติคอลของฝ่ายเรา 20% รวมเจ้าของสกิล',activeIn:['tower','arena'],effects:[{type:'criticalRate',value:.20,targetSide:'ally'}]};
+  if(key==='critAllies')ability={name:'สนับสนุนจุดตาย',description:'เพิ่มอัตราคริติคอลของเพื่อนร่วมทีม 20% โดยไม่รวมเจ้าของสกิล',activeIn:['tower','arena'],effects:[{type:'criticalRate',value:.20,targetSide:'ally',excludeSelf:true}]};
+  if(key==='critEnemy')ability={name:'ผนึกจุดสังหาร',description:'ลดอัตราคริติคอลของฝ่ายตรงข้าม 25%',activeIn:['tower','arena'],effects:[{type:'criticalRate',value:-.25,targetSide:'enemy'}]};
+  if(key==='critGroupAlly')ability={name:'ยุทธวิธีคริติคอลเฉพาะหน่วย',description:'เพิ่มอัตราคริติคอล 25% ให้การ์ดฝ่ายเราที่เป็นธาตุไฟ หรือระดับ EX/Mystical',activeIn:['tower','arena'],effects:[{type:'criticalRate',value:.25,targetSide:'ally',targetElements:['ไฟ'],targetRarities:['EX','SC'],targetMatch:'any'}]};
+  if(key==='critGroupEnemy')ability={name:'ตัดโอกาสคริติคอลเฉพาะหน่วย',description:'ลดอัตราคริติคอล 25% ของการ์ดฝ่ายตรงข้ามที่เป็นธาตุไฟ หรือระดับ EX/Mystical',activeIn:['tower','arena'],effects:[{type:'criticalRate',value:-.25,targetSide:'enemy',targetElements:['ไฟ'],targetRarities:['EX','SC'],targetMatch:'any'}]};
   if(key==='costSelf')ability={name:'เร่งชาร์จ',description:'ลดจำนวนครั้งที่ต้องโจมตีก่อนใช้ Active Skill ของตนเอง 1',activeIn:['tower','arena'],effects:[{type:'activeSkillCost',value:-1,targetSide:'self'}]};
   if(key==='enemyCost')ability={name:'ถ่วงจังหวะศัตรู',description:'เพิ่มจำนวนครั้งที่ฝ่ายตรงข้ามต้องโจมตีก่อนใช้ Active Skill อีก 2 ครั้ง',activeIn:['tower','arena'],effects:[{type:'activeSkillCost',value:2,targetSide:'enemy'}]};
   if(key==='targetCost')ability={name:'เร่งพลังคู่หู',description:'ลดคอส Active Skill ของการ์ดตาม Card ID ลง 1 ครั้ง',activeIn:['tower','arena'],effects:[{type:'activeSkillCost',value:-1,targetSide:'ally',targetCardIds:[]}]};
