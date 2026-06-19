@@ -1,0 +1,2256 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080b17">
+  <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
+  <title>ANIME CARD CODE BUILDER</title>
+  <style>
+    :root{
+      color-scheme:dark;
+      --bg:#070a14;--panel:#10172a;--panel2:#0b1020;--line:rgba(255,255,255,.11);
+      --text:#f7f9ff;--muted:#9aa9c7;--cyan:#5ce8ff;--violet:#a78bfa;--gold:#ffd166;
+      --green:#56e39f;--danger:#fb7185;--orange:#fb923c;--radius:20px;
+      --shadow:0 24px 70px rgba(0,0,0,.38);
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;min-height:100vh;color:var(--text);font-family:Inter,"Noto Sans Thai",system-ui,-apple-system,"Segoe UI",sans-serif;background:
+      radial-gradient(circle at 12% -10%,rgba(92,232,255,.18),transparent 30rem),
+      radial-gradient(circle at 88% 0%,rgba(167,139,250,.17),transparent 32rem),
+      linear-gradient(145deg,#060914,#0b1124 46%,#100b24);overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.28;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+    button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}.hidden{display:none!important}
+    .app{width:min(1540px,calc(100% - 24px));margin:auto;padding:14px 0 80px}.panel{border:1px solid var(--line);border-radius:var(--radius);background:rgba(16,23,42,.88);box-shadow:var(--shadow);backdrop-filter:blur(16px)}
+    .topbar{position:sticky;top:8px;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 13px;margin-bottom:14px;background:rgba(7,10,20,.86)}
+    .brand{display:flex;align-items:center;gap:11px;min-width:0}.logo{width:48px;aspect-ratio:1;border-radius:15px;display:grid;place-items:center;color:#061019;font-weight:1000;font-size:1.05rem;background:linear-gradient(135deg,var(--cyan),var(--violet) 58%,var(--gold));box-shadow:0 0 25px rgba(92,232,255,.22)}
+    .brand small{display:block;color:var(--cyan);font-weight:900;letter-spacing:.11em;font-size:.63rem}.brand h1{margin:2px 0 0;font-size:clamp(1rem,2.4vw,1.35rem);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .count-pill{border:1px solid rgba(92,232,255,.22);border-radius:999px;padding:7px 10px;color:#dffaff;background:rgba(92,232,255,.07);font-size:.72rem;font-weight:900}.count-pill b{color:var(--cyan)}
+    .btn{min-height:42px;border:1px solid var(--line);border-radius:13px;padding:9px 13px;color:var(--text);font-weight:900;background:rgba(255,255,255,.055);transition:.18s ease}.btn:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.08)}.btn.primary{color:#071019;border-color:transparent;background:linear-gradient(135deg,var(--cyan),#7dd3fc 38%,var(--violet));box-shadow:0 10px 26px rgba(92,232,255,.16)}.btn.gold{color:#251700;border-color:transparent;background:linear-gradient(135deg,#ffe499,#f59e0b)}.btn.green{color:#052015;border-color:transparent;background:linear-gradient(135deg,var(--green),#a7f3d0)}.btn.danger{color:#ffe9ee;border-color:rgba(251,113,133,.28);background:rgba(190,24,93,.23)}.btn.sm{min-height:34px;padding:6px 9px;border-radius:10px;font-size:.68rem}.btn.icon{width:36px;padding:0;display:grid;place-items:center}
+    .tabs{display:flex;flex-wrap:wrap;gap:7px;padding:9px;margin-bottom:14px}.tab{border:1px solid var(--line);border-radius:999px;padding:8px 13px;color:var(--muted);font-weight:900;background:rgba(255,255,255,.035)}.tab.active{color:#071019;border-color:transparent;background:var(--cyan)}
+    .tab-page{display:none}.tab-page.active{display:block}.builder-layout{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(330px,.58fr);gap:14px}.work{padding:17px}.output-panel{position:sticky;top:92px;align-self:start;padding:15px;max-height:calc(100vh - 108px);overflow:auto}
+    .section{padding:15px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.027);margin-bottom:13px}.section:last-child{margin-bottom:0}.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.section-head h2,.section-head h3{margin:0}.section-head h2{font-size:1.1rem}.section-head h3{font-size:.95rem}.section-head p{margin:4px 0 0;color:var(--muted);font-size:.73rem;line-height:1.5}
+    .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-7{grid-column:span 7}.span-6{grid-column:span 6}.span-5{grid-column:span 5}.span-4{grid-column:span 4}.span-3{grid-column:span 3}.span-2{grid-column:span 2}
+    .field-wrap{min-width:0}.field-wrap>label,.field-label{display:block;margin:0 0 5px;color:#dbe5ff;font-size:.7rem;font-weight:900}.req{color:var(--danger)}.field,.textarea{width:100%;min-height:42px;border:1px solid var(--line);border-radius:12px;padding:8px 10px;color:var(--text);background:rgba(4,7,16,.72);outline:none}.textarea{min-height:86px;resize:vertical;line-height:1.55}.field:focus,.textarea:focus{border-color:rgba(92,232,255,.64);box-shadow:0 0 0 3px rgba(92,232,255,.08)}.field[readonly]{color:var(--cyan);background:rgba(92,232,255,.045)}
+    .hint{display:block;margin-top:5px;color:var(--muted);font-size:.63rem;line-height:1.45}.status{min-height:42px;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:.72rem;font-weight:900;background:rgba(4,7,16,.5)}.status.ok{color:var(--green);border-color:rgba(86,227,159,.3)}.status.bad{color:#fecdd3;border-color:rgba(251,113,133,.35)}.status.warn{color:var(--gold);border-color:rgba(255,209,102,.3)}
+    .token-line{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(92,232,255,.22);border-radius:999px;padding:5px 8px;color:#e8fbff;background:rgba(92,232,255,.07);font-size:.65rem;font-weight:900}.chip button{width:18px;height:18px;border:0;border-radius:50%;padding:0;color:#fff;background:rgba(251,113,133,.45);font-size:.67rem;line-height:1}.empty-chip{color:var(--muted);font-size:.65rem}
+    .stat-box{padding:10px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(3,5,12,.32)}.stat-value{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:7px}.stat-value strong{color:var(--cyan);font-size:1rem;font-variant-numeric:tabular-nums}.stat-value small{color:var(--muted)}
+    .ability-card{border:1px solid rgba(167,139,250,.22);border-radius:18px;overflow:hidden;margin-top:12px;background:linear-gradient(145deg,rgba(126,34,206,.08),rgba(3,5,12,.28))}.ability-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);background:rgba(167,139,250,.055)}.ability-title{display:flex;align-items:center;gap:8px;font-weight:1000}.ability-number{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;color:#10051f;background:linear-gradient(135deg,var(--violet),#ddd6fe)}.mini-actions{display:flex;gap:5px}.ability-body{padding:12px}.subsection{margin-top:11px;padding:11px;border:1px solid rgba(255,255,255,.08);border-radius:15px;background:rgba(3,5,12,.3)}.subsection-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}.subsection-head strong{font-size:.78rem}.subsection-head span{color:var(--muted);font-size:.63rem}
+    .condition-row,.effect-row{position:relative;padding:10px;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:rgba(255,255,255,.025);margin-top:8px}.condition-row:first-child,.effect-row:first-child{margin-top:0}.row-remove{position:absolute;top:8px;right:8px}.row-pad{padding-right:42px}.condition-note,.effect-note{margin-top:7px;padding:7px 9px;border-radius:10px;color:var(--muted);font-size:.63rem;line-height:1.5;background:rgba(255,255,255,.035)}.effect-note b{color:var(--gold)}
+    details.advanced{margin-top:9px;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:8px 9px;background:rgba(3,5,12,.28)}details.advanced summary{cursor:pointer;color:#dbe5ff;font-size:.68rem;font-weight:900}details.advanced[open] summary{margin-bottom:9px}.conditional-control{min-height:42px}
+    .inline-pair{display:grid;grid-template-columns:minmax(0,1fr) 110px auto;gap:7px}.kv-chips{margin-top:7px}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:4px 7px;font-size:.58rem;font-weight:1000}.badge.cyan{color:#061019;background:var(--cyan)}.badge.gold{color:#281800;background:var(--gold)}.badge.violet{color:#10051f;background:var(--violet)}.badge.green{color:#052015;background:var(--green)}
+    .code-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}.code-head h2{margin:0;font-size:1rem}.code-actions{display:flex;flex-wrap:wrap;gap:6px}.code{width:100%;min-height:390px;border:1px solid rgba(92,232,255,.18);border-radius:14px;padding:12px;color:#dffaff;background:#030611;font:12px/1.58 ui-monospace,SFMono-Regular,Consolas,monospace;resize:vertical;white-space:pre;tab-size:2}.validation-list{display:grid;gap:6px;margin:10px 0}.validation-item{border:1px solid var(--line);border-radius:10px;padding:7px 9px;color:var(--muted);font-size:.66rem;line-height:1.45;background:rgba(255,255,255,.025)}.validation-item.error{color:#fecdd3;border-color:rgba(251,113,133,.26)}.validation-item.warning{color:#fde68a;border-color:rgba(255,209,102,.24)}.validation-item.success{color:#bbf7d0;border-color:rgba(86,227,159,.22)}
+    .override{display:flex;align-items:flex-start;gap:8px;margin-top:8px;color:#dbe5ff;font-size:.68rem;line-height:1.45}.override input{margin-top:2px;accent-color:var(--danger)}
+    .library-grid,.db-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.library-card,.db-card{padding:12px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03)}.library-card h3,.db-card h3{margin:0;font-size:.85rem}.library-card p,.db-card p{margin:5px 0 9px;color:var(--muted);font-size:.67rem}.library-actions{display:flex;flex-wrap:wrap;gap:5px}.page-panel{padding:16px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}.toolbar-left,.toolbar-right{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.search{min-width:230px}.db-table{width:100%;border-collapse:collapse;font-size:.72rem}.db-table th,.db-table td{padding:8px 9px;border-bottom:1px solid rgba(255,255,255,.07);text-align:left}.db-table th{position:sticky;top:0;color:var(--cyan);background:#0d1427}.table-wrap{max-height:62vh;overflow:auto;border:1px solid var(--line);border-radius:14px}.source-current{color:var(--cyan)}.source-imported{color:var(--gold)}.source-session{color:var(--green)}
+    .help-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.help-card{padding:14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03)}.help-card h3{margin:0 0 7px;font-size:.9rem}.help-card p,.help-card li{color:var(--muted);font-size:.72rem;line-height:1.65}.help-card code{color:var(--cyan)}
+    .toast{position:fixed;z-index:100;right:16px;bottom:16px;max-width:min(420px,calc(100% - 32px));border:1px solid rgba(92,232,255,.28);border-radius:14px;padding:11px 13px;color:#e8fbff;background:rgba(5,9,20,.95);box-shadow:0 18px 50px rgba(0,0,0,.48);transform:translateY(25px);opacity:0;pointer-events:none;transition:.22s ease}.toast.show{transform:none;opacity:1}.toast.bad{border-color:rgba(251,113,133,.38);color:#ffe4e9}
+    .footer-note{margin-top:12px;color:var(--muted);font-size:.64rem;text-align:center}.muted{color:var(--muted)}.accent{color:var(--cyan)}
+    @media(max-width:1100px){.builder-layout{grid-template-columns:1fr}.output-panel{position:static;max-height:none}.library-grid,.db-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:760px){.app{width:min(100% - 14px,1540px);padding-top:7px}.topbar{top:4px}.count-pill{display:none}.brand h1{font-size:.94rem}.top-actions .btn:not(.primary){display:none}.work,.page-panel{padding:11px}.section{padding:11px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.span-12,.span-8,.span-7,.span-6,.span-5,.span-4,.span-3,.span-2{grid-column:span 2}.library-grid,.db-grid,.help-grid{grid-template-columns:1fr}.inline-pair{grid-template-columns:1fr 90px auto}.code{min-height:310px;font-size:11px}.search{min-width:100%;width:100%}.toolbar-left,.toolbar-right{width:100%}.toolbar .field{flex:1}.tabs{overflow:auto;flex-wrap:nowrap}.tab{white-space:nowrap}.ability-head{align-items:flex-start}.mini-actions{flex-wrap:wrap;justify-content:flex-end}.db-table{font-size:.66rem}.db-table th,.db-table td{padding:7px 6px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar panel">
+    <div class="brand">
+      <div class="logo">AC</div>
+      <div><small>STANDALONE OFFLINE TOOL</small><h1>ANIME CARD CODE BUILDER</h1></div>
+    </div>
+    <div class="top-actions">
+      <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
+      <button class="btn" id="newCardTop">＋ การ์ดใหม่</button>
+      <button class="btn primary" id="copyTop">คัดลอกโค้ด</button>
+    </div>
+  </header>
+
+  <nav class="tabs panel" aria-label="เมนูหลัก">
+    <button class="tab active" data-tab="builder">🧩 สร้างการ์ด</button>
+    <button class="tab" data-tab="library">📦 คลังที่สร้าง</button>
+    <button class="tab" data-tab="database">🔍 ฐาน ID</button>
+    <button class="tab" data-tab="help">📘 วิธีใช้</button>
+  </nav>
+
+  <main>
+    <section class="tab-page active" id="page-builder">
+      <div class="builder-layout">
+        <div class="work panel">
+          <section class="section">
+            <div class="section-head"><div><h2>1. ข้อมูลการ์ด</h2><p>ชื่อและคำอธิบายพิมพ์เอง ส่วนค่าเกมหลักเลือกจากดรอปดาวน์ได้</p></div><span class="badge cyan">STEP 1</span></div>
+            <div class="grid">
+              <div class="field-wrap span-3"><label for="cardId">Card ID <span class="req">*</span></label><input class="field" id="cardId" type="number" min="0" step="1" placeholder="เช่น 2005"><small class="hint">ตรวจซ้ำกับฐานเกมเดิม ไฟล์นำเข้า และคลังในเครื่อง</small></div>
+              <div class="field-wrap span-5"><label for="cardName">ชื่อตัวละคร <span class="req">*</span></label><input class="field" id="cardName" type="text" placeholder="ชื่อที่จะแสดงในเกม"></div>
+              <div class="field-wrap span-4"><label>สถานะ ID</label><div class="status warn" id="idStatus">กรอก ID เพื่อเริ่มตรวจสอบ</div></div>
+              <div class="field-wrap span-3"><label for="raritySelect">ระดับ <span class="req">*</span></label><select class="field" id="raritySelect"></select></div>
+              <div class="field-wrap span-5"><label for="elementSelect">ธาตุ <span class="req">*</span></label><div class="token-line"><select class="field" id="elementSelect"></select><button class="btn sm" id="addElement" type="button">เพิ่ม</button></div><div class="chips" id="elementChips"></div></div>
+              <div class="field-wrap span-4"><label for="globalStatPreset">ชุดเบสสแตต</label><select class="field" id="globalStatPreset"><option value="1">เบสระดับ 100%</option><option value="0.9">เบส 90%</option><option value="0.95">เบส 95%</option><option value="1.05">เบส 105%</option><option value="1.1">เบส 110%</option><option value="1.2">เบส 120%</option></select><small class="hint">เปลี่ยนระดับแล้วระบบเติม ATK : HP : DEF ตามชีทอัตโนมัติ</small></div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-head"><div><h2>2. เบสสแตตและไฟล์สื่อ</h2><p>ทุกช่องมีค่าตามระดับให้เลือก และยังเปิด “กำหนดเอง” ได้เมื่อต้องการ</p></div><span class="badge gold">BASE</span></div>
+            <div class="grid" id="statGrid"></div>
+            <details class="advanced" style="margin-top:12px">
+              <summary>ไฟล์ภาพ วิดีโอ และค่าพัฒนา</summary>
+              <div class="grid" style="margin-top:10px">
+                <div class="field-wrap span-3"><label for="imageMode">ภาพการ์ด</label><select class="field media-mode" id="imageMode" data-target="imageCustom"><option value="id">ใช้ ID.png อัตโนมัติ</option><option value="none">ไม่ใส่</option><option value="custom">กำหนดเอง</option></select><input class="field hidden custom-media" id="imageCustom" placeholder="เช่น 2005.png" style="margin-top:6px"></div>
+                <div class="field-wrap span-3"><label for="posterMode">Poster</label><select class="field media-mode" id="posterMode" data-target="posterCustom"><option value="none">ไม่ใส่</option><option value="id">ใช้ ID.png</option><option value="custom">กำหนดเอง</option></select><input class="field hidden custom-media" id="posterCustom" placeholder="เช่น 2005.png" style="margin-top:6px"></div>
+                <div class="field-wrap span-3"><label for="videoMode">วิดีโอ</label><select class="field media-mode" id="videoMode" data-target="videoCustom"><option value="none">ไม่ใส่</option><option value="id">ใช้ ID.mp4</option><option value="custom">กำหนดเอง</option></select><input class="field hidden custom-media" id="videoCustom" placeholder="เช่น 2005.mp4" style="margin-top:6px"></div>
+                <div class="field-wrap span-3"><label for="overlayMode">Overlay</label><select class="field media-mode" id="overlayMode" data-target="overlayCustom"><option value="none">ไม่ใส่</option><option value="id">ใช้ ID_overlay.png</option><option value="custom">กำหนดเอง</option></select><input class="field hidden custom-media" id="overlayCustom" placeholder="เช่น aura.png" style="margin-top:6px"></div>
+                <div class="field-wrap span-3"><label for="iconMode">Icon</label><select class="field media-mode" id="iconMode" data-target="iconCustom"><option value="none">เว้นว่าง</option><option value="id">ใช้ ID.png</option><option value="custom">กำหนดเอง</option></select><input class="field hidden custom-media" id="iconCustom" placeholder="ชื่อไฟล์ icon" style="margin-top:6px"></div>
+                <div class="field-wrap span-3"><label for="dustBaseSelect">Dust เริ่มต้น</label><select class="field" id="dustBaseSelect"></select><input class="field hidden" id="dustBaseCustom" type="number" min="0" step="1" style="margin-top:6px"></div>
+                <div class="field-wrap span-3"><label for="dustGrowthSelect">Dust Growth</label><select class="field" id="dustGrowthSelect"></select><input class="field hidden" id="dustGrowthCustom" type="number" min="1" step="0.001" style="margin-top:6px"></div>
+                <div class="field-wrap span-3"><label for="awakenMaxSelect">อเวกสูงสุด</label><select class="field" id="awakenMaxSelect"></select></div>
+              </div>
+            </details>
+          </section>
+
+          <section class="section">
+            <div class="section-head"><div><h2>3. ความสามารถ</h2><p>การ์ดหนึ่งใบเพิ่มได้หลายความสามารถ และแต่ละความสามารถเพิ่มได้หลายเอฟเฟกต์</p></div><button class="btn green" id="addAbility" type="button">＋ เพิ่มความสามารถ</button></div>
+            <div class="grid" style="margin-bottom:8px">
+              <div class="field-wrap span-5"><label for="abilityTemplate">แม่แบบด่วน</label><select class="field" id="abilityTemplate"><option value="">เลือกแม่แบบ…</option><option value="passiveAtk">Passive · ATK ทีม +20%</option><option value="activeAtk">Active · ครบ 3 เทิร์น ATK +50%</option><option value="activeHeal">Active · ครบ 3 เทิร์น ฟื้น HP 20%</option><option value="activeShield">Active · ครบ 3 เทิร์น ฟื้นโล่ 2 ฮิต</option><option value="enemyDef">ลด DEF ศัตรู 20%</option><option value="costSelf">ลดคอส Active ตนเอง 1</option><option value="partner">ต้องมีคู่หูตาม Card ID</option></select></div>
+              <div class="field-wrap span-3"><label>&nbsp;</label><button class="btn gold" id="applyAbilityTemplate" type="button" style="width:100%">ใช้แม่แบบ</button></div>
+              <div class="field-wrap span-4"><label>&nbsp;</label><div class="status ok">รองรับ <b id="effectCountInline">45</b> เอฟเฟกต์ · <b id="conditionCountInline">33</b> เงื่อนไข</div></div>
+            </div>
+            <div id="abilitiesContainer"></div>
+          </section>
+        </div>
+
+        <aside class="output-panel panel">
+          <div class="code-head"><div><h2>โค้ดพร้อมวาง</h2><small class="hint">อัปเดตแบบสดทุกครั้งที่แก้ข้อมูล</small></div><span class="badge violet" id="codeModeBadge">CARD OBJECT</span></div>
+          <div class="field-wrap"><label for="outputMode">รูปแบบโค้ด</label><select class="field" id="outputMode"><option value="cardComma">วัตถุการ์ด + เครื่องหมายจุลภาค</option><option value="card">JSON การ์ดอย่างเดียว</option><option value="abilities">เฉพาะ abilities</option><option value="push">คำสั่ง CARDS.push(...)</option></select></div>
+          <div class="validation-list" id="validationList"></div>
+          <label class="override hidden" id="overrideWrap"><input type="checkbox" id="duplicateOverride"> <span>ฉันตั้งใจใช้ ID ซ้ำเพื่อแทนที่/แก้ไขการ์ดเดิม</span></label>
+          <textarea class="code" id="codeOutput" readonly spellcheck="false"></textarea>
+          <div class="code-actions" style="margin-top:9px">
+            <button class="btn primary" id="copyCode" type="button">📋 คัดลอก</button>
+            <button class="btn green" id="saveCard" type="button">💾 เก็บในคลัง</button>
+            <button class="btn" id="downloadCard" type="button">⬇ JSON</button>
+            <button class="btn danger" id="resetCard" type="button">ล้างฟอร์ม</button>
+          </div>
+          <div class="footer-note">ข้อมูลอ้างอิง: ระบบสกิล v39 และฐานการ์ดปัจจุบันจากไฟล์เกม</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="tab-page panel page-panel" id="page-library">
+      <div class="toolbar"><div><h2 style="margin:0">คลังการ์ดที่สร้าง</h2><p class="muted" style="margin:4px 0 0;font-size:.72rem">เก็บใน LocalStorage ของเบราว์เซอร์เครื่องนี้</p></div><div class="toolbar-right"><button class="btn" id="copyAllSession">คัดลอกทั้งหมดเป็น Array</button><button class="btn" id="exportSession">ดาวน์โหลด JSON</button><button class="btn danger" id="clearSession">ล้างคลัง</button></div></div>
+      <div class="library-grid" id="libraryGrid"></div>
+    </section>
+
+    <section class="tab-page panel page-panel" id="page-database">
+      <div class="toolbar"><div><h2 style="margin:0">ฐานตรวจ Card ID</h2><p class="muted" style="margin:4px 0 0;font-size:.72rem">ฐานเดิมฝังมากับแอป และนำเข้าไฟล์เกมล่าสุดเพิ่มได้</p></div><div class="toolbar-right"><input type="file" id="importGameFile" accept=".html,.htm,.json,.txt" class="hidden"><button class="btn gold" id="chooseImportFile">นำเข้า HTML / JSON</button><button class="btn danger" id="clearImported">ล้างข้อมูลนำเข้า</button></div></div>
+      <div class="section">
+        <div class="grid"><div class="field-wrap span-8"><label for="pasteDatabase">หรือวางโค้ด/JSON จากไฟล์เกม</label><textarea class="textarea" id="pasteDatabase" placeholder="วาง const CARDS = [...] หรือ JSON แล้วกดอ่านข้อมูล"></textarea></div><div class="field-wrap span-4"><label>&nbsp;</label><button class="btn primary" id="parsePastedDatabase" style="width:100%">อ่าน Card ID จากข้อความ</button><div class="status warn" id="importStatus" style="margin-top:8px">ยังไม่มีข้อมูลนำเข้าเพิ่ม</div></div></div>
+      </div>
+      <div class="toolbar"><div class="toolbar-left"><input class="field search" id="dbSearch" placeholder="ค้นหา ID / ชื่อ / ระดับ / ธาตุ"><select class="field" id="dbSourceFilter"><option value="all">ทุกแหล่ง</option><option value="current">ฐานเกมเดิม</option><option value="imported">ไฟล์นำเข้า</option><option value="session">คลังที่สร้าง</option></select></div><div class="count-pill" style="display:block">รวม <b id="dbTotalCount">0</b> รายการ</div></div>
+      <div class="table-wrap"><table class="db-table"><thead><tr><th>ID</th><th>ชื่อ</th><th>ระดับ</th><th>ธาตุ</th><th>แหล่ง</th></tr></thead><tbody id="dbTableBody"></tbody></table></div>
+    </section>
+
+    <section class="tab-page panel page-panel" id="page-help">
+      <div class="section-head"><div><h2>วิธีใช้แบบเร็ว</h2><p>แอปนี้เป็นไฟล์แยก เปิดได้ออฟไลน์ และไม่แก้ไขเกมต้นฉบับ</p></div><span class="badge green">OFFLINE</span></div>
+      <div class="help-grid">
+        <article class="help-card"><h3>1) สร้างข้อมูลการ์ด</h3><p>กรอก ID และชื่อ เลือกระดับ ธาตุ และเบสสแตตจากดรอปดาวน์ ระบบจะตรวจ ID ซ้ำทันที</p></article>
+        <article class="help-card"><h3>2) เพิ่มหลายสกิล</h3><p>กด <b>เพิ่มความสามารถ</b> แล้วเพิ่มเงื่อนไขและเอฟเฟกต์ได้หลายรายการ ระบบจะสร้างเป็น <code>"abilities": [...]</code></p></article>
+        <article class="help-card"><h3>3) คัดลอกไปวาง</h3><p>เลือกรูปแบบ <b>วัตถุการ์ด + จุลภาค</b> แล้วนำโค้ดไปวางภายใน <code>const CARDS = [ ... ]</code> ของเกม</p></article>
+        <article class="help-card"><h3>4) อัปเดตฐาน ID</h3><p>เมื่อเกมมีการ์ดใหม่ ให้นำเข้าไฟล์ HTML ล่าสุดในหน้า <b>ฐาน ID</b> แอปจะอ่าน ID เพื่อป้องกันการสร้างซ้ำ</p></article>
+        <article class="help-card"><h3>การใช้ค่าเปอร์เซ็นต์</h3><p><code>0.20</code> หมายถึง +20%, <code>-0.20</code> หมายถึง -20%, และ <code>7.77</code> หมายถึง +777%</p></article>
+        <article class="help-card"><h3>Active Skill</h3><p><code>afterOwnAttacks: 3</code> คือสะสมการโจมตีปกติ 3 ครั้ง แล้วเอฟเฟกต์ทำงานในการโจมตีครั้งถัดไป ส่วน <code>repeat: true</code> คือเริ่มนับใหม่วนซ้ำ</p></article>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+<script id="builder-data" type="application/json">{
+  "effects": [
+    {
+      "category": "ATK",
+      "type": "teamPowerRate",
+      "meaning": "เพิ่ม/ลด ATK ทั้งทีมแบบเปอร์เซ็นต์",
+      "exampleValue": 0.2,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "ถ้ามี afterOwnAttacks จะเป็นโบนัส ATK ตอน Active",
+      "exampleCode": "{ \"type\": \"teamPowerRate\", \"value\": 0.20 }"
+    },
+    {
+      "category": "HP",
+      "type": "teamHpRate",
+      "meaning": "เพิ่ม/ลด HP สูงสุดทั้งทีมแบบเปอร์เซ็นต์",
+      "exampleValue": 0.2,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "ถ้าใช้เป็น Active ระบบตีความเป็นการฟื้น HP",
+      "exampleCode": "{ \"type\": \"teamHpRate\", \"value\": 0.20 }"
+    },
+    {
+      "category": "DEF",
+      "type": "teamDefenseRate",
+      "meaning": "เพิ่ม/ลด DEF ทั้งทีมแบบเปอร์เซ็นต์",
+      "exampleValue": 0.12,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "DEF เป็นเกราะคงที่ ใช้หัก ATK หลังโล่",
+      "exampleCode": "{ \"type\": \"teamDefenseRate\", \"value\": 0.12 }"
+    },
+    {
+      "category": "รายได้",
+      "type": "teamIncomeRate",
+      "meaning": "เพิ่ม/ลดรายได้ทั้งทีมแบบเปอร์เซ็นต์",
+      "exampleValue": 0.15,
+      "fields": "-",
+      "suitableModes": "team",
+      "note": "ใช้กับทีมโชว์",
+      "exampleCode": "{ \"type\": \"teamIncomeRate\", \"value\": 0.15 }"
+    },
+    {
+      "category": "ATK ศัตรู",
+      "type": "enemyPowerRate",
+      "meaning": "เพิ่ม/ลด ATK ฝ่ายตรงข้าม",
+      "exampleValue": -0.1,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "ค่าติดลบใช้ลด ATK",
+      "exampleCode": "{ \"type\": \"enemyPowerRate\", \"value\": -0.10 }"
+    },
+    {
+      "category": "HP ศัตรู",
+      "type": "enemyHpRate",
+      "meaning": "เพิ่ม/ลด HP สูงสุดฝ่ายตรงข้าม",
+      "exampleValue": -0.1,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "ไม่ใช่ DEF",
+      "exampleCode": "{ \"type\": \"enemyHpRate\", \"value\": -0.10 }"
+    },
+    {
+      "category": "DEF ศัตรู",
+      "type": "enemyDefenseRate",
+      "meaning": "เพิ่ม/ลด DEF ฝ่ายตรงข้าม",
+      "exampleValue": -0.08,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "ลดเกราะที่ใช้หักดาเมจ ไม่ได้ลดหลอดเลือด",
+      "exampleCode": "{ \"type\": \"enemyDefenseRate\", \"value\": -0.08 }"
+    },
+    {
+      "category": "สุ่มต่อสู้",
+      "type": "luckRate",
+      "meaning": "เพิ่ม/ลดค่าโชคของความแปรปรวนต่อสู้",
+      "exampleValue": 0.12,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "ไม่เปลี่ยนเรทกาชา",
+      "exampleCode": "{ \"type\": \"luckRate\", \"value\": 0.12 }"
+    },
+    {
+      "category": "กาชา",
+      "type": "gachaRarityRate",
+      "meaning": "เพิ่ม/ลดน้ำหนักระดับที่กำหนด",
+      "exampleValue": 0.15,
+      "fields": "targetRarities",
+      "suitableModes": "team, arena",
+      "note": "ระบบ normalize เปอร์เซ็นต์จริงอีกครั้ง",
+      "exampleCode": "{ \"type\": \"gachaRarityRate\", \"value\": 0.15, \"targetRarities\": [\"UR\",\"LR\",\"EX\",\"SC\"] }"
+    },
+    {
+      "category": "ATK ตัวเอง",
+      "type": "selfPowerRate",
+      "meaning": "เพิ่ม/ลด ATK เจ้าของสกิล",
+      "exampleValue": 0.25,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "เป้าหมายเป็น source card",
+      "exampleCode": "{ \"type\": \"selfPowerRate\", \"value\": 0.25 }"
+    },
+    {
+      "category": "HP ตัวเอง",
+      "type": "selfHpRate",
+      "meaning": "เพิ่ม/ลด HP เจ้าของสกิล",
+      "exampleValue": 0.25,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "ใช้แทน selfDefenseRate เดิมที่เคยหมายถึงเลือด",
+      "exampleCode": "{ \"type\": \"selfHpRate\", \"value\": 0.25 }"
+    },
+    {
+      "category": "DEF ตัวเอง",
+      "type": "selfDefenseRate",
+      "meaning": "เพิ่ม/ลด DEF เจ้าของสกิล",
+      "exampleValue": 0.15,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "เป็นเกราะใหม่",
+      "exampleCode": "{ \"type\": \"selfDefenseRate\", \"value\": 0.15 }"
+    },
+    {
+      "category": "รายได้ตัวเอง",
+      "type": "selfIncomeRate",
+      "meaning": "เพิ่ม/ลดรายได้เจ้าของสกิล",
+      "exampleValue": 0.3,
+      "fields": "-",
+      "suitableModes": "team",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"selfIncomeRate\", \"value\": 0.30 }"
+    },
+    {
+      "category": "ATK รายการการ์ด",
+      "type": "cardPowerRate",
+      "meaning": "เพิ่ม/ลด ATK เฉพาะ Card ID",
+      "exampleValue": 0.2,
+      "fields": "targetSide, targetCardIds",
+      "suitableModes": "team, tower, arena",
+      "note": "เลือกฝ่าย ally/self/enemy",
+      "exampleCode": "{ \"type\": \"cardPowerRate\", \"value\": 0.20, \"targetCardIds\": [1001,1041] }"
+    },
+    {
+      "category": "HP รายการการ์ด",
+      "type": "cardHpRate",
+      "meaning": "เพิ่ม/ลด HP เฉพาะ Card ID",
+      "exampleValue": 0.2,
+      "fields": "targetSide, targetCardIds",
+      "suitableModes": "tower, arena",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"cardHpRate\", \"value\": 0.20, \"targetCardIds\": [1001,1041] }"
+    },
+    {
+      "category": "DEF รายการการ์ด",
+      "type": "cardDefenseRate",
+      "meaning": "เพิ่ม/ลด DEF เฉพาะ Card ID",
+      "exampleValue": 0.15,
+      "fields": "targetSide, targetCardIds",
+      "suitableModes": "tower, arena",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"cardDefenseRate\", \"value\": 0.15, \"targetCardIds\": [1001,1041] }"
+    },
+    {
+      "category": "รายได้รายการการ์ด",
+      "type": "cardIncomeRate",
+      "meaning": "เพิ่ม/ลดรายได้เฉพาะ Card ID",
+      "exampleValue": 0.15,
+      "fields": "targetSide, targetCardIds",
+      "suitableModes": "team",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"cardIncomeRate\", \"value\": 0.15, \"targetCardIds\": [1001,1041] }"
+    },
+    {
+      "category": "ควบคุมสกิล",
+      "type": "nullifyCardAbilities",
+      "meaning": "ทำให้ความสามารถการ์ดเป้าหมายไร้ผล",
+      "exampleValue": "ไม่ใช้ value",
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch",
+      "suitableModes": "team, tower, arena",
+      "note": "มีลำดับควบคุมสูงสุด",
+      "exampleCode": "{ \"type\": \"nullifyCardAbilities\", \"targetSide\": \"enemy\", \"targetCardIds\": [1041] }"
+    },
+    {
+      "category": "ควบคุมเงื่อนไข",
+      "type": "ignoreAbilityConditions",
+      "meaning": "ทำให้สกิลเป้าหมายไม่ต้องผ่าน condition",
+      "exampleValue": "ไม่ใช้ value",
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch",
+      "suitableModes": "team, tower, arena",
+      "note": "ยังต้องตรง activeIn",
+      "exampleCode": "{ \"type\": \"ignoreAbilityConditions\", \"targetSide\": \"ally\", \"targetElements\": [\"ไฟ\"], \"targetMatch\": \"any\" }"
+    },
+    {
+      "category": "ACTIVE / ATK",
+      "type": "nextAttackPowerRate",
+      "meaning": "เพิ่ม ATK เฉพาะการโจมตีที่ Active ทำงาน",
+      "exampleValue": 0.5,
+      "fields": "condition.afterOwnAttacks, repeat",
+      "suitableModes": "tower, arena",
+      "note": "หลังเทิร์นกลับเป็นค่าปกติ",
+      "exampleCode": "{ \"type\": \"nextAttackPowerRate\", \"value\": 0.50, \"condition\": { \"afterOwnAttacks\": 3, \"repeat\": true } }"
+    },
+    {
+      "category": "ACTIVE / ATK",
+      "type": "nextAttackPowerFlat",
+      "meaning": "เพิ่ม ATK ค่าคงที่เฉพาะ Active",
+      "exampleValue": 1000000,
+      "fields": "condition.afterOwnAttacks, repeat",
+      "suitableModes": "tower, arena",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"nextAttackPowerFlat\", \"value\": 1000000, \"condition\": { \"afterOwnAttacks\": 3, \"repeat\": true } }"
+    },
+    {
+      "category": "ACTIVE / HP",
+      "type": "healHpRate",
+      "meaning": "ฟื้น HP ปัจจุบันแบบเปอร์เซ็นต์",
+      "exampleValue": 0.2,
+      "fields": "condition, targetSide, persistentAfterActivation",
+      "suitableModes": "tower, arena",
+      "note": "ไม่เพิ่ม HP สูงสุด",
+      "exampleCode": "{ \"type\": \"healHpRate\", \"value\": 0.20, \"condition\": { \"afterOwnAttacks\": 3, \"repeat\": true } }"
+    },
+    {
+      "category": "ACTIVE / HP",
+      "type": "healHpFlat",
+      "meaning": "ฟื้น HP ปัจจุบันแบบค่าคงที่",
+      "exampleValue": 500000,
+      "fields": "condition, targetSide, persistentAfterActivation",
+      "suitableModes": "tower, arena",
+      "note": "ไม่เกิน HP สูงสุด",
+      "exampleCode": "{ \"type\": \"healHpFlat\", \"value\": 500000, \"condition\": { \"afterOwnAttacks\": 2, \"repeat\": true } }"
+    },
+    {
+      "category": "ACTIVE / โล่",
+      "type": "restoreShieldHits",
+      "meaning": "เพิ่ม/ลดโล่ปัจจุบันระหว่างไฟต์",
+      "exampleValue": -2,
+      "fields": "condition, targetSide, persistentAfterActivation",
+      "suitableModes": "tower, arena",
+      "note": "ค่าบวกฟื้นโล่; ค่าลบทำลายโล่เป้าหมาย; ต่อ Active จำกัด ±20 และโล่ไม่ต่ำกว่า 0",
+      "exampleCode": "{ \"type\": \"restoreShieldHits\", \"value\": -2, \"targetSide\": \"enemy\", \"condition\": { \"afterOwnAttacks\": 3, \"repeat\": true } }"
+    },
+    {
+      "category": "ACTIVE / ฮิต",
+      "type": "nextAttackHits",
+      "meaning": "เพิ่ม/ลดจำนวนฮิตของการโจมตีครั้งถัดไป",
+      "exampleValue": -2,
+      "fields": "condition, targetSide",
+      "suitableModes": "tower, arena",
+      "note": "ค่าลบใช้ลดฮิตศัตรู; ฮิตสุดท้ายไม่ต่ำกว่า 1; ต่อ Active จำกัด ±20",
+      "exampleCode": "{ \"type\": \"nextAttackHits\", \"value\": -2, \"targetSide\": \"enemy\", \"condition\": { \"afterOwnAttacks\": 3, \"repeat\": true } }"
+    },
+    {
+      "category": "ACTIVE / HP",
+      "type": "increaseMaxHpBaseRate",
+      "meaning": "เพิ่ม HP สูงสุดและ HP ปัจจุบันจาก HP เบส",
+      "exampleValue": 7.77,
+      "fields": "condition, targetSide, targetCardIds",
+      "suitableModes": "tower, arena",
+      "note": "7.77 = เพิ่ม 777% จากเบส รวมเบสเดิมเป็น 877%",
+      "exampleCode": "{ \"type\": \"increaseMaxHpBaseRate\", \"value\": 7.77, \"targetSide\": \"self\" }"
+    },
+    {
+      "category": "ACTIVE / ATK",
+      "type": "increaseAttackRateStack",
+      "meaning": "สะสม ATK ถาวรระหว่างไฟต์",
+      "exampleValue": 0.04,
+      "fields": "maxStacks, condition, targetSide",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ ATK ตอนเริ่มเป็นฐานของแต่ละชั้น",
+      "exampleCode": "{ \"type\": \"increaseAttackRateStack\", \"value\": 0.04, \"maxStacks\": 5, \"condition\": { \"afterOwnAttacks\": 3, \"repeat\": true } }"
+    },
+    {
+      "category": "ACTIVE",
+      "type": "selfTriggerReduction",
+      "meaning": "ลดจำนวนครั้งที่เจ้าของสกิลต้องสะสม",
+      "exampleValue": 1,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "trigger หลังลดต่ำสุด 1",
+      "exampleCode": "{ \"type\": \"selfTriggerReduction\", \"value\": 1 }"
+    },
+    {
+      "category": "ATK ตามระดับ",
+      "type": "rarityPowerRate",
+      "meaning": "เพิ่ม/ลด ATK ระดับที่เลือก",
+      "exampleValue": 0.18,
+      "fields": "targetRarities",
+      "suitableModes": "team, tower, arena",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"rarityPowerRate\", \"value\": 0.18, \"targetRarities\": [\"EX\",\"SC\"] }"
+    },
+    {
+      "category": "HP ตามระดับ",
+      "type": "rarityHpRate",
+      "meaning": "เพิ่ม/ลด HP ระดับที่เลือก",
+      "exampleValue": 0.18,
+      "fields": "targetRarities",
+      "suitableModes": "tower, arena",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"rarityHpRate\", \"value\": 0.18, \"targetRarities\": [\"EX\",\"SC\"] }"
+    },
+    {
+      "category": "DEF ตามระดับ",
+      "type": "rarityDefenseRate",
+      "meaning": "เพิ่ม/ลด DEF ระดับที่เลือก",
+      "exampleValue": 0.12,
+      "fields": "targetRarities",
+      "suitableModes": "tower, arena",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"rarityDefenseRate\", \"value\": 0.12, \"targetRarities\": [\"EX\",\"SC\"] }"
+    },
+    {
+      "category": "รายได้ตามระดับ",
+      "type": "rarityIncomeRate",
+      "meaning": "เพิ่ม/ลดรายได้ระดับที่เลือก",
+      "exampleValue": 0.12,
+      "fields": "targetRarities",
+      "suitableModes": "team",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"rarityIncomeRate\", \"value\": 0.12, \"targetRarities\": [\"LR\",\"EX\"] }"
+    },
+    {
+      "category": "ATK ตามธาตุ",
+      "type": "elementPowerRate",
+      "meaning": "เพิ่ม/ลด ATK ธาตุที่เลือก",
+      "exampleValue": 0.1,
+      "fields": "targetElements",
+      "suitableModes": "team, tower, arena",
+      "note": "การ์ดหลายธาตุเข้าเงื่อนไขได้",
+      "exampleCode": "{ \"type\": \"elementPowerRate\", \"value\": 0.10, \"targetElements\": [\"ดิน\",\"เหล็ก\"] }"
+    },
+    {
+      "category": "HP ตามธาตุ",
+      "type": "elementHpRate",
+      "meaning": "เพิ่ม/ลด HP ธาตุที่เลือก",
+      "exampleValue": 0.1,
+      "fields": "targetElements",
+      "suitableModes": "tower, arena",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"elementHpRate\", \"value\": 0.10, \"targetElements\": [\"ดิน\",\"เหล็ก\"] }"
+    },
+    {
+      "category": "DEF ตามธาตุ",
+      "type": "elementDefenseRate",
+      "meaning": "เพิ่ม/ลด DEF ธาตุที่เลือก",
+      "exampleValue": 0.08,
+      "fields": "targetElements",
+      "suitableModes": "tower, arena",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"elementDefenseRate\", \"value\": 0.08, \"targetElements\": [\"ดิน\",\"เหล็ก\"] }"
+    },
+    {
+      "category": "รายได้ตามธาตุ",
+      "type": "elementIncomeRate",
+      "meaning": "เพิ่ม/ลดรายได้ธาตุที่เลือก",
+      "exampleValue": 0.08,
+      "fields": "targetElements",
+      "suitableModes": "team",
+      "note": "-",
+      "exampleCode": "{ \"type\": \"elementIncomeRate\", \"value\": 0.08, \"targetElements\": [\"น้ำ\",\"พืช\"] }"
+    },
+    {
+      "category": "ATK คงที่",
+      "type": "teamPowerFlat",
+      "meaning": "เพิ่ม/ลด ATK รวมค่าคงที่",
+      "exampleValue": 50000,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "เพิ่มหลังรวม ATK การ์ด",
+      "exampleCode": "{ \"type\": \"teamPowerFlat\", \"value\": 50000 }"
+    },
+    {
+      "category": "HP คงที่",
+      "type": "teamHpFlat",
+      "meaning": "เพิ่ม/ลด HP รวมค่าคงที่",
+      "exampleValue": 35000,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "ถ้าเป็น Active ระบบตีความเป็นฮีลค่าคงที่",
+      "exampleCode": "{ \"type\": \"teamHpFlat\", \"value\": 35000 }"
+    },
+    {
+      "category": "DEF คงที่",
+      "type": "teamDefenseFlat",
+      "meaning": "เพิ่ม/ลด DEF รวมค่าคงที่",
+      "exampleValue": 12000,
+      "fields": "-",
+      "suitableModes": "tower, arena",
+      "note": "แนะนำใช้ Passive",
+      "exampleCode": "{ \"type\": \"teamDefenseFlat\", \"value\": 12000 }"
+    },
+    {
+      "category": "โล่",
+      "type": "shieldHits",
+      "meaning": "เพิ่ม/ลดโล่เริ่มต้นตามจำนวนฮิต",
+      "exampleValue": -3,
+      "fields": "targetSide: ally / self / enemy",
+      "suitableModes": "tower, arena",
+      "note": "ค่าลบลดโล่เริ่มต้นศัตรู; โล่สุดท้ายไม่ต่ำกว่า 0; โล่รวมสูงสุด 99",
+      "exampleCode": "{ \"type\": \"shieldHits\", \"value\": -3, \"targetSide\": \"enemy\" }"
+    },
+    {
+      "category": "หลายฮิต",
+      "type": "attackHits",
+      "meaning": "เพิ่ม/ลดจำนวนฮิตพื้นฐานจาก 1 ฮิต",
+      "exampleValue": -2,
+      "fields": "targetSide: ally / self / enemy",
+      "suitableModes": "tower, arena",
+      "note": "ค่าลบลดฮิตศัตรู; ฮิตสุดท้ายไม่ต่ำกว่า 1; ATK ถูกแบ่งตามจำนวนฮิต",
+      "exampleCode": "{ \"type\": \"attackHits\", \"value\": -2, \"targetSide\": \"enemy\" }"
+    },
+    {
+      "category": "รายได้คงที่",
+      "type": "teamIncomeFlat",
+      "meaning": "เพิ่ม/ลดรายได้รวมค่าคงที่",
+      "exampleValue": 500,
+      "fields": "-",
+      "suitableModes": "team",
+      "note": "หน่วยต่อวินาที",
+      "exampleCode": "{ \"type\": \"teamIncomeFlat\", \"value\": 500 }"
+    },
+    {
+      "category": "การฟื้น HP",
+      "type": "healingRate",
+      "meaning": "เพิ่ม/ลดอัตราฟื้น HP ของฝ่ายเป้าหมาย",
+      "exampleValue": -0.5,
+      "fields": "targetSide, condition (ทางเลือก)",
+      "suitableModes": "tower, arena",
+      "note": "-0.50 = ฟื้นลดลง 50%; -1.00 = ห้ามฟื้น HP; ช่วงรวม -100% ถึง +500%",
+      "exampleCode": "{ \"type\": \"healingRate\", \"value\": -0.50, \"targetSide\": \"enemy\" }"
+    },
+    {
+      "category": "การฟื้นโล่",
+      "type": "shieldRecoveryRate",
+      "meaning": "เพิ่ม/ลดอัตราฟื้นโล่จาก Active Skill",
+      "exampleValue": -1,
+      "fields": "targetSide, condition (ทางเลือก)",
+      "suitableModes": "tower, arena",
+      "note": "-1.00 = ห้ามฟื้นโล่ แต่ไม่ลบโล่เริ่มต้น; ช่วงรวม -100% ถึง +500%",
+      "exampleCode": "{ \"type\": \"shieldRecoveryRate\", \"value\": -1.00, \"targetSide\": \"enemy\" }"
+    },
+    {
+      "category": "ACTIVE / คอส",
+      "type": "activeSkillCost",
+      "meaning": "ปรับจำนวนครั้งที่ต้องโจมตีก่อน Active; ค่าลบ=ลด ค่าบวก=เพิ่ม",
+      "exampleValue": -1,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch",
+      "suitableModes": "tower, arena",
+      "note": "คอสสุดท้าย 1–99; targetSide ally รวมเจ้าของสกิล; runtime ปัจจุบันไม่มี excludeSelf",
+      "exampleCode": "{ \"type\": \"activeSkillCost\", \"value\": -1, \"targetSide\": \"ally\" }"
+    }
+  ],
+  "conditions": [
+    {
+      "field": "mode",
+      "valueType": "string",
+      "meaning": "ทำงานเฉพาะโหมดเดียว",
+      "example": "tower",
+      "position": "condition",
+      "note": "รองรับ alias"
+    },
+    {
+      "field": "modes",
+      "valueType": "array",
+      "meaning": "ทำงานได้หลายโหมด",
+      "example": "[\"tower\",\"arena\"]",
+      "position": "condition",
+      "note": "ตรงอย่างน้อยหนึ่งโหมด"
+    },
+    {
+      "field": "requiredElements",
+      "valueType": "array",
+      "meaning": "ทีมต้องมีครบทุกธาตุที่กำหนด",
+      "example": "[\"ไฟ\",\"สายฟ้า\"]",
+      "position": "condition",
+      "note": "เงื่อนไข AND"
+    },
+    {
+      "field": "anyElements",
+      "valueType": "array",
+      "meaning": "ทีมต้องมีอย่างน้อยหนึ่งธาตุจากรายการ",
+      "example": "[\"ไฟ\",\"ลม\"]",
+      "position": "condition",
+      "note": "เงื่อนไข OR"
+    },
+    {
+      "field": "minElementCount",
+      "valueType": "object",
+      "meaning": "กำหนดจำนวนขั้นต่ำแยกรายธาตุ",
+      "example": "{\"ไฟ\":2,\"สายฟ้า\":1}",
+      "position": "condition",
+      "note": "ทุกคู่ต้องผ่าน"
+    },
+    {
+      "field": "minAnyElementCount",
+      "valueType": "object",
+      "meaning": "ผ่านเมื่อธาตุใดธาตุหนึ่งถึงจำนวนของตัวเอง",
+      "example": "{\"ดิน\":5,\"เหล็ก\":5}",
+      "position": "condition",
+      "note": "ดิน 5 หรือเหล็ก 5"
+    },
+    {
+      "field": "minCombinedElementCount",
+      "valueType": "object/array",
+      "meaning": "รวมจำนวนการ์ดที่มีธาตุใดธาตุหนึ่งในกลุ่ม",
+      "example": "{\"elements\":[\"ดิน\",\"เหล็ก\"],\"count\":5}",
+      "position": "condition",
+      "note": "การ์ดหลายธาตุนับใบละ 1"
+    },
+    {
+      "field": "teamElementsOnly",
+      "valueType": "array",
+      "meaning": "ทุกธาตุของทุกใบต้องอยู่ในรายการเท่านั้น",
+      "example": "[\"ดิน\",\"เหล็ก\"]",
+      "position": "condition",
+      "note": "มักใช้คู่ minTeamSize"
+    },
+    {
+      "field": "minUniqueElements",
+      "valueType": "number",
+      "meaning": "จำนวนธาตุไม่ซ้ำขั้นต่ำ",
+      "example": 4,
+      "position": "condition",
+      "note": "-"
+    },
+    {
+      "field": "requiredRarities",
+      "valueType": "array",
+      "meaning": "ทีมต้องมีครบทุกระดับที่กำหนด",
+      "example": "[\"LR\",\"EX\"]",
+      "position": "condition",
+      "note": "AND"
+    },
+    {
+      "field": "anyRarities",
+      "valueType": "array",
+      "meaning": "มีอย่างน้อยหนึ่งระดับจากรายการ",
+      "example": "[\"LR\",\"EX\",\"SC\"]",
+      "position": "condition",
+      "note": "OR"
+    },
+    {
+      "field": "minRarityCount",
+      "valueType": "object",
+      "meaning": "จำนวนขั้นต่ำรายระดับ",
+      "example": "{\"LR\":2,\"EX\":1}",
+      "position": "condition",
+      "note": "ทุกคู่ต้องผ่าน"
+    },
+    {
+      "field": "minTeamSize",
+      "valueType": "number",
+      "meaning": "จำนวนสมาชิกทีมขั้นต่ำ",
+      "example": 5,
+      "position": "condition",
+      "note": "ช่องที่มีการ์ดจริง"
+    },
+    {
+      "field": "maxTeamSize",
+      "valueType": "number",
+      "meaning": "จำนวนสมาชิกทีมสูงสุด",
+      "example": 3,
+      "position": "condition",
+      "note": "ใช้ทำทีมจำนวนน้อย"
+    },
+    {
+      "field": "leaderOnly",
+      "valueType": "boolean",
+      "meaning": "เจ้าของสกิลต้องอยู่ช่องแรก",
+      "example": true,
+      "position": "condition",
+      "note": "-"
+    },
+    {
+      "field": "sourceMinLevel",
+      "valueType": "number",
+      "meaning": "เลเวลขั้นต่ำเจ้าของสกิล",
+      "example": 150,
+      "position": "condition",
+      "note": "-"
+    },
+    {
+      "field": "sourceMinAwaken",
+      "valueType": "number",
+      "meaning": "อเวกขั้นต่ำเจ้าของสกิล",
+      "example": 4,
+      "position": "condition",
+      "note": "อ่าน duplicateRank/awaken"
+    },
+    {
+      "field": "requiredCardIds",
+      "valueType": "array",
+      "meaning": "ทีมต้องมี ID ครบทุกใบ",
+      "example": "[1041,1042]",
+      "position": "condition",
+      "note": "AND"
+    },
+    {
+      "field": "anyCardIds",
+      "valueType": "array",
+      "meaning": "มี ID ใดใบหนึ่งจากรายการ",
+      "example": "[1041,1042]",
+      "position": "condition",
+      "note": "OR"
+    },
+    {
+      "field": "allowedTeammateCardIds",
+      "valueType": "array",
+      "meaning": "อยู่เดี่ยวได้หรืออยู่กับเฉพาะ ID ที่อนุญาต",
+      "example": "[1032]",
+      "position": "condition",
+      "note": "ไม่บังคับว่าต้องใส่คู่หู"
+    },
+    {
+      "field": "withCardIds",
+      "valueType": "array",
+      "meaning": "Alias ของ requiredCardIds",
+      "example": "[1041]",
+      "position": "condition",
+      "note": "ใช้ของเดิมได้"
+    },
+    {
+      "field": "withoutCardIds",
+      "valueType": "array",
+      "meaning": "ทีมต้องไม่มี ID ที่กำหนด",
+      "example": "[1042]",
+      "position": "condition",
+      "note": "-"
+    },
+    {
+      "field": "afterOwnAttacks",
+      "valueType": "number",
+      "meaning": "จำนวนเทิร์นโจมตีที่สะสมก่อน Active",
+      "example": 7,
+      "position": "condition",
+      "note": "ค่า 6 = ทำงานในการโจมตีครั้งที่ 7"
+    },
+    {
+      "field": "repeat",
+      "valueType": "boolean",
+      "meaning": "หลัง Active ให้สะสมใหม่หรือไม่",
+      "example": false,
+      "position": "condition",
+      "note": "false = เปิดครั้งเดียว"
+    },
+    {
+      "field": "persistentAfterActivation",
+      "valueType": "boolean",
+      "meaning": "ทำ effect ทุกครั้งหลังสกิลหลักเปิดแล้ว",
+      "example": true,
+      "position": "effect",
+      "note": "ใช้กับฮีล/ฟื้นโล่ต่อเนื่อง"
+    },
+    {
+      "field": "targetSide",
+      "valueType": "string",
+      "meaning": "เลือกฝ่ายเป้าหมาย",
+      "example": "self",
+      "position": "effect",
+      "note": "ally / self / enemy; ally รวมเจ้าของสกิล"
+    },
+    {
+      "field": "targetCardIds",
+      "valueType": "array",
+      "meaning": "กรองเป้าหมายด้วย ID",
+      "example": "[1001,1041]",
+      "position": "effect",
+      "note": "รองรับ alias cardIds"
+    },
+    {
+      "field": "targetElements",
+      "valueType": "array",
+      "meaning": "กรองเป้าหมายด้วยธาตุ",
+      "example": "[\"ไฟ\",\"สายฟ้า\"]",
+      "position": "effect",
+      "note": "รองรับ alias elements"
+    },
+    {
+      "field": "targetRarities",
+      "valueType": "array",
+      "meaning": "กรองเป้าหมายด้วยระดับ",
+      "example": "[\"LR\",\"EX\"]",
+      "position": "effect",
+      "note": "รองรับ alias rarities"
+    },
+    {
+      "field": "targetMatch",
+      "valueType": "string",
+      "meaning": "วิธีรวมหลายตัวกรอง",
+      "example": "any",
+      "position": "effect",
+      "note": "any = อย่างใดอย่างหนึ่ง; all = ทุกตัวกรอง"
+    },
+    {
+      "field": "maxStacks",
+      "valueType": "number",
+      "meaning": "จำนวนชั้นสูงสุดของ increaseAttackRateStack",
+      "example": 5,
+      "position": "effect",
+      "note": "ขั้นต่ำ 1"
+    },
+    {
+      "field": "activeIn",
+      "valueType": "array",
+      "meaning": "กำหนดโหมดที่สกิลทำงาน",
+      "example": "[\"team\",\"tower\",\"arena\"]",
+      "position": "ability",
+      "note": "ไม่ใส่ = ทุกโหมด"
+    },
+    {
+      "field": "excludeSelf",
+      "valueType": "ยังไม่รองรับ",
+      "meaning": "ฟิลด์นี้ยังไม่ทำงานใน runtime ปัจจุบัน",
+      "example": "-",
+      "position": "-",
+      "note": "อย่าใส่ใน JSON จนกว่าโค้ดจะเพิ่มการรองรับ"
+    }
+  ],
+  "baseStats": [
+    {
+      "order": 1,
+      "code": "N",
+      "label": "N",
+      "rank": 0,
+      "power": 1000,
+      "hp": 5000,
+      "defense": 400,
+      "income": 35,
+      "hpAtk": 5,
+      "defAtk": 0.4,
+      "turns": 8.333333333,
+      "note": "ระดับเริ่มต้น"
+    },
+    {
+      "order": 2,
+      "code": "R",
+      "label": "R",
+      "rank": 1,
+      "power": 3000,
+      "hp": 15000,
+      "defense": 1200,
+      "income": 100,
+      "hpAtk": 5,
+      "defAtk": 0.4,
+      "turns": 8.333333333,
+      "note": ""
+    },
+    {
+      "order": 3,
+      "code": "SR",
+      "label": "SR",
+      "rank": 2,
+      "power": 9000,
+      "hp": 45000,
+      "defense": 3600,
+      "income": 280,
+      "hpAtk": 5,
+      "defAtk": 0.4,
+      "turns": 8.333333333,
+      "note": ""
+    },
+    {
+      "order": 4,
+      "code": "SSR",
+      "label": "SSR",
+      "rank": 3,
+      "power": 27000,
+      "hp": 135000,
+      "defense": 10800,
+      "income": 800,
+      "hpAtk": 5,
+      "defAtk": 0.4,
+      "turns": 8.333333333,
+      "note": ""
+    },
+    {
+      "order": 5,
+      "code": "UR",
+      "label": "UR",
+      "rank": 4,
+      "power": 81000,
+      "hp": 405000,
+      "defense": 32400,
+      "income": 2300,
+      "hpAtk": 5,
+      "defAtk": 0.4,
+      "turns": 8.333333333,
+      "note": ""
+    },
+    {
+      "order": 6,
+      "code": "LR",
+      "label": "Legends",
+      "rank": 5,
+      "power": 243000,
+      "hp": 1215000,
+      "defense": 97200,
+      "income": 6500,
+      "hpAtk": 5,
+      "defAtk": 0.4,
+      "turns": 8.333333333,
+      "note": "ใช้ LR ใน targetRarities"
+    },
+    {
+      "order": 7,
+      "code": "SC",
+      "label": "Mystical",
+      "rank": 6,
+      "power": 729000,
+      "hp": 3645000,
+      "defense": 291600,
+      "income": 18000,
+      "hpAtk": 5,
+      "defAtk": 0.4,
+      "turns": 8.333333333,
+      "note": "ใช้ SC ใน targetRarities"
+    },
+    {
+      "order": 8,
+      "code": "EX",
+      "label": "EX",
+      "rank": 7,
+      "power": 2187000,
+      "hp": 10935000,
+      "defense": 874800,
+      "income": 50000,
+      "hpAtk": 5,
+      "defAtk": 0.4,
+      "turns": 8.333333333,
+      "note": "ระดับสูงสุด"
+    }
+  ],
+  "rarities": {
+    "N": {
+      "label": "N",
+      "color": "#94a3b8",
+      "colors": [
+        "#94a3b8",
+        "#0f172a"
+      ],
+      "gradient": "linear-gradient(135deg, #94a3b8, #334155 55%, #020617)",
+      "glow": "#94a3b8",
+      "textColor": "#071019",
+      "order": 0,
+      "stars": 3,
+      "dust": 5,
+      "basePower": 1000,
+      "baseHp": 5000,
+      "baseDefense": 400,
+      "baseIncome": 35,
+      "maxLevel": 100,
+      "upgradeDustBase": 10,
+      "upgradeDustGrowth": 1.025,
+      "powerPerLevel": 0.015,
+      "incomePerLevel": 0.008,
+      "awakenMax": 13,
+      "awakenCopies": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10
+      ],
+      "powerBonus": 0.07,
+      "incomeBonus": 0.05
+    },
+    "R": {
+      "label": "R",
+      "color": "#38bdf8",
+      "colors": [
+        "#38bdf8",
+        "#2563eb",
+        "#0f172a"
+      ],
+      "gradient": "linear-gradient(135deg, #38bdf8, #2563eb 58%, #020617)",
+      "glow": "#38bdf8",
+      "textColor": "#06111f",
+      "order": 1,
+      "stars": 4,
+      "dust": 18,
+      "basePower": 3000,
+      "baseHp": 15000,
+      "baseDefense": 1200,
+      "baseIncome": 100,
+      "maxLevel": 120,
+      "upgradeDustBase": 25,
+      "upgradeDustGrowth": 1.032,
+      "powerPerLevel": 0.016,
+      "incomePerLevel": 0.0085,
+      "awakenMax": 11,
+      "awakenCopies": [
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "powerBonus": 0.09,
+      "incomeBonus": 0.06
+    },
+    "SR": {
+      "label": "SR",
+      "color": "#a78bfa",
+      "colors": [
+        "#a78bfa",
+        "#7c3aed",
+        "#111827"
+      ],
+      "gradient": "linear-gradient(135deg, #c4b5fd, #7c3aed 58%, #111827)",
+      "glow": "#a78bfa",
+      "textColor": "#10051f",
+      "order": 2,
+      "stars": 5,
+      "dust": 70,
+      "basePower": 9000,
+      "baseHp": 45000,
+      "baseDefense": 3600,
+      "baseIncome": 280,
+      "maxLevel": 140,
+      "upgradeDustBase": 70,
+      "upgradeDustGrowth": 1.04,
+      "powerPerLevel": 0.0175,
+      "incomePerLevel": 0.009,
+      "awakenMax": 9,
+      "awakenCopies": [
+        1,
+        1,
+        2,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8
+      ],
+      "powerBonus": 0.12,
+      "incomeBonus": 0.08
+    },
+    "SSR": {
+      "label": "SSR",
+      "color": "#fbbf24",
+      "colors": [
+        "#fde68a",
+        "#f59e0b",
+        "#7c2d12"
+      ],
+      "gradient": "linear-gradient(135deg, #fde68a, #f59e0b 52%, #7c2d12)",
+      "glow": "#fbbf24",
+      "textColor": "#211500",
+      "order": 3,
+      "stars": 6,
+      "dust": 280,
+      "basePower": 27000,
+      "baseHp": 135000,
+      "baseDefense": 10800,
+      "baseIncome": 800,
+      "maxLevel": 160,
+      "upgradeDustBase": 220,
+      "upgradeDustGrowth": 1.052,
+      "powerPerLevel": 0.019,
+      "incomePerLevel": 0.0095,
+      "awakenMax": 7,
+      "awakenCopies": [
+        1,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "powerBonus": 0.17,
+      "incomeBonus": 0.11
+    },
+    "UR": {
+      "label": "UR",
+      "color": "#fb7185",
+      "colors": [
+        "#fb7185",
+        "#dc2626",
+        "#111827"
+      ],
+      "gradient": "linear-gradient(135deg, #fb7185, #dc2626 55%, #111827)",
+      "glow": "#fb7185",
+      "textColor": "#21060a",
+      "order": 4,
+      "stars": 7,
+      "dust": 1500,
+      "basePower": 81000,
+      "baseHp": 405000,
+      "baseDefense": 32400,
+      "baseIncome": 2300,
+      "maxLevel": 180,
+      "upgradeDustBase": 750,
+      "upgradeDustGrowth": 1.064,
+      "powerPerLevel": 0.021,
+      "incomePerLevel": 0.0105,
+      "awakenMax": 5,
+      "awakenCopies": [
+        1,
+        1,
+        2,
+        3,
+        5
+      ],
+      "powerBonus": 0.26,
+      "incomeBonus": 0.17
+    },
+    "LR": {
+      "label": "Legends",
+      "color": "#FFD700",
+      "colors": [
+        "#7A4800",
+        "#D99A16",
+        "#FFF2A8",
+        "#FFD700",
+        "#A86400"
+      ],
+      "gradient": "linear-gradient(135deg, #6B3F00 0%, #D99A16 22%, #FFF7C2 43%, #FFD700 58%, #B8750D 78%, #FFE98A 100%)",
+      "glow": "#FFD966",
+      "textColor": "#2B1700",
+      "order": 5,
+      "stars": 8,
+      "dust": 9000,
+      "basePower": 243000,
+      "baseHp": 1215000,
+      "baseDefense": 97200,
+      "baseIncome": 6500,
+      "maxLevel": 220,
+      "upgradeDustBase": 2800,
+      "upgradeDustGrowth": 1.078,
+      "powerPerLevel": 0.024,
+      "incomePerLevel": 0.0115,
+      "awakenMax": 4,
+      "awakenCopies": [
+        1,
+        1,
+        2,
+        3
+      ],
+      "powerBonus": 0.38,
+      "incomeBonus": 0.25
+    },
+    "SC": {
+      "label": "Mystical",
+      "color": "#f5d9ff",
+      "colors": [
+        "#ff77d9",
+        "#9c8cff",
+        "#65e8ff",
+        "#75ffbf",
+        "#fff18a",
+        "#ff9f76",
+        "#ffffff"
+      ],
+      "gradient": "linear-gradient(135deg, #ff77d9 0%, #9c8cff 16%, #65e8ff 32%, #75ffbf 48%, #fff18a 64%, #ff9f76 80%, #ffffff 92%, #ff77d9 100%)",
+      "glow": "#f4caff",
+      "textColor": "#170b25",
+      "order": 6,
+      "stars": 10,
+      "dust": 50000,
+      "basePower": 729000,
+      "baseHp": 3645000,
+      "baseDefense": 291600,
+      "baseIncome": 18000,
+      "maxLevel": 250,
+      "upgradeDustBase": 10000,
+      "upgradeDustGrowth": 1.092,
+      "powerPerLevel": 0.028,
+      "incomePerLevel": 0.0125,
+      "awakenMax": 3,
+      "awakenCopies": [
+        1,
+        1,
+        2
+      ],
+      "powerBonus": 0.65,
+      "incomeBonus": 0.45
+    },
+    "EX": {
+      "label": "EX",
+      "color": "#d946ef",
+      "colors": [
+        "#111827",
+        "#2e1065",
+        "#7c3aed",
+        "#22d3ee",
+        "#c084fc"
+      ],
+      "gradient": "linear-gradient(135deg, #111827, #2e1065 28%, #7c3aed 56%, #22d3ee 82%, #c084fc)",
+      "glow": "#e879f9",
+      "textColor": "#f8fafc",
+      "borderColor": "#facc15",
+      "order": 7,
+      "stars": 12,
+      "dust": 100000,
+      "basePower": 2187000,
+      "baseHp": 10935000,
+      "baseDefense": 874800,
+      "baseIncome": 50000,
+      "maxLevel": 300,
+      "upgradeDustBase": 20000,
+      "upgradeDustGrowth": 1.102,
+      "powerPerLevel": 0.032,
+      "incomePerLevel": 0.0215,
+      "awakenMax": 3,
+      "awakenCopies": [
+        1,
+        1,
+        2
+      ],
+      "powerBonus": 0.9,
+      "incomeBonus": 0.7
+    }
+  },
+  "elements": [
+    "ดิน",
+    "น้ำ",
+    "ลม",
+    "ไฟ",
+    "สายฟ้า",
+    "น้ำแข็ง",
+    "เหล็ก",
+    "พืช",
+    "แสง",
+    "ความมืด",
+    "มิติ",
+    "ไร้ธาตุ"
+  ],
+  "currentCards": [
+    {
+      "id": 2002,
+      "name": "Aqua",
+      "rarity": "SC",
+      "element": "น้ำ"
+    },
+    {
+      "id": 2003,
+      "name": "Megumin",
+      "rarity": "SC",
+      "element": "ไฟ"
+    },
+    {
+      "id": 0,
+      "name": "DEV.",
+      "rarity": "SC",
+      "element": "ความมืด"
+    },
+    {
+      "id": 999,
+      "name": "CREATOR",
+      "rarity": "SC",
+      "element": "สายฟ้า"
+    },
+    {
+      "id": 1000,
+      "name": "Great Magician",
+      "rarity": "SC",
+      "element": "ไร้ธาตุ"
+    },
+    {
+      "id": 2000,
+      "name": "MAMON",
+      "rarity": "SC",
+      "element": "น้ำแข็ง"
+    },
+    {
+      "id": 1041,
+      "name": "Satoru Gojo+Yuji Itadori",
+      "rarity": "EX",
+      "element": [
+        "น้ำ",
+        "เหล็ก"
+      ]
+    },
+    {
+      "id": 1042,
+      "name": "Sukuna+Dabura Karaba",
+      "rarity": "EX",
+      "element": [
+        "ความมืด",
+        "มิติ"
+      ]
+    },
+    {
+      "id": 1043,
+      "name": "Yuka Okkotsu+Tsurugi Okkotsu",
+      "rarity": "EX",
+      "element": [
+        "ไฟ",
+        "ลม"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "EX Frieren",
+      "rarity": "EX",
+      "element": "มิติ"
+    },
+    {
+      "id": 39,
+      "name": "EX Fern",
+      "rarity": "EX",
+      "element": "ความมืด"
+    },
+    {
+      "id": 40,
+      "name": "EX Stark",
+      "rarity": "EX",
+      "element": "ไฟ"
+    },
+    {
+      "id": 41,
+      "name": "EX Himmel",
+      "rarity": "EX",
+      "element": "แสง"
+    },
+    {
+      "id": 44,
+      "name": "Hana Kurusu",
+      "rarity": "LR",
+      "element": "น้ำ"
+    },
+    {
+      "id": 45,
+      "name": "Riko Amanai",
+      "rarity": "UR",
+      "element": "ไร้ธาตุ"
+    },
+    {
+      "id": 1,
+      "name": "SABER.Artoria",
+      "rarity": "SC",
+      "element": "แสง"
+    },
+    {
+      "id": 2,
+      "name": "Sung Jinwoo",
+      "rarity": "SC",
+      "element": "มิติ"
+    },
+    {
+      "id": 3,
+      "name": "Frieren",
+      "rarity": "SC",
+      "element": "ดิน"
+    },
+    {
+      "id": 4,
+      "name": "DEKU",
+      "rarity": "LR",
+      "element": "แสง"
+    },
+    {
+      "id": 5,
+      "name": "Kirito",
+      "rarity": "LR",
+      "element": "ลม"
+    },
+    {
+      "id": 6,
+      "name": "Monkey D. Luffy",
+      "rarity": "LR",
+      "element": "พืช"
+    },
+    {
+      "id": 7,
+      "name": "Satoru Gojo",
+      "rarity": "LR",
+      "element": "สายฟ้า"
+    },
+    {
+      "id": 8,
+      "name": "CID",
+      "rarity": "LR",
+      "element": "ความมืด"
+    },
+    {
+      "id": 9,
+      "name": "Kamado Tanjirou",
+      "rarity": "LR",
+      "element": "น้ำ"
+    },
+    {
+      "id": 10,
+      "name": "Uzumaki Naruto",
+      "rarity": "LR",
+      "element": "ดิน"
+    },
+    {
+      "id": 1038,
+      "name": "Marulu Val Vol Yelvori",
+      "rarity": "LR",
+      "element": "น้ำแข็ง"
+    },
+    {
+      "id": 1039,
+      "name": "Yuka Okkotsu",
+      "rarity": "LR",
+      "element": "ลม"
+    },
+    {
+      "id": 1040,
+      "name": "Tsurugi Okkotsu",
+      "rarity": "LR",
+      "element": "ไฟ"
+    },
+    {
+      "id": 1033,
+      "name": "Kinji Hakari",
+      "rarity": "SC",
+      "element": "มิติ"
+    },
+    {
+      "id": 1034,
+      "name": "Hajime Kashimo",
+      "rarity": "LR",
+      "element": "สายฟ้า"
+    },
+    {
+      "id": 1023,
+      "name": "Yuji Itadori",
+      "rarity": "SC",
+      "element": "ความมืด"
+    },
+    {
+      "id": 1021,
+      "name": "Hiromi Higuruma",
+      "rarity": "LR",
+      "element": "เหล็ก"
+    },
+    {
+      "id": 1022,
+      "name": "Fumihiko Takaba",
+      "rarity": "LR",
+      "element": "ไร้ธาตุ"
+    },
+    {
+      "id": 1001,
+      "name": "Satoru Gojo",
+      "rarity": "SC",
+      "element": "แสง"
+    },
+    {
+      "id": 1002,
+      "name": "Sukuna",
+      "rarity": "SC",
+      "element": "แสง"
+    },
+    {
+      "id": 1003,
+      "name": "Zenin Toji",
+      "rarity": "LR",
+      "element": "ความมืด"
+    },
+    {
+      "id": 1004,
+      "name": "Maki",
+      "rarity": "LR",
+      "element": "ไร้ธาตุ"
+    },
+    {
+      "id": 1005,
+      "name": "Okkotsu Yuta",
+      "rarity": "LR",
+      "element": "ไร้ธาตุ"
+    },
+    {
+      "id": 1006,
+      "name": "Yuki Tsukumo",
+      "rarity": "LR",
+      "element": "มิติ"
+    },
+    {
+      "id": 1007,
+      "name": "Suguru Geto",
+      "rarity": "LR",
+      "element": "มิติ"
+    },
+    {
+      "id": 1008,
+      "name": "Kenjaku",
+      "rarity": "LR",
+      "element": "ความมืด"
+    },
+    {
+      "id": 1009,
+      "name": "Yuji Itadori",
+      "rarity": "UR",
+      "element": "สายฟ้า"
+    },
+    {
+      "id": 1010,
+      "name": "Nobara Kugisaki",
+      "rarity": "UR",
+      "element": "น้ำแข็ง"
+    },
+    {
+      "id": 1011,
+      "name": "Megumi Fushiguro",
+      "rarity": "UR",
+      "element": "ความมืด"
+    },
+    {
+      "id": 1012,
+      "name": "Kento Nanami",
+      "rarity": "UR",
+      "element": "สายฟ้า"
+    },
+    {
+      "id": 1036,
+      "name": "Toge Inumaki",
+      "rarity": "UR",
+      "element": "น้ำแข็ง"
+    },
+    {
+      "id": 1037,
+      "name": "Panda",
+      "rarity": "UR",
+      "element": "เหล็ก"
+    },
+    {
+      "id": 1013,
+      "name": "Aoi Todo",
+      "rarity": "UR",
+      "element": "สายฟ้า"
+    },
+    {
+      "id": 1014,
+      "name": "Momo Nishimiya",
+      "rarity": "UR",
+      "element": "ลม"
+    },
+    {
+      "id": 1015,
+      "name": "Mai Zenin",
+      "rarity": "UR",
+      "element": "เหล็ก"
+    },
+    {
+      "id": 1016,
+      "name": "Maki Zenin",
+      "rarity": "UR",
+      "element": "ลม"
+    },
+    {
+      "id": 1017,
+      "name": "Kasumi Miwa",
+      "rarity": "UR",
+      "element": "ดิน"
+    },
+    {
+      "id": 1018,
+      "name": "Kokichi Muta",
+      "rarity": "UR",
+      "element": "ดิน"
+    },
+    {
+      "id": 1019,
+      "name": "Mei Mei",
+      "rarity": "UR",
+      "element": "ไฟ"
+    },
+    {
+      "id": 1020,
+      "name": "Utahime Iori",
+      "rarity": "UR",
+      "element": "ดิน"
+    },
+    {
+      "id": 1035,
+      "name": "Sukuna",
+      "rarity": "UR",
+      "element": "เหล็ก"
+    },
+    {
+      "id": 1024,
+      "name": "Jogo",
+      "rarity": "UR",
+      "element": "ไฟ"
+    },
+    {
+      "id": 1025,
+      "name": "Hanami",
+      "rarity": "UR",
+      "element": "พืช"
+    },
+    {
+      "id": 1026,
+      "name": "Dagon",
+      "rarity": "UR",
+      "element": "น้ำ"
+    },
+    {
+      "id": 1027,
+      "name": "Mahito",
+      "rarity": "UR",
+      "element": "พืช"
+    },
+    {
+      "id": 1028,
+      "name": "Takako Uro",
+      "rarity": "UR",
+      "element": "มิติ"
+    },
+    {
+      "id": 1029,
+      "name": "Ryu Ishigori",
+      "rarity": "UR",
+      "element": "แสง"
+    },
+    {
+      "id": 1030,
+      "name": "Choso",
+      "rarity": "UR",
+      "element": "น้ำ"
+    },
+    {
+      "id": 1031,
+      "name": "Naoya Zenin",
+      "rarity": "UR",
+      "element": "มิติ"
+    },
+    {
+      "id": 1032,
+      "name": "Uraume",
+      "rarity": "UR",
+      "element": "น้ำแข็ง"
+    },
+    {
+      "id": 43,
+      "name": "Kirara Hoshi",
+      "rarity": "UR",
+      "element": "มิติ"
+    },
+    {
+      "id": 42,
+      "name": "Shoko Ieiri",
+      "rarity": "UR",
+      "element": "พืช"
+    },
+    {
+      "id": 46,
+      "name": "Kaoruko Waguri(YukiSuit)",
+      "rarity": "UR",
+      "element": "น้ำแข็ง"
+    },
+    {
+      "id": 37,
+      "name": "Yuki Suou(WaguriSuit)",
+      "rarity": "UR",
+      "element": "น้ำแข็ง"
+    },
+    {
+      "id": 11,
+      "name": "Goku",
+      "rarity": "UR",
+      "element": "พืช"
+    },
+    {
+      "id": 12,
+      "name": "Zenitsu",
+      "rarity": "UR",
+      "element": "สายฟ้า"
+    },
+    {
+      "id": 13,
+      "name": "Roroa Zoro",
+      "rarity": "UR",
+      "element": "เหล็ก"
+    },
+    {
+      "id": 36,
+      "name": "Yuki Suou",
+      "rarity": "SSR",
+      "element": "ไฟ"
+    },
+    {
+      "id": 14,
+      "name": "Saber Alter",
+      "rarity": "SSR",
+      "element": "ความมืด"
+    },
+    {
+      "id": 15,
+      "name": "Yuki Asuna",
+      "rarity": "SSR",
+      "element": "แสง"
+    },
+    {
+      "id": 16,
+      "name": "Sinobu",
+      "rarity": "SSR",
+      "element": "น้ำ"
+    },
+    {
+      "id": 17,
+      "name": "Nami",
+      "rarity": "SSR",
+      "element": "ลม"
+    },
+    {
+      "id": 18,
+      "name": "Waguri Kaoruko",
+      "rarity": "SSR",
+      "element": "ดิน"
+    },
+    {
+      "id": 19,
+      "name": "Aria",
+      "rarity": "SR",
+      "element": "น้ำแข็ง"
+    },
+    {
+      "id": 20,
+      "name": "Inosuke",
+      "rarity": "SR",
+      "element": "พืช"
+    },
+    {
+      "id": 21,
+      "name": "Uraraka",
+      "rarity": "SR",
+      "element": "สายฟ้า"
+    },
+    {
+      "id": 22,
+      "name": "Sakura",
+      "rarity": "SR",
+      "element": "ดิน"
+    },
+    {
+      "id": 23,
+      "name": "Miku",
+      "rarity": "SR",
+      "element": "น้ำ"
+    },
+    {
+      "id": 24,
+      "name": "Zero Two",
+      "rarity": "SR",
+      "element": "ความมืด"
+    },
+    {
+      "id": 25,
+      "name": "Vegeta",
+      "rarity": "SR",
+      "element": "แสง"
+    },
+    {
+      "id": 26,
+      "name": "Itadori Yuji",
+      "rarity": "SR",
+      "element": "ลม"
+    },
+    {
+      "id": 27,
+      "name": "Asuka",
+      "rarity": "SR",
+      "element": "ไฟ"
+    },
+    {
+      "id": 28,
+      "name": "Stark",
+      "rarity": "SR",
+      "element": "เหล็ก"
+    },
+    {
+      "id": 29,
+      "name": "Monkey D. Luffy",
+      "rarity": "R",
+      "element": "ไฟ"
+    },
+    {
+      "id": 30,
+      "name": "Uzumaki Naruto",
+      "rarity": "R",
+      "element": "ลม"
+    },
+    {
+      "id": 31,
+      "name": "Goku",
+      "rarity": "R",
+      "element": "แสง"
+    },
+    {
+      "id": 32,
+      "name": "Ichigo Kurosaki",
+      "rarity": "R",
+      "element": "น้ำ"
+    },
+    {
+      "id": 33,
+      "name": "Kobi",
+      "rarity": "N",
+      "element": "ไร้ธาตุ"
+    },
+    {
+      "id": 34,
+      "name": "Conan",
+      "rarity": "N",
+      "element": "ไร้ธาตุ"
+    },
+    {
+      "id": 35,
+      "name": "Sung Jinwoo",
+      "rarity": "N",
+      "element": "ไร้ธาตุ"
+    }
+  ],
+  "sourceInfo": {
+    "sheetTitle": "Anime Card Collection - ระบบสกิลและเงื่อนไข.xlsx",
+    "sheetUpdated": "2026-06-19",
+    "gameFile": "index (4).html",
+    "currentCardCount": 95
+  }
+}</script>
+<script>
+'use strict';
+const DATA = JSON.parse(document.getElementById('builder-data').textContent);
+const STORAGE_KEY = 'anime-card-code-builder-v1';
+const IMPORT_KEY = 'anime-card-code-builder-imported-v1';
+const rarityCodes = Object.keys(DATA.rarities).sort((a,b)=>DATA.rarities[a].order-DATA.rarities[b].order);
+const conditionCatalog = DATA.conditions.filter(x=>x.position==='condition' && x.field!=='excludeSelf');
+const effectCatalog = DATA.effects;
+const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
+const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions']);
+const activeEffectTypes = new Set(['nextAttackPowerRate','nextAttackPowerFlat','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','increaseAttackRateStack']);
+const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack']));
+const integerEffectTypes = new Set(['shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost']);
+const flatEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Flat$/.test(t)));
+const el = id=>document.getElementById(id);
+const appState = {
+  selectedElements: [],
+  sessionCards: loadJson(STORAGE_KEY, []),
+  importedCards: loadJson(IMPORT_KEY, []),
+  editingSessionIndex: null,
+  abilitySeq: 0,
+  toastTimer: null
+};
+function loadJson(key,fallback){try{const value=JSON.parse(localStorage.getItem(key));return value??fallback}catch{return fallback}}
+function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(appState.sessionCards));localStorage.setItem(IMPORT_KEY,JSON.stringify(appState.importedCards))}
+function esc(value){return String(value??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function deepClone(value){return JSON.parse(JSON.stringify(value))}
+function num(value,fallback=0){const n=Number(value);return Number.isFinite(n)?n:fallback}
+function int(value,fallback=0){const n=Math.floor(Number(value));return Number.isFinite(n)?n:fallback}
+function unique(values){return [...new Set((values||[]).map(v=>String(v)).filter(Boolean))]}
+function formatNumber(value){return Number(value||0).toLocaleString('en-US',{maximumFractionDigits:6})}
+function toast(message,bad=false){const box=el('toast');box.textContent=message;box.classList.toggle('bad',bad);box.classList.add('show');clearTimeout(appState.toastTimer);appState.toastTimer=setTimeout(()=>box.classList.remove('show'),2400)}
+function switchTab(name){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));document.querySelectorAll('.tab-page').forEach(p=>p.classList.toggle('active',p.id===`page-${name}`));if(name==='library')renderLibrary();if(name==='database')renderDatabase()}
+function option(value,label,selected=false){return `<option value="${esc(value)}"${selected?' selected':''}>${esc(label)}</option>`}
+function selectOptions(select, items, selected){select.innerHTML=items.map(item=>option(item.value,item.label,String(item.value)===String(selected))).join('')}
+function getRarity(){return el('raritySelect').value||rarityCodes[0]}
+function getRarityConfig(){return DATA.rarities[getRarity()]||DATA.rarities[rarityCodes[0]]}
+function currentId(){const raw=el('cardId').value.trim();return raw===''?null:int(raw)}
+function mediaValue(modeId,customId,ext){const mode=el(modeId).value;const id=currentId();if(mode==='none')return '';if(mode==='id')return id===null?'':`${id}${ext}`;return el(customId).value.trim()}
+function allDatabaseRows(){
+  const rows=[];
+  DATA.currentCards.forEach(c=>rows.push({...c,source:'current'}));
+  appState.importedCards.forEach(c=>rows.push({...c,source:'imported'}));
+  appState.sessionCards.forEach((c,index)=>rows.push({id:c.id,name:c.name,rarity:c.rarity,element:c.element,source:'session',sessionIndex:index}));
+  return rows;
+}
+function findDuplicate(id){
+  if(id===null)return [];
+  return allDatabaseRows().filter(row=>Number(row.id)===Number(id) && !(row.source==='session' && row.sessionIndex===appState.editingSessionIndex));
+}
+function updateIdStatus(){
+  const id=currentId(), box=el('idStatus'), override=el('overrideWrap');
+  if(id===null){box.className='status warn';box.textContent='กรอก ID เพื่อเริ่มตรวจสอบ';override.classList.add('hidden');return}
+  const dups=findDuplicate(id);
+  if(dups.length){box.className='status bad';box.textContent=`ID ${id} ซ้ำกับ ${dups.slice(0,2).map(x=>x.name||'ไม่ทราบชื่อ').join(', ')}`;override.classList.remove('hidden')}
+  else{box.className='status ok';box.textContent=`ID ${id} พร้อมใช้งาน ✓`;override.classList.add('hidden');el('duplicateOverride').checked=false}
+}
+function initHeader(){el('headerCurrentCount').textContent=DATA.currentCards.length;el('headerEffectCount').textContent=DATA.effects.length;el('effectCountInline').textContent=DATA.effects.length;el('conditionCountInline').textContent=DATA.conditions.length}
+function initRarity(){
+  el('raritySelect').innerHTML=rarityCodes.map(code=>option(code,`${DATA.rarities[code].label} (${code})`)).join('');
+  el('raritySelect').value=rarityCodes.at(-1)||'EX';
+}
+function initElementPicker(){el('elementSelect').innerHTML=DATA.elements.map(x=>option(x,x)).join('');el('elementSelect').value='ไร้ธาตุ';appState.selectedElements=['ไร้ธาตุ'];renderElementChips()}
+function renderElementChips(){
+  const host=el('elementChips');
+  host.innerHTML=appState.selectedElements.length?appState.selectedElements.map(x=>`<span class="chip">${esc(x)}<button type="button" data-remove-element="${esc(x)}">×</button></span>`).join(''):'<span class="empty-chip">ยังไม่ได้เลือกธาตุ</span>';
+  renderOutput();
+}
+const statDefs=[
+  {key:'power',label:'ATK',base:'basePower'},
+  {key:'hp',label:'HP',base:'baseHp'},
+  {key:'defense',label:'DEF',base:'baseDefense'},
+  {key:'incomePerSec',label:'รายได้/วินาที',base:'baseIncome'}
+];
+function initStats(){
+  el('statGrid').innerHTML=statDefs.map(def=>`<div class="field-wrap span-3 stat-box"><label>${def.label}</label><select class="field stat-mode" id="${def.key}Mode" data-key="${def.key}" data-base="${def.base}"><option value="global">ตามชุดเบสด้านบน</option><option value="0.8">80% ของเบสระดับ</option><option value="0.9">90% ของเบสระดับ</option><option value="0.95">95% ของเบสระดับ</option><option value="1">100% ของเบสระดับ</option><option value="1.05">105% ของเบสระดับ</option><option value="1.1">110% ของเบสระดับ</option><option value="1.2">120% ของเบสระดับ</option><option value="custom">กำหนดเอง</option></select><input class="field hidden stat-custom" id="${def.key}Custom" type="number" min="0" step="1" style="margin-top:6px"><div class="stat-value"><strong id="${def.key}Preview">0</strong><small>${def.key==='incomePerSec'?'/วินาที':''}</small></div></div>`).join('');
+  document.querySelectorAll('.stat-mode').forEach(s=>s.addEventListener('change',()=>{toggleCustomForSelect(s,`${s.dataset.key}Custom`);updateStatPreviews();renderOutput()}));
+  document.querySelectorAll('.stat-custom').forEach(i=>i.addEventListener('input',()=>{updateStatPreviews();renderOutput()}));
+}
+function statValue(def){
+  const cfg=getRarityConfig();const mode=el(`${def.key}Mode`).value;const base=num(cfg[def.base]);
+  if(mode==='custom')return Math.max(0,int(el(`${def.key}Custom`).value));
+  const multiplier=mode==='global'?num(el('globalStatPreset').value,1):num(mode,1);
+  return Math.max(0,Math.round(base*multiplier));
+}
+function updateStatPreviews(){statDefs.forEach(def=>el(`${def.key}Preview`).textContent=formatNumber(statValue(def)))}
+function initProgression(){
+  const cfg=getRarityConfig();
+  const dustValues=unique(rarityCodes.map(code=>DATA.rarities[code].upgradeDustBase).concat([cfg.upgradeDustBase])).map(Number).sort((a,b)=>a-b);
+  el('dustBaseSelect').innerHTML=dustValues.map(v=>option(v,formatNumber(v),v===cfg.upgradeDustBase)).join('')+option('custom','กำหนดเอง');
+  const growthValues=unique(rarityCodes.map(code=>DATA.rarities[code].upgradeDustGrowth).concat([cfg.upgradeDustGrowth])).map(Number).sort((a,b)=>a-b);
+  el('dustGrowthSelect').innerHTML=growthValues.map(v=>option(v,String(v),v===cfg.upgradeDustGrowth)).join('')+option('custom','กำหนดเอง');
+  el('awakenMaxSelect').innerHTML=Array.from({length:13},(_,i)=>option(i+1,`${i+1} ขั้น`,i+1===cfg.awakenMax)).join('');
+  el('dustBaseSelect').value=String(cfg.upgradeDustBase);el('dustGrowthSelect').value=String(cfg.upgradeDustGrowth);el('awakenMaxSelect').value=String(cfg.awakenMax);
+  toggleCustomForSelect(el('dustBaseSelect'),'dustBaseCustom');toggleCustomForSelect(el('dustGrowthSelect'),'dustGrowthCustom');
+}
+function toggleCustomForSelect(select,targetId){el(targetId).classList.toggle('hidden',select.value!=='custom')}
+function progressionValue(selectId,customId,integer=false){const s=el(selectId);const value=s.value==='custom'?el(customId).value:s.value;return integer?int(value):num(value)}
+function applyRarityDefaults(){
+  const cfg=getRarityConfig();
+  statDefs.forEach(def=>{el(`${def.key}Mode`).value='global';el(`${def.key}Custom`).classList.add('hidden')});
+  initProgression();updateStatPreviews();renderOutput()
+}
+function createTokenPicker(kind,values=[]){
+  const uid=`tp-${Math.random().toString(36).slice(2)}`;
+  const options=getTokenOptions(kind);
+  return `<div class="token-picker" data-kind="${esc(kind)}" data-values="${esc(JSON.stringify(unique(values)))}"><div class="token-line"><select class="field token-select" id="${uid}">${options.map(x=>option(x.value,x.label)).join('')}</select><button class="btn sm token-add" type="button">เพิ่ม</button></div><div class="chips token-chips"></div></div>`;
+}
+function getTokenOptions(kind){
+  if(kind==='elements')return DATA.elements.map(x=>({value:x,label:x}));
+  if(kind==='rarities')return rarityCodes.map(x=>({value:x,label:`${DATA.rarities[x].label} (${x})`}));
+  if(kind==='modes')return [{value:'team',label:'team · ทีมโชว์'},{value:'tower',label:'tower · ไต่หอ'},{value:'arena',label:'arena · อารีนา'}];
+  if(kind==='cards'){
+    const map=new Map();allDatabaseRows().forEach(c=>{if(c.id!==undefined&&c.id!==null&&!map.has(String(c.id)))map.set(String(c.id),{value:String(c.id),label:`#${c.id} · ${c.name||'ไม่ทราบชื่อ'}`})});
+    return [...map.values()].sort((a,b)=>Number(a.value)-Number(b.value));
+  }
+  return [];
+}
+function renderTokenPicker(picker){
+  const values=getPickerValues(picker), kind=picker.dataset.kind;
+  const labelMap=new Map(getTokenOptions(kind).map(x=>[String(x.value),x.label]));
+  picker.querySelector('.token-chips').innerHTML=values.length?values.map(v=>`<span class="chip">${esc(labelMap.get(String(v))||v)}<button type="button" class="token-remove" data-value="${esc(v)}">×</button></span>`).join(''):'<span class="empty-chip">ยังไม่เลือก</span>';
+}
+function getPickerValues(picker){try{return JSON.parse(picker.dataset.values||'[]')}catch{return []}}
+function setPickerValues(picker,values){picker.dataset.values=JSON.stringify(unique(values));renderTokenPicker(picker)}
+function addPickerValue(picker,value){const values=getPickerValues(picker);if(value!==''&&!values.includes(String(value)))values.push(String(value));setPickerValues(picker,values);renderOutput()}
+function removePickerValue(picker,value){setPickerValues(picker,getPickerValues(picker).filter(x=>String(x)!==String(value)));renderOutput()}
+function refreshCardPickers(){document.querySelectorAll('.token-picker[data-kind="cards"]').forEach(picker=>{const select=picker.querySelector('.token-select'),current=select.value;select.innerHTML=getTokenOptions('cards').map(x=>option(x.value,x.label,String(x.value)===String(current))).join('');renderTokenPicker(picker)})}
+function conditionGroup(field){
+  if(['mode','modes'].includes(field))return 'โหมด';
+  if(/Element/.test(field)||field==='teamElementsOnly'||field==='minUniqueElements')return 'ธาตุและทีม';
+  if(/Rarit/.test(field))return 'ระดับ';
+  if(/source|leader/.test(field))return 'เจ้าของสกิล';
+  if(/CardIds|Teammate/.test(field))return 'การ์ดร่วมทีม';
+  if(['afterOwnAttacks','repeat'].includes(field))return 'Active Skill';
+  return 'ขนาดทีม';
+}
+function conditionOptions(selected=''){
+  const groups={};conditionCatalog.forEach(c=>(groups[conditionGroup(c.field)]??=[]).push(c));
+  return option('','เลือกเงื่อนไข…')+Object.entries(groups).map(([name,items])=>`<optgroup label="${esc(name)}">${items.map(c=>option(c.field,`${c.field} · ${c.meaning}`,c.field===selected)).join('')}</optgroup>`).join('');
+}
+function addConditionRow(container,initialField='',initialValue=undefined){
+  const row=document.createElement('div');row.className='condition-row';
+  row.innerHTML=`<button class="btn sm danger row-remove" type="button" title="ลบ">×</button><div class="row-pad"><div class="field-wrap"><label>เงื่อนไข</label><select class="field condition-field">${conditionOptions(initialField)}</select></div><div class="conditional-control" style="margin-top:8px"></div><div class="condition-note">เลือกเงื่อนไขเพื่อดูคำอธิบาย</div></div>`;
+  container.appendChild(row);renderConditionControl(row,initialField,initialValue);return row;
+}
+function renderConditionControl(row,field,initialValue){
+  const host=row.querySelector('.conditional-control'), note=row.querySelector('.condition-note'), meta=conditionCatalog.find(x=>x.field===field);host.innerHTML='';
+  if(!meta){note.textContent='เลือกเงื่อนไขเพื่อดูคำอธิบาย';renderOutput();return}
+  note.innerHTML=`<b>${esc(meta.meaning)}</b> · ${esc(meta.note||'')} · ตัวอย่าง: ${esc(typeof meta.example==='object'?JSON.stringify(meta.example):meta.example??'-')}`;
+  const valueType=meta.valueType;
+  if(valueType==='boolean')host.innerHTML=`<select class="field condition-boolean">${option('true','ใช่ / true',initialValue===true)}${option('false','ไม่ / false',initialValue===false)}</select>`;
+  else if(valueType==='string')host.innerHTML=`<select class="field condition-string">${getTokenOptions('modes').map(x=>option(x.value,x.label,String(initialValue)===x.value)).join('')}</select>`;
+  else if(valueType==='number')host.innerHTML=numberControlHtml(field,initialValue);
+  else if(valueType==='array'){
+    let kind='cards';if(/Elements|teamElementsOnly/.test(field))kind='elements';else if(/Rarities/.test(field))kind='rarities';else if(field==='modes')kind='modes';
+    host.innerHTML=createTokenPicker(kind,Array.isArray(initialValue)?initialValue:[]);
+  } else if(valueType.includes('object')){
+    if(field==='minCombinedElementCount')host.innerHTML=`<div class="grid"><div class="span-8">${createTokenPicker('elements',initialValue?.elements||[])}</div><div class="field-wrap span-4"><label>จำนวนรวมขั้นต่ำ</label>${numberControlHtml('count',initialValue?.count)}</div></div>`;
+    else host.innerHTML=createKeyValuePicker(field,initialValue||{});
+  }
+  host.querySelectorAll('.token-picker').forEach(renderTokenPicker);host.querySelectorAll('.kv-picker').forEach(renderKvPicker);renderOutput();
+}
+function numberPresets(field){
+  if(field==='afterOwnAttacks')return [1,2,3,4,5,6,7,10,15,20,30,50,99];
+  if(field==='sourceMinLevel')return [1,10,25,50,75,100,120,140,150,160,180,200,220,250,300];
+  if(field==='sourceMinAwaken')return Array.from({length:13},(_,i)=>i+1);
+  if(['minTeamSize','maxTeamSize'].includes(field))return [1,2,3,4,5];
+  if(field==='minUniqueElements')return [1,2,3,4,5,6,8,10,12];
+  if(field==='count')return [1,2,3,4,5];
+  return [1,2,3,4,5,7,10,20,50,100];
+}
+function numberControlHtml(field,initial){
+  const values=numberPresets(field), hasInitial=initial!==undefined&&initial!==null, preset=hasInitial&&values.includes(Number(initial))?String(initial):(hasInitial?'custom':String(values[0]));
+  return `<div class="number-control"><select class="field number-preset">${values.map(v=>option(v,String(v),String(v)===preset)).join('')}${option('custom','กำหนดเอง',preset==='custom')}</select><input class="field number-custom${preset==='custom'?'':' hidden'}" type="number" step="1" value="${preset==='custom'?esc(initial):''}" style="margin-top:6px"></div>`;
+}
+function readNumberControl(scope){const s=scope.querySelector('.number-preset');if(!s)return 0;return s.value==='custom'?num(scope.querySelector('.number-custom')?.value):num(s.value)}
+function createKeyValuePicker(field,initial){
+  const kind=field==='minRarityCount'?'rarities':'elements';
+  return `<div class="kv-picker" data-kind="${kind}" data-object="${esc(JSON.stringify(initial||{}))}"><div class="inline-pair"><select class="field kv-key">${getTokenOptions(kind).map(x=>option(x.value,x.label)).join('')}</select><select class="field kv-value">${[1,2,3,4,5].map(v=>option(v,v)).join('')}</select><button class="btn sm kv-add" type="button">เพิ่ม</button></div><div class="chips kv-chips"></div></div>`;
+}
+function renderKvPicker(picker){let obj={};try{obj=JSON.parse(picker.dataset.object||'{}')}catch{}const labelMap=new Map(getTokenOptions(picker.dataset.kind).map(x=>[String(x.value),x.label]));picker.querySelector('.kv-chips').innerHTML=Object.keys(obj).length?Object.entries(obj).map(([k,v])=>`<span class="chip">${esc(labelMap.get(k)||k)} × ${esc(v)}<button type="button" class="kv-remove" data-key="${esc(k)}">×</button></span>`).join(''):'<span class="empty-chip">ยังไม่กำหนดจำนวน</span>'}
+function modesFromPreset(value){const map={all:['team','tower','arena'],team:['team'],tower:['tower'],arena:['arena'],battle:['tower','arena'],teamTower:['team','tower'],teamArena:['team','arena']};return map[value]||map.all}
+function presetFromModes(modes){const key=unique(modes).sort().join(',');const map={'arena,team,tower':'all','team':'team','tower':'tower','arena':'arena','arena,tower':'battle','team,tower':'teamTower','arena,team':'teamArena'};return map[key]||'all'}
+function addAbility(initial={}){
+  const id=++appState.abilitySeq;const card=document.createElement('article');card.className='ability-card';card.dataset.abilityId=id;
+  card.innerHTML=`<header class="ability-head"><div class="ability-title"><span class="ability-number">1</span><span>ความสามารถ</span></div><div class="mini-actions"><button class="btn sm ability-up" type="button">↑</button><button class="btn sm ability-down" type="button">↓</button><button class="btn sm danger ability-remove" type="button">ลบ</button></div></header><div class="ability-body"><div class="grid"><div class="field-wrap span-5"><label>ชื่อความสามารถ <span class="req">*</span></label><input class="field ability-name" value="${esc(initial.name||'')}" placeholder="ชื่อสกิล"></div><div class="field-wrap span-3"><label>โหมดที่ทำงาน</label><select class="field ability-mode"><option value="all">ทุกโหมด</option><option value="team">ทีมโชว์เท่านั้น</option><option value="tower">ไต่หอเท่านั้น</option><option value="arena">อารีนาเท่านั้น</option><option value="battle">ไต่หอ + อารีนา</option><option value="teamTower">ทีมโชว์ + ไต่หอ</option><option value="teamArena">ทีมโชว์ + อารีนา</option></select></div><div class="field-wrap span-4"><label>คัทซีน Active</label><select class="field cutscene-mode"><option value="auto">อัตโนมัติจากเกม</option><option value="custom">กำหนดเอง</option><option value="off">ปิดคัทซีนสกิลนี้</option></select></div><div class="field-wrap span-12"><label>คำอธิบาย <span class="req">*</span></label><textarea class="textarea ability-description" placeholder="อธิบายการทำงานให้ผู้เล่นเข้าใจ">${esc(initial.description||'')}</textarea></div></div>
+    <div class="custom-cutscene hidden" style="margin-top:10px">${cutsceneFieldsHtml(initial.activeCutscene||{})}</div>
+    <div class="subsection"><div class="subsection-head"><div><strong>เงื่อนไขของความสามารถ</strong><br><span>ใส่หลายข้อได้ ระบบจะรวมเป็น condition เดียว</span></div><button class="btn sm add-condition" type="button">＋ เงื่อนไข</button></div><div class="conditions-list"></div></div>
+    <div class="subsection"><div class="subsection-head"><div><strong>เอฟเฟกต์</strong><br><span>หนึ่งสกิลมีเอฟเฟกต์ได้หลายรายการ</span></div><button class="btn sm green add-effect" type="button">＋ เอฟเฟกต์</button></div><div class="effects-list"></div></div></div>`;
+  el('abilitiesContainer').appendChild(card);
+  card.querySelector('.ability-mode').value=presetFromModes(initial.activeIn||['team','tower','arena']);
+  const cutMode=initial.activeCutscene?.enabled===false?'off':initial.activeCutscene?'custom':'auto';card.querySelector('.cutscene-mode').value=cutMode;card.querySelector('.custom-cutscene').classList.toggle('hidden',cutMode!=='custom');
+  const condList=card.querySelector('.conditions-list');Object.entries(initial.condition||{}).forEach(([k,v])=>addConditionRow(condList,k,v));
+  const effects=Array.isArray(initial.effects)?initial.effects:[];if(effects.length)effects.forEach(effect=>addEffectRow(card.querySelector('.effects-list'),effect));else addEffectRow(card.querySelector('.effects-list'));
+  updateAbilityNumbers();renderOutput();return card;
+}
+function cutsceneFieldsHtml(c={}){return `<details class="advanced" open><summary>ตั้งค่าคัทซีนของ Active Skill</summary><div class="grid"><div class="field-wrap span-4"><label>Kicker</label><input class="field cs-kicker" value="${esc(c.kicker||'ACTIVE SKILL')}"></div><div class="field-wrap span-4"><label>ชื่อท่าหลัก</label><input class="field cs-title" value="${esc(c.title||'')}"></div><div class="field-wrap span-4"><label>ประโยคเปิดตัว</label><input class="field cs-quote" value="${esc(c.quote||'')}"></div><div class="field-wrap span-4"><label>Video</label><input class="field cs-video" value="${esc(c.video||'')}"></div><div class="field-wrap span-4"><label>Image</label><input class="field cs-image" value="${esc(c.image||'')}"></div><div class="field-wrap span-4"><label>Poster</label><input class="field cs-poster" value="${esc(c.poster||'')}"></div><div class="field-wrap span-3"><label>Accent</label><input class="field cs-accent" type="color" value="${esc(c.accent||'#a78bfa')}"></div><div class="field-wrap span-3"><label>Accent 2</label><input class="field cs-accent2" type="color" value="${esc(c.accent2||'#22d3ee')}"></div><div class="field-wrap span-3"><label>ภาพนิ่ง</label><select class="field cs-duration">${[800,1000,1200,1500,2000,3000].map(v=>option(v,`${v} ms`,v===num(c.durationMs,1200))).join('')}</select></div><div class="field-wrap span-3"><label>วิดีโอสูงสุด</label><select class="field cs-maxvideo">${[3000,6000,10000,15000,30000].map(v=>option(v,`${v} ms`,v===num(c.maxVideoMs,6000))).join('')}</select></div><div class="field-wrap span-3"><label>Object Fit</label><select class="field cs-fit">${option('cover','cover',c.objectFit!=='contain')}${option('contain','contain',c.objectFit==='contain')}</select></div><div class="field-wrap span-3"><label>ตำแหน่งภาพ</label><select class="field cs-position">${['center center','center top','center 20%','left center','right center'].map(v=>option(v,v,v===(c.objectPosition||'center center'))).join('')}</select></div><div class="field-wrap span-3"><label>เสียง</label><select class="field cs-muted">${option('true','ปิดเสียง',c.muted!==false)}${option('false','เปิดเสียง',c.muted===false)}</select></div><div class="field-wrap span-3"><label>Volume</label><select class="field cs-volume">${[0,0.25,0.5,0.75,0.8,0.9,1].map(v=>option(v,String(v),v===num(c.volume,.8))).join('')}</select></div><div class="field-wrap span-3"><label>แสดงจำนวนฮิต</label><select class="field cs-hitcount">${option('true','แสดง',c.showHitCount!==false)}${option('false','ซ่อน',c.showHitCount===false)}</select></div></div></details>`}
+function updateAbilityNumbers(){document.querySelectorAll('.ability-card').forEach((card,i)=>card.querySelector('.ability-number').textContent=i+1)}
+function effectCategories(){return unique(effectCatalog.map(x=>x.category))}
+function effectTypeOptions(category,selected=''){const list=category?effectCatalog.filter(x=>x.category===category):effectCatalog;return option('','เลือกเอฟเฟกต์…')+list.map(e=>option(e.type,`${e.type} · ${e.meaning}`,e.type===selected)).join('')}
+function addEffectRow(container,initial={}){
+  const meta=effectByType.get(initial.type);const category=meta?.category||effectCategories()[0];const row=document.createElement('div');row.className='effect-row';
+  row.innerHTML=`<button class="btn sm danger row-remove" type="button">×</button><div class="row-pad"><div class="grid"><div class="field-wrap span-4"><label>หมวดเอฟเฟกต์</label><select class="field effect-category">${effectCategories().map(x=>option(x,x,x===category)).join('')}</select></div><div class="field-wrap span-8"><label>ชนิดเอฟเฟกต์ <span class="req">*</span></label><select class="field effect-type">${effectTypeOptions(category,initial.type||'')}</select></div><div class="field-wrap span-4 effect-value-wrap"><label>ค่า value</label><div class="effect-value-control"></div></div><div class="field-wrap span-8"><label>สรุป</label><div class="status warn effect-summary">เลือกเอฟเฟกต์</div></div></div><div class="effect-note">เลือกเอฟเฟกต์เพื่อดูวิธีใช้</div><details class="advanced effect-advanced"><summary>เป้าหมาย ตัวกรอง และ Active Trigger</summary><div class="grid"><div class="field-wrap span-3 target-side-wrap"><label>targetSide</label><select class="field effect-target-side"><option value="">ไม่ระบุ</option><option value="self">self · ตัวเอง</option><option value="ally">ally · ฝ่ายเรา</option><option value="enemy">enemy · ฝ่ายตรงข้าม</option></select></div><div class="field-wrap span-3"><label>targetMatch</label><select class="field effect-target-match"><option value="any">any · ตรงอย่างใดอย่างหนึ่ง</option><option value="all">all · ต้องตรงทุกตัวกรอง</option></select></div><div class="field-wrap span-3"><label>afterOwnAttacks</label><select class="field effect-trigger"><option value="">ไม่กำหนดในเอฟเฟกต์นี้</option>${[1,2,3,4,5,6,7,10,15,20,30,50,99].map(v=>option(v,v,String(initial.condition?.afterOwnAttacks)===String(v))).join('')}</select></div><div class="field-wrap span-3"><label>repeat</label><select class="field effect-repeat">${option('true','วนซ้ำ',initial.condition?.repeat!==false)}${option('false','ครั้งเดียว',initial.condition?.repeat===false)}</select></div><div class="field-wrap span-6"><label>targetCardIds</label>${createTokenPicker('cards',initial.targetCardIds||[])}</div><div class="field-wrap span-3"><label>targetElements</label>${createTokenPicker('elements',initial.targetElements||[])}</div><div class="field-wrap span-3"><label>targetRarities</label>${createTokenPicker('rarities',initial.targetRarities||[])}</div><div class="field-wrap span-3 persistent-wrap"><label>persistentAfterActivation</label><select class="field effect-persistent"><option value="">ไม่ใส่</option>${option('true','true · ทำต่อเนื่อง',initial.persistentAfterActivation===true)}${option('false','false',initial.persistentAfterActivation===false)}</select></div><div class="field-wrap span-3 max-stacks-wrap"><label>maxStacks</label><select class="field effect-max-stacks">${[1,2,3,4,5,7,10,15,20].map(v=>option(v,v,v===num(initial.maxStacks,5))).join('')}</select></div></div></details></div>`;
+  container.appendChild(row);row.querySelectorAll('.token-picker').forEach(renderTokenPicker);row.querySelector('.effect-target-side').value=initial.targetSide||'';row.querySelector('.effect-target-match').value=initial.targetMatch||'any';row.querySelector('.effect-trigger').value=initial.condition?.afterOwnAttacks?String(initial.condition.afterOwnAttacks):'';renderEffectRow(row,initial.value);return row;
+}
+function valueKind(type){if(noValueEffects.has(type))return 'none';if(flatEffectTypes.has(type))return 'flat';if(integerEffectTypes.has(type))return 'integer';if(rateEffectTypes.has(type)||/Rate/.test(type))return 'rate';return 'number'}
+function effectValuePresets(type,example){
+  const kind=valueKind(type);let values=[];
+  if(kind==='rate')values=[-1,-.77,-.65,-.5,-.4,-.3,-.25,-.2,-.15,-.12,-.1,-.08,-.05,.03,.04,.05,.08,.1,.12,.15,.18,.2,.25,.3,.4,.5,.65,.77,1,2,5,7.77];
+  else if(kind==='integer')values=[-20,-10,-7,-5,-3,-2,-1,1,2,3,5,7,10,20];
+  else if(kind==='flat')values=[-1000000,-500000,-100000,-50000,-10000,-5000,-1000,1000,5000,10000,50000,100000,500000,1000000];
+  else values=[-10,-5,-1,.1,.2,.5,1,2,5,10,100];
+  if(example!==undefined&&example!==null&&!values.includes(Number(example)))values.push(Number(example));return values.sort((a,b)=>a-b)
+}
+function effectValueLabel(type,value){const n=Number(value);if(valueKind(type)==='rate')return `${n>0?'+':''}${(n*100).toLocaleString('en-US',{maximumFractionDigits:3})}% (${n})`;return `${n>0?'+':''}${formatNumber(n)}`}
+function renderEffectRow(row,initialValue){
+  const category=row.querySelector('.effect-category').value,typeSelect=row.querySelector('.effect-type');if(!typeSelect.value&&initialValue===undefined)typeSelect.innerHTML=effectTypeOptions(category,'');
+  const type=typeSelect.value,meta=effectByType.get(type),wrap=row.querySelector('.effect-value-wrap'),control=row.querySelector('.effect-value-control'),note=row.querySelector('.effect-note'),summary=row.querySelector('.effect-summary');
+  if(!meta){wrap.classList.remove('hidden');control.innerHTML='';note.textContent='เลือกเอฟเฟกต์เพื่อดูวิธีใช้';summary.className='status warn effect-summary';summary.textContent='เลือกเอฟเฟกต์';renderOutput();return}
+  const kind=valueKind(type);wrap.classList.toggle('hidden',kind==='none');
+  if(kind!=='none'){
+    const presets=effectValuePresets(type,meta.exampleValue),chosen=initialValue!==undefined?Number(initialValue):Number(meta.exampleValue??presets.find(v=>v>0)??0),isPreset=presets.includes(chosen);
+    control.innerHTML=`<select class="field effect-value-select">${presets.map(v=>option(v,effectValueLabel(type,v),isPreset&&v===chosen)).join('')}${option('custom','กำหนดเอง',!isPreset)}</select><input class="field effect-value-custom${isPreset?' hidden':''}" type="number" step="any" value="${isPreset?'':esc(chosen)}" style="margin-top:6px">`;
+  }else control.innerHTML='';
+  note.innerHTML=`<b>${esc(meta.meaning)}</b><br>${esc(meta.note||'ไม่มีหมายเหตุเพิ่มเติม')}<br><span class="accent">ฟิลด์ที่รองรับ:</span> ${esc(meta.fields||'-')} · <span class="accent">โหมดแนะนำ:</span> ${esc(meta.suitableModes||'-')}`;
+  summary.className='status ok effect-summary';summary.textContent=`${meta.type} · ${meta.meaning}`;
+  const fields=String(meta.fields||'');row.querySelector('.persistent-wrap').classList.toggle('hidden',!fields.includes('persistentAfterActivation'));row.querySelector('.max-stacks-wrap').classList.toggle('hidden',type!=='increaseAttackRateStack');
+  renderOutput();
+}
+function readConditionRow(row){
+  const field=row.querySelector('.condition-field').value;if(!field)return null;const meta=conditionCatalog.find(x=>x.field===field);if(!meta)return null;const host=row.querySelector('.conditional-control');let value;
+  if(meta.valueType==='boolean')value=host.querySelector('.condition-boolean').value==='true';
+  else if(meta.valueType==='string')value=host.querySelector('.condition-string').value;
+  else if(meta.valueType==='number')value=readNumberControl(host);
+  else if(meta.valueType==='array'){const picker=host.querySelector('.token-picker');value=getPickerValues(picker).map(v=>/CardIds|Teammate/.test(field)?int(v):v)}
+  else if(meta.valueType.includes('object')){
+    if(field==='minCombinedElementCount'){value={elements:getPickerValues(host.querySelector('.token-picker')),count:int(readNumberControl(host.querySelector('.number-control')))}}
+    else{const picker=host.querySelector('.kv-picker');try{value=JSON.parse(picker.dataset.object||'{}')}catch{value={}}}
+  }
+  return {field,value};
+}
+function readEffectRow(row){
+  const type=row.querySelector('.effect-type').value;if(!type)return null;const obj={type};const kind=valueKind(type);
+  if(kind!=='none'){const s=row.querySelector('.effect-value-select');obj.value=s.value==='custom'?num(row.querySelector('.effect-value-custom').value):num(s.value)}
+  const side=row.querySelector('.effect-target-side').value;if(side)obj.targetSide=side;
+  const ids=getPickerValues(row.querySelector('.token-picker[data-kind="cards"]')).map(int);if(ids.length)obj.targetCardIds=ids;
+  const elements=getPickerValues(row.querySelector('.token-picker[data-kind="elements"]'));if(elements.length)obj.targetElements=elements;
+  const rarities=getPickerValues(row.querySelector('.token-picker[data-kind="rarities"]'));if(rarities.length)obj.targetRarities=rarities;
+  if((ids.length?1:0)+(elements.length?1:0)+(rarities.length?1:0)>1)obj.targetMatch=row.querySelector('.effect-target-match').value||'any';
+  const trigger=row.querySelector('.effect-trigger').value;if(trigger)obj.condition={afterOwnAttacks:int(trigger),repeat:row.querySelector('.effect-repeat').value!=='false'};
+  const persistent=row.querySelector('.effect-persistent').value;if(persistent!=='')obj.persistentAfterActivation=persistent==='true';
+  if(type==='increaseAttackRateStack')obj.maxStacks=int(row.querySelector('.effect-max-stacks').value,5);
+  return obj;
+}
+function readCutscene(card){
+  const mode=card.querySelector('.cutscene-mode').value;if(mode==='auto')return undefined;if(mode==='off')return {enabled:false};
+  const box=card.querySelector('.custom-cutscene'),out={enabled:true};
+  [['kicker','.cs-kicker'],['title','.cs-title'],['quote','.cs-quote'],['video','.cs-video'],['image','.cs-image'],['poster','.cs-poster']].forEach(([k,s])=>{const v=box.querySelector(s).value.trim();if(v)out[k]=v});
+  out.accent=box.querySelector('.cs-accent').value;out.accent2=box.querySelector('.cs-accent2').value;out.durationMs=int(box.querySelector('.cs-duration').value);out.maxVideoMs=int(box.querySelector('.cs-maxvideo').value);out.objectFit=box.querySelector('.cs-fit').value;out.objectPosition=box.querySelector('.cs-position').value;out.muted=box.querySelector('.cs-muted').value==='true';out.volume=num(box.querySelector('.cs-volume').value);out.showHitCount=box.querySelector('.cs-hitcount').value==='true';return out;
+}
+function readAbilityCard(card){
+  const condition={};card.querySelectorAll('.condition-row').forEach(row=>{const entry=readConditionRow(row);if(entry&&entry.field){if(Array.isArray(entry.value)&&!entry.value.length)return;if(entry.value&&typeof entry.value==='object'&&!Array.isArray(entry.value)&&!Object.keys(entry.value).length)return;condition[entry.field]=entry.value}});
+  const ability={name:card.querySelector('.ability-name').value.trim(),description:card.querySelector('.ability-description').value.trim(),activeIn:modesFromPreset(card.querySelector('.ability-mode').value),effects:[...card.querySelectorAll('.effect-row')].map(readEffectRow).filter(Boolean)};
+  if(Object.keys(condition).length)ability.condition=condition;const cs=readCutscene(card);if(cs)ability.activeCutscene=cs;return ability;
+}
+function buildCard(){
+  const id=currentId(),rarity=getRarity(),elements=appState.selectedElements.slice();const card={id:id??0,name:el('cardName').value.trim(),rarity,element:elements.length===1?elements[0]:elements};
+  statDefs.forEach(def=>card[def.key]=statValue(def));card.upgradeDustBase=progressionValue('dustBaseSelect','dustBaseCustom',true);card.upgradeDustGrowth=progressionValue('dustGrowthSelect','dustGrowthCustom',false);card.awakenMax=int(el('awakenMaxSelect').value);card.icon=mediaValue('iconMode','iconCustom','.png');card.image=mediaValue('imageMode','imageCustom','.png');
+  const optional=[['poster','posterMode','posterCustom','.png'],['video','videoMode','videoCustom','.mp4'],['overlay','overlayMode','overlayCustom','_overlay.png']];optional.forEach(([key,modeId,customId,ext])=>{const value=mediaValue(modeId,customId,ext);if(value)card[key]=value});
+  card.abilities=[...document.querySelectorAll('.ability-card')].map(readAbilityCard);return card;
+}
+function validateCard(card){
+  const results=[];if(el('cardId').value.trim()==='')results.push({type:'error',text:'ยังไม่ได้กรอก Card ID'});else if(!Number.isInteger(Number(card.id))||Number(card.id)<0)results.push({type:'error',text:'Card ID ต้องเป็นจำนวนเต็มตั้งแต่ 0 ขึ้นไป'});
+  if(!card.name)results.push({type:'error',text:'ยังไม่ได้ใส่ชื่อตัวละคร'});if(!rarityCodes.includes(card.rarity))results.push({type:'error',text:'ระดับการ์ดไม่ถูกต้อง'});if(!appState.selectedElements.length)results.push({type:'error',text:'ต้องเลือกอย่างน้อย 1 ธาตุ'});
+  const hasRawId=el('cardId').value.trim()!=='';const dups=hasRawId?findDuplicate(card.id):[];if(dups.length&&!el('duplicateOverride').checked)results.push({type:'error',text:`ID ${card.id} ซ้ำกับ ${dups.map(x=>x.name||'ไม่ทราบชื่อ').slice(0,3).join(', ')}`});else if(dups.length)results.push({type:'warning',text:`กำลังใช้ ID ซ้ำโดยตั้งใจ: ${dups.map(x=>x.name||'ไม่ทราบชื่อ').slice(0,3).join(', ')}`});
+  if(!card.abilities.length)results.push({type:'warning',text:'การ์ดยังไม่มีความสามารถ'});
+  card.abilities.forEach((a,i)=>{if(!a.name)results.push({type:'error',text:`ความสามารถที่ ${i+1} ยังไม่มีชื่อ`});if(!a.description)results.push({type:'warning',text:`ความสามารถที่ ${i+1} ยังไม่มีคำอธิบาย`});if(!a.effects.length)results.push({type:'error',text:`ความสามารถที่ ${i+1} ยังไม่มีเอฟเฟกต์`});a.effects.forEach((e,j)=>{if(!e.type)results.push({type:'error',text:`เอฟเฟกต์ที่ ${j+1} ของความสามารถที่ ${i+1} ยังไม่เลือก type`})})});
+  if(!results.some(x=>x.type==='error'))results.unshift({type:'success',text:'โครงสร้างพร้อมสร้างโค้ด ✓'});return results;
+}
+function outputText(card){const mode=el('outputMode').value;if(mode==='abilities')return JSON.stringify(card.abilities,null,2);if(mode==='push')return `CARDS.push(${JSON.stringify(card,null,2)});`;const text=JSON.stringify(card,null,2);return mode==='cardComma'?text+',':text}
+function renderOutput(){
+  if(!el('codeOutput')||!el('powerMode')||!el('dustBaseSelect')||!document.querySelector('.ability-card'))return;updateIdStatus();const card=buildCard(),validation=validateCard(card);el('validationList').innerHTML=validation.map(x=>`<div class="validation-item ${x.type}">${esc(x.text)}</div>`).join('');el('codeOutput').value=outputText(card);const modeLabels={cardComma:'CARD OBJECT',card:'JSON',abilities:'ABILITIES',push:'CARDS.PUSH'};el('codeModeBadge').textContent=modeLabels[el('outputMode').value]||'CODE';const hasError=validation.some(x=>x.type==='error');el('saveCard').disabled=hasError;el('copyCode').disabled=hasError;el('copyTop').disabled=hasError;refreshCardPickersDebounced();
+}
+let refreshTimer=null;function refreshCardPickersDebounced(){clearTimeout(refreshTimer);refreshTimer=setTimeout(refreshCardPickers,100)}
+async function copyText(text){try{await navigator.clipboard.writeText(text);toast('คัดลอกโค้ดแล้ว ✓')}catch{const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();toast('คัดลอกโค้ดแล้ว ✓')}}
+function downloadJson(data,filename){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function saveCurrentCard(){const card=buildCard(),validation=validateCard(card);if(validation.some(x=>x.type==='error'))return toast('ยังบันทึกไม่ได้ กรุณาแก้ข้อผิดพลาดก่อน',true);if(appState.editingSessionIndex===null)appState.sessionCards.push(card);else appState.sessionCards[appState.editingSessionIndex]=card;persist();appState.editingSessionIndex=appState.sessionCards.length-1;toast('เก็บการ์ดไว้ในคลังแล้ว ✓');renderLibrary();renderDatabase();renderOutput()}
+function renderLibrary(){
+  const host=el('libraryGrid');if(!appState.sessionCards.length){host.innerHTML='<div class="empty-state" style="grid-column:1/-1;padding:40px;text-align:center;color:var(--muted)">ยังไม่มีการ์ดในคลัง<br>สร้างการ์ดแล้วกด “เก็บในคลัง”</div>';return}
+  host.innerHTML=appState.sessionCards.map((c,i)=>`<article class="library-card"><div style="display:flex;justify-content:space-between;gap:8px"><h3>#${esc(c.id)} · ${esc(c.name)}</h3><span class="badge violet">${esc(c.rarity)}</span></div><p>${esc(Array.isArray(c.element)?c.element.join(', '):c.element)} · ${c.abilities?.length||0} ความสามารถ</p><div class="library-actions"><button class="btn sm primary" data-lib-copy="${i}">คัดลอก</button><button class="btn sm" data-lib-edit="${i}">แก้ไข</button><button class="btn sm danger" data-lib-delete="${i}">ลบ</button></div></article>`).join('')
+}
+function setMediaControl(modeId,customId,value,id,defaultExt){const mode=el(modeId);if(!value){mode.value='none';el(customId).value=''}else if(String(value)===`${id}${defaultExt}`){mode.value='id';el(customId).value=''}else{mode.value='custom';el(customId).value=value}toggleCustomForSelect(mode,customId)}
+function loadCardIntoForm(card,index=null){
+  resetForm(false);appState.editingSessionIndex=index;el('cardId').value=card.id;el('cardName').value=card.name||'';el('raritySelect').value=card.rarity||rarityCodes[0];appState.selectedElements=Array.isArray(card.element)?card.element.slice():[card.element||'ไร้ธาตุ'];renderElementChips();initProgression();
+  statDefs.forEach(def=>{el(`${def.key}Mode`).value='custom';el(`${def.key}Custom`).classList.remove('hidden');el(`${def.key}Custom`).value=card[def.key]??0});updateStatPreviews();
+  el('dustBaseSelect').value='custom';el('dustBaseCustom').classList.remove('hidden');el('dustBaseCustom').value=card.upgradeDustBase??0;el('dustGrowthSelect').value='custom';el('dustGrowthCustom').classList.remove('hidden');el('dustGrowthCustom').value=card.upgradeDustGrowth??1;el('awakenMaxSelect').value=String(card.awakenMax??1);
+  setMediaControl('imageMode','imageCustom',card.image,card.id,'.png');setMediaControl('iconMode','iconCustom',card.icon,card.id,'.png');setMediaControl('posterMode','posterCustom',card.poster,card.id,'.png');setMediaControl('videoMode','videoCustom',card.video,card.id,'.mp4');setMediaControl('overlayMode','overlayCustom',card.overlay,card.id,'_overlay.png');
+  el('abilitiesContainer').innerHTML='';const abilities=Array.isArray(card.abilities)?card.abilities:(card.ability?[card.ability]:[]);if(abilities.length)abilities.forEach(addAbility);else addAbility();switchTab('builder');window.scrollTo({top:0,behavior:'smooth'});renderOutput();toast(`เปิดแก้ไข #${card.id} แล้ว`)
+}
+function resetForm(showToast=true){
+  appState.editingSessionIndex=null;el('cardId').value='';el('cardName').value='';el('raritySelect').value=rarityCodes.at(-1)||'EX';appState.selectedElements=['ไร้ธาตุ'];renderElementChips();el('globalStatPreset').value='1';applyRarityDefaults();['imageMode','posterMode','videoMode','overlayMode','iconMode'].forEach(id=>{el(id).value=id==='imageMode'?'id':'none';toggleCustomForSelect(el(id),el(id).dataset.target)});document.querySelectorAll('.custom-media').forEach(i=>i.value='');el('abilitiesContainer').innerHTML='';addAbility();el('duplicateOverride').checked=false;renderOutput();if(showToast)toast('เริ่มการ์ดใหม่แล้ว')
+}
+function extractCardsFromText(text){
+  const found=[];const add=(item)=>{if(item&&item.id!==undefined&&item.id!==null){const id=Number(item.id);if(Number.isFinite(id))found.push({id,name:String(item.name||''),rarity:String(item.rarity||''),element:item.element||''})}};
+  try{const parsed=JSON.parse(text);if(Array.isArray(parsed))parsed.forEach(add);else if(Array.isArray(parsed.CARDS))parsed.CARDS.forEach(add);else if(parsed&&typeof parsed==='object')add(parsed)}catch{}
+  if(!found.length){const regex=/(?:["']?id["']?\s*:\s*)(-?\d+)([\s\S]{0,700}?)(?=(?:["']?id["']?\s*:)|$)/g;let m;while((m=regex.exec(text))){const chunk=m[2],name=(chunk.match(/["']?name["']?\s*:\s*["']([^"']*)["']/)||[])[1]||'',rarity=(chunk.match(/["']?rarity["']?\s*:\s*["']([^"']*)["']/)||[])[1]||'',element=(chunk.match(/["']?element["']?\s*:\s*["']([^"']*)["']/)||[])[1]||'';add({id:Number(m[1]),name,rarity,element})}}
+  const map=new Map();found.forEach(c=>map.set(String(c.id),c));return [...map.values()]
+}
+function importCards(cards){if(!cards.length){el('importStatus').className='status bad';el('importStatus').textContent='ไม่พบ Card ID ในข้อมูล';return toast('ไม่พบข้อมูลการ์ด',true)}const map=new Map(appState.importedCards.map(c=>[String(c.id),c]));cards.forEach(c=>map.set(String(c.id),c));appState.importedCards=[...map.values()];persist();el('importStatus').className='status ok';el('importStatus').textContent=`นำเข้าแล้ว ${cards.length} ใบ · ฐานนำเข้ารวม ${appState.importedCards.length} ใบ`;renderDatabase();refreshCardPickers();renderOutput();toast(`นำเข้า Card ID ${cards.length} ใบแล้ว ✓`)}
+function sourceLabel(source){return source==='current'?'ฐานเกมเดิม':source==='imported'?'ไฟล์นำเข้า':'คลังที่สร้าง'}
+function renderDatabase(){
+  const q=el('dbSearch').value.trim().toLowerCase(),source=el('dbSourceFilter').value;let rows=allDatabaseRows();if(source!=='all')rows=rows.filter(x=>x.source===source);if(q)rows=rows.filter(x=>[x.id,x.name,x.rarity,Array.isArray(x.element)?x.element.join(' '):x.element,sourceLabel(x.source)].join(' ').toLowerCase().includes(q));rows.sort((a,b)=>Number(a.id)-Number(b.id)||String(a.name).localeCompare(String(b.name)));
+  el('dbTotalCount').textContent=rows.length;el('dbTableBody').innerHTML=rows.map(c=>`<tr><td><b>#${esc(c.id)}</b></td><td>${esc(c.name||'-')}</td><td>${esc(c.rarity||'-')}</td><td>${esc(Array.isArray(c.element)?c.element.join(', '):c.element||'-')}</td><td class="source-${c.source}">${esc(sourceLabel(c.source))}</td></tr>`).join('')||'<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:30px">ไม่พบข้อมูล</td></tr>'
+}
+function applyTemplate(key){
+  let ability=null;
+  if(key==='passiveAtk')ability={name:'พลังประสาน',description:'เพิ่ม ATK ทั้งทีม 20%',activeIn:['tower','arena'],effects:[{type:'teamPowerRate',value:.2}]};
+  if(key==='activeAtk')ability={name:'เร่งพลังโจมตี',description:'เมื่อโจมตีครบ 3 ครั้ง การโจมตีครั้งถัดไปได้รับ ATK +50% แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'nextAttackPowerRate',value:.5}]};
+  if(key==='activeHeal')ability={name:'ฟื้นฟูต่อเนื่อง',description:'เมื่อโจมตีครบ 3 ครั้ง ฟื้น HP 20% แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'healHpRate',value:.2}]};
+  if(key==='activeShield')ability={name:'กำแพงคืนสภาพ',description:'เมื่อโจมตีครบ 3 ครั้ง ฟื้นโล่ 2 ฮิต แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'restoreShieldHits',value:2}]};
+  if(key==='enemyDef')ability={name:'เจาะเกราะ',description:'ลด DEF ฝ่ายตรงข้าม 20%',activeIn:['tower','arena'],effects:[{type:'enemyDefenseRate',value:-.2}]};
+  if(key==='costSelf')ability={name:'เร่งชาร์จ',description:'ลดจำนวนครั้งที่ต้องโจมตีก่อนใช้ Active Skill ของตนเอง 1',activeIn:['tower','arena'],effects:[{type:'activeSkillCost',value:-1,targetSide:'self'}]};
+  if(key==='partner')ability={name:'สายสัมพันธ์คู่หู',description:'ความสามารถนี้ทำงานเมื่อมีการ์ดคู่หูที่กำหนดอยู่ในทีม',activeIn:['team','tower','arena'],condition:{anyCardIds:[]},effects:[{type:'selfPowerRate',value:.2}]};
+  if(ability){const cards=[...document.querySelectorAll('.ability-card')];if(cards.length===1){const first=cards[0],empty=!first.querySelector('.ability-name').value.trim()&&!first.querySelector('.ability-description').value.trim()&&![...first.querySelectorAll('.effect-type')].some(x=>x.value);if(empty)first.remove()}addAbility(ability);toast('เพิ่มแม่แบบความสามารถแล้ว ✓')}
+}
+function bindEvents(){
+  document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+  ['cardId','cardName'].forEach(id=>el(id).addEventListener('input',renderOutput));el('raritySelect').addEventListener('change',applyRarityDefaults);el('globalStatPreset').addEventListener('change',()=>{updateStatPreviews();renderOutput()});
+  el('addElement').addEventListener('click',()=>{const value=el('elementSelect').value;if(!appState.selectedElements.includes(value))appState.selectedElements.push(value);renderElementChips()});el('elementChips').addEventListener('click',e=>{const btn=e.target.closest('[data-remove-element]');if(btn){appState.selectedElements=appState.selectedElements.filter(x=>x!==btn.dataset.removeElement);renderElementChips()}});
+  document.querySelectorAll('.media-mode').forEach(s=>s.addEventListener('change',()=>{toggleCustomForSelect(s,s.dataset.target);renderOutput()}));document.querySelectorAll('.custom-media').forEach(i=>i.addEventListener('input',renderOutput));
+  ['dustBaseSelect','dustGrowthSelect'].forEach(id=>el(id).addEventListener('change',()=>{toggleCustomForSelect(el(id),id==='dustBaseSelect'?'dustBaseCustom':'dustGrowthCustom');renderOutput()}));['dustBaseCustom','dustGrowthCustom'].forEach(id=>el(id).addEventListener('input',renderOutput));el('awakenMaxSelect').addEventListener('change',renderOutput);
+  el('addAbility').addEventListener('click',()=>addAbility());el('applyAbilityTemplate').addEventListener('click',()=>applyTemplate(el('abilityTemplate').value));
+  el('abilitiesContainer').addEventListener('click',e=>{
+    const ability=e.target.closest('.ability-card');if(!ability)return;
+    if(e.target.closest('.ability-remove')){ability.remove();updateAbilityNumbers();renderOutput();return}
+    if(e.target.closest('.ability-up')){const prev=ability.previousElementSibling;if(prev)ability.parentNode.insertBefore(ability,prev);updateAbilityNumbers();renderOutput();return}
+    if(e.target.closest('.ability-down')){const next=ability.nextElementSibling;if(next)ability.parentNode.insertBefore(next,ability);updateAbilityNumbers();renderOutput();return}
+    if(e.target.closest('.add-condition')){addConditionRow(ability.querySelector('.conditions-list'));return}
+    if(e.target.closest('.add-effect')){addEffectRow(ability.querySelector('.effects-list'));return}
+    const remove=e.target.closest('.row-remove');if(remove){remove.closest('.condition-row,.effect-row').remove();renderOutput();return}
+    const tokenAdd=e.target.closest('.token-add');if(tokenAdd){const picker=tokenAdd.closest('.token-picker');addPickerValue(picker,picker.querySelector('.token-select').value);return}
+    const tokenRemove=e.target.closest('.token-remove');if(tokenRemove){removePickerValue(tokenRemove.closest('.token-picker'),tokenRemove.dataset.value);return}
+    const kvAdd=e.target.closest('.kv-add');if(kvAdd){const picker=kvAdd.closest('.kv-picker');let obj={};try{obj=JSON.parse(picker.dataset.object||'{}')}catch{}obj[picker.querySelector('.kv-key').value]=int(picker.querySelector('.kv-value').value,1);picker.dataset.object=JSON.stringify(obj);renderKvPicker(picker);renderOutput();return}
+    const kvRemove=e.target.closest('.kv-remove');if(kvRemove){const picker=kvRemove.closest('.kv-picker');let obj={};try{obj=JSON.parse(picker.dataset.object||'{}')}catch{}delete obj[kvRemove.dataset.key];picker.dataset.object=JSON.stringify(obj);renderKvPicker(picker);renderOutput();return}
+  });
+  el('abilitiesContainer').addEventListener('change',e=>{
+    const row=e.target.closest('.condition-row');if(e.target.classList.contains('condition-field'))renderConditionControl(row,e.target.value);else if(e.target.classList.contains('number-preset')){const input=e.target.closest('.number-control').querySelector('.number-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}
+    const effect=e.target.closest('.effect-row');if(effect&&e.target.classList.contains('effect-category')){effect.querySelector('.effect-type').innerHTML=effectTypeOptions(e.target.value,'');renderEffectRow(effect)}else if(effect&&e.target.classList.contains('effect-type'))renderEffectRow(effect);else if(effect&&e.target.classList.contains('effect-value-select')){effect.querySelector('.effect-value-custom').classList.toggle('hidden',e.target.value!=='custom');renderOutput()}
+    const ability=e.target.closest('.ability-card');if(ability&&e.target.classList.contains('cutscene-mode'))ability.querySelector('.custom-cutscene').classList.toggle('hidden',e.target.value!=='custom');renderOutput();
+  });
+  el('abilitiesContainer').addEventListener('input',renderOutput);el('outputMode').addEventListener('change',renderOutput);el('duplicateOverride').addEventListener('change',renderOutput);
+  el('copyCode').addEventListener('click',()=>copyText(el('codeOutput').value));el('copyTop').addEventListener('click',()=>copyText(el('codeOutput').value));el('saveCard').addEventListener('click',saveCurrentCard);el('downloadCard').addEventListener('click',()=>{const c=buildCard();downloadJson(c,`card_${c.id}_${(c.name||'new').replace(/[^\w\u0E00-\u0E7F-]+/g,'_')}.json`)});el('resetCard').addEventListener('click',()=>resetForm());el('newCardTop').addEventListener('click',()=>{switchTab('builder');resetForm()});
+  el('libraryGrid').addEventListener('click',e=>{const copy=e.target.closest('[data-lib-copy]'),edit=e.target.closest('[data-lib-edit]'),del=e.target.closest('[data-lib-delete]');if(copy)copyText(JSON.stringify(appState.sessionCards[Number(copy.dataset.libCopy)],null,2)+',');if(edit)loadCardIntoForm(deepClone(appState.sessionCards[Number(edit.dataset.libEdit)]),Number(edit.dataset.libEdit));if(del){appState.sessionCards.splice(Number(del.dataset.libDelete),1);persist();renderLibrary();renderDatabase();renderOutput();toast('ลบออกจากคลังแล้ว')}});
+  el('copyAllSession').addEventListener('click',()=>copyText(JSON.stringify(appState.sessionCards,null,2)));el('exportSession').addEventListener('click',()=>downloadJson(appState.sessionCards,'anime_cards_created.json'));el('clearSession').addEventListener('click',()=>{if(!appState.sessionCards.length)return;appState.sessionCards=[];appState.editingSessionIndex=null;persist();renderLibrary();renderDatabase();renderOutput();toast('ล้างคลังแล้ว')});
+  el('chooseImportFile').addEventListener('click',()=>el('importGameFile').click());el('importGameFile').addEventListener('change',async e=>{const file=e.target.files[0];if(file)importCards(extractCardsFromText(await file.text()));e.target.value=''});el('parsePastedDatabase').addEventListener('click',()=>importCards(extractCardsFromText(el('pasteDatabase').value)));el('clearImported').addEventListener('click',()=>{appState.importedCards=[];persist();el('importStatus').className='status warn';el('importStatus').textContent='ล้างข้อมูลนำเข้าแล้ว';renderDatabase();refreshCardPickers();renderOutput()});el('dbSearch').addEventListener('input',renderDatabase);el('dbSourceFilter').addEventListener('change',renderDatabase);
+  document.addEventListener('click',e=>{const add=e.target.closest('.token-add');if(add&&!add.closest('#abilitiesContainer')){const picker=add.closest('.token-picker');addPickerValue(picker,picker.querySelector('.token-select').value)}const rem=e.target.closest('.token-remove');if(rem&&!rem.closest('#abilitiesContainer'))removePickerValue(rem.closest('.token-picker'),rem.dataset.value)});
+}
+function init(){initHeader();initRarity();initElementPicker();initStats();initProgression();bindEvents();document.querySelectorAll('.media-mode').forEach(s=>toggleCustomForSelect(s,s.dataset.target));addAbility();renderLibrary();renderDatabase();updateStatPreviews();renderOutput();}
+init();
+</script>
+</body>
+</html>
