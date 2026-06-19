@@ -24,7 +24,7 @@
     .topbar{position:sticky;top:8px;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 13px;margin-bottom:14px;background:rgba(7,10,20,.86)}
     .brand{display:flex;align-items:center;gap:11px;min-width:0}.logo{width:48px;aspect-ratio:1;border-radius:15px;display:grid;place-items:center;color:#061019;font-weight:1000;font-size:1.05rem;background:linear-gradient(135deg,var(--cyan),var(--violet) 58%,var(--gold));box-shadow:0 0 25px rgba(92,232,255,.22)}
     .brand small{display:block;color:var(--cyan);font-weight:900;letter-spacing:.11em;font-size:.63rem}.brand h1{margin:2px 0 0;font-size:clamp(1rem,2.4vw,1.35rem);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-    .count-pill{border:1px solid rgba(92,232,255,.22);border-radius:999px;padding:7px 10px;color:#dffaff;background:rgba(92,232,255,.07);font-size:.72rem;font-weight:900}.count-pill b{color:var(--cyan)}
+    .count-pill{border:1px solid rgba(92,232,255,.22);border-radius:999px;padding:7px 10px;color:#dffaff;background:rgba(92,232,255,.07);font-size:.72rem;font-weight:900}.count-pill b{color:var(--cyan)}.firebase-pill{min-height:34px;border:1px solid var(--line);border-radius:999px;padding:7px 11px;color:#dbe5ff;background:rgba(255,255,255,.045);font-size:.67rem;font-weight:1000;white-space:nowrap}.firebase-pill.connecting,.firebase-pill.syncing{color:var(--gold);border-color:rgba(255,209,102,.3);background:rgba(255,209,102,.08)}.firebase-pill.online{color:var(--green);border-color:rgba(86,227,159,.3);background:rgba(86,227,159,.08)}.firebase-pill.offline{color:#cbd5e1;border-color:rgba(148,163,184,.25)}.firebase-pill.error{color:#fecdd3;border-color:rgba(251,113,133,.35);background:rgba(190,24,93,.16)}
     .btn{min-height:42px;border:1px solid var(--line);border-radius:13px;padding:9px 13px;color:var(--text);font-weight:900;background:rgba(255,255,255,.055);transition:.18s ease}.btn:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.08)}.btn.primary{color:#071019;border-color:transparent;background:linear-gradient(135deg,var(--cyan),#7dd3fc 38%,var(--violet));box-shadow:0 10px 26px rgba(92,232,255,.16)}.btn.gold{color:#251700;border-color:transparent;background:linear-gradient(135deg,#ffe499,#f59e0b)}.btn.green{color:#052015;border-color:transparent;background:linear-gradient(135deg,var(--green),#a7f3d0)}.btn.danger{color:#ffe9ee;border-color:rgba(251,113,133,.28);background:rgba(190,24,93,.23)}.btn.sm{min-height:34px;padding:6px 9px;border-radius:10px;font-size:.68rem}.btn.icon{width:36px;padding:0;display:grid;place-items:center}
     .tabs{display:flex;flex-wrap:wrap;gap:7px;padding:9px;margin-bottom:14px}.tab{border:1px solid var(--line);border-radius:999px;padding:8px 13px;color:var(--muted);font-weight:900;background:rgba(255,255,255,.035)}.tab.active{color:#071019;border-color:transparent;background:var(--cyan)}
     .tab-page{display:none}.tab-page.active{display:block}.builder-layout{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(330px,.58fr);gap:14px}.work{padding:17px}.output-panel{position:sticky;top:92px;align-self:start;padding:15px;max-height:calc(100vh - 108px);overflow:auto}
@@ -43,7 +43,7 @@
     .library-grid,.db-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.library-card,.db-card{padding:12px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03)}.library-card h3,.db-card h3{margin:0;font-size:.85rem}.library-card p,.db-card p{margin:5px 0 9px;color:var(--muted);font-size:.67rem}.library-actions{display:flex;flex-wrap:wrap;gap:5px}.page-panel{padding:16px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}.toolbar-left,.toolbar-right{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.search{min-width:230px}.db-table{width:100%;border-collapse:collapse;font-size:.72rem}.db-table th,.db-table td{padding:8px 9px;border-bottom:1px solid rgba(255,255,255,.07);text-align:left}.db-table th{position:sticky;top:0;color:var(--cyan);background:#0d1427}.table-wrap{max-height:62vh;overflow:auto;border:1px solid var(--line);border-radius:14px}.source-current{color:var(--cyan)}.source-imported{color:var(--gold)}.source-session{color:var(--green)}
     .help-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.help-card{padding:14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03)}.help-card h3{margin:0 0 7px;font-size:.9rem}.help-card p,.help-card li{color:var(--muted);font-size:.72rem;line-height:1.65}.help-card code{color:var(--cyan)}
     .toast{position:fixed;z-index:100;right:16px;bottom:16px;max-width:min(420px,calc(100% - 32px));border:1px solid rgba(92,232,255,.28);border-radius:14px;padding:11px 13px;color:#e8fbff;background:rgba(5,9,20,.95);box-shadow:0 18px 50px rgba(0,0,0,.48);transform:translateY(25px);opacity:0;pointer-events:none;transition:.22s ease}.toast.show{transform:none;opacity:1}.toast.bad{border-color:rgba(251,113,133,.38);color:#ffe4e9}
-    .footer-note{margin-top:12px;color:var(--muted);font-size:.64rem;text-align:center}.muted{color:var(--muted)}.accent{color:var(--cyan)}
+    .footer-note{margin-top:12px;color:var(--muted);font-size:.64rem;text-align:center}.footer-note a{color:var(--cyan);font-weight:900;text-decoration:none}.footer-note a:hover{text-decoration:underline}.muted{color:var(--muted)}.accent{color:var(--cyan)}
     @media(max-width:1100px){.builder-layout{grid-template-columns:1fr}.output-panel{position:static;max-height:none}.library-grid,.db-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:760px){.app{width:min(100% - 14px,1540px);padding-top:7px}.topbar{top:4px}.count-pill{display:none}.brand h1{font-size:.94rem}.top-actions .btn:not(.primary){display:none}.work,.page-panel{padding:11px}.section{padding:11px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.span-12,.span-8,.span-7,.span-6,.span-5,.span-4,.span-3,.span-2{grid-column:span 2}.library-grid,.db-grid,.help-grid{grid-template-columns:1fr}.inline-pair{grid-template-columns:1fr 90px auto}.code{min-height:310px;font-size:11px}.search{min-width:100%;width:100%}.toolbar-left,.toolbar-right{width:100%}.toolbar .field{flex:1}.tabs{overflow:auto;flex-wrap:nowrap}.tab{white-space:nowrap}.ability-head{align-items:flex-start}.mini-actions{flex-wrap:wrap;justify-content:flex-end}.db-table{font-size:.66rem}.db-table th,.db-table td{padding:7px 6px}}
   </style>
@@ -53,10 +53,11 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>STANDALONE OFFLINE TOOL</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
+      <button class="firebase-pill connecting" id="firebaseStatus" type="button" title="กดเพื่อซิงก์ข้อมูลกับ Firebase">☁️ Firebase: กำลังเชื่อมต่อ</button>
       <button class="btn" id="newCardTop">＋ การ์ดใหม่</button>
       <button class="btn primary" id="copyTop">คัดลอกโค้ด</button>
     </div>
@@ -106,7 +107,7 @@
           <section class="section">
             <div class="section-head"><div><h2>3. ความสามารถ</h2><p>การ์ดหนึ่งใบเพิ่มได้หลายความสามารถ และแต่ละความสามารถเพิ่มได้หลายเอฟเฟกต์</p></div><button class="btn green" id="addAbility" type="button">＋ เพิ่มความสามารถ</button></div>
             <div class="grid" style="margin-bottom:8px">
-              <div class="field-wrap span-5"><label for="abilityTemplate">แม่แบบด่วน</label><select class="field" id="abilityTemplate"><option value="">เลือกแม่แบบ…</option><option value="passiveAtk">Passive · ATK ทีม +20%</option><option value="activeAtk">Active · ครบ 3 เทิร์น ATK +50%</option><option value="activeHeal">Active · ครบ 3 เทิร์น ฟื้น HP 20%</option><option value="activeShield">Active · ครบ 3 เทิร์น ฟื้นโล่ 2 ฮิต</option><option value="enemyDef">ลด DEF ศัตรู 20%</option><option value="costSelf">ลดคอส Active ตนเอง 1</option><option value="partner">ต้องมีคู่หูตาม Card ID</option></select></div>
+              <div class="field-wrap span-5"><label for="abilityTemplate">แม่แบบด่วน</label><select class="field" id="abilityTemplate"><option value="">เลือกแม่แบบ…</option><option value="passiveAtk">Passive · ATK ทีม +20%</option><option value="activeAtk">Active · ครบ 3 เทิร์น ATK +50%</option><option value="activeHeal">Active · ครบ 3 เทิร์น ฟื้น HP 20%</option><option value="activeShield">Active · ครบ 3 เทิร์น ฟื้นโล่ 2 ฮิต</option><option value="enemyDef">ลด DEF ศัตรู 20%</option><option value="costSelf">ลดคอส Active ตนเอง 1</option><option value="costWaterAllies">ลดคอสพันธมิตรธาตุน้ำ 1 (ไม่รวมตัวเอง)</option><option value="partner">ต้องมีคู่หูตาม Card ID</option></select></div>
               <div class="field-wrap span-3"><label>&nbsp;</label><button class="btn gold" id="applyAbilityTemplate" type="button" style="width:100%">ใช้แม่แบบ</button></div>
               <div class="field-wrap span-4"><label>&nbsp;</label><div class="status ok">รองรับ <b id="effectCountInline">45</b> เอฟเฟกต์ · <b id="conditionCountInline">33</b> เงื่อนไข</div></div>
             </div>
@@ -126,13 +127,13 @@
             <button class="btn" id="downloadCard" type="button">⬇ JSON</button>
             <button class="btn danger" id="resetCard" type="button">ล้างฟอร์ม</button>
           </div>
-          <div class="footer-note">ข้อมูลอ้างอิง: ระบบสกิล v39 และฐานการ์ดปัจจุบันจากไฟล์เกม</div>
+          <div class="footer-note">ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล v39</div>
         </aside>
       </div>
     </section>
 
     <section class="tab-page panel page-panel" id="page-library">
-      <div class="toolbar"><div><h2 style="margin:0">คลังการ์ดที่สร้าง</h2><p class="muted" style="margin:4px 0 0;font-size:.72rem">เก็บใน LocalStorage ของเบราว์เซอร์เครื่องนี้</p></div><div class="toolbar-right"><button class="btn" id="copyAllSession">คัดลอกทั้งหมดเป็น Array</button><button class="btn" id="exportSession">ดาวน์โหลด JSON</button><button class="btn danger" id="clearSession">ล้างคลัง</button></div></div>
+      <div class="toolbar"><div><h2 style="margin:0">คลังการ์ดที่สร้าง</h2><p class="muted" style="margin:4px 0 0;font-size:.72rem">ซิงก์แบบเรียลไทม์ผ่าน Cloud Firestore และเก็บ LocalStorage เป็นข้อมูลสำรอง</p></div><div class="toolbar-right"><button class="btn green" id="syncFirebaseNow">☁️ ซิงก์ Firebase</button><button class="btn" id="copyAllSession">คัดลอกทั้งหมดเป็น Array</button><button class="btn" id="exportSession">ดาวน์โหลด JSON</button><button class="btn danger" id="clearSession">ล้างคลัง</button></div></div>
       <div class="library-grid" id="libraryGrid"></div>
     </section>
 
@@ -146,12 +147,13 @@
     </section>
 
     <section class="tab-page panel page-panel" id="page-help">
-      <div class="section-head"><div><h2>วิธีใช้แบบเร็ว</h2><p>แอปนี้เป็นไฟล์แยก เปิดได้ออฟไลน์ และไม่แก้ไขเกมต้นฉบับ</p></div><span class="badge green">OFFLINE</span></div>
+      <div class="section-head"><div><h2>วิธีใช้แบบเร็ว</h2><p>แอปนี้ซิงก์คลังผ่าน Firebase และยังเปิดทำงานแบบ Local สำรองได้เมื่อออฟไลน์</p></div><span class="badge green">CLOUD READY</span></div>
       <div class="help-grid">
         <article class="help-card"><h3>1) สร้างข้อมูลการ์ด</h3><p>กรอก ID และชื่อ เลือกระดับ ธาตุ และเบสสแตตจากดรอปดาวน์ ระบบจะตรวจ ID ซ้ำทันที</p></article>
         <article class="help-card"><h3>2) เพิ่มหลายสกิล</h3><p>กด <b>เพิ่มความสามารถ</b> แล้วเพิ่มเงื่อนไขและเอฟเฟกต์ได้หลายรายการ ระบบจะสร้างเป็น <code>"abilities": [...]</code></p></article>
         <article class="help-card"><h3>3) คัดลอกไปวาง</h3><p>เลือกรูปแบบ <b>วัตถุการ์ด + จุลภาค</b> แล้วนำโค้ดไปวางภายใน <code>const CARDS = [ ... ]</code> ของเกม</p></article>
         <article class="help-card"><h3>4) อัปเดตฐาน ID</h3><p>เมื่อเกมมีการ์ดใหม่ ให้นำเข้าไฟล์ HTML ล่าสุดในหน้า <b>ฐาน ID</b> แอปจะอ่าน ID เพื่อป้องกันการสร้างซ้ำ</p></article>
+        <article class="help-card"><h3>Firebase Cloud Firestore</h3><p>คลังออนไลน์ใช้คอลเลกชัน <code>animeCardCodeBuilderCards</code> และใช้ Card ID เป็น Document ID การแก้ไข ID เดิมจึงอัปเดตข้อมูลใบเดิมแบบเรียลไทม์</p></article><article class="help-card"><h3>ชีทหลักของระบบ</h3><p>ให้อ้างอิง <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener" class="accent"><b>Google Sheet ระบบสกิลและเงื่อนไข</b></a> เป็นข้อมูลหลักสำหรับเอฟเฟกต์ เงื่อนไข และการอัปเดตครั้งถัดไป</p></article>
         <article class="help-card"><h3>การใช้ค่าเปอร์เซ็นต์</h3><p><code>0.20</code> หมายถึง +20%, <code>-0.20</code> หมายถึง -20%, และ <code>7.77</code> หมายถึง +777%</p></article>
         <article class="help-card"><h3>Active Skill</h3><p><code>afterOwnAttacks: 3</code> คือสะสมการโจมตีปกติ 3 ครั้ง แล้วเอฟเฟกต์ทำงานในการโจมตีครั้งถัดไป ส่วน <code>repeat: true</code> คือเริ่มนับใหม่วนซ้ำ</p></article>
       </div>
@@ -606,10 +608,10 @@
       "type": "activeSkillCost",
       "meaning": "ปรับจำนวนครั้งที่ต้องโจมตีก่อน Active; ค่าลบ=ลด ค่าบวก=เพิ่ม",
       "exampleValue": -1,
-      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch",
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf",
       "suitableModes": "tower, arena",
-      "note": "คอสสุดท้าย 1–99; targetSide ally รวมเจ้าของสกิล; runtime ปัจจุบันไม่มี excludeSelf",
-      "exampleCode": "{ \"type\": \"activeSkillCost\", \"value\": -1, \"targetSide\": \"ally\" }"
+      "note": "คอสสุดท้าย 1–99; targetSide ally รวมเจ้าของสกิล เว้นแต่ใส่ excludeSelf: true",
+      "exampleCode": "{ \"type\": \"activeSkillCost\", \"value\": -1, \"targetSide\": \"ally\", \"excludeSelf\": true }"
     }
   ],
   "conditions": [
@@ -871,11 +873,11 @@
     },
     {
       "field": "excludeSelf",
-      "valueType": "ยังไม่รองรับ",
-      "meaning": "ฟิลด์นี้ยังไม่ทำงานใน runtime ปัจจุบัน",
-      "example": "-",
-      "position": "-",
-      "note": "อย่าใส่ใน JSON จนกว่าโค้ดจะเพิ่มการรองรับ"
+      "valueType": "boolean",
+      "meaning": "ตัดเจ้าของสกิลออกจากเป้าหมายฝ่าย ally",
+      "example": true,
+      "position": "effect",
+      "note": "ใช้ร่วมกับ targetSide: \"ally\" เพื่อเลือกเฉพาะเพื่อนร่วมทีม"
     }
   ],
   "baseStats": [
@@ -1885,10 +1887,12 @@
     }
   ],
   "sourceInfo": {
-    "sheetTitle": "Anime Card Collection - ระบบสกิลและเงื่อนไข.xlsx",
+    "sheetTitle": "Anime Card Collection - ระบบสกิลและเงื่อนไข",
     "sheetUpdated": "2026-06-19",
-    "gameFile": "index (4).html",
-    "currentCardCount": 95
+    "gameFile": "index (5).html",
+    "currentCardCount": 95,
+    "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
+    "sheetRole": "primary"
   }
 }</script>
 <script>
@@ -1896,8 +1900,9 @@
 const DATA = JSON.parse(document.getElementById('builder-data').textContent);
 const STORAGE_KEY = 'anime-card-code-builder-v1';
 const IMPORT_KEY = 'anime-card-code-builder-imported-v1';
+const FIREBASE_COLLECTION = 'animeCardCodeBuilderCards';
 const rarityCodes = Object.keys(DATA.rarities).sort((a,b)=>DATA.rarities[a].order-DATA.rarities[b].order);
-const conditionCatalog = DATA.conditions.filter(x=>x.position==='condition' && x.field!=='excludeSelf');
+const conditionCatalog = DATA.conditions.filter(x=>x.position==='condition');
 const effectCatalog = DATA.effects;
 const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
 const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions']);
@@ -1912,10 +1917,52 @@ const appState = {
   importedCards: loadJson(IMPORT_KEY, []),
   editingSessionIndex: null,
   abilitySeq: 0,
-  toastTimer: null
+  toastTimer: null,
+  firebaseReady: false,
+  firebaseOnline: false,
+  firebaseInitialSnapshot: false,
+  firebaseLastError: ''
 };
 function loadJson(key,fallback){try{const value=JSON.parse(localStorage.getItem(key));return value??fallback}catch{return fallback}}
 function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(appState.sessionCards));localStorage.setItem(IMPORT_KEY,JSON.stringify(appState.importedCards))}
+function firebaseStatus(state,message){
+  const box=el('firebaseStatus');if(!box)return;
+  const labels={connecting:'☁️ Firebase: กำลังเชื่อมต่อ',syncing:'🔄 Firebase: กำลังซิงก์',online:'☁️ Firebase: ออนไลน์',offline:'💾 Firebase: ใช้ข้อมูลในเครื่อง',error:'⚠️ Firebase: เชื่อมต่อไม่ได้'};
+  box.className=`firebase-pill ${state||'offline'}`;box.textContent=message||labels[state]||labels.offline;box.title=message||'กดเพื่อซิงก์ข้อมูลกับ Firebase';
+  appState.firebaseOnline=state==='online'||state==='syncing';if(state==='error')appState.firebaseLastError=message||'';
+}
+function cardKey(card){return String(card?.id??'')}
+function mergeCardsById(localCards,cloudCards){
+  const map=new Map();(localCards||[]).forEach(card=>map.set(cardKey(card),deepClone(card)));(cloudCards||[]).forEach(card=>map.set(cardKey(card),deepClone(card)));
+  return [...map.values()].filter(card=>card&&card.id!==undefined).sort((a,b)=>Number(a.id)-Number(b.id)||String(a.name||'').localeCompare(String(b.name||''),'th'));
+}
+async function cloudInvoke(method,...args){
+  const bridge=window.FirebaseCardCloud;if(!bridge||typeof bridge[method]!=='function'){firebaseStatus('offline','💾 Firebase ยังไม่พร้อม · เก็บในเครื่องแล้ว');return false}
+  try{firebaseStatus('syncing');await bridge[method](...args);firebaseStatus('online');return true}catch(error){console.error('[Firebase]',error);firebaseStatus('error',`⚠️ Firebase: ${error?.friendlyMessage||error?.message||'เกิดข้อผิดพลาด'}`);return false}
+}
+function receiveCloudCards(cloudCards,meta={}){
+  const incoming=Array.isArray(cloudCards)?cloudCards.filter(Boolean):[];
+  const editingId=appState.editingSessionIndex===null?null:appState.sessionCards[appState.editingSessionIndex]?.id;
+  if(!appState.firebaseInitialSnapshot){
+    const cloudIds=new Set(incoming.map(cardKey));const localOnly=appState.sessionCards.filter(card=>!cloudIds.has(cardKey(card)));
+    appState.sessionCards=mergeCardsById(appState.sessionCards,incoming);appState.firebaseInitialSnapshot=true;
+    if(localOnly.length)cloudInvoke('syncCards',localOnly);
+  }else appState.sessionCards=incoming.sort((a,b)=>Number(a.id)-Number(b.id)||String(a.name||'').localeCompare(String(b.name||''),'th'));
+  if(editingId!==null){const nextIndex=appState.sessionCards.findIndex(card=>Number(card.id)===Number(editingId));appState.editingSessionIndex=nextIndex>=0?nextIndex:null}
+  persist();renderLibrary();renderDatabase();refreshCardPickers();renderOutput();
+  firebaseStatus(meta.fromCache&&!meta.hasPendingWrites?'offline':'online',meta.fromCache&&!meta.hasPendingWrites?'💾 Firebase: ใช้แคชออฟไลน์':`☁️ Firebase: ออนไลน์ · ${appState.sessionCards.length} ใบ`);
+}
+async function syncFirebaseNow(){
+  if(!appState.sessionCards.length)return cloudInvoke('refresh');
+  const ok=await cloudInvoke('syncCards',deepClone(appState.sessionCards));if(ok)toast(`ซิงก์ Firebase แล้ว ${appState.sessionCards.length} ใบ ✓`)
+}
+window.FirebaseBuilderHost={
+  collectionName:FIREBASE_COLLECTION,
+  getLocalCards:()=>deepClone(appState.sessionCards),
+  receiveCloudCards,
+  setStatus:(state,message)=>{appState.firebaseReady=state!=='connecting';firebaseStatus(state,message)},
+  notifyError:(message)=>firebaseStatus('error',message)
+};
 function esc(value){return String(value??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function deepClone(value){return JSON.parse(JSON.stringify(value))}
 function num(value,fallback=0){const n=Number(value);return Number.isFinite(n)?n:fallback}
@@ -2094,7 +2141,7 @@ function effectCategories(){return unique(effectCatalog.map(x=>x.category))}
 function effectTypeOptions(category,selected=''){const list=category?effectCatalog.filter(x=>x.category===category):effectCatalog;return option('','เลือกเอฟเฟกต์…')+list.map(e=>option(e.type,`${e.type} · ${e.meaning}`,e.type===selected)).join('')}
 function addEffectRow(container,initial={}){
   const meta=effectByType.get(initial.type);const category=meta?.category||effectCategories()[0];const row=document.createElement('div');row.className='effect-row';
-  row.innerHTML=`<button class="btn sm danger row-remove" type="button">×</button><div class="row-pad"><div class="grid"><div class="field-wrap span-4"><label>หมวดเอฟเฟกต์</label><select class="field effect-category">${effectCategories().map(x=>option(x,x,x===category)).join('')}</select></div><div class="field-wrap span-8"><label>ชนิดเอฟเฟกต์ <span class="req">*</span></label><select class="field effect-type">${effectTypeOptions(category,initial.type||'')}</select></div><div class="field-wrap span-4 effect-value-wrap"><label>ค่า value</label><div class="effect-value-control"></div></div><div class="field-wrap span-8"><label>สรุป</label><div class="status warn effect-summary">เลือกเอฟเฟกต์</div></div></div><div class="effect-note">เลือกเอฟเฟกต์เพื่อดูวิธีใช้</div><details class="advanced effect-advanced"><summary>เป้าหมาย ตัวกรอง และ Active Trigger</summary><div class="grid"><div class="field-wrap span-3 target-side-wrap"><label>targetSide</label><select class="field effect-target-side"><option value="">ไม่ระบุ</option><option value="self">self · ตัวเอง</option><option value="ally">ally · ฝ่ายเรา</option><option value="enemy">enemy · ฝ่ายตรงข้าม</option></select></div><div class="field-wrap span-3"><label>targetMatch</label><select class="field effect-target-match"><option value="any">any · ตรงอย่างใดอย่างหนึ่ง</option><option value="all">all · ต้องตรงทุกตัวกรอง</option></select></div><div class="field-wrap span-3"><label>afterOwnAttacks</label><select class="field effect-trigger"><option value="">ไม่กำหนดในเอฟเฟกต์นี้</option>${[1,2,3,4,5,6,7,10,15,20,30,50,99].map(v=>option(v,v,String(initial.condition?.afterOwnAttacks)===String(v))).join('')}</select></div><div class="field-wrap span-3"><label>repeat</label><select class="field effect-repeat">${option('true','วนซ้ำ',initial.condition?.repeat!==false)}${option('false','ครั้งเดียว',initial.condition?.repeat===false)}</select></div><div class="field-wrap span-6"><label>targetCardIds</label>${createTokenPicker('cards',initial.targetCardIds||[])}</div><div class="field-wrap span-3"><label>targetElements</label>${createTokenPicker('elements',initial.targetElements||[])}</div><div class="field-wrap span-3"><label>targetRarities</label>${createTokenPicker('rarities',initial.targetRarities||[])}</div><div class="field-wrap span-3 persistent-wrap"><label>persistentAfterActivation</label><select class="field effect-persistent"><option value="">ไม่ใส่</option>${option('true','true · ทำต่อเนื่อง',initial.persistentAfterActivation===true)}${option('false','false',initial.persistentAfterActivation===false)}</select></div><div class="field-wrap span-3 max-stacks-wrap"><label>maxStacks</label><select class="field effect-max-stacks">${[1,2,3,4,5,7,10,15,20].map(v=>option(v,v,v===num(initial.maxStacks,5))).join('')}</select></div></div></details></div>`;
+  row.innerHTML=`<button class="btn sm danger row-remove" type="button">×</button><div class="row-pad"><div class="grid"><div class="field-wrap span-4"><label>หมวดเอฟเฟกต์</label><select class="field effect-category">${effectCategories().map(x=>option(x,x,x===category)).join('')}</select></div><div class="field-wrap span-8"><label>ชนิดเอฟเฟกต์ <span class="req">*</span></label><select class="field effect-type">${effectTypeOptions(category,initial.type||'')}</select></div><div class="field-wrap span-4 effect-value-wrap"><label>ค่า value</label><div class="effect-value-control"></div></div><div class="field-wrap span-8"><label>สรุป</label><div class="status warn effect-summary">เลือกเอฟเฟกต์</div></div></div><div class="effect-note">เลือกเอฟเฟกต์เพื่อดูวิธีใช้</div><details class="advanced effect-advanced"><summary>เป้าหมาย ตัวกรอง และ Active Trigger</summary><div class="grid"><div class="field-wrap span-3 target-side-wrap"><label>targetSide</label><select class="field effect-target-side"><option value="">ไม่ระบุ</option><option value="self">self · ตัวเอง</option><option value="ally">ally · ฝ่ายเรา</option><option value="enemy">enemy · ฝ่ายตรงข้าม</option></select></div><div class="field-wrap span-3 exclude-self-wrap hidden"><label>excludeSelf</label><select class="field effect-exclude-self"><option value="">รวมเจ้าของสกิล</option>${option('true','true · เฉพาะเพื่อนร่วมทีม',initial.excludeSelf===true)}</select><small class="hint">ใช้ได้เมื่อ targetSide เป็น ally</small></div><div class="field-wrap span-3"><label>targetMatch</label><select class="field effect-target-match"><option value="any">any · ตรงอย่างใดอย่างหนึ่ง</option><option value="all">all · ต้องตรงทุกตัวกรอง</option></select></div><div class="field-wrap span-3"><label>afterOwnAttacks</label><select class="field effect-trigger"><option value="">ไม่กำหนดในเอฟเฟกต์นี้</option>${[1,2,3,4,5,6,7,10,15,20,30,50,99].map(v=>option(v,v,String(initial.condition?.afterOwnAttacks)===String(v))).join('')}</select></div><div class="field-wrap span-3"><label>repeat</label><select class="field effect-repeat">${option('true','วนซ้ำ',initial.condition?.repeat!==false)}${option('false','ครั้งเดียว',initial.condition?.repeat===false)}</select></div><div class="field-wrap span-6"><label>targetCardIds</label>${createTokenPicker('cards',initial.targetCardIds||[])}</div><div class="field-wrap span-3"><label>targetElements</label>${createTokenPicker('elements',initial.targetElements||[])}</div><div class="field-wrap span-3"><label>targetRarities</label>${createTokenPicker('rarities',initial.targetRarities||[])}</div><div class="field-wrap span-3 persistent-wrap"><label>persistentAfterActivation</label><select class="field effect-persistent"><option value="">ไม่ใส่</option>${option('true','true · ทำต่อเนื่อง',initial.persistentAfterActivation===true)}${option('false','false',initial.persistentAfterActivation===false)}</select></div><div class="field-wrap span-3 max-stacks-wrap"><label>maxStacks</label><select class="field effect-max-stacks">${[1,2,3,4,5,7,10,15,20].map(v=>option(v,v,v===num(initial.maxStacks,5))).join('')}</select></div></div></details></div>`;
   container.appendChild(row);row.querySelectorAll('.token-picker').forEach(renderTokenPicker);row.querySelector('.effect-target-side').value=initial.targetSide||'';row.querySelector('.effect-target-match').value=initial.targetMatch||'any';row.querySelector('.effect-trigger').value=initial.condition?.afterOwnAttacks?String(initial.condition.afterOwnAttacks):'';renderEffectRow(row,initial.value);return row;
 }
 function valueKind(type){if(noValueEffects.has(type))return 'none';if(flatEffectTypes.has(type))return 'flat';if(integerEffectTypes.has(type))return 'integer';if(rateEffectTypes.has(type)||/Rate/.test(type))return 'rate';return 'number'}
@@ -2107,10 +2154,18 @@ function effectValuePresets(type,example){
   if(example!==undefined&&example!==null&&!values.includes(Number(example)))values.push(Number(example));return values.sort((a,b)=>a-b)
 }
 function effectValueLabel(type,value){const n=Number(value);if(valueKind(type)==='rate')return `${n>0?'+':''}${(n*100).toLocaleString('en-US',{maximumFractionDigits:3})}% (${n})`;return `${n>0?'+':''}${formatNumber(n)}`}
+function syncExcludeSelfControl(row){
+  const type=row.querySelector('.effect-type')?.value||'',meta=effectByType.get(type),fields=String(meta?.fields||''),wrap=row.querySelector('.exclude-self-wrap'),select=row.querySelector('.effect-exclude-self');
+  if(!wrap||!select)return;
+  const supported=fields.includes('excludeSelf'),isAlly=row.querySelector('.effect-target-side')?.value==='ally';
+  wrap.classList.toggle('hidden',!supported);
+  select.disabled=!supported||!isAlly;
+  if(!supported||!isAlly)select.value='';
+}
 function renderEffectRow(row,initialValue){
   const category=row.querySelector('.effect-category').value,typeSelect=row.querySelector('.effect-type');if(!typeSelect.value&&initialValue===undefined)typeSelect.innerHTML=effectTypeOptions(category,'');
   const type=typeSelect.value,meta=effectByType.get(type),wrap=row.querySelector('.effect-value-wrap'),control=row.querySelector('.effect-value-control'),note=row.querySelector('.effect-note'),summary=row.querySelector('.effect-summary');
-  if(!meta){wrap.classList.remove('hidden');control.innerHTML='';note.textContent='เลือกเอฟเฟกต์เพื่อดูวิธีใช้';summary.className='status warn effect-summary';summary.textContent='เลือกเอฟเฟกต์';renderOutput();return}
+  if(!meta){wrap.classList.remove('hidden');control.innerHTML='';note.textContent='เลือกเอฟเฟกต์เพื่อดูวิธีใช้';summary.className='status warn effect-summary';summary.textContent='เลือกเอฟเฟกต์';syncExcludeSelfControl(row);renderOutput();return}
   const kind=valueKind(type);wrap.classList.toggle('hidden',kind==='none');
   if(kind!=='none'){
     const presets=effectValuePresets(type,meta.exampleValue),chosen=initialValue!==undefined?Number(initialValue):Number(meta.exampleValue??presets.find(v=>v>0)??0),isPreset=presets.includes(chosen);
@@ -2118,7 +2173,7 @@ function renderEffectRow(row,initialValue){
   }else control.innerHTML='';
   note.innerHTML=`<b>${esc(meta.meaning)}</b><br>${esc(meta.note||'ไม่มีหมายเหตุเพิ่มเติม')}<br><span class="accent">ฟิลด์ที่รองรับ:</span> ${esc(meta.fields||'-')} · <span class="accent">โหมดแนะนำ:</span> ${esc(meta.suitableModes||'-')}`;
   summary.className='status ok effect-summary';summary.textContent=`${meta.type} · ${meta.meaning}`;
-  const fields=String(meta.fields||'');row.querySelector('.persistent-wrap').classList.toggle('hidden',!fields.includes('persistentAfterActivation'));row.querySelector('.max-stacks-wrap').classList.toggle('hidden',type!=='increaseAttackRateStack');
+  const fields=String(meta.fields||'');row.querySelector('.persistent-wrap').classList.toggle('hidden',!fields.includes('persistentAfterActivation'));row.querySelector('.max-stacks-wrap').classList.toggle('hidden',type!=='increaseAttackRateStack');syncExcludeSelfControl(row);
   renderOutput();
 }
 function readConditionRow(row){
@@ -2136,7 +2191,7 @@ function readConditionRow(row){
 function readEffectRow(row){
   const type=row.querySelector('.effect-type').value;if(!type)return null;const obj={type};const kind=valueKind(type);
   if(kind!=='none'){const s=row.querySelector('.effect-value-select');obj.value=s.value==='custom'?num(row.querySelector('.effect-value-custom').value):num(s.value)}
-  const side=row.querySelector('.effect-target-side').value;if(side)obj.targetSide=side;
+  const side=row.querySelector('.effect-target-side').value;if(side)obj.targetSide=side;const excludeSelf=row.querySelector('.effect-exclude-self');if(side==='ally'&&excludeSelf?.value==='true')obj.excludeSelf=true;
   const ids=getPickerValues(row.querySelector('.token-picker[data-kind="cards"]')).map(int);if(ids.length)obj.targetCardIds=ids;
   const elements=getPickerValues(row.querySelector('.token-picker[data-kind="elements"]'));if(elements.length)obj.targetElements=elements;
   const rarities=getPickerValues(row.querySelector('.token-picker[data-kind="rarities"]'));if(rarities.length)obj.targetRarities=rarities;
@@ -2178,10 +2233,16 @@ function renderOutput(){
 let refreshTimer=null;function refreshCardPickersDebounced(){clearTimeout(refreshTimer);refreshTimer=setTimeout(refreshCardPickers,100)}
 async function copyText(text){try{await navigator.clipboard.writeText(text);toast('คัดลอกโค้ดแล้ว ✓')}catch{const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();toast('คัดลอกโค้ดแล้ว ✓')}}
 function downloadJson(data,filename){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-function saveCurrentCard(){const card=buildCard(),validation=validateCard(card);if(validation.some(x=>x.type==='error'))return toast('ยังบันทึกไม่ได้ กรุณาแก้ข้อผิดพลาดก่อน',true);if(appState.editingSessionIndex===null)appState.sessionCards.push(card);else appState.sessionCards[appState.editingSessionIndex]=card;persist();appState.editingSessionIndex=appState.sessionCards.length-1;toast('เก็บการ์ดไว้ในคลังแล้ว ✓');renderLibrary();renderDatabase();renderOutput()}
+async function saveCurrentCard(){
+  const card=buildCard(),validation=validateCard(card);if(validation.some(x=>x.type==='error'))return toast('ยังบันทึกไม่ได้ กรุณาแก้ข้อผิดพลาดก่อน',true);
+  const previousId=appState.editingSessionIndex===null?null:appState.sessionCards[appState.editingSessionIndex]?.id;let savedIndex=appState.editingSessionIndex;
+  if(savedIndex===null){const sameIndex=appState.sessionCards.findIndex(item=>Number(item.id)===Number(card.id));if(sameIndex>=0&&el('duplicateOverride').checked){appState.sessionCards[sameIndex]=card;savedIndex=sameIndex}else{appState.sessionCards.push(card);savedIndex=appState.sessionCards.length-1}}else appState.sessionCards[savedIndex]=card;
+  appState.editingSessionIndex=savedIndex;persist();renderLibrary();renderDatabase();renderOutput();toast('เก็บการ์ดในเครื่องแล้ว · กำลังซิงก์ Firebase');
+  const ok=await cloudInvoke('saveCard',deepClone(card),previousId);if(ok)toast(`บันทึก #${card.id} ลง Firebase แล้ว ✓`)
+}
 function renderLibrary(){
   const host=el('libraryGrid');if(!appState.sessionCards.length){host.innerHTML='<div class="empty-state" style="grid-column:1/-1;padding:40px;text-align:center;color:var(--muted)">ยังไม่มีการ์ดในคลัง<br>สร้างการ์ดแล้วกด “เก็บในคลัง”</div>';return}
-  host.innerHTML=appState.sessionCards.map((c,i)=>`<article class="library-card"><div style="display:flex;justify-content:space-between;gap:8px"><h3>#${esc(c.id)} · ${esc(c.name)}</h3><span class="badge violet">${esc(c.rarity)}</span></div><p>${esc(Array.isArray(c.element)?c.element.join(', '):c.element)} · ${c.abilities?.length||0} ความสามารถ</p><div class="library-actions"><button class="btn sm primary" data-lib-copy="${i}">คัดลอก</button><button class="btn sm" data-lib-edit="${i}">แก้ไข</button><button class="btn sm danger" data-lib-delete="${i}">ลบ</button></div></article>`).join('')
+  host.innerHTML=appState.sessionCards.map((c,i)=>`<article class="library-card"><div style="display:flex;justify-content:space-between;gap:8px"><h3>#${esc(c.id)} · ${esc(c.name)}</h3><div style="display:flex;gap:5px;align-items:center"><span class="badge green">☁ CLOUD</span><span class="badge violet">${esc(c.rarity)}</span></div></div><p>${esc(Array.isArray(c.element)?c.element.join(', '):c.element)} · ${c.abilities?.length||0} ความสามารถ</p><div class="library-actions"><button class="btn sm primary" data-lib-copy="${i}">คัดลอก</button><button class="btn sm" data-lib-edit="${i}">แก้ไข</button><button class="btn sm danger" data-lib-delete="${i}">ลบ</button></div></article>`).join('')
 }
 function setMediaControl(modeId,customId,value,id,defaultExt){const mode=el(modeId);if(!value){mode.value='none';el(customId).value=''}else if(String(value)===`${id}${defaultExt}`){mode.value='id';el(customId).value=''}else{mode.value='custom';el(customId).value=value}toggleCustomForSelect(mode,customId)}
 function loadCardIntoForm(card,index=null){
@@ -2214,6 +2275,7 @@ function applyTemplate(key){
   if(key==='activeShield')ability={name:'กำแพงคืนสภาพ',description:'เมื่อโจมตีครบ 3 ครั้ง ฟื้นโล่ 2 ฮิต แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'restoreShieldHits',value:2}]};
   if(key==='enemyDef')ability={name:'เจาะเกราะ',description:'ลด DEF ฝ่ายตรงข้าม 20%',activeIn:['tower','arena'],effects:[{type:'enemyDefenseRate',value:-.2}]};
   if(key==='costSelf')ability={name:'เร่งชาร์จ',description:'ลดจำนวนครั้งที่ต้องโจมตีก่อนใช้ Active Skill ของตนเอง 1',activeIn:['tower','arena'],effects:[{type:'activeSkillCost',value:-1,targetSide:'self'}]};
+  if(key==='costWaterAllies')ability={name:'สายน้ำสนับสนุน',description:'ทุกครั้งที่โจมตีครบ 2 ครั้ง ลดคอส Active Skill ของพันธมิตรธาตุน้ำ 1 โดยไม่รวมเจ้าของสกิล',activeIn:['tower','arena'],condition:{leaderOnly:true},effects:[{type:'activeSkillCost',value:-1,targetSide:'ally',excludeSelf:true,targetElements:['น้ำ'],condition:{afterOwnAttacks:2,repeat:true}}]};
   if(key==='partner')ability={name:'สายสัมพันธ์คู่หู',description:'ความสามารถนี้ทำงานเมื่อมีการ์ดคู่หูที่กำหนดอยู่ในทีม',activeIn:['team','tower','arena'],condition:{anyCardIds:[]},effects:[{type:'selfPowerRate',value:.2}]};
   if(ability){const cards=[...document.querySelectorAll('.ability-card')];if(cards.length===1){const first=cards[0],empty=!first.querySelector('.ability-name').value.trim()&&!first.querySelector('.ability-description').value.trim()&&![...first.querySelectorAll('.effect-type')].some(x=>x.value);if(empty)first.remove()}addAbility(ability);toast('เพิ่มแม่แบบความสามารถแล้ว ✓')}
 }
@@ -2239,18 +2301,67 @@ function bindEvents(){
   });
   el('abilitiesContainer').addEventListener('change',e=>{
     const row=e.target.closest('.condition-row');if(e.target.classList.contains('condition-field'))renderConditionControl(row,e.target.value);else if(e.target.classList.contains('number-preset')){const input=e.target.closest('.number-control').querySelector('.number-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}
-    const effect=e.target.closest('.effect-row');if(effect&&e.target.classList.contains('effect-category')){effect.querySelector('.effect-type').innerHTML=effectTypeOptions(e.target.value,'');renderEffectRow(effect)}else if(effect&&e.target.classList.contains('effect-type'))renderEffectRow(effect);else if(effect&&e.target.classList.contains('effect-value-select')){effect.querySelector('.effect-value-custom').classList.toggle('hidden',e.target.value!=='custom');renderOutput()}
+    const effect=e.target.closest('.effect-row');if(effect&&e.target.classList.contains('effect-category')){effect.querySelector('.effect-type').innerHTML=effectTypeOptions(e.target.value,'');renderEffectRow(effect)}else if(effect&&e.target.classList.contains('effect-type'))renderEffectRow(effect);else if(effect&&e.target.classList.contains('effect-target-side')){syncExcludeSelfControl(effect);renderOutput()}else if(effect&&e.target.classList.contains('effect-value-select')){effect.querySelector('.effect-value-custom').classList.toggle('hidden',e.target.value!=='custom');renderOutput()}
     const ability=e.target.closest('.ability-card');if(ability&&e.target.classList.contains('cutscene-mode'))ability.querySelector('.custom-cutscene').classList.toggle('hidden',e.target.value!=='custom');renderOutput();
   });
   el('abilitiesContainer').addEventListener('input',renderOutput);el('outputMode').addEventListener('change',renderOutput);el('duplicateOverride').addEventListener('change',renderOutput);
   el('copyCode').addEventListener('click',()=>copyText(el('codeOutput').value));el('copyTop').addEventListener('click',()=>copyText(el('codeOutput').value));el('saveCard').addEventListener('click',saveCurrentCard);el('downloadCard').addEventListener('click',()=>{const c=buildCard();downloadJson(c,`card_${c.id}_${(c.name||'new').replace(/[^\w\u0E00-\u0E7F-]+/g,'_')}.json`)});el('resetCard').addEventListener('click',()=>resetForm());el('newCardTop').addEventListener('click',()=>{switchTab('builder');resetForm()});
-  el('libraryGrid').addEventListener('click',e=>{const copy=e.target.closest('[data-lib-copy]'),edit=e.target.closest('[data-lib-edit]'),del=e.target.closest('[data-lib-delete]');if(copy)copyText(JSON.stringify(appState.sessionCards[Number(copy.dataset.libCopy)],null,2)+',');if(edit)loadCardIntoForm(deepClone(appState.sessionCards[Number(edit.dataset.libEdit)]),Number(edit.dataset.libEdit));if(del){appState.sessionCards.splice(Number(del.dataset.libDelete),1);persist();renderLibrary();renderDatabase();renderOutput();toast('ลบออกจากคลังแล้ว')}});
-  el('copyAllSession').addEventListener('click',()=>copyText(JSON.stringify(appState.sessionCards,null,2)));el('exportSession').addEventListener('click',()=>downloadJson(appState.sessionCards,'anime_cards_created.json'));el('clearSession').addEventListener('click',()=>{if(!appState.sessionCards.length)return;appState.sessionCards=[];appState.editingSessionIndex=null;persist();renderLibrary();renderDatabase();renderOutput();toast('ล้างคลังแล้ว')});
+  el('libraryGrid').addEventListener('click',async e=>{const copy=e.target.closest('[data-lib-copy]'),edit=e.target.closest('[data-lib-edit]'),del=e.target.closest('[data-lib-delete]');if(copy)copyText(JSON.stringify(appState.sessionCards[Number(copy.dataset.libCopy)],null,2)+',');if(edit)loadCardIntoForm(deepClone(appState.sessionCards[Number(edit.dataset.libEdit)]),Number(edit.dataset.libEdit));if(del){const index=Number(del.dataset.libDelete),removed=appState.sessionCards[index];appState.sessionCards.splice(index,1);appState.editingSessionIndex=null;persist();renderLibrary();renderDatabase();renderOutput();toast('ลบในเครื่องแล้ว · กำลังลบจาก Firebase');if(removed)await cloudInvoke('deleteCard',removed.id)}});
+  el('syncFirebaseNow').addEventListener('click',syncFirebaseNow);el('firebaseStatus').addEventListener('click',syncFirebaseNow);
+  el('copyAllSession').addEventListener('click',()=>copyText(JSON.stringify(appState.sessionCards,null,2)));el('exportSession').addEventListener('click',()=>downloadJson(appState.sessionCards,'anime_cards_created.json'));el('clearSession').addEventListener('click',async()=>{if(!appState.sessionCards.length)return;appState.sessionCards=[];appState.editingSessionIndex=null;persist();renderLibrary();renderDatabase();renderOutput();toast('ล้างคลังในเครื่องแล้ว · กำลังล้าง Firebase');const ok=await cloudInvoke('clearCards');if(ok)toast('ล้างคลัง Firebase แล้ว ✓')});
   el('chooseImportFile').addEventListener('click',()=>el('importGameFile').click());el('importGameFile').addEventListener('change',async e=>{const file=e.target.files[0];if(file)importCards(extractCardsFromText(await file.text()));e.target.value=''});el('parsePastedDatabase').addEventListener('click',()=>importCards(extractCardsFromText(el('pasteDatabase').value)));el('clearImported').addEventListener('click',()=>{appState.importedCards=[];persist();el('importStatus').className='status warn';el('importStatus').textContent='ล้างข้อมูลนำเข้าแล้ว';renderDatabase();refreshCardPickers();renderOutput()});el('dbSearch').addEventListener('input',renderDatabase);el('dbSourceFilter').addEventListener('change',renderDatabase);
   document.addEventListener('click',e=>{const add=e.target.closest('.token-add');if(add&&!add.closest('#abilitiesContainer')){const picker=add.closest('.token-picker');addPickerValue(picker,picker.querySelector('.token-select').value)}const rem=e.target.closest('.token-remove');if(rem&&!rem.closest('#abilitiesContainer'))removePickerValue(rem.closest('.token-picker'),rem.dataset.value)});
 }
-function init(){initHeader();initRarity();initElementPicker();initStats();initProgression();bindEvents();document.querySelectorAll('.media-mode').forEach(s=>toggleCustomForSelect(s,s.dataset.target));addAbility();renderLibrary();renderDatabase();updateStatPreviews();renderOutput();}
+function init(){initHeader();initRarity();initElementPicker();initStats();initProgression();bindEvents();document.querySelectorAll('.media-mode').forEach(s=>toggleCustomForSelect(s,s.dataset.target));addAbility();renderLibrary();renderDatabase();updateStatPreviews();renderOutput();firebaseStatus('connecting');}
 init();
+</script>
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js';
+import { getAuth, setPersistence, browserLocalPersistence, signInAnonymously } from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js';
+import { getFirestore, collection, doc, setDoc, deleteDoc, getDocs, onSnapshot, writeBatch, serverTimestamp } from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDuHfip-460b5he1eYeR8GbbZNTfr1PpLc",
+  authDomain: "fanfigtion-4d5de.firebaseapp.com",
+  projectId: "fanfigtion-4d5de",
+  storageBucket: "fanfigtion-4d5de.firebasestorage.app",
+  messagingSenderId: "423104038708",
+  appId: "1:423104038708:web:c44a0fef2d6425755ac761",
+  measurementId: "G-L17Y8RE2ZY"
+};
+const COLLECTION_NAME = window.FirebaseBuilderHost?.collectionName || 'animeCardCodeBuilderCards';
+const clean = value => JSON.parse(JSON.stringify(value));
+const friendlyError = error => {
+  const code=String(error?.code||'');
+  if(code.includes('operation-not-allowed'))return 'ต้องเปิด Anonymous Authentication ใน Firebase Console';
+  if(code.includes('permission-denied'))return 'Firestore Rules ยังไม่อนุญาตให้อ่านหรือเขียน';
+  if(code.includes('failed-precondition'))return 'ยังไม่ได้สร้าง Cloud Firestore Database';
+  if(code.includes('unavailable'))return 'เครือข่ายออฟไลน์หรือ Firebase ไม่พร้อมใช้งาน';
+  return error?.message||'เกิดข้อผิดพลาดจาก Firebase';
+};
+const wrapError=error=>{error.friendlyMessage=friendlyError(error);return error};
+
+try{
+  const app=initializeApp(firebaseConfig);const auth=getAuth(app);const db=getFirestore(app);let uid=null;
+  const cardsCollection=collection(db,COLLECTION_NAME);
+  const batchChunks=async(items,handler)=>{for(let start=0;start<items.length;start+=400){const batch=writeBatch(db);items.slice(start,start+400).forEach(item=>handler(batch,item));await batch.commit()}};
+  const saveCard=async(card,previousId=null)=>{
+    if(previousId!==null&&String(previousId)!==String(card.id))await deleteDoc(doc(db,COLLECTION_NAME,String(previousId)));
+    await setDoc(doc(db,COLLECTION_NAME,String(card.id)),{card:clean(card),cardId:Number(card.id),updatedAt:serverTimestamp(),updatedBy:uid||'anonymous',appVersion:'firebase-firestore-v1'},{merge:true});
+  };
+  const syncCards=async cards=>batchChunks((cards||[]).filter(card=>card&&card.id!==undefined),(batch,card)=>batch.set(doc(db,COLLECTION_NAME,String(card.id)),{card:clean(card),cardId:Number(card.id),updatedAt:serverTimestamp(),updatedBy:uid||'anonymous',appVersion:'firebase-firestore-v1'},{merge:true}));
+  const deleteCard=async id=>deleteDoc(doc(db,COLLECTION_NAME,String(id)));
+  const clearCards=async()=>{const snapshot=await getDocs(cardsCollection);await batchChunks(snapshot.docs,(batch,snapshotDoc)=>batch.delete(snapshotDoc.ref))};
+  const refresh=async()=>{const snapshot=await getDocs(cardsCollection);const cards=snapshot.docs.map(item=>item.data()?.card).filter(Boolean);window.FirebaseBuilderHost?.receiveCloudCards(cards,{fromCache:snapshot.metadata.fromCache,hasPendingWrites:false})};
+  window.FirebaseCardCloud={saveCard,syncCards,deleteCard,clearCards,refresh};
+  window.FirebaseBuilderHost?.setStatus('connecting','☁️ Firebase: กำลังยืนยันตัวตน');
+  try{await setPersistence(auth,browserLocalPersistence)}catch(error){console.warn('Firebase persistence fallback:',error)}
+  try{const credential=auth.currentUser?{user:auth.currentUser}:await signInAnonymously(auth);uid=credential.user.uid;window.FirebaseBuilderHost?.setStatus('online','☁️ Firebase: เชื่อมต่อแล้ว')}catch(error){console.warn('Anonymous Auth unavailable, trying Firestore rules directly:',error);window.FirebaseBuilderHost?.setStatus('offline',`💾 ${friendlyError(error)} · ทดลองเชื่อมต่อฐานข้อมูลต่อ`)}
+  onSnapshot(cardsCollection,{includeMetadataChanges:true},snapshot=>{
+    const cards=snapshot.docs.map(item=>item.data()?.card).filter(Boolean);
+    window.FirebaseBuilderHost?.receiveCloudCards(cards,{fromCache:snapshot.metadata.fromCache,hasPendingWrites:snapshot.metadata.hasPendingWrites});
+  },error=>window.FirebaseBuilderHost?.notifyError(`⚠️ Firebase: ${friendlyError(error)}`));
+}catch(error){console.error('Firebase initialization failed:',error);window.FirebaseBuilderHost?.notifyError(`⚠️ Firebase: ${friendlyError(error)}`)}
 </script>
 </body>
 </html>
