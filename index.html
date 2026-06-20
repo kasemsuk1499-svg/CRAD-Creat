@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Critical Rate v40</title>
+  <title>ANIME CARD CODE BUILDER · Next Attack Critical v41</title>
   <style>
     :root{
       color-scheme:dark;
@@ -107,9 +107,9 @@
           <section class="section">
             <div class="section-head"><div><h2>3. ความสามารถ</h2><p>การ์ดหนึ่งใบเพิ่มได้หลายความสามารถ และแต่ละความสามารถเพิ่มได้หลายเอฟเฟกต์</p></div><button class="btn green" id="addAbility" type="button">＋ เพิ่มความสามารถ</button></div>
             <div class="grid" style="margin-bottom:8px">
-              <div class="field-wrap span-5"><label for="abilityTemplate">แม่แบบด่วน</label><select class="field" id="abilityTemplate"><option value="">เลือกแม่แบบ…</option><option value="passiveAtk">Passive · ATK ทีม +20%</option><option value="activeAtk">Active · ครบ 3 ครั้ง ATK +50%</option><option value="activeExtraHits">Active · ครบ 3 ครั้ง โจมตีเพิ่ม 2 ฮิต</option><option value="activeHeal">Active · ครบ 3 ครั้ง ฟื้น HP 20%</option><option value="activeShield">Active · ครบ 3 ครั้ง ฟื้นโล่ 2 ฮิต</option><option value="enemyDef">ลด DEF ศัตรู 20%</option><option value="critSelf">คริติคอลตนเอง +30%</option><option value="critTeam">คริติคอลทั้งฝ่ายเรา +20%</option><option value="critAllies">คริติคอลเพื่อนร่วมทีม +20% (ไม่รวมตัวเอง)</option><option value="critEnemy">ลดคริติคอลฝ่ายตรงข้าม 25%</option><option value="critGroupAlly">คริติคอลกลุ่มไฟ/EX/SC ฝ่ายเรา +25%</option><option value="critGroupEnemy">ลดคริติคอลกลุ่มไฟ/EX/SC ศัตรู 25%</option><option value="costSelf">ลดคอส Active ตนเอง 1</option><option value="enemyCost">เพิ่มคอส Active ศัตรู 2</option><option value="targetCost">ลดคอสการ์ดตาม ID 1</option><option value="costWaterAllies">ลดคอสพันธมิตรธาตุน้ำ 1 (ไม่รวมตัวเอง)</option><option value="partner">ต้องมีคู่หูตาม Card ID</option><option value="hakariRail">รางดาวซ่อนแอบ · Hakari #1033</option></select></div>
+              <div class="field-wrap span-5"><label for="abilityTemplate">แม่แบบด่วน</label><select class="field" id="abilityTemplate"><option value="">เลือกแม่แบบ…</option><option value="passiveAtk">Passive · ATK ทีม +20%</option><option value="activeAtk">Active · ครบ 3 ครั้ง ATK +50%</option><option value="activeCrit">Active · ครบ 4 ครั้ง คริติคอล 100%</option><option value="activeExtraHits">Active · ครบ 3 ครั้ง โจมตีเพิ่ม 2 ฮิต</option><option value="activeHeal">Active · ครบ 3 ครั้ง ฟื้น HP 20%</option><option value="activeShield">Active · ครบ 3 ครั้ง ฟื้นโล่ 2 ฮิต</option><option value="enemyDef">ลด DEF ศัตรู 20%</option><option value="critSelf">คริติคอลตนเอง +30%</option><option value="critTeam">คริติคอลทั้งฝ่ายเรา +20%</option><option value="critAllies">คริติคอลเพื่อนร่วมทีม +20% (ไม่รวมตัวเอง)</option><option value="critEnemy">ลดคริติคอลฝ่ายตรงข้าม 25%</option><option value="critGroupAlly">คริติคอลกลุ่มไฟ/EX/SC ฝ่ายเรา +25%</option><option value="critGroupEnemy">ลดคริติคอลกลุ่มไฟ/EX/SC ศัตรู 25%</option><option value="costSelf">ลดคอส Active ตนเอง 1</option><option value="enemyCost">เพิ่มคอส Active ศัตรู 2</option><option value="targetCost">ลดคอสการ์ดตาม ID 1</option><option value="costWaterAllies">ลดคอสพันธมิตรธาตุน้ำ 1 (ไม่รวมตัวเอง)</option><option value="partner">ต้องมีคู่หูตาม Card ID</option><option value="hakariRail">รางดาวซ่อนแอบ · Hakari #1033</option></select></div>
               <div class="field-wrap span-3"><label>&nbsp;</label><button class="btn gold" id="applyAbilityTemplate" type="button" style="width:100%">ใช้แม่แบบ</button></div>
-              <div class="field-wrap span-4"><label>&nbsp;</label><div class="status ok">รองรับ <b id="effectCountInline">45</b> เอฟเฟกต์ · <b id="conditionCountInline">24</b> เงื่อนไข · <b id="effectFieldCountInline">8</b> ฟิลด์เสริม</div></div>
+              <div class="field-wrap span-4"><label>&nbsp;</label><div class="status ok">รองรับ <b id="effectCountInline">46</b> เอฟเฟกต์ · <b id="conditionCountInline">24</b> เงื่อนไข · <b id="effectFieldCountInline">8</b> ฟิลด์เสริม</div></div>
             </div>
             <div id="abilitiesContainer"></div>
           </section>
@@ -127,7 +127,7 @@
             <button class="btn" id="downloadCard" type="button">⬇ JSON</button>
             <button class="btn danger" id="resetCard" type="button">ล้างฟอร์ม</button>
           </div>
-          <div class="footer-note">ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล v40 · Critical Rate</div>
+          <div class="footer-note">ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล v41 · Next Attack Critical Rate</div>
         </aside>
       </div>
     </section>
@@ -154,7 +154,7 @@
         <article class="help-card"><h3>3) คัดลอกไปวาง</h3><p>เลือกรูปแบบ <b>วัตถุการ์ด + จุลภาค</b> แล้วนำโค้ดไปวางภายใน <code>const CARDS = [ ... ]</code> ของเกม</p></article>
         <article class="help-card"><h3>4) อัปเดตฐาน ID</h3><p>เมื่อเกมมีการ์ดใหม่ ให้นำเข้าไฟล์ HTML ล่าสุดในหน้า <b>ฐาน ID</b> แอปจะอ่าน ID เพื่อป้องกันการสร้างซ้ำ</p></article>
         <article class="help-card"><h3>Firebase Cloud Firestore</h3><p>คลังออนไลน์ใช้คอลเลกชัน <code>animeCardCodeBuilderCards</code> และใช้ Card ID เป็น Document ID การแก้ไข ID เดิมจึงอัปเดตข้อมูลใบเดิมแบบเรียลไทม์</p></article><article class="help-card"><h3>ชีทหลักของระบบ</h3><p>ให้อ้างอิง <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener" class="accent"><b>Google Sheet ระบบสกิลและเงื่อนไข</b></a> เป็นข้อมูลหลักสำหรับเอฟเฟกต์ เงื่อนไข และการอัปเดตครั้งถัดไป</p></article>
-        <article class="help-card"><h3>การใช้ค่าเปอร์เซ็นต์</h3><p><code>0.20</code> หมายถึง +20%, <code>-0.20</code> หมายถึง -20%, และ <code>7.77</code> หมายถึง +777%</p></article><article class="help-card"><h3>อัตราคริติคอล</h3><p>ใช้ <code>criticalRate</code> โดยค่าบวกเพิ่มและค่าลบลดเรทคริติคอล เลือก <code>targetSide</code> เป็น self / ally / enemy และกรองด้วย Card ID, ธาตุ, ระดับ, any/all หรือ <code>excludeSelf</code> ได้ ค่า <code>luckRate</code> เดิมยังถูกแปลงเป็นคริติคอลเพื่อรองรับการ์ดเก่า</p></article>
+        <article class="help-card"><h3>การใช้ค่าเปอร์เซ็นต์</h3><p><code>0.20</code> หมายถึง +20%, <code>-0.20</code> หมายถึง -20%, และ <code>7.77</code> หมายถึง +777%</p></article><article class="help-card"><h3>อัตราคริติคอล</h3><p>ใช้ <code>criticalRate</code> สำหรับเรทที่คงอยู่ และใช้ <code>nextAttackCriticalRate</code> สำหรับเรทชั่วคราวเฉพาะการโจมตีที่ Active ทำงาน เช่น <code>1.00</code> คือ +100% แล้วล้างทันทีหลังใช้ เลือก <code>targetSide</code> เป็น self / ally / enemy ได้ ค่า <code>luckRate</code> เดิมยังถูกแปลงเป็นคริติคอลเพื่อรองรับการ์ดเก่า</p></article>
         <article class="help-card"><h3>Active Skill</h3><p><code>afterOwnAttacks: 3</code> คือสะสมการโจมตีปกติ 3 ครั้ง แล้วเอฟเฟกต์ทำงานในการโจมตีครั้งถัดไป ส่วน <code>repeat: true</code> คือเริ่มนับใหม่วนซ้ำ</p></article><article class="help-card"><h3>โจมตีเพิ่ม / ตีตอบ</h3><p>เลือก <code>nextAttackHits</code> เพื่อเพิ่มฮิตในเทิร์นที่ Active ทำงาน เช่น value <code>2</code> คือเพิ่มอีก 2 ฮิต ระบบปัจจุบันนับเป็นฮิตเสริมในเทิร์นเดิม ไม่ใช่สร้างเทิร์นสวนแยก</p></article>
       </div>
     </section>
@@ -372,6 +372,16 @@
       "suitableModes": "tower, arena",
       "note": "-",
       "exampleCode": "{ \"type\": \"nextAttackPowerFlat\", \"value\": 1000000, \"condition\": { \"afterOwnAttacks\": 3, \"repeat\": true } }"
+    },
+    {
+      "category": "ACTIVE / คริติคอล",
+      "type": "nextAttackCriticalRate",
+      "meaning": "เพิ่ม/ลดอัตราคริติคอลเฉพาะการโจมตีที่ Active ทำงาน",
+      "exampleValue": 1,
+      "fields": "condition.afterOwnAttacks, repeat, targetSide",
+      "suitableModes": "tower, arena",
+      "note": "value 1.00 = +100%; ใช้แล้วล้างทันที ไม่สะสมถาวร; เรทสุดท้ายจำกัด 0–100%",
+      "exampleCode": "{ \"type\": \"nextAttackCriticalRate\", \"value\": 1.00, \"targetSide\": \"self\", \"condition\": { \"afterOwnAttacks\": 4, \"repeat\": true } }"
     },
     {
       "category": "ACTIVE / HP",
@@ -1888,12 +1898,12 @@
   ],
   "sourceInfo": {
     "sheetTitle": "Anime Card Collection - ระบบสกิลและเงื่อนไข",
-    "sheetUpdated": "2026-06-19-critical-rate-v40",
-    "gameFile": "anime_card_collection_critical_rate.html",
+    "sheetUpdated": "2026-06-20-next-attack-critical-rate-v41",
+    "gameFile": "index (4)(2)_nextAttackCriticalRate.html",
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
     "sheetRole": "primary",
-    "builderUpdated": "2026-06-19-critical-rate-v40"
+    "builderUpdated": "2026-06-20-next-attack-critical-rate-v41"
   }
 }</script>
 <script>
@@ -1907,7 +1917,7 @@ const conditionCatalog = DATA.conditions.filter(x=>x.position==='condition');
 const effectCatalog = DATA.effects;
 const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
 const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions']);
-const activeEffectTypes = new Set(['nextAttackPowerRate','nextAttackPowerFlat','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','increaseAttackRateStack']);
+const activeEffectTypes = new Set(['nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','increaseAttackRateStack']);
 const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['criticalRate','luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack']));
 const integerEffectTypes = new Set(['shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost']);
 const flatEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Flat$/.test(t)));
@@ -2282,6 +2292,7 @@ function applyTemplate(key){
   let ability=null;
   if(key==='passiveAtk')ability={name:'พลังประสาน',description:'เพิ่ม ATK ทั้งทีม 20%',activeIn:['tower','arena'],effects:[{type:'teamPowerRate',value:.2}]};
   if(key==='activeAtk')ability={name:'เร่งพลังโจมตี',description:'เมื่อโจมตีครบ 3 ครั้ง การโจมตีครั้งถัดไปได้รับ ATK +50% แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'nextAttackPowerRate',value:.5}]};
+  if(key==='activeCrit')ability={name:'จังหวะคริติคอลแน่นอน',description:'เมื่อโจมตีครบ 4 ครั้ง การโจมตีครั้งถัดไปจะได้รับอัตราคริติคอล +100% แล้วเริ่มนับใหม่',activeIn:['tower','arena'],effects:[{type:'nextAttackCriticalRate',value:1,targetSide:'self',condition:{afterOwnAttacks:4,repeat:true}}]};
   if(key==='activeExtraHits')ability={name:'จังหวะโจมตีต่อเนื่อง',description:'เมื่อโจมตีครบ 3 ครั้ง การโจมตีที่สกิลทำงานจะเพิ่มอีก 2 ฮิต แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'nextAttackHits',value:2,targetSide:'self'}]};
   if(key==='activeHeal')ability={name:'ฟื้นฟูต่อเนื่อง',description:'เมื่อโจมตีครบ 3 ครั้ง ฟื้น HP 20% แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'healHpRate',value:.2}]};
   if(key==='activeShield')ability={name:'กำแพงคืนสภาพ',description:'เมื่อโจมตีครบ 3 ครั้ง ฟื้นโล่ 2 ฮิต แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'restoreShieldHits',value:2}]};
