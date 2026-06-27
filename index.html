@@ -127,7 +127,7 @@
             <button class="btn" id="downloadCard" type="button">⬇ JSON</button>
             <button class="btn danger" id="resetCard" type="button">ล้างฟอร์ม</button>
           </div>
-          <div class="footer-note">ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล v49 · Target Picker Fix</div>
+          <div class="footer-note">ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล v52 · Full Stack Runtime</div>
         </aside>
       </div>
     </section>
@@ -747,6 +747,196 @@
       "suitableModes": "tower, arena",
       "note": "คำนวณจาก DEF เริ่มต้นทุกชั้น จึงได้ -5% × 8 = -40% ตรงตัว",
       "exampleCode": "{ \"type\":\"enemyDefenseRateStack\", \"value\":-0.05, \"maxStacks\":8, \"stackKey\":\"drainCurse\" }"
+    },
+    {
+      "category": "สแต็ก / ATK",
+      "type": "powerRateStack",
+      "meaning": "เพิ่ม/ลด ATK ต่อชั้นตามฝ่ายและตัวกรอง",
+      "exampleValue": 0.05,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"powerRateStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / HP",
+      "type": "hpRateStack",
+      "meaning": "เพิ่ม/ลด HP สูงสุดและ HP ปัจจุบันต่อชั้น",
+      "exampleValue": 0.05,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"hpRateStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / DEF",
+      "type": "defenseRateStack",
+      "meaning": "เพิ่ม/ลด DEF ต่อชั้น",
+      "exampleValue": 0.05,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"defenseRateStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / รายได้",
+      "type": "incomeRateStack",
+      "meaning": "เพิ่ม/ลดรายได้ต่อชั้น",
+      "exampleValue": 0.05,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "team, tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"incomeRateStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / ATK คงที่",
+      "type": "powerFlatStack",
+      "meaning": "เพิ่ม/ลด ATK ค่าคงที่ต่อชั้น",
+      "exampleValue": 50000,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"powerFlatStack\", \"value\": 50000, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / HP คงที่",
+      "type": "hpFlatStack",
+      "meaning": "เพิ่ม/ลด HP ค่าคงที่ต่อชั้น",
+      "exampleValue": 50000,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"hpFlatStack\", \"value\": 50000, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / DEF คงที่",
+      "type": "defenseFlatStack",
+      "meaning": "เพิ่ม/ลด DEF ค่าคงที่ต่อชั้น",
+      "exampleValue": 10000,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"defenseFlatStack\", \"value\": 10000, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / รายได้คงที่",
+      "type": "incomeFlatStack",
+      "meaning": "เพิ่ม/ลดรายได้ค่าคงที่ต่อชั้น",
+      "exampleValue": 1000,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "team, tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"incomeFlatStack\", \"value\": 1000, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / คริติคอล",
+      "type": "criticalRateStack",
+      "meaning": "เพิ่ม/ลดอัตราคริติคอลต่อชั้น",
+      "exampleValue": 0.05,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"criticalRateStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / หลบหลีก",
+      "type": "dodgeRateStack",
+      "meaning": "เพิ่ม/ลดอัตราหลบหลีกต่อชั้น",
+      "exampleValue": 0.05,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"dodgeRateStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / บล็อก",
+      "type": "blockRateStack",
+      "meaning": "เพิ่ม/ลดอัตราบล็อกต่อชั้น",
+      "exampleValue": 0.05,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"blockRateStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / ดาเมจที่ได้รับ",
+      "type": "damageTakenRateStack",
+      "meaning": "เพิ่ม/ลดความเสียหายที่ได้รับต่อชั้น",
+      "exampleValue": -0.05,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"damageTakenRateStack\", \"value\": -0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / การฟื้น HP",
+      "type": "healingRateStack",
+      "meaning": "เพิ่ม/ลดประสิทธิภาพการฟื้น HP ต่อชั้น",
+      "exampleValue": 0.05,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"healingRateStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / การฟื้นโล่",
+      "type": "shieldRecoveryRateStack",
+      "meaning": "เพิ่ม/ลดประสิทธิภาพการฟื้นโล่ต่อชั้น",
+      "exampleValue": 0.05,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"shieldRecoveryRateStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / ต้านสถานะ",
+      "type": "statusResistanceStack",
+      "meaning": "เพิ่ม/ลดค่าต้านสถานะต่อชั้น",
+      "exampleValue": 0.05,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"statusResistanceStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / จำนวนฮิต",
+      "type": "attackHitsStack",
+      "meaning": "เพิ่ม/ลดจำนวนฮิตพื้นฐานต่อชั้น",
+      "exampleValue": 1,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"attackHitsStack\", \"value\": 1, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / โล่",
+      "type": "shieldHitsStack",
+      "meaning": "เพิ่ม/ลดจำนวนโล่ต่อชั้น",
+      "exampleValue": 1,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"shieldHitsStack\", \"value\": 1, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / คอสต่อรอบ",
+      "type": "activeSkillCostCycleStack",
+      "meaning": "เพิ่ม/ลดคอส Active รอบปัจจุบันต่อชั้น",
+      "exampleValue": -1,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"activeSkillCostCycleStack\", \"value\": -1, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "สแต็ก / คอสถาวร",
+      "type": "activeSkillCostPermanentStack",
+      "meaning": "เพิ่ม/ลดคอสฐาน Active ถาวรต่อชั้น",
+      "exampleValue": -1,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
+      "suitableModes": "tower, arena",
+      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
+      "exampleCode": "{\"type\": \"activeSkillCostPermanentStack\", \"value\": -1, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
     }
   ],
   "conditions": [
@@ -2267,7 +2457,10 @@
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
     "sheetRole": "primary",
-    "builderUpdated": "2026-06-27-stack-builder-v51"
+    "builderUpdated": "2026-06-27-full-stack-builder-v52"
+  },
+  "meta": {
+    "builderUpdated": "2026-06-27-full-stack-builder-v52"
   }
 }
 </script>
@@ -2284,11 +2477,14 @@ const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
 const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain']);
 const transferEffectTypes = new Set(['copyAbilities','stealAbilities']);
 const resistanceCategories = ['all','cost','transfer','abilityControl','statReduction','hitReduction','healingReduction','shieldReduction'];
-const stackRateEffectTypes = new Set(['teamPowerRateStack','teamHpRateStack','enemyHpRateStack','enemyDefenseRateStack']);
-const activeEffectTypes = new Set(['nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','increaseAttackRateStack',...stackRateEffectTypes]);
+const stackRateEffectTypes = new Set(['powerRateStack','hpRateStack','defenseRateStack','incomeRateStack','criticalRateStack','dodgeRateStack','blockRateStack','damageTakenRateStack','healingRateStack','shieldRecoveryRateStack','statusResistanceStack','teamPowerRateStack','enemyPowerRateStack','selfPowerRateStack','teamHpRateStack','enemyHpRateStack','selfHpRateStack','teamDefenseRateStack','enemyDefenseRateStack','selfDefenseRateStack','teamIncomeRateStack','enemyIncomeRateStack','selfIncomeRateStack']);
+const stackFlatEffectTypes = new Set(['powerFlatStack','hpFlatStack','defenseFlatStack','incomeFlatStack']);
+const stackIntegerEffectTypes = new Set(['attackHitsStack','shieldHitsStack','activeSkillCostCycleStack','activeSkillCostPermanentStack']);
+const stackEffectTypes = new Set([...stackRateEffectTypes,...stackFlatEffectTypes,...stackIntegerEffectTypes,'increaseAttackRateStack']);
+const activeEffectTypes = new Set(['nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate',...stackEffectTypes]);
 const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['criticalRate','luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack','statusResistance',...stackRateEffectTypes]));
-const integerEffectTypes = new Set(['shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost','activeSkillCostCycle','activeSkillCostPermanent']);
-const flatEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Flat$/.test(t)));
+const integerEffectTypes = new Set(['shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost','activeSkillCostCycle','activeSkillCostPermanent',...stackIntegerEffectTypes]);
+const flatEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Flat$/.test(t)).concat([...stackFlatEffectTypes]));
 const el = id=>document.getElementById(id);
 const appState = {
   selectedElements: [],
@@ -2547,8 +2743,18 @@ function readChanceControl(scope,fallback=1){const select=scope?.querySelector('
 function addEffectRow(container,initial={}){
   if(initial?.type==='luckRate')initial={...initial,type:'criticalRate'};
   if(initial?.type==='activeSkillCost')initial={...initial,type:'activeSkillCostCycle'};
-  const legacyStackMap={enemyHpRate:'enemyHpRateStack',enemyDefenseRate:'enemyDefenseRateStack',teamPowerRate:'teamPowerRateStack',teamHpRate:'teamHpRateStack'};
-  if(initial?.maxStacks&&legacyStackMap[initial.type])initial={...initial,type:legacyStackMap[initial.type],stackKey:initial.stackKey||'sharedStack'};
+  const legacyStackMap={
+    teamPowerRate:['powerRateStack','ally'],enemyPowerRate:['powerRateStack','enemy'],selfPowerRate:['powerRateStack','self'],cardPowerRate:['powerRateStack',initial.targetSide||'ally'],
+    teamHpRate:['hpRateStack','ally'],enemyHpRate:['hpRateStack','enemy'],selfHpRate:['hpRateStack','self'],cardHpRate:['hpRateStack',initial.targetSide||'ally'],
+    teamDefenseRate:['defenseRateStack','ally'],enemyDefenseRate:['defenseRateStack','enemy'],selfDefenseRate:['defenseRateStack','self'],cardDefenseRate:['defenseRateStack',initial.targetSide||'ally'],
+    teamIncomeRate:['incomeRateStack','ally'],selfIncomeRate:['incomeRateStack','self'],cardIncomeRate:['incomeRateStack',initial.targetSide||'ally'],
+    teamPowerFlat:['powerFlatStack','ally'],teamHpFlat:['hpFlatStack','ally'],teamDefenseFlat:['defenseFlatStack','ally'],teamIncomeFlat:['incomeFlatStack','ally'],
+    criticalRate:['criticalRateStack',initial.targetSide||'ally'],dodgeRate:['dodgeRateStack',initial.targetSide||'ally'],blockRate:['blockRateStack',initial.targetSide||'ally'],
+    damageTakenRate:['damageTakenRateStack',initial.targetSide||'ally'],healingRate:['healingRateStack',initial.targetSide||'ally'],shieldRecoveryRate:['shieldRecoveryRateStack',initial.targetSide||'ally'],
+    statusResistance:['statusResistanceStack',initial.targetSide||'ally'],attackHits:['attackHitsStack',initial.targetSide||'ally'],shieldHits:['shieldHitsStack',initial.targetSide||'ally'],
+    activeSkillCostCycle:['activeSkillCostCycleStack',initial.targetSide||'ally'],activeSkillCostPermanent:['activeSkillCostPermanentStack',initial.targetSide||'ally']
+  };
+  if(initial?.maxStacks&&legacyStackMap[initial.type]){const [type,targetSide]=legacyStackMap[initial.type];initial={...initial,type,targetSide:initial.targetSide||targetSide,stackKey:initial.stackKey||'sharedStack'}};
   const meta=effectByType.get(initial.type);const category=meta?.category||'ทั้งหมด';const row=document.createElement('div');row.className='effect-row';
   row.innerHTML=`<button class="btn sm danger row-remove" type="button">×</button><div class="row-pad"><div class="grid"><div class="field-wrap span-4"><label>หมวดเอฟเฟกต์</label><select class="field effect-category">${effectCategories().map(x=>option(x,x,x===category)).join('')}</select></div><div class="field-wrap span-8"><label>ชนิดเอฟเฟกต์ <span class="req">*</span></label><select class="field effect-type">${effectTypeOptions(category,initial.type||'')}</select></div><div class="field-wrap span-4 effect-value-wrap"><label>ค่า value</label><div class="effect-value-control"></div></div><div class="field-wrap span-8"><label>สรุป</label><div class="status warn effect-summary">เลือกเอฟเฟกต์</div></div></div><div class="effect-note">เลือกเอฟเฟกต์เพื่อดูวิธีใช้</div>
   <details class="advanced effect-advanced"><summary>Active Trigger และตัวเลือกทั่วไป</summary><div class="grid effect-advanced-grid"><div class="field-wrap span-3 target-side-wrap"><label>targetSide</label><select class="field effect-target-side"><option value="">ไม่ระบุ</option><option value="self">self · ตัวเอง</option><option value="ally">ally · ฝ่ายเรา</option><option value="enemy">enemy · ฝ่ายตรงข้าม</option><option value="both">both · ฝ่ายเราและฝ่ายตรงข้าม</option></select></div><div class="field-wrap span-3 exclude-self-wrap hidden"><label>excludeSelf</label><select class="field effect-exclude-self"><option value="">รวมเจ้าของสกิล</option>${option('true','true · เฉพาะเพื่อนร่วมทีม',initial.excludeSelf===true)}</select><small class="hint">ใช้ได้เมื่อ targetSide เป็น ally</small></div><div class="field-wrap span-3 target-match-wrap"><label>targetMatch</label><select class="field effect-target-match"><option value="any">any · ตรงอย่างใดอย่างหนึ่ง</option><option value="all">all · ต้องตรงทุกตัวกรอง</option></select></div><div class="field-wrap span-3"><label>onOwnAttack</label><select class="field effect-on-own-attack">${option('','ไม่ใช้',initial.condition?.onOwnAttack!==true)}${option('true','true · ทำงานทุกการโจมตี',initial.condition?.onOwnAttack===true)}</select></div><div class="field-wrap span-3 effect-trigger-control"><label>afterOwnAttacks</label>${optionalNumberControlHtml('afterOwnAttacks',initial.condition?.afterOwnAttacks)}</div><div class="field-wrap span-3"><label>repeat</label><select class="field effect-repeat">${option('true','วนซ้ำ',initial.condition?.repeat!==false)}${option('false','ครั้งเดียว',initial.condition?.repeat===false)}</select></div><div class="field-wrap span-6 target-cardids-wrap"><label>targetCardIds · เลือก Card ID เป้าหมาย</label>${createTokenPicker('cards',initial.targetCardIds||[],'targetCardIds')}<small class="hint">เลือกจากฐาน หรือพิมพ์ Card ID เองแล้วกดเพิ่ม</small></div><div class="field-wrap span-3 target-elements-wrap"><label>targetElements</label>${createTokenPicker('elements',initial.targetElements||[],'targetElements')}</div><div class="field-wrap span-3 target-rarities-wrap"><label>targetRarities</label>${createTokenPicker('rarities',initial.targetRarities||[],'targetRarities')}</div><div class="field-wrap span-3 persistent-wrap"><label>persistentAfterActivation</label><select class="field effect-persistent"><option value="">ไม่ใส่</option>${option('true','true · ทำต่อเนื่อง',initial.persistentAfterActivation===true)}${option('false','false',initial.persistentAfterActivation===false)}</select></div><div class="field-wrap span-3 max-stacks-wrap"><label>maxStacks</label><select class="field effect-max-stacks">${[1,2,3,4,5,6,7,8,9,10,12,15,20,30,50,99].map(v=>option(v,v,v===num(initial.maxStacks,5))).join('')}</select></div><div class="field-wrap span-3 stack-key-wrap hidden"><label>stackKey</label><input class="field effect-stack-key" value="${esc(initial.stackKey||'')}" placeholder="เช่น drainCurse"><small class="hint">เอฟเฟกต์ที่ใช้ key เดียวกันจะเพิ่มพร้อมกัน 1 ชั้น</small></div></div></details>
@@ -2624,7 +2830,7 @@ function syncCopiedLifetimePreset(row,applyPreset=false){
 function renderEffectRow(row,initialValue){
   const category=row.querySelector('.effect-category').value,typeSelect=row.querySelector('.effect-type');if(!typeSelect.value&&initialValue===undefined)typeSelect.innerHTML=effectTypeOptions(category,'');
   const type=typeSelect.value,meta=effectByType.get(type),wrap=row.querySelector('.effect-value-wrap'),control=row.querySelector('.effect-value-control'),note=row.querySelector('.effect-note'),summary=row.querySelector('.effect-summary');
-  const isTransfer=transferEffectTypes.has(type),isResistance=type==='statusResistance',isNullify=type==='nullifyCardAbilities',isDomain=type==='activateDomain';
+  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack'].includes(type),isNullify=type==='nullifyCardAbilities',isDomain=type==='activateDomain';
   row.querySelector('.selection-options')?.classList.toggle('hidden',!(isTransfer||isResistance||isNullify));
   row.querySelector('.transfer-options')?.classList.toggle('hidden',!isTransfer);
   row.querySelector('.resistance-options')?.classList.toggle('hidden',!isResistance);
@@ -2640,7 +2846,7 @@ function renderEffectRow(row,initialValue){
   }else control.innerHTML='';
   note.innerHTML=`<b>${esc(meta.meaning)}</b><br>${esc(meta.note||'ไม่มีหมายเหตุเพิ่มเติม')}<br><span class="accent">ฟิลด์ที่รองรับ:</span> ${esc(meta.fields||'-')} · <span class="accent">โหมดแนะนำ:</span> ${esc(meta.suitableModes||'-')}`;
   summary.className='status ok effect-summary';summary.textContent=`${meta.type} · ${meta.meaning}`;
-  const fields=String(meta.fields||'');row.querySelector('.persistent-wrap').classList.toggle('hidden',!fields.includes('persistentAfterActivation'));row.querySelector('.max-stacks-wrap').classList.toggle('hidden',!fields.includes('maxStacks'));row.querySelector('.stack-key-wrap')?.classList.toggle('hidden',!fields.includes('stackKey'));if(stackRateEffectTypes.has(type)&&!row.querySelector('.effect-stack-key')?.value)row.querySelector('.effect-stack-key').value='sharedStack';syncExcludeSelfControl(row);
+  const fields=String(meta.fields||'');row.querySelector('.persistent-wrap').classList.toggle('hidden',!fields.includes('persistentAfterActivation'));row.querySelector('.max-stacks-wrap').classList.toggle('hidden',!fields.includes('maxStacks'));row.querySelector('.stack-key-wrap')?.classList.toggle('hidden',!fields.includes('stackKey'));if(stackEffectTypes.has(type)&&!row.querySelector('.effect-stack-key')?.value)row.querySelector('.effect-stack-key').value='sharedStack';syncExcludeSelfControl(row);
   renderOutput();
 }
 function readConditionRow(row){
@@ -2704,7 +2910,7 @@ function readEffectRow(row){
     if(row.querySelector('.replace-previous-copy').value==='true')obj.replacePreviousCopy=true;
     const maxCopied=readOptionalNumberControl(row.querySelector('.max-copied-abilities-wrap .optional-number-control'));if(maxCopied!==null)obj.maxCopiedAbilities=maxCopied;
   }
-  if(type==='statusResistance'){
+  if(['statusResistance','statusResistanceStack'].includes(type)){
     obj.scope=row.querySelector('.resistance-scope').value||'target';
     const resistCategories=pickerValues('resistCategories');if(resistCategories.length)obj.resistCategories=resistCategories;
     const resistEffectTypes=pickerValues('resistEffectTypes');if(resistEffectTypes.length)obj.resistEffectTypes=resistEffectTypes;
@@ -2736,7 +2942,7 @@ function readAbilityCard(card){
   const condition={};card.querySelectorAll('.condition-row').forEach(row=>{const entry=readConditionRow(row);if(entry&&entry.field){if(Array.isArray(entry.value)&&!entry.value.length)return;if(entry.value&&typeof entry.value==='object'&&!Array.isArray(entry.value)&&!Object.keys(entry.value).length)return;condition[entry.field]=entry.value}});
   const name=card.querySelector('.ability-name').value.trim();
   const effects=[...card.querySelectorAll('.effect-row')].map(readEffectRow).filter(Boolean);
-  const stackEffects=effects.filter(effect=>stackRateEffectTypes.has(effect.type)||effect.type==='increaseAttackRateStack');
+  const stackEffects=effects.filter(effect=>stackEffectTypes.has(effect.type));
   if(stackEffects.length){
     const fallback=safeStackKey(name,`abilityStack${card.dataset.abilityId||''}`);
     stackEffects.forEach(effect=>{effect.stackKey=safeStackKey(effect.stackKey,fallback);effect.maxStacks=Math.max(1,Math.min(99,int(effect.maxStacks,1)))});
@@ -2763,15 +2969,18 @@ function validateAdvancedEffect(effect,abilityIndex,effectIndex){
     ['copiedAbilityDurationAttacks','copiedAbilityDurationTurns','copiedAbilityMaxUses','maxCopiedAbilities'].forEach(field=>{if(effect[field]!==undefined&&(!Number.isInteger(Number(effect[field]))||Number(effect[field])<1))results.push({type:'error',text:`${label}: ${field} ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`})});
     if(effect.copiedAbilityExpireOnUse===true&&Number(effect.copiedAbilityMaxUses||1)!==1)results.push({type:'warning',text:`${label}: copiedAbilityExpireOnUse จะบังคับให้หมดหลังใช้ครั้งแรก แม้ copiedAbilityMaxUses จะเป็นค่าอื่น`});
   }
-  if(effect.type==='statusResistance'&&(!Number.isFinite(Number(effect.value))||Number(effect.value)<-99||Number(effect.value)>99))results.push({type:'error',text:`${label}: statusResistance ต้องอยู่ระหว่าง -99 ถึง 99 (1 = 100%, 5 = ค่าต้านสำรอง 500%)`});
+  if(['statusResistance','statusResistanceStack'].includes(effect.type)&&(!Number.isFinite(Number(effect.value))||Number(effect.value)<-99||Number(effect.value)>99))results.push({type:'error',text:`${label}: statusResistance ต้องอยู่ระหว่าง -99 ถึง 99 (1 = 100%, 5 = ค่าต้านสำรอง 500%)`});
   if(effect.type==='activateDomain'&&!String(effect.domainId||'').trim())results.push({type:'error',text:`${label}: activateDomain ต้องระบุ domainId`});
   if(effect.type==='nullifyCardAbilities'&&effect.durationTriggers!==undefined&&(!Number.isInteger(Number(effect.durationTriggers))||Number(effect.durationTriggers)<1))results.push({type:'error',text:`${label}: durationTriggers ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`});
   if(effect.type==='nullifyCardAbilities'&&!effect.targetSide)results.push({type:'error',text:`${label}: nullifyCardAbilities ต้องระบุ targetSide`});
-  if(stackRateEffectTypes.has(effect.type)||effect.type==='increaseAttackRateStack'){
+  if(stackEffectTypes.has(effect.type)){
     if(!String(effect.stackKey||'').trim())results.push({type:'error',text:`${label}: เอฟเฟกต์สแต็กต้องระบุ stackKey`});
     if(!Number.isInteger(Number(effect.maxStacks))||Number(effect.maxStacks)<1||Number(effect.maxStacks)>99)results.push({type:'error',text:`${label}: maxStacks ต้องเป็นจำนวนเต็ม 1–99`});
-    if(['enemyHpRateStack','enemyDefenseRateStack'].includes(effect.type)&&Number(effect.value)>=0)results.push({type:'warning',text:`${label}: เอฟเฟกต์ลดศัตรูควรใช้ value ติดลบ`});
-    if(['teamPowerRateStack','teamHpRateStack','increaseAttackRateStack'].includes(effect.type)&&Number(effect.value)<=0)results.push({type:'warning',text:`${label}: เอฟเฟกต์เพิ่มทีมควรใช้ value มากกว่า 0`});
+    const side=String(effect.targetSide||'ally');
+    if(side==='enemy'&&Number(effect.value)>0&&!['damageTakenRateStack','activeSkillCostCycleStack','activeSkillCostPermanentStack'].includes(effect.type))results.push({type:'warning',text:`${label}: targetSide เป็น enemy แต่ value เป็นบวก ซึ่งจะบัฟศัตรู`});
+    if(side!=='enemy'&&Number(effect.value)<0&&!['damageTakenRateStack','activeSkillCostCycleStack','activeSkillCostPermanentStack'].includes(effect.type))results.push({type:'warning',text:`${label}: value ติดลบจะลดค่าฝ่ายเรา/ตัวเอง`});
+    if(effect.type==='damageTakenRateStack'&&side==='enemy'&&Number(effect.value)<0)results.push({type:'warning',text:`${label}: ค่า Damage Taken ติดลบจะช่วยลดดาเมจที่ศัตรูได้รับ`});
+    if(['activeSkillCostCycleStack','activeSkillCostPermanentStack'].includes(effect.type)&&side==='enemy'&&Number(effect.value)<0)results.push({type:'warning',text:`${label}: คอสติดลบจะช่วยลดคอสให้ศัตรู`});
   }
   return results;
 }
@@ -2781,7 +2990,7 @@ function validateAbilityLogic(ability,abilityIndex){
   if(condition.afterDomainAttacks!==undefined&&!String(condition.domainActive||'').trim())results.push({type:'error',text:`${label}: afterDomainAttacks ต้องใช้คู่กับ domainActive`});
   if(condition.repeat!==undefined&&condition.afterOwnAttacks===undefined&&condition.afterDomainAttacks===undefined)results.push({type:'warning',text:`${label}: repeat จะไม่มีผลถ้าไม่มี afterOwnAttacks หรือ afterDomainAttacks`});
   if(condition.requiredCardIds&&(!Array.isArray(condition.requiredCardIds)||!condition.requiredCardIds.length))results.push({type:'error',text:`${label}: requiredCardIds ต้องมี Card ID อย่างน้อย 1 ค่า`});
-  const stacks=ability.effects.filter(effect=>stackRateEffectTypes.has(effect.type)||effect.type==='increaseAttackRateStack');
+  const stacks=ability.effects.filter(effect=>stackEffectTypes.has(effect.type));
   if(stacks.length){
     const hasAbilityTrigger=condition.onOwnAttack===true||condition.afterOwnAttacks!==undefined||condition.afterDomainAttacks!==undefined;
     stacks.forEach((effect,effectIndex)=>{const hasEffectTrigger=effect.condition&&(effect.condition.onOwnAttack===true||effect.condition.afterOwnAttacks!==undefined);if(!hasAbilityTrigger&&!hasEffectTrigger)results.push({type:'error',text:`${label}: เอฟเฟกต์สแต็กที่ ${effectIndex+1} ต้องมี onOwnAttack หรือ afterOwnAttacks`})});
@@ -2844,7 +3053,7 @@ function applyTemplate(key){
   if(key==='activeAtk')ability={name:'เร่งพลังโจมตี',description:'เมื่อโจมตีครบ 3 ครั้ง การโจมตีครั้งถัดไปได้รับ ATK +50% แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'nextAttackPowerRate',value:.5}]};
   if(key==='activeCrit')ability={name:'จังหวะคริติคอลแน่นอน',description:'เมื่อโจมตีครบ 4 ครั้ง การโจมตีครั้งถัดไปจะได้รับอัตราคริติคอล +100% แล้วเริ่มนับใหม่',activeIn:['tower','arena'],effects:[{type:'nextAttackCriticalRate',value:1,targetSide:'self',condition:{afterOwnAttacks:4,repeat:true}}]};
   if(key==='activeExtraHits')ability={name:'จังหวะโจมตีต่อเนื่อง',description:'เมื่อโจมตีครบ 3 ครั้ง การโจมตีที่สกิลทำงานจะเพิ่มอีก 2 ฮิต แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'nextAttackHits',value:2,targetSide:'self'}]};
-  if(key==='multiStatStack')ability={name:'เดรนครัส',description:'ทุกครั้งที่โจมตี ลด HP สูงสุดและ DEF ศัตรู 5% พร้อมเพิ่ม ATK และ HP สูงสุดทีมเรา 5% สะสมสูงสุด 8 ชั้น',activeIn:['team','tower','arena'],condition:{onOwnAttack:true},effects:[{type:'enemyHpRateStack',value:-.05,maxStacks:8,stackKey:'drainCurse'},{type:'enemyDefenseRateStack',value:-.05,maxStacks:8,stackKey:'drainCurse'},{type:'teamPowerRateStack',value:.05,maxStacks:8,stackKey:'drainCurse'},{type:'teamHpRateStack',value:.05,maxStacks:8,stackKey:'drainCurse'}]};
+  if(key==='multiStatStack')ability={name:'เดรนครัส',description:'ทุกครั้งที่โจมตี ลด HP สูงสุดและ DEF ศัตรู 5% พร้อมเพิ่ม ATK และ HP สูงสุดทีมเรา 5% สะสมสูงสุด 8 ชั้น',activeIn:['team','tower','arena'],condition:{onOwnAttack:true},effects:[{type:'hpRateStack',value:-.05,targetSide:'enemy',maxStacks:8,stackKey:'drainCurse'},{type:'defenseRateStack',value:-.05,targetSide:'enemy',maxStacks:8,stackKey:'drainCurse'},{type:'powerRateStack',value:.05,targetSide:'ally',maxStacks:8,stackKey:'drainCurse'},{type:'hpRateStack',value:.05,targetSide:'ally',maxStacks:8,stackKey:'drainCurse'}]};
   if(key==='activeHeal')ability={name:'ฟื้นฟูต่อเนื่อง',description:'เมื่อโจมตีครบ 3 ครั้ง ฟื้น HP 20% แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'healHpRate',value:.2}]};
   if(key==='onOwnAttackHealCost')ability={name:'ไสยเวทย้อนกลับ',description:'ทุกครั้งที่การ์ดใบนี้โจมตี จะฟื้นฟู HP ของตัวเอง 10% และลดคอส Active Skill ของตัวเอง 1 สำหรับรอบปัจจุบัน เมื่อ Active ทำงาน การโจมตีครั้งนั้นจะเริ่มลดคอสรอบใหม่ทันที',activeIn:['tower','arena'],effects:[{type:'activeSkillCostCycle',value:-1,targetSide:'self',condition:{onOwnAttack:true}},{type:'healHpRate',value:.1,targetSide:'self',condition:{onOwnAttack:true}}]};
   if(key==='activeShield')ability={name:'กำแพงคืนสภาพ',description:'เมื่อโจมตีครบ 3 ครั้ง ฟื้นโล่ 2 ฮิต แล้วเริ่มนับใหม่',activeIn:['tower','arena'],condition:{afterOwnAttacks:3,repeat:true},effects:[{type:'restoreShieldHits',value:2}]};
