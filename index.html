@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Copy / Steal / Resistance v49</title>
+  <title>ANIME CARD CODE BUILDER · Domain Runtime v50</title>
   <style>
     :root{
       color-scheme:dark;
@@ -161,7 +161,8 @@
   </main>
 </div>
 <div class="toast" id="toast"></div>
-<script id="builder-data" type="application/json">{
+<script id="builder-data" type="application/json">
+{
   "effects": [
     {
       "category": "ATK",
@@ -338,9 +339,9 @@
       "type": "nullifyCardAbilities",
       "meaning": "ทำให้ความสามารถการ์ดเป้าหมายไร้ผล",
       "exampleValue": "ไม่ใช้ value",
-      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch",
+      "fields": "targetSide, targetSelection, targetCount, targetCardIds, targetElements, targetRarities, targetMatch, durationTriggers, condition",
       "suitableModes": "team, tower, arena",
-      "note": "มีลำดับควบคุมสูงสุด",
+      "note": "ถ้ามี Trigger จะทำให้ Active ทั้งหมดของการ์ดเป้าหมายไร้ผลตามจำนวน durationTriggers; ถ้าไม่มี Trigger ยังเป็นการปิดทั้งไฟต์แบบเดิม",
       "exampleCode": "{ \"type\": \"nullifyCardAbilities\", \"targetSide\": \"enemy\", \"targetCardIds\": [1041] }"
     },
     {
@@ -690,8 +691,22 @@
       "exampleValue": 0.5,
       "fields": "targetSide, targetSelection, targetCount, targetCardIds, targetElements, targetRarities, targetMatch, scope, resistEffectTypes, resistCategories, resistAbilityNames, resistSourceCardIds, resistBeneficial",
       "suitableModes": "tower, arena",
-      "note": "ค่า 0.50 = ต้านสำเร็จ 50%; scope field ใช้ต้านผลทั้งสนาม; ไม่ใส่ตัวกรองจะต้านผลเสีย/ควบคุมทุกชนิด",
+      "note": "รองรับค่าต้านสำรอง: 0.5=50%, 1=100%, 5=500%; ค่าติดลบใช้ลดค่าต้าน และจำกัดโอกาสจริงตอนสุ่มไว้ที่ 0–100%",
       "exampleCode": "{ \"type\": \"statusResistance\", \"value\": 0.50, \"targetSide\": \"ally\", \"targetSelection\": \"all\", \"scope\": \"field\", \"resistCategories\": [\"transfer\",\"cost\",\"abilityControl\",\"statReduction\"] }"
+    },
+    {
+      "category": "อาณาเขต",
+      "type": "activateDomain",
+      "meaning": "เปิดอาณาเขตและปลดล็อกสกิลที่ใช้ domainActive เดียวกัน",
+      "exampleValue": null,
+      "fields": "domainId, duration, condition.afterOwnAttacks, repeat",
+      "suitableModes": "tower, arena",
+      "note": "เอฟเฟกต์อื่นที่อยู่ในสกิลเดียวกันจะกลายเป็นบัฟ/ดีบัฟถาวรของอาณาเขตจนจบไฟต์",
+      "example": {
+        "type": "activateDomain",
+        "domainId": "mamonIceDomain",
+        "duration": "battle"
+      }
     }
   ],
   "conditions": [
@@ -1181,6 +1196,22 @@
       "example": false,
       "position": "effect",
       "note": "ค่าเริ่มต้น false ต้านเฉพาะผลเสีย/ควบคุม"
+    },
+    {
+      "field": "domainActive",
+      "valueType": "string",
+      "meaning": "สกิลทำงานได้เมื่ออาณาเขต ID นี้เปิดแล้ว",
+      "example": "mamonIceDomain",
+      "position": "condition",
+      "note": "ใช้คู่ afterDomainAttacks; ตัวนับเริ่มใหม่หลังเปิดอาณาเขต"
+    },
+    {
+      "field": "afterDomainAttacks",
+      "valueType": "number",
+      "meaning": "จำนวนการโจมตีหลังเปิดอาณาเขตก่อน Active ทำงาน",
+      "example": 3,
+      "position": "condition",
+      "note": "ค่า 3 = ทำงานในการโจมตีครั้งที่ 4 หลังเปิดอาณาเขต"
     }
   ],
   "baseStats": [
@@ -2191,14 +2222,15 @@
   ],
   "sourceInfo": {
     "sheetTitle": "Anime Card Collection - ระบบสกิลและเงื่อนไข",
-    "sheetUpdated": "2026-06-23-copy-steal-resistance-v48",
-    "gameFile": "index (6)(1)_copy_steal_resistance.html",
+    "sheetUpdated": "2026-06-27-domain-runtime-v50",
+    "gameFile": "Anime_Card_Collection_Domain_v54.html",
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
     "sheetRole": "primary",
-    "builderUpdated": "2026-06-23-copy-steal-resistance-builder-v48"
+    "builderUpdated": "2026-06-27-domain-runtime-builder-v50"
   }
-}</script>
+}
+</script>
 <script>
 'use strict';
 const DATA = JSON.parse(document.getElementById('builder-data').textContent);
@@ -2209,7 +2241,7 @@ const rarityCodes = Object.keys(DATA.rarities).sort((a,b)=>DATA.rarities[a].orde
 const conditionCatalog = DATA.conditions.filter(x=>x.position==='condition');
 const effectCatalog = DATA.effects;
 const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
-const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities']);
+const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain']);
 const transferEffectTypes = new Set(['copyAbilities','stealAbilities']);
 const resistanceCategories = ['all','cost','transfer','abilityControl','statReduction','hitReduction','healingReduction','shieldReduction'];
 const activeEffectTypes = new Set(['nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','increaseAttackRateStack']);
@@ -2392,7 +2424,7 @@ function conditionGroup(field){
   if(/Rarit/.test(field))return 'ระดับ';
   if(/source|leader/.test(field))return 'เจ้าของสกิล';
   if(/CardIds|Teammate/.test(field))return 'การ์ดร่วมทีม';
-  if(['onOwnAttack','afterOwnAttacks','repeat'].includes(field))return 'Active Skill';
+  if(['onOwnAttack','afterOwnAttacks','repeat','domainActive','afterDomainAttacks'].includes(field))return 'Active Skill / อาณาเขต';
   return 'ขนาดทีม';
 }
 function conditionOptions(selected=''){
@@ -2410,7 +2442,7 @@ function renderConditionControl(row,field,initialValue){
   note.innerHTML=`<b>${esc(meta.meaning)}</b> · ${esc(meta.note||'')} · ตัวอย่าง: ${esc(typeof meta.example==='object'?JSON.stringify(meta.example):meta.example??'-')}`;
   const valueType=meta.valueType;
   if(valueType==='boolean')host.innerHTML=`<select class="field condition-boolean">${option('true','ใช่ / true',initialValue===true)}${option('false','ไม่ / false',initialValue===false)}</select>`;
-  else if(valueType==='string')host.innerHTML=`<select class="field condition-string">${getTokenOptions('modes').map(x=>option(x.value,x.label,String(initialValue)===x.value)).join('')}</select>`;
+  else if(valueType==='string'){if(field==='domainActive')host.innerHTML=`<input class="field condition-string" value="${esc(initialValue||'')}" placeholder="เช่น mamonIceDomain">`;else host.innerHTML=`<select class="field condition-string">${getTokenOptions('modes').map(x=>option(x.value,x.label,String(initialValue)===x.value)).join('')}</select>`;}
   else if(valueType==='number')host.innerHTML=numberControlHtml(field,initialValue);
   else if(valueType==='array'){
     let kind='cards';if(/Elements|teamElementsOnly/.test(field))kind='elements';else if(/Rarities/.test(field))kind='rarities';else if(field==='modes')kind='modes';
@@ -2422,7 +2454,7 @@ function renderConditionControl(row,field,initialValue){
   host.querySelectorAll('.token-picker').forEach(renderTokenPicker);host.querySelectorAll('.kv-picker').forEach(renderKvPicker);renderOutput();
 }
 function numberPresets(field){
-  if(field==='afterOwnAttacks')return [1,2,3,4,5,6,7,10,15,20,30,50,99];
+  if(['afterOwnAttacks','afterDomainAttacks'].includes(field))return [1,2,3,4,5,6,7,10,11,15,20,30,50,99];
   if(field==='sourceMinLevel')return [1,10,25,50,75,100,120,140,150,160,180,200,220,250,300];
   if(field==='sourceMinAwaken')return Array.from({length:13},(_,i)=>i+1);
   if(['minTeamSize','maxTeamSize'].includes(field))return [1,2,3,4,5];
@@ -2480,6 +2512,8 @@ function addEffectRow(container,initial={}){
   <details class="advanced selection-options hidden" open><summary>เลือกการ์ดต้นทางของสกิล</summary><div class="grid"><div class="field-wrap span-6"><label>targetSelection</label><select class="field special-target-selection">${option('random','random · สุ่มจากเป้าหมายที่กรองไว้',String(initial.targetSelection||'random')==='random')}${option('specific','specific · เจาะจง Card ID / ธาตุ / ระดับ',String(initial.targetSelection)==='specific')}${option('all','all · ทุกคนที่เข้าเงื่อนไข',String(initial.targetSelection)==='all')}</select></div><div class="field-wrap span-6 special-target-count-wrap"><label>targetCount</label>${optionalNumberControlHtml('targetCount',initial.targetCount??1)}<small class="hint">แสดงเฉพาะการเลือกแบบ random</small></div><div class="special-target-slot span-12"></div><div class="field-wrap span-12"><div class="status warn special-target-help">เลือก specific แล้วต้องเพิ่ม Card ID, ธาตุ หรือระดับอย่างน้อยหนึ่งรายการ</div></div></div></details>
   <details class="advanced transfer-options hidden" open><summary>ตั้งค่าคัดลอก / ขโมยสกิล</summary><div class="grid"><div class="field-wrap span-4"><label>อัตราสำเร็จ successRate</label>${chanceControlHtml(initial.successRate??initial.copyRate??initial.stealRate??1)}</div><div class="field-wrap span-4"><label>abilitySelection</label><select class="field ability-selection">${option('random','random · สุ่มสกิล',String(initial.abilitySelection||'random')==='random')}${option('specific','specific · เลือกตามรายการ',String(initial.abilitySelection)==='specific')}${option('all','all · ทุกสกิล',String(initial.abilitySelection)==='all')}</select></div><div class="field-wrap span-4 ability-count-wrap"><label>abilityCount</label>${optionalNumberControlHtml('abilityCount',initial.abilityCount??1)}</div><div class="field-wrap span-6"><label>abilityNames · ชื่อสกิล</label>${createTokenPicker('text',initial.abilityNames||[],'abilityNames')}</div><div class="field-wrap span-3"><label>abilityNumbers · เริ่มที่ 1</label>${createTokenPicker('numbers',initial.abilityNumbers||[],'abilityNumbers')}</div><div class="field-wrap span-3"><label>abilityIndexes · เริ่มที่ 0</label>${createTokenPicker('numbers',initial.abilityIndexes||[],'abilityIndexes')}</div><div class="field-wrap span-12"><label>abilityEffectTypes · เลือกจากชนิดเอฟเฟกต์</label>${createTokenPicker('effectTypes',initial.abilityEffectTypes||[],'abilityEffectTypes')}</div><div class="field-wrap span-4"><label>recipientSide</label><select class="field recipient-side">${option('self','self · เจ้าของสกิล',String(initial.recipientSide||'self')==='self')}${option('ally','ally · ฝ่ายเรา',String(initial.recipientSide)==='ally')}${option('enemy','enemy · ฝ่ายตรงข้าม',String(initial.recipientSide)==='enemy')}</select></div><div class="field-wrap span-4"><label>recipientSelection</label><select class="field recipient-selection">${option('random','random · สุ่มผู้รับ',String(initial.recipientSelection||'random')==='random')}${option('specific','specific · เจาะจงผู้รับ',String(initial.recipientSelection)==='specific')}${option('all','all · ผู้รับทุกคน',String(initial.recipientSelection)==='all')}</select></div><div class="field-wrap span-4 recipient-count-wrap"><label>recipientCount</label>${optionalNumberControlHtml('recipientCount',initial.recipientCount??1)}</div><div class="field-wrap span-4"><label>recipientMatch</label><select class="field recipient-match">${option('any','any · ตรงอย่างใดอย่างหนึ่ง',String(initial.recipientMatch||'any')==='any')}${option('all','all · ตรงทุกตัวกรอง',String(initial.recipientMatch)==='all')}</select></div><div class="field-wrap span-4"><label>excludeRecipientSelf</label><select class="field exclude-recipient-self">${option('false','false · รวมเจ้าของสกิล',initial.excludeRecipientSelf!==true)}${option('true','true · ไม่รวมเจ้าของสกิล',initial.excludeRecipientSelf===true)}</select></div><div class="field-wrap span-4"><label>includeTransferAbilities</label><select class="field include-transfer">${option('false','false · ป้องกันลูป',initial.includeTransferAbilities!==true)}${option('true','true · อนุญาตสกิล transfer',initial.includeTransferAbilities===true)}</select></div><div class="field-wrap span-12"><label>รูปแบบอายุสกิลคัดลอกแบบด่วน</label><select class="field copied-lifetime-preset">${option('custom','กำหนดเอง / ใช้ค่าด้านล่าง',true)}${option('battle','อยู่จนจบการต่อสู้',false)}${option('useOnce','ใช้แล้วหาย · ไม่จำกัดเวลา ต้องคัดลอกใหม่',false)}${option('attacks10','อยู่ 10 การโจมตีของผู้รับ',false)}${option('turns10','อยู่ 10 เทิร์นรวม',false)}${option('replace','ถือได้ 1 สกิล คัดลอกใหม่แทนของเก่า',false)}</select><small class="hint">เลือกพรีเซ็ตแล้วระบบจะเติมฟิลด์อายุด้านล่างให้อัตโนมัติ</small></div><div class="field-wrap span-3 copied-duration-attacks-wrap"><label>copiedAbilityDurationAttacks</label>${optionalNumberControlHtml('copiedAbilityDurationAttacks',initial.copiedAbilityDurationAttacks)}<small class="hint">หมดหลังผู้รับโจมตีครบจำนวนนี้</small></div><div class="field-wrap span-3 copied-duration-turns-wrap"><label>copiedAbilityDurationTurns</label>${optionalNumberControlHtml('copiedAbilityDurationTurns',initial.copiedAbilityDurationTurns)}<small class="hint">หมดหลังผ่านเทิร์นรวมจำนวนนี้</small></div><div class="field-wrap span-3 copied-max-uses-wrap"><label>copiedAbilityMaxUses</label>${optionalNumberControlHtml('copiedAbilityMaxUses',initial.copiedAbilityMaxUses)}<small class="hint">จำกัดจำนวนครั้งที่ Active เปิดใช้</small></div><div class="field-wrap span-3"><label>copiedAbilityExpireOnUse</label><select class="field copied-expire-on-use">${option('false','false · ไม่หายทันทีหลังใช้',initial.copiedAbilityExpireOnUse!==true)}${option('true','true · ใช้ครั้งเดียวแล้วหาย',initial.copiedAbilityExpireOnUse===true)}</select></div><div class="field-wrap span-4"><label>replacePreviousCopy</label><select class="field replace-previous-copy">${option('false','false · เก็บสกิลเดิมไว้',initial.replacePreviousCopy!==true)}${option('true','true · คัดลอกใหม่แทนของเก่า',initial.replacePreviousCopy===true)}</select></div><div class="field-wrap span-4 max-copied-abilities-wrap"><label>maxCopiedAbilities</label>${optionalNumberControlHtml('maxCopiedAbilities',initial.maxCopiedAbilities)}<small class="hint">จำนวนสกิลคัดลอกสูงสุดต่อผู้รับ</small></div><div class="field-wrap span-4"><label>โหมดแนะนำ</label><div class="status ok copied-lifetime-summary">ค่าไม่กำหนด = อยู่จนจบไฟต์</div></div><div class="field-wrap span-6"><label>recipientCardIds</label>${createTokenPicker('cards',initial.recipientCardIds||[],'recipientCardIds')}</div><div class="field-wrap span-3"><label>recipientElements</label>${createTokenPicker('elements',initial.recipientElements||[],'recipientElements')}</div><div class="field-wrap span-3"><label>recipientRarities</label>${createTokenPicker('rarities',initial.recipientRarities||[],'recipientRarities')}</div></div></details>
   <details class="advanced resistance-options hidden" open><summary>ตั้งค่าต้านสถานะ</summary><div class="grid"><div class="field-wrap span-4"><label>scope</label><select class="field resistance-scope">${option('target','target · กันเอฟเฟกต์ที่เล็งรายตัว',String(initial.scope||'target')==='target')}${option('field','field · กันเอฟเฟกต์ทั้งสนาม',String(initial.scope)==='field')}</select></div><div class="field-wrap span-4"><label>resistBeneficial</label><select class="field resist-beneficial">${option('false','false · กันเฉพาะผลเสีย/ควบคุม',initial.resistBeneficial!==true)}${option('true','true · กันเอฟเฟกต์บวกด้วย',initial.resistBeneficial===true)}</select></div><div class="field-wrap span-4"><label>คำแนะนำ</label><div class="status ok">ไม่เลือกตัวกรอง = ต้านผลเสียทุกชนิด</div></div><div class="field-wrap span-12"><label>resistCategories</label>${createTokenPicker('resistCategories',initial.resistCategories||[],'resistCategories')}</div><div class="field-wrap span-12"><label>resistEffectTypes · ต้าน type โดยตรง</label>${createTokenPicker('effectTypes',initial.resistEffectTypes||[],'resistEffectTypes')}</div><div class="field-wrap span-6"><label>resistAbilityNames · ชื่อสกิลต้นทาง</label>${createTokenPicker('text',initial.resistAbilityNames||[],'resistAbilityNames')}</div><div class="field-wrap span-6"><label>resistSourceCardIds</label>${createTokenPicker('cards',initial.resistSourceCardIds||[],'resistSourceCardIds')}</div></div></details></div>`;
+  row.querySelector('.effect-advanced-grid').insertAdjacentHTML('beforeend',`<div class="field-wrap span-6 domain-options hidden"><label>domainId</label><input class="field effect-domain-id" value="${esc(initial.domainId||'')}" placeholder="เช่น mamonIceDomain"><small class="hint">สกิลที่ใช้ domainActive ต้องใส่ ID ให้ตรงกัน</small></div><div class="field-wrap span-3 domain-options hidden"><label>duration</label><select class="field effect-domain-duration">${option('battle','battle · จนจบไฟต์',String(initial.duration||'battle')==='battle')}</select></div>`);
+  row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced nullify-options hidden" open><summary>ตั้งค่า nullify แบบ Active</summary><div class="grid"><div class="field-wrap span-6"><label>durationTriggers</label>${optionalNumberControlHtml('durationTriggers',initial.durationTriggers??1)}<small class="hint">จำนวนรอบ Active ของการ์ดเป้าหมายที่จะถูกทำให้ไร้ผล</small></div><div class="field-wrap span-6"><div class="status ok">ใช้ร่วมกับ targetSelection ด้านบนได้: random / specific / all</div></div></div></details>`);
   container.appendChild(row);row.querySelectorAll('.token-picker').forEach(renderTokenPicker);row.querySelector('.effect-target-side').value=initial.targetSide||'';row.querySelector('.effect-target-match').value=initial.targetMatch||'any';renderEffectRow(row,initial.value);return row;
 }
 function valueKind(type){if(noValueEffects.has(type))return 'none';if(flatEffectTypes.has(type))return 'flat';if(integerEffectTypes.has(type))return 'integer';if(rateEffectTypes.has(type)||/Rate/.test(type))return 'rate';return 'number'}
@@ -2547,12 +2581,14 @@ function syncCopiedLifetimePreset(row,applyPreset=false){
 function renderEffectRow(row,initialValue){
   const category=row.querySelector('.effect-category').value,typeSelect=row.querySelector('.effect-type');if(!typeSelect.value&&initialValue===undefined)typeSelect.innerHTML=effectTypeOptions(category,'');
   const type=typeSelect.value,meta=effectByType.get(type),wrap=row.querySelector('.effect-value-wrap'),control=row.querySelector('.effect-value-control'),note=row.querySelector('.effect-note'),summary=row.querySelector('.effect-summary');
-  const isTransfer=transferEffectTypes.has(type),isResistance=type==='statusResistance';
-  row.querySelector('.selection-options')?.classList.toggle('hidden',!(isTransfer||isResistance));
+  const isTransfer=transferEffectTypes.has(type),isResistance=type==='statusResistance',isNullify=type==='nullifyCardAbilities',isDomain=type==='activateDomain';
+  row.querySelector('.selection-options')?.classList.toggle('hidden',!(isTransfer||isResistance||isNullify));
   row.querySelector('.transfer-options')?.classList.toggle('hidden',!isTransfer);
   row.querySelector('.resistance-options')?.classList.toggle('hidden',!isResistance);
+  row.querySelectorAll('.domain-options').forEach(box=>box.classList.toggle('hidden',!isDomain));
+  row.querySelector('.nullify-options')?.classList.toggle('hidden',!isNullify);
   if(isTransfer)syncCopiedLifetimePreset(row,false);
-  syncSpecialTargetControls(row,isTransfer||isResistance);
+  syncSpecialTargetControls(row,isTransfer||isResistance||isNullify);
   if(!meta){wrap.classList.remove('hidden');control.innerHTML='';note.textContent='เลือกเอฟเฟกต์เพื่อดูวิธีใช้';summary.className='status warn effect-summary';summary.textContent='เลือกเอฟเฟกต์';syncExcludeSelfControl(row);renderOutput();return}
   const kind=valueKind(type);wrap.classList.toggle('hidden',kind==='none');
   if(kind!=='none'){
@@ -2591,7 +2627,7 @@ function readEffectRow(row){
   else if(trigger!==null)obj.condition={afterOwnAttacks:trigger,repeat:row.querySelector('.effect-repeat').value!=='false'};
   const persistent=row.querySelector('.effect-persistent').value;if(persistent!=='')obj.persistentAfterActivation=persistent==='true';
   if(String(effectByType.get(type)?.fields||'').includes('maxStacks'))obj.maxStacks=int(row.querySelector('.effect-max-stacks').value,5);
-  if(transferEffectTypes.has(type)||type==='statusResistance'){
+  if(transferEffectTypes.has(type)||type==='statusResistance'||type==='nullifyCardAbilities'){
     obj.targetSelection=row.querySelector('.special-target-selection').value||'random';
     if(obj.targetSelection==='random'){
       const count=readOptionalNumberControl(row.querySelector('.selection-options .optional-number-control'));if(count!==null)obj.targetCount=count;
@@ -2631,6 +2667,14 @@ function readEffectRow(row){
     const resistSourceCardIds=pickerValues('resistSourceCardIds').map(int);if(resistSourceCardIds.length)obj.resistSourceCardIds=resistSourceCardIds;
     if(row.querySelector('.resist-beneficial').value==='true')obj.resistBeneficial=true;
   }
+  if(type==='activateDomain'){
+    obj.domainId=row.querySelector('.effect-domain-id')?.value.trim()||'';
+    obj.duration=row.querySelector('.effect-domain-duration')?.value||'battle';
+  }
+  if(type==='nullifyCardAbilities'){
+    const durationTriggers=readOptionalNumberControl(row.querySelector('.nullify-options .optional-number-control'));
+    if(durationTriggers!==null)obj.durationTriggers=durationTriggers;
+  }
   return obj;
 }
 function readCutscene(card){
@@ -2663,7 +2707,9 @@ function validateAdvancedEffect(effect,abilityIndex,effectIndex){
     ['copiedAbilityDurationAttacks','copiedAbilityDurationTurns','copiedAbilityMaxUses','maxCopiedAbilities'].forEach(field=>{if(effect[field]!==undefined&&(!Number.isInteger(Number(effect[field]))||Number(effect[field])<1))results.push({type:'error',text:`${label}: ${field} ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`})});
     if(effect.copiedAbilityExpireOnUse===true&&Number(effect.copiedAbilityMaxUses||1)!==1)results.push({type:'warning',text:`${label}: copiedAbilityExpireOnUse จะบังคับให้หมดหลังใช้ครั้งแรก แม้ copiedAbilityMaxUses จะเป็นค่าอื่น`});
   }
-  if(effect.type==='statusResistance'&&!(Number(effect.value)>=0&&Number(effect.value)<=1))results.push({type:'error',text:`${label}: อัตราต้าน value ต้องอยู่ระหว่าง 0–1`});
+  if(effect.type==='statusResistance'&&(!Number.isFinite(Number(effect.value))||Number(effect.value)<-99||Number(effect.value)>99))results.push({type:'error',text:`${label}: statusResistance ต้องอยู่ระหว่าง -99 ถึง 99 (1 = 100%, 5 = ค่าต้านสำรอง 500%)`});
+  if(effect.type==='activateDomain'&&!String(effect.domainId||'').trim())results.push({type:'error',text:`${label}: activateDomain ต้องระบุ domainId`});
+  if(effect.type==='nullifyCardAbilities'&&effect.durationTriggers!==undefined&&(!Number.isInteger(Number(effect.durationTriggers))||Number(effect.durationTriggers)<1))results.push({type:'error',text:`${label}: durationTriggers ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`});
   return results;
 }
 function validateCard(card){
