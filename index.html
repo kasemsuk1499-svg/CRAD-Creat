@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Multi-Stat Stack v51</title>
+  <title>ANIME CARD CODE BUILDER · Unlimited v53</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>UNLIMITED VALUES v53 · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -127,7 +127,7 @@
             <button class="btn" id="downloadCard" type="button">⬇ JSON</button>
             <button class="btn danger" id="resetCard" type="button">ล้างฟอร์ม</button>
           </div>
-          <div class="footer-note">ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล v52 · Full Stack Runtime</div>
+          <div class="footer-note"><b class="accent">Unlimited v53:</b> ค่า Skill/Stack ไม่มีเพดานบวก; คงไว้เฉพาะค่าต่ำสุดที่ป้องกันสูตรพัง<br>ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล Unlimited v53 · ไม่มีเพดานค่าบวก</div>
         </aside>
       </div>
     </section>
@@ -241,7 +241,7 @@
       "exampleValue": 0.2,
       "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf",
       "suitableModes": "tower, arena",
-      "note": "ค่าบวกเพิ่มเรทคริติคอล; ค่าลบลดเรทคริติคอล; targetSide ally รวมเจ้าของสกิล เว้นแต่ excludeSelf: true; เรทรวมถูกจำกัด 0–100%; luckRate ยังรองรับเป็นชื่อเก่า",
+      "note": "ค่าบวกเพิ่มเรทคริติคอล; ค่าลบลดเรทคริติคอล; ค่าเกิน 100% ถูกเก็บเป็นแต้มสำรองโดยไม่มีเพดาน และตอนสุ่ม 100% ขึ้นไปติดแน่นอน; luckRate ยังรองรับเป็นชื่อเก่า",
       "exampleCode": "{ \"type\": \"criticalRate\", \"value\": 0.20, \"targetSide\": \"ally\" }"
     },
     {
@@ -381,7 +381,7 @@
       "exampleValue": 1,
       "fields": "condition.afterOwnAttacks, repeat, targetSide",
       "suitableModes": "tower, arena",
-      "note": "value 1.00 = +100%; ใช้แล้วล้างทันที ไม่สะสมถาวร; เรทสุดท้ายจำกัด 0–100%",
+      "note": "value 1.00 = +100%; ใช้แล้วล้างทันที ไม่สะสมถาวร; ค่าเกิน 100% เก็บได้โดยไม่มีเพดานและหมายถึงติดคริติคอลแน่นอน",
       "exampleCode": "{ \"type\": \"nextAttackCriticalRate\", \"value\": 1.00, \"targetSide\": \"self\", \"condition\": { \"afterOwnAttacks\": 4, \"repeat\": true } }"
     },
     {
@@ -571,7 +571,7 @@
       "exampleValue": -3,
       "fields": "targetSide: ally / self / enemy",
       "suitableModes": "tower, arena",
-      "note": "ค่าลบลดโล่เริ่มต้นศัตรู; โล่สุดท้ายไม่ต่ำกว่า 0; โล่รวมสูงสุด 99",
+      "note": "ค่าลบลดโล่เริ่มต้นศัตรู; โล่สุดท้ายไม่ต่ำกว่า 0; โล่รวมไม่จำกัดเพดาน",
       "exampleCode": "{ \"type\": \"shieldHits\", \"value\": -3, \"targetSide\": \"enemy\" }"
     },
     {
@@ -601,7 +601,7 @@
       "exampleValue": -0.5,
       "fields": "targetSide, condition (ทางเลือก)",
       "suitableModes": "tower, arena",
-      "note": "-0.50 = ฟื้นลดลง 50%; -1.00 = ห้ามฟื้น HP; ช่วงรวม -100% ถึง +500%",
+      "note": "-0.50 = ฟื้นลดลง 50%; -1.00 = ห้ามฟื้น HP; ค่าบวกไม่มีเพดาน",
       "exampleCode": "{ \"type\": \"healingRate\", \"value\": -0.50, \"targetSide\": \"enemy\" }"
     },
     {
@@ -611,7 +611,7 @@
       "exampleValue": -1,
       "fields": "targetSide, condition (ทางเลือก)",
       "suitableModes": "tower, arena",
-      "note": "-1.00 = ห้ามฟื้นโล่ แต่ไม่ลบโล่เริ่มต้น; ช่วงรวม -100% ถึง +500%",
+      "note": "-1.00 = ห้ามฟื้นโล่ แต่ไม่ลบโล่เริ่มต้น; ค่าบวกไม่มีเพดาน",
       "exampleCode": "{ \"type\": \"shieldRecoveryRate\", \"value\": -1.00, \"targetSide\": \"enemy\" }"
     },
     {
@@ -621,7 +621,7 @@
       "exampleValue": -2,
       "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, condition (ทางเลือก)",
       "suitableModes": "tower, arena",
-      "note": "ค่าลบลดคอส / ค่าบวกเพิ่มคอส; คอส 1–99; หลัง Active ทำงาน รอบใหม่คืนคอสฐานทันที; activeSkillCost เดิมยังอ่านเป็น alias นี้",
+      "note": "ค่าลบลดคอส / ค่าบวกเพิ่มคอส; คอส ตั้งแต่ 1 ขึ้นไป; หลัง Active ทำงาน รอบใหม่คืนคอสฐานทันที; activeSkillCost เดิมยังอ่านเป็น alias นี้",
       "exampleCode": "{ \"type\": \"activeSkillCostCycle\", \"value\": -2, \"targetSide\": \"ally\", \"excludeSelf\": true, \"condition\": { \"afterOwnAttacks\": 4, \"repeat\": true } }"
     },
     {
@@ -641,7 +641,7 @@
       "exampleValue": 0.25,
       "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, condition (ทางเลือก)",
       "suitableModes": "tower, arena",
-      "note": "บล็อกสำเร็จลดดาเมจส่วนของการ์ดนั้น 50% หลังโล่ คริติคอล โบนัสโจมตี และ DEF; เรทรวม 0–100%",
+      "note": "บล็อกสำเร็จลดดาเมจส่วนของการ์ดนั้น 50% หลังโล่ คริติคอล โบนัสโจมตี และ DEF; ค่าเกิน 100% เก็บเป็นแต้มสำรองได้โดยไม่มีเพดาน",
       "exampleCode": "{ \"type\": \"blockRate\", \"value\": 0.25, \"targetSide\": \"self\" }"
     },
     {
@@ -661,7 +661,7 @@
       "exampleValue": 0.2,
       "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, condition (ทางเลือก)",
       "suitableModes": "tower, arena",
-      "note": "เมื่อการ์ดหลบ ส่วนดาเมจตามสัดส่วน HP ของการ์ดใบนั้นจะหายไปก่อนคำนวณ DEF; ค่าติดลบใช้ลดอัตราหลบของศัตรู/เพิ่มโอกาสเข้าเป้า; เรทรวม 0–100%",
+      "note": "เมื่อการ์ดหลบ ส่วนดาเมจตามสัดส่วน HP ของการ์ดใบนั้นจะหายไปก่อนคำนวณ DEF; ค่าติดลบใช้ลดอัตราหลบ; ค่าเกิน 100% เก็บเป็นแต้มสำรองได้โดยไม่มีเพดาน",
       "exampleCode": "{ \"type\": \"dodgeRate\", \"value\": -0.20, \"targetSide\": \"enemy\" }"
     },
     {
@@ -691,7 +691,7 @@
       "exampleValue": 0.5,
       "fields": "targetSide, targetSelection, targetCount, targetCardIds, targetElements, targetRarities, targetMatch, scope, resistEffectTypes, resistCategories, resistAbilityNames, resistSourceCardIds, resistBeneficial",
       "suitableModes": "tower, arena",
-      "note": "รองรับค่าต้านสำรอง: 0.5=50%, 1=100%, 5=500%; ค่าติดลบใช้ลดค่าต้าน และจำกัดโอกาสจริงตอนสุ่มไว้ที่ 0–100%",
+      "note": "รองรับค่าต้านสำรองโดยไม่มีเพดาน: 0.5=50%, 1=100%, 5=500%; ค่าติดลบใช้ลดค่าต้าน ส่วนตอนสุ่ม 100% ขึ้นไปต้านสำเร็จแน่นอน",
       "exampleCode": "{ \"type\": \"statusResistance\", \"value\": 0.50, \"targetSide\": \"ally\", \"targetSelection\": \"all\", \"scope\": \"field\", \"resistCategories\": [\"transfer\",\"cost\",\"abilityControl\",\"statReduction\"] }"
     },
     {
@@ -2452,15 +2452,15 @@
   ],
   "sourceInfo": {
     "sheetTitle": "Anime Card Collection - ระบบสกิลและเงื่อนไข",
-    "sheetUpdated": "2026-06-27-multi-stat-stack-v51",
-    "gameFile": "Anime_Card_Collection_Stack_Runtime_v56.html",
+    "sheetUpdated": "2026-06-27-full-stack-runtime-v52",
+    "gameFile": "Anime_Card_Collection_Unlimited_Runtime_v58.html",
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
     "sheetRole": "primary",
-    "builderUpdated": "2026-06-27-full-stack-builder-v52"
+    "builderUpdated": "2026-06-27-unlimited-builder-v53"
   },
   "meta": {
-    "builderUpdated": "2026-06-27-full-stack-builder-v52"
+    "builderUpdated": "2026-06-27-unlimited-builder-v53"
   }
 }
 </script>
@@ -2732,9 +2732,9 @@ function optionalNumberControlHtml(field,initial){
   const values=numberPresets(field),hasInitial=initial!==undefined&&initial!==null&&initial!=='';
   const isPreset=hasInitial&&values.includes(Number(initial));
   const selected=hasInitial?(isPreset?String(initial):'custom'):'';
-  return `<div class="optional-number-control"><select class="field optional-number-preset">${option('','ไม่กำหนด',selected==='')}${values.map(v=>option(v,String(v),String(v)===selected)).join('')}${option('custom','กำหนดเอง',selected==='custom')}</select><input class="field optional-number-custom${selected==='custom'?'':' hidden'}" type="number" min="1" max="99" step="1" value="${selected==='custom'?esc(initial):''}" style="margin-top:6px"></div>`;
+  return `<div class="optional-number-control"><select class="field optional-number-preset">${option('','ไม่กำหนด',selected==='')}${values.map(v=>option(v,String(v),String(v)===selected)).join('')}${option('custom','กำหนดเอง',selected==='custom')}</select><input class="field optional-number-custom${selected==='custom'?'':' hidden'}" type="number" min="1" step="1" value="${selected==='custom'?esc(initial):''}" style="margin-top:6px"></div>`;
 }
-function readOptionalNumberControl(scope){const select=scope?.querySelector('.optional-number-preset');if(!select||select.value==='')return null;const value=select.value==='custom'?num(scope.querySelector('.optional-number-custom')?.value):num(select.value);return Math.max(1,Math.min(99,int(value,1)))}
+function readOptionalNumberControl(scope){const select=scope?.querySelector('.optional-number-preset');if(!select||select.value==='')return null;const value=select.value==='custom'?num(scope.querySelector('.optional-number-custom')?.value):num(select.value);return Math.max(1,int(value,1))}
 function chanceControlHtml(initial=1){
   const values=[0,.1,.2,.25,.3,.4,.5,.6,.7,.75,.8,.9,1],chosen=Number(initial??1),isPreset=values.includes(chosen);
   return `<div class="chance-control"><select class="field chance-preset">${values.map(v=>option(v,`${Math.round(v*100)}% (${v})`,isPreset&&v===chosen)).join('')}${option('custom','กำหนดเอง',!isPreset)}</select><input class="field chance-custom${isPreset?' hidden':''}" type="number" min="0" max="100" step="any" value="${isPreset?'':esc(chosen)}" style="margin-top:6px"><small class="hint">ใส่ 0.70 หรือ 70 ก็หมายถึง 70%</small></div>`;
@@ -2945,7 +2945,7 @@ function readAbilityCard(card){
   const stackEffects=effects.filter(effect=>stackEffectTypes.has(effect.type));
   if(stackEffects.length){
     const fallback=safeStackKey(name,`abilityStack${card.dataset.abilityId||''}`);
-    stackEffects.forEach(effect=>{effect.stackKey=safeStackKey(effect.stackKey,fallback);effect.maxStacks=Math.max(1,Math.min(99,int(effect.maxStacks,1)))});
+    stackEffects.forEach(effect=>{effect.stackKey=safeStackKey(effect.stackKey,fallback);effect.maxStacks=Math.max(1,int(effect.maxStacks,1))});
   }
   const ability={name,description:card.querySelector('.ability-description').value.trim(),activeIn:modesFromPreset(card.querySelector('.ability-mode').value),effects};
   if(Object.keys(condition).length)ability.condition=condition;const cs=readCutscene(card);if(cs)ability.activeCutscene=cs;return ability;
@@ -2969,13 +2969,13 @@ function validateAdvancedEffect(effect,abilityIndex,effectIndex){
     ['copiedAbilityDurationAttacks','copiedAbilityDurationTurns','copiedAbilityMaxUses','maxCopiedAbilities'].forEach(field=>{if(effect[field]!==undefined&&(!Number.isInteger(Number(effect[field]))||Number(effect[field])<1))results.push({type:'error',text:`${label}: ${field} ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`})});
     if(effect.copiedAbilityExpireOnUse===true&&Number(effect.copiedAbilityMaxUses||1)!==1)results.push({type:'warning',text:`${label}: copiedAbilityExpireOnUse จะบังคับให้หมดหลังใช้ครั้งแรก แม้ copiedAbilityMaxUses จะเป็นค่าอื่น`});
   }
-  if(['statusResistance','statusResistanceStack'].includes(effect.type)&&(!Number.isFinite(Number(effect.value))||Number(effect.value)<-99||Number(effect.value)>99))results.push({type:'error',text:`${label}: statusResistance ต้องอยู่ระหว่าง -99 ถึง 99 (1 = 100%, 5 = ค่าต้านสำรอง 500%)`});
+  if(['statusResistance','statusResistanceStack'].includes(effect.type)&&!Number.isFinite(Number(effect.value)))results.push({type:'error',text:`${label}: statusResistance ต้องเป็นตัวเลข (รองรับค่าบวก/ลบโดยไม่มีเพดาน)`});
   if(effect.type==='activateDomain'&&!String(effect.domainId||'').trim())results.push({type:'error',text:`${label}: activateDomain ต้องระบุ domainId`});
   if(effect.type==='nullifyCardAbilities'&&effect.durationTriggers!==undefined&&(!Number.isInteger(Number(effect.durationTriggers))||Number(effect.durationTriggers)<1))results.push({type:'error',text:`${label}: durationTriggers ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`});
   if(effect.type==='nullifyCardAbilities'&&!effect.targetSide)results.push({type:'error',text:`${label}: nullifyCardAbilities ต้องระบุ targetSide`});
   if(stackEffectTypes.has(effect.type)){
     if(!String(effect.stackKey||'').trim())results.push({type:'error',text:`${label}: เอฟเฟกต์สแต็กต้องระบุ stackKey`});
-    if(!Number.isInteger(Number(effect.maxStacks))||Number(effect.maxStacks)<1||Number(effect.maxStacks)>99)results.push({type:'error',text:`${label}: maxStacks ต้องเป็นจำนวนเต็ม 1–99`});
+    if(!Number.isInteger(Number(effect.maxStacks))||Number(effect.maxStacks)<1)results.push({type:'error',text:`${label}: maxStacks ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป และไม่มีเพดานระบบ`});
     const side=String(effect.targetSide||'ally');
     if(side==='enemy'&&Number(effect.value)>0&&!['damageTakenRateStack','activeSkillCostCycleStack','activeSkillCostPermanentStack'].includes(effect.type))results.push({type:'warning',text:`${label}: targetSide เป็น enemy แต่ value เป็นบวก ซึ่งจะบัฟศัตรู`});
     if(side!=='enemy'&&Number(effect.value)<0&&!['damageTakenRateStack','activeSkillCostCycleStack','activeSkillCostPermanentStack'].includes(effect.type))results.push({type:'warning',text:`${label}: value ติดลบจะลดค่าฝ่ายเรา/ตัวเอง`});
