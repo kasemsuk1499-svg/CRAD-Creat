@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Unlimited v53</title>
+  <title>ANIME CARD CODE BUILDER · Daily Salary v54</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>UNLIMITED VALUES v53 · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>DAILY SALARY v54 · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -195,9 +195,9 @@
       "exampleCode": "{ \"type\": \"teamDefenseRate\", \"value\": 0.12 }"
     },
     {
-      "category": "รายได้",
+      "category": "เงินเดือน",
       "type": "teamIncomeRate",
-      "meaning": "เพิ่ม/ลดรายได้ทั้งทีมแบบเปอร์เซ็นต์",
+      "meaning": "เพิ่ม/ลดเงินเดือนทั้งทีมแบบเปอร์เซ็นต์",
       "exampleValue": 0.15,
       "fields": "-",
       "suitableModes": "team",
@@ -285,9 +285,9 @@
       "exampleCode": "{ \"type\": \"selfDefenseRate\", \"value\": 0.15 }"
     },
     {
-      "category": "รายได้ตัวเอง",
+      "category": "เงินเดือนตัวเอง",
       "type": "selfIncomeRate",
-      "meaning": "เพิ่ม/ลดรายได้เจ้าของสกิล",
+      "meaning": "เพิ่ม/ลดเงินเดือนเจ้าของสกิล",
       "exampleValue": 0.3,
       "fields": "-",
       "suitableModes": "team",
@@ -325,9 +325,9 @@
       "exampleCode": "{ \"type\": \"cardDefenseRate\", \"value\": 0.15, \"targetCardIds\": [1001,1041] }"
     },
     {
-      "category": "รายได้รายการการ์ด",
+      "category": "เงินเดือนรายการการ์ด",
       "type": "cardIncomeRate",
-      "meaning": "เพิ่ม/ลดรายได้เฉพาะ Card ID",
+      "meaning": "เพิ่ม/ลดเงินเดือนเฉพาะ Card ID",
       "exampleValue": 0.15,
       "fields": "targetSide, targetCardIds",
       "suitableModes": "team",
@@ -485,9 +485,9 @@
       "exampleCode": "{ \"type\": \"rarityDefenseRate\", \"value\": 0.12, \"targetRarities\": [\"EX\",\"SC\"] }"
     },
     {
-      "category": "รายได้ตามระดับ",
+      "category": "เงินเดือนตามระดับ",
       "type": "rarityIncomeRate",
-      "meaning": "เพิ่ม/ลดรายได้ระดับที่เลือก",
+      "meaning": "เพิ่ม/ลดเงินเดือนระดับที่เลือก",
       "exampleValue": 0.12,
       "fields": "targetRarities",
       "suitableModes": "team",
@@ -525,9 +525,9 @@
       "exampleCode": "{ \"type\": \"elementDefenseRate\", \"value\": 0.08, \"targetElements\": [\"ดิน\",\"เหล็ก\"] }"
     },
     {
-      "category": "รายได้ตามธาตุ",
+      "category": "เงินเดือนตามธาตุ",
       "type": "elementIncomeRate",
-      "meaning": "เพิ่ม/ลดรายได้ธาตุที่เลือก",
+      "meaning": "เพิ่ม/ลดเงินเดือนธาตุที่เลือก",
       "exampleValue": 0.08,
       "fields": "targetElements",
       "suitableModes": "team",
@@ -585,13 +585,13 @@
       "exampleCode": "{ \"type\": \"attackHits\", \"value\": -2, \"targetSide\": \"enemy\" }"
     },
     {
-      "category": "รายได้คงที่",
+      "category": "ฐานเงินเดือนคงที่",
       "type": "teamIncomeFlat",
-      "meaning": "เพิ่ม/ลดรายได้รวมค่าคงที่",
+      "meaning": "เพิ่ม/ลดค่าฐานเงินเดือนรวม",
       "exampleValue": 500,
       "fields": "-",
       "suitableModes": "team",
-      "note": "หน่วยต่อวินาที",
+      "note": "เป็นค่าฐานภายใน ระบบเกมจะคูณ 86,400 ตอนจ่ายเงินเดือนรายวัน",
       "exampleCode": "{ \"type\": \"teamIncomeFlat\", \"value\": 500 }"
     },
     {
@@ -779,9 +779,9 @@
       "exampleCode": "{\"type\": \"defenseRateStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
     },
     {
-      "category": "สแต็ก / รายได้",
+      "category": "สแต็ก / เงินเดือน",
       "type": "incomeRateStack",
-      "meaning": "เพิ่ม/ลดรายได้ต่อชั้น",
+      "meaning": "เพิ่ม/ลดโบนัสเงินเดือนต่อชั้น",
       "exampleValue": 0.05,
       "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
       "suitableModes": "team, tower, arena",
@@ -819,9 +819,9 @@
       "exampleCode": "{\"type\": \"defenseFlatStack\", \"value\": 10000, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
     },
     {
-      "category": "สแต็ก / รายได้คงที่",
+      "category": "สแต็ก / ฐานเงินเดือน",
       "type": "incomeFlatStack",
-      "meaning": "เพิ่ม/ลดรายได้ค่าคงที่ต่อชั้น",
+      "meaning": "เพิ่ม/ลดค่าฐานเงินเดือนต่อชั้น",
       "exampleValue": 1000,
       "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
       "suitableModes": "team, tower, arena",
@@ -2585,20 +2585,24 @@ const statDefs=[
   {key:'power',label:'ATK',base:'basePower'},
   {key:'hp',label:'HP',base:'baseHp'},
   {key:'defense',label:'DEF',base:'baseDefense'},
-  {key:'incomePerSec',label:'รายได้/วินาที',base:'baseIncome'}
+  {key:'incomePerSec',label:'เงินเดือน/วัน',base:'baseIncome',daily:true}
 ];
 function initStats(){
-  el('statGrid').innerHTML=statDefs.map(def=>`<div class="field-wrap span-3 stat-box"><label>${def.label}</label><select class="field stat-mode" id="${def.key}Mode" data-key="${def.key}" data-base="${def.base}"><option value="global">ตามชุดเบสด้านบน</option><option value="0.8">80% ของเบสระดับ</option><option value="0.9">90% ของเบสระดับ</option><option value="0.95">95% ของเบสระดับ</option><option value="1">100% ของเบสระดับ</option><option value="1.05">105% ของเบสระดับ</option><option value="1.1">110% ของเบสระดับ</option><option value="1.2">120% ของเบสระดับ</option><option value="custom">กำหนดเอง</option></select><input class="field hidden stat-custom" id="${def.key}Custom" type="number" min="0" step="1" style="margin-top:6px"><div class="stat-value"><strong id="${def.key}Preview">0</strong><small>${def.key==='incomePerSec'?'/วินาที':''}</small></div></div>`).join('');
+  // ช่องเงินเดือนแสดงและรับค่าเป็นยอดต่อวัน แต่ยังส่งออก incomePerSec ภายในเพื่อรองรับไฟล์เกมเดิม
+  el('statGrid').innerHTML=statDefs.map(def=>`<div class="field-wrap span-3 stat-box"><label>${def.label}</label><select class="field stat-mode" id="${def.key}Mode" data-key="${def.key}" data-base="${def.base}"><option value="global">ตามชุดเบสด้านบน</option><option value="0.8">80% ของเบสระดับ</option><option value="0.9">90% ของเบสระดับ</option><option value="0.95">95% ของเบสระดับ</option><option value="1">100% ของเบสระดับ</option><option value="1.05">105% ของเบสระดับ</option><option value="1.1">110% ของเบสระดับ</option><option value="1.2">120% ของเบสระดับ</option><option value="custom">กำหนดเอง</option></select><input class="field hidden stat-custom" id="${def.key}Custom" type="number" min="0" step="1" style="margin-top:6px" placeholder="${def.daily?'กรอกเงินเดือนต่อวัน':'กำหนดเอง'}"><div class="stat-value"><strong id="${def.key}Preview">0</strong><small>${def.daily?'Gems / วัน':''}</small></div></div>`).join('');
   document.querySelectorAll('.stat-mode').forEach(s=>s.addEventListener('change',()=>{toggleCustomForSelect(s,`${s.dataset.key}Custom`);updateStatPreviews();renderOutput()}));
   document.querySelectorAll('.stat-custom').forEach(i=>i.addEventListener('input',()=>{updateStatPreviews();renderOutput()}));
 }
 function statValue(def){
   const cfg=getRarityConfig();const mode=el(`${def.key}Mode`).value;const base=num(cfg[def.base]);
-  if(mode==='custom')return Math.max(0,int(el(`${def.key}Custom`).value));
+  if(mode==='custom'){
+    const custom=Math.max(0,num(el(`${def.key}Custom`).value));
+    return def.daily?Math.max(0,Math.round(custom/(60*60*24))):Math.max(0,int(custom));
+  }
   const multiplier=mode==='global'?num(el('globalStatPreset').value,1):num(mode,1);
   return Math.max(0,Math.round(base*multiplier));
 }
-function updateStatPreviews(){statDefs.forEach(def=>el(`${def.key}Preview`).textContent=formatNumber(statValue(def)))}
+function updateStatPreviews(){statDefs.forEach(def=>{const value=statValue(def);el(`${def.key}Preview`).textContent=formatNumber(def.daily?value*60*60*24:value)})}
 function initProgression(){
   const cfg=getRarityConfig();
   const dustValues=unique(rarityCodes.map(code=>DATA.rarities[code].upgradeDustBase).concat([cfg.upgradeDustBase])).map(Number).sort((a,b)=>a-b);
@@ -3027,7 +3031,7 @@ function renderLibrary(){
 function setMediaControl(modeId,customId,value,id,defaultExt){const mode=el(modeId);if(!value){mode.value='none';el(customId).value=''}else if(String(value)===`${id}${defaultExt}`){mode.value='id';el(customId).value=''}else{mode.value='custom';el(customId).value=value}toggleCustomForSelect(mode,customId)}
 function loadCardIntoForm(card,index=null){
   resetForm(false);appState.editingSessionIndex=index;el('cardId').value=card.id;el('cardName').value=card.name||'';el('raritySelect').value=card.rarity||rarityCodes[0];appState.selectedElements=Array.isArray(card.element)?card.element.slice():[card.element||'ไร้ธาตุ'];renderElementChips();initProgression();
-  statDefs.forEach(def=>{el(`${def.key}Mode`).value='custom';el(`${def.key}Custom`).classList.remove('hidden');el(`${def.key}Custom`).value=card[def.key]??0});updateStatPreviews();
+  statDefs.forEach(def=>{el(`${def.key}Mode`).value='custom';el(`${def.key}Custom`).classList.remove('hidden');const raw=card[def.key]??0;el(`${def.key}Custom`).value=def.daily?Number(raw)*60*60*24:raw});updateStatPreviews();
   el('dustBaseSelect').value='custom';el('dustBaseCustom').classList.remove('hidden');el('dustBaseCustom').value=card.upgradeDustBase??0;el('dustGrowthSelect').value='custom';el('dustGrowthCustom').classList.remove('hidden');el('dustGrowthCustom').value=card.upgradeDustGrowth??1;el('awakenMaxSelect').value=String(card.awakenMax??1);
   setMediaControl('imageMode','imageCustom',card.image,card.id,'.png');setMediaControl('iconMode','iconCustom',card.icon,card.id,'.png');setMediaControl('posterMode','posterCustom',card.poster,card.id,'.png');setMediaControl('videoMode','videoCustom',card.video,card.id,'.mp4');setMediaControl('overlayMode','overlayCustom',card.overlay,card.id,'_overlay.png');
   el('abilitiesContainer').innerHTML='';const abilities=Array.isArray(card.abilities)?card.abilities:(card.ability?[card.ability]:[]);if(abilities.length)abilities.forEach(addAbility);else addAbility();switchTab('builder');window.scrollTo({top:0,behavior:'smooth'});renderOutput();toast(`เปิดแก้ไข #${card.id} แล้ว`)
