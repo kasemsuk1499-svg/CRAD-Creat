@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Daily Salary v54</title>
+  <title>ANIME CARD CODE BUILDER · Ability Conditions v55</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>DAILY SALARY v54 · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v55 · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -155,7 +155,7 @@
         <article class="help-card"><h3>4) อัปเดตฐาน ID</h3><p>เมื่อเกมมีการ์ดใหม่ ให้นำเข้าไฟล์ HTML ล่าสุดในหน้า <b>ฐาน ID</b> แอปจะอ่าน ID เพื่อป้องกันการสร้างซ้ำ</p></article>
         <article class="help-card"><h3>Firebase Cloud Firestore</h3><p>คลังออนไลน์ใช้คอลเลกชัน <code>animeCardCodeBuilderCards</code> และใช้ Card ID เป็น Document ID การแก้ไข ID เดิมจึงอัปเดตข้อมูลใบเดิมแบบเรียลไทม์</p></article><article class="help-card"><h3>ชีทหลักของระบบ</h3><p>ให้อ้างอิง <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener" class="accent"><b>Google Sheet ระบบสกิลและเงื่อนไข</b></a> เป็นข้อมูลหลักสำหรับเอฟเฟกต์ เงื่อนไข และการอัปเดตครั้งถัดไป</p></article>
         <article class="help-card"><h3>การใช้ค่าเปอร์เซ็นต์</h3><p><code>0.20</code> หมายถึง +20%, <code>-0.20</code> หมายถึง -20%, และ <code>7.77</code> หมายถึง +777%</p></article><article class="help-card"><h3>อัตราคริติคอล</h3><p>ใช้ <code>criticalRate</code> สำหรับเรทที่คงอยู่ และใช้ <code>nextAttackCriticalRate</code> สำหรับเรทชั่วคราวเฉพาะการโจมตีที่ Active ทำงาน เช่น <code>1.00</code> คือ +100% แล้วล้างทันทีหลังใช้ เลือก <code>targetSide</code> เป็น self / ally / enemy ได้ ค่า <code>luckRate</code> เดิมยังถูกแปลงเป็นคริติคอลเพื่อรองรับการ์ดเก่า</p></article>
-        <article class="help-card"><h3>Active Skill</h3><p><code>afterOwnAttacks: 3</code> คือสะสมการโจมตีปกติ 3 ครั้ง แล้วเอฟเฟกต์ทำงานในการโจมตีครั้งถัดไป ส่วน <code>repeat: true</code> คือเริ่มนับใหม่วนซ้ำ</p></article><article class="help-card"><h3>คัดลอกและขโมยสกิล</h3><p><code>copyAbilities</code> ทำสำเนาโดยต้นทางยังใช้สกิลได้ ส่วน <code>stealAbilities</code> ทำให้ต้นทางเสียสกิลเมื่อขโมยสำเร็จ เลือกต้นทาง สกิล และผู้รับแบบ <code>random</code>, <code>specific</code> หรือ <code>all</code> ได้ พร้อมกำหนด <code>successRate</code> พร้อมกำหนดอายุด้วย <code>copiedAbilityDurationAttacks</code>, <code>copiedAbilityDurationTurns</code>, <code>copiedAbilityMaxUses</code>, <code>copiedAbilityExpireOnUse</code>, <code>replacePreviousCopy</code> และ <code>maxCopiedAbilities</code></p></article><article class="help-card"><h3>ต้านสถานะ</h3><p><code>statusResistance</code> ใช้ value เป็นอัตราต้าน เลือกกันเฉพาะ type ด้วย <code>resistEffectTypes</code> หรือเลือกหมวดด้วย <code>resistCategories</code> และใช้ <code>scope: "field"</code> สำหรับเอฟเฟกต์ที่กระทบทั้งสนาม</p></article><article class="help-card"><h3>โจมตีเพิ่ม / ตีตอบ</h3><p>เลือก <code>nextAttackHits</code> เพื่อเพิ่มฮิตในเทิร์นที่ Active ทำงาน เช่น value <code>2</code> คือเพิ่มอีก 2 ฮิต ระบบปัจจุบันนับเป็นฮิตเสริมในเทิร์นเดิม ไม่ใช่สร้างเทิร์นสวนแยก</p></article>
+        <article class="help-card"><h3>Active Skill</h3><p><code>afterOwnAttacks: 3</code> คือสะสมการโจมตีปกติ 3 ครั้ง แล้วเอฟเฟกต์ทำงานในการโจมตีครั้งถัดไป ส่วน <code>repeat: true</code> คือเริ่มนับใหม่วนซ้ำ</p></article><article class="help-card"><h3>คัดลอกและขโมยสกิล</h3><p><code>copyAbilities</code> ทำสำเนาโดยต้นทางยังใช้สกิลได้ ส่วน <code>stealAbilities</code> ทำให้ต้นทางเสียสกิลเมื่อขโมยสำเร็จ เลือกต้นทาง สกิล และผู้รับแบบ <code>random</code>, <code>specific</code> หรือ <code>all</code> ได้ พร้อมกำหนด <code>successRate</code> พร้อมกำหนดอายุด้วย <code>copiedAbilityDurationAttacks</code>, <code>copiedAbilityDurationTurns</code>, <code>copiedAbilityMaxUses</code>, <code>copiedAbilityExpireOnUse</code>, <code>replacePreviousCopy</code> และ <code>maxCopiedAbilities</code></p></article><article class="help-card"><h3>ต้านสถานะ</h3><p><code>statusResistance</code> ใช้เปอร์เซ็นต์พอยต์: <code>1 = 1%</code>, <code>9 = 9%</code>, <code>150 = 150%</code> และยังอ่าน <code>0.50 = 50%</code> สำหรับข้อมูลเก่า ค่าบวกเกิน 100% จะถูกเก็บเป็นแต้มสำรองให้ดีบัฟหักออกได้</p></article><article class="help-card"><h3>โจมตีเพิ่ม / ตีตอบ</h3><p>เลือก <code>nextAttackHits</code> เพื่อเพิ่มฮิตในเทิร์นที่ Active ทำงาน เช่น value <code>2</code> คือเพิ่มอีก 2 ฮิต ระบบปัจจุบันนับเป็นฮิตเสริมในเทิร์นเดิม ไม่ใช่สร้างเทิร์นสวนแยก</p></article>
       </div>
     </section>
   </main>
@@ -349,10 +349,10 @@
       "type": "ignoreAbilityConditions",
       "meaning": "ทำให้สกิลเป้าหมายไม่ต้องผ่าน condition",
       "exampleValue": "ไม่ใช้ value",
-      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch",
+      "fields": "targetSide, targetSelection, targetCardIds, targetElements, targetRarities, targetMatch, triggerImmediately",
       "suitableModes": "team, tower, arena",
-      "note": "ยังต้องตรง activeIn",
-      "exampleCode": "{ \"type\": \"ignoreAbilityConditions\", \"targetSide\": \"ally\", \"targetElements\": [\"ไฟ\"], \"targetMatch\": \"any\" }"
+      "note": "ยังต้องตรง activeIn; triggerImmediately:true ทำให้ Active ที่มีตัวนับของเป้าหมายพร้อมใช้ในการโจมตีครั้งแรก แล้วรอบถัดไปกลับไปนับตามปกติ",
+      "exampleCode": "{ \"type\":\"ignoreAbilityConditions\", \"targetSide\":\"ally\", \"targetSelection\":\"specific\", \"targetCardIds\":[2002], \"triggerImmediately\":true }"
     },
     {
       "category": "ACTIVE / ATK",
@@ -651,7 +651,7 @@
       "exampleValue": -0.2,
       "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, condition (ทางเลือก)",
       "suitableModes": "tower, arena",
-      "note": "-0.20 = รับดาเมจลดลง 20%; +0.20 = รับดาเมจเพิ่มขึ้น 20%; คำนวณหลังบล็อก ก่อนหัก HP",
+      "note": "-0.20 = รับดาเมจลดลง 20%; +0.20 = รับดาเมจเพิ่มขึ้น 20%; คำนวณหลังบล็อก ก่อนหัก HP; ค่าบวกสะสมเกิน 100% ได้เพื่อเป็นแต้มสำรองก่อนหักดีบัฟ",
       "exampleCode": "{ \"type\": \"damageTakenRate\", \"value\": -0.20, \"targetSide\": \"ally\" }"
     },
     {
@@ -688,11 +688,11 @@
       "category": "ป้องกัน / ต้านสถานะ",
       "type": "statusResistance",
       "meaning": "เพิ่มโอกาสหลบเอฟเฟกต์ที่เล็งตัวละครหรือเอฟเฟกต์ทั้งสนามตามชนิดที่กำหนด",
-      "exampleValue": 0.5,
-      "fields": "targetSide, targetSelection, targetCount, targetCardIds, targetElements, targetRarities, targetMatch, scope, resistEffectTypes, resistCategories, resistAbilityNames, resistSourceCardIds, resistBeneficial",
+      "exampleValue": 50,
+      "fields": "targetSide, targetSelection, targetCount, targetCardIds, targetElements, targetRarities, targetMatch, scope, resistEffectTypes, resistCategories, resistAbilityNames, resistSourceCardIds, resistBeneficial, triggerImmediately (เฉพาะ ignoreAbilityConditions ไม่ใช่ statusResistance)",
       "suitableModes": "tower, arena",
-      "note": "รองรับค่าต้านสำรองโดยไม่มีเพดาน: 0.5=50%, 1=100%, 5=500%; ค่าติดลบใช้ลดค่าต้าน ส่วนตอนสุ่ม 100% ขึ้นไปต้านสำเร็จแน่นอน",
-      "exampleCode": "{ \"type\": \"statusResistance\", \"value\": 0.50, \"targetSide\": \"ally\", \"targetSelection\": \"all\", \"scope\": \"field\", \"resistCategories\": [\"transfer\",\"cost\",\"abilityControl\",\"statReduction\"] }"
+      "note": "ใช้เปอร์เซ็นต์พอยต์: 1=1%, 9=9%, 100=100%, 150=150%; รองรับ 0.50=50% สำหรับข้อมูลเก่า; ค่าบวกและค่าลบสะสมได้โดยไม่มีเพดานเพื่อเก็บแต้มสำรอง",
+      "exampleCode": "{ \"type\": \"statusResistance\", \"value\": 80, \"targetSide\": \"ally\", \"targetSelection\": \"all\", \"scope\": \"field\", \"resistCategories\": [\"transfer\",\"cost\",\"abilityControl\",\"statReduction\"] }"
     },
     {
       "category": "อาณาเขต",
@@ -892,11 +892,11 @@
       "category": "สแต็ก / ต้านสถานะ",
       "type": "statusResistanceStack",
       "meaning": "เพิ่ม/ลดค่าต้านสถานะต่อชั้น",
-      "exampleValue": 0.05,
+      "exampleValue": 5,
       "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, maxStacks, stackKey, condition",
       "suitableModes": "tower, arena",
-      "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
-      "exampleCode": "{\"type\": \"statusResistanceStack\", \"value\": 0.05, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+      "note": "ใช้เปอร์เซ็นต์พอยต์ต่อชั้น: 5=5%, -9=-9%; ผลรวมสะสมเกิน 100% และติดลบได้โดยไม่มีเพดาน ก่อนหักล้างแล้วจึงตัดค่าต่ำสุดที่ 0 ตอนสุ่ม",
+      "exampleCode": "{\"type\":\"statusResistanceStack\",\"value\":5,\"targetSide\":\"ally\",\"maxStacks\":8,\"stackKey\":\"sharedStack\",\"condition\":{\"onOwnAttack\":true}}"
     },
     {
       "category": "สแต็ก / จำนวนฮิต",
@@ -937,9 +937,159 @@
       "suitableModes": "tower, arena",
       "note": "ใช้ targetSide: self/ally/enemy/both; คำนวณจากค่าตอนเริ่มไฟต์แบบเส้นตรง; เอฟเฟกต์ที่ใช้ stackKey เดียวกันเพิ่มพร้อมกันหนึ่งชั้น",
       "exampleCode": "{\"type\": \"activeSkillCostPermanentStack\", \"value\": -1, \"targetSide\": \"ally\", \"maxStacks\": 8, \"stackKey\": \"sharedStack\", \"condition\": {\"onOwnAttack\": true}}"
+    },
+    {
+      "category": "คริติคอล (Legacy)",
+      "type": "luckRate",
+      "meaning": "ชื่อเดิมของ criticalRate เพื่อรองรับการ์ดเก่า",
+      "exampleValue": 0.2,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf",
+      "suitableModes": "tower, arena",
+      "note": "Alias ของ criticalRate; การ์ดใหม่แนะนำใช้ criticalRate",
+      "exampleCode": "{ \"type\": \"luckRate\", \"value\": 0.20, \"targetSide\": \"ally\" }"
+    },
+    {
+      "category": "ACTIVE / คอส (Legacy)",
+      "type": "activeSkillCost",
+      "meaning": "ชื่อเดิมของ activeSkillCostCycle",
+      "exampleValue": -1,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, condition",
+      "suitableModes": "tower, arena",
+      "note": "Alias เพื่อรองรับข้อมูลเก่า; การ์ดใหม่ใช้ activeSkillCostCycle",
+      "exampleCode": "{ \"type\": \"activeSkillCost\", \"value\": -1, \"targetSide\": \"ally\" }"
+    },
+    {
+      "category": "ACTIVE / เงื่อนไข",
+      "type": "abilityConditionProgress",
+      "meaning": "เร่งความคืบหน้าตัวนับ Active ของเป้าหมาย",
+      "exampleValue": 3,
+      "fields": "targetSide, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, condition",
+      "suitableModes": "tower, arena",
+      "note": "value 3 = ลดจำนวนการโจมตีที่ต้องรอ 3 ครั้ง; ใช้กับ Active ที่มี afterOwnAttacks",
+      "exampleCode": "{ \"type\":\"abilityConditionProgress\", \"value\":3, \"targetSide\":\"ally\", \"condition\":{\"afterOwnAttacks\":6,\"repeat\":true} }"
+    },
+    {
+      "category": "สแต็ก Legacy",
+      "type": "enemyPowerRateStack",
+      "meaning": "Alias เดิมของสแต็ก ATK ฝ่าย enemy",
+      "exampleValue": 0.05,
+      "fields": "maxStacks, stackKey, condition",
+      "suitableModes": "team, tower, arena",
+      "note": "รองรับข้อมูลเดิม; ระบบจะแปลงเป็นชนิดสแต็กกลางและ targetSide อัตโนมัติ",
+      "exampleCode": "{ \"type\":\"enemyPowerRateStack\", \"value\":0.05, \"maxStacks\":10, \"stackKey\":\"sharedStack\", \"condition\":{\"onOwnAttack\":true} }"
+    },
+    {
+      "category": "สแต็ก Legacy",
+      "type": "selfPowerRateStack",
+      "meaning": "Alias เดิมของสแต็ก ATK ฝ่าย self",
+      "exampleValue": 0.05,
+      "fields": "maxStacks, stackKey, condition",
+      "suitableModes": "team, tower, arena",
+      "note": "รองรับข้อมูลเดิม; ระบบจะแปลงเป็นชนิดสแต็กกลางและ targetSide อัตโนมัติ",
+      "exampleCode": "{ \"type\":\"selfPowerRateStack\", \"value\":0.05, \"maxStacks\":10, \"stackKey\":\"sharedStack\", \"condition\":{\"onOwnAttack\":true} }"
+    },
+    {
+      "category": "สแต็ก Legacy",
+      "type": "selfHpRateStack",
+      "meaning": "Alias เดิมของสแต็ก HP ฝ่าย self",
+      "exampleValue": 0.05,
+      "fields": "maxStacks, stackKey, condition",
+      "suitableModes": "team, tower, arena",
+      "note": "รองรับข้อมูลเดิม; ระบบจะแปลงเป็นชนิดสแต็กกลางและ targetSide อัตโนมัติ",
+      "exampleCode": "{ \"type\":\"selfHpRateStack\", \"value\":0.05, \"maxStacks\":10, \"stackKey\":\"sharedStack\", \"condition\":{\"onOwnAttack\":true} }"
+    },
+    {
+      "category": "สแต็ก Legacy",
+      "type": "teamDefenseRateStack",
+      "meaning": "Alias เดิมของสแต็ก DEF ฝ่าย ally",
+      "exampleValue": 0.05,
+      "fields": "maxStacks, stackKey, condition",
+      "suitableModes": "team, tower, arena",
+      "note": "รองรับข้อมูลเดิม; ระบบจะแปลงเป็นชนิดสแต็กกลางและ targetSide อัตโนมัติ",
+      "exampleCode": "{ \"type\":\"teamDefenseRateStack\", \"value\":0.05, \"maxStacks\":10, \"stackKey\":\"sharedStack\", \"condition\":{\"onOwnAttack\":true} }"
+    },
+    {
+      "category": "สแต็ก Legacy",
+      "type": "selfDefenseRateStack",
+      "meaning": "Alias เดิมของสแต็ก DEF ฝ่าย self",
+      "exampleValue": 0.05,
+      "fields": "maxStacks, stackKey, condition",
+      "suitableModes": "team, tower, arena",
+      "note": "รองรับข้อมูลเดิม; ระบบจะแปลงเป็นชนิดสแต็กกลางและ targetSide อัตโนมัติ",
+      "exampleCode": "{ \"type\":\"selfDefenseRateStack\", \"value\":0.05, \"maxStacks\":10, \"stackKey\":\"sharedStack\", \"condition\":{\"onOwnAttack\":true} }"
+    },
+    {
+      "category": "สแต็ก Legacy",
+      "type": "teamIncomeRateStack",
+      "meaning": "Alias เดิมของสแต็ก รายได้ ฝ่าย ally",
+      "exampleValue": 0.05,
+      "fields": "maxStacks, stackKey, condition",
+      "suitableModes": "team, tower, arena",
+      "note": "รองรับข้อมูลเดิม; ระบบจะแปลงเป็นชนิดสแต็กกลางและ targetSide อัตโนมัติ",
+      "exampleCode": "{ \"type\":\"teamIncomeRateStack\", \"value\":0.05, \"maxStacks\":10, \"stackKey\":\"sharedStack\", \"condition\":{\"onOwnAttack\":true} }"
+    },
+    {
+      "category": "สแต็ก Legacy",
+      "type": "enemyIncomeRateStack",
+      "meaning": "Alias เดิมของสแต็ก รายได้ ฝ่าย enemy",
+      "exampleValue": 0.05,
+      "fields": "maxStacks, stackKey, condition",
+      "suitableModes": "team, tower, arena",
+      "note": "รองรับข้อมูลเดิม; ระบบจะแปลงเป็นชนิดสแต็กกลางและ targetSide อัตโนมัติ",
+      "exampleCode": "{ \"type\":\"enemyIncomeRateStack\", \"value\":0.05, \"maxStacks\":10, \"stackKey\":\"sharedStack\", \"condition\":{\"onOwnAttack\":true} }"
+    },
+    {
+      "category": "สแต็ก Legacy",
+      "type": "selfIncomeRateStack",
+      "meaning": "Alias เดิมของสแต็ก รายได้ ฝ่าย self",
+      "exampleValue": 0.05,
+      "fields": "maxStacks, stackKey, condition",
+      "suitableModes": "team, tower, arena",
+      "note": "รองรับข้อมูลเดิม; ระบบจะแปลงเป็นชนิดสแต็กกลางและ targetSide อัตโนมัติ",
+      "exampleCode": "{ \"type\":\"selfIncomeRateStack\", \"value\":0.05, \"maxStacks\":10, \"stackKey\":\"sharedStack\", \"condition\":{\"onOwnAttack\":true} }"
     }
   ],
   "conditions": [
+    {
+      "field": "onOwnAttack",
+      "valueType": "boolean",
+      "meaning": "ทำงานทุกครั้งที่เจ้าของสกิลโจมตี",
+      "example": true,
+      "position": "condition",
+      "note": "ทำงานตั้งแต่การโจมตีครั้งแรก ไม่ต้องใช้ afterOwnAttacks หรือ repeat"
+    },
+    {
+      "field": "afterOwnAttacks",
+      "valueType": "number",
+      "meaning": "จำนวนครั้งโจมตีที่ต้องสะสมก่อนทำงาน",
+      "example": 7,
+      "position": "condition",
+      "note": "ระบบปัจจุบัน: ค่า 2 = ทำงานในการโจมตีครั้งที่ 3, 6, 9... เมื่อ repeat=true"
+    },
+    {
+      "field": "repeat",
+      "valueType": "boolean",
+      "meaning": "ให้ตัวนับ Active เริ่มสะสมรอบใหม่หลังทำงาน",
+      "example": false,
+      "position": "condition",
+      "note": "true = วนซ้ำ; false = ทำงานครั้งเดียว; ต้องใช้คู่ afterOwnAttacks/afterDomainAttacks"
+    },
+    {
+      "field": "domainActive",
+      "valueType": "string",
+      "meaning": "สกิลทำงานได้เมื่ออาณาเขต ID นี้เปิดแล้ว",
+      "example": "mamonIceDomain",
+      "position": "condition",
+      "note": "ใช้คู่ afterDomainAttacks; ตัวนับเริ่มใหม่หลังเปิดอาณาเขต"
+    },
+    {
+      "field": "afterDomainAttacks",
+      "valueType": "number",
+      "meaning": "จำนวนการโจมตีหลังเปิดอาณาเขตก่อน Active ทำงาน",
+      "example": 3,
+      "position": "condition",
+      "note": "ค่า 3 = ทำงานในการโจมตีครั้งที่ 4 หลังเปิดอาณาเขต"
+    },
     {
       "field": "mode",
       "valueType": "string",
@@ -1114,31 +1264,7 @@
       "meaning": "ทีมต้องไม่มี ID ที่กำหนด",
       "example": "[1042]",
       "position": "condition",
-      "note": "-"
-    },
-    {
-      "field": "onOwnAttack",
-      "valueType": "boolean",
-      "meaning": "ทำงานทุกครั้งที่เจ้าของสกิลโจมตี",
-      "example": true,
-      "position": "condition",
-      "note": "ทำงานตั้งแต่การโจมตีครั้งแรก ไม่ต้องใช้ afterOwnAttacks หรือ repeat"
-    },
-    {
-      "field": "afterOwnAttacks",
-      "valueType": "number",
-      "meaning": "จำนวนเทิร์นโจมตีที่สะสมก่อน Active",
-      "example": 7,
-      "position": "condition",
-      "note": "ค่า 6 = ทำงานในการโจมตีครั้งที่ 7"
-    },
-    {
-      "field": "repeat",
-      "valueType": "boolean",
-      "meaning": "หลัง Active ให้สะสมใหม่หรือไม่",
-      "example": false,
-      "position": "condition",
-      "note": "false = เปิดครั้งเดียว"
+      "note": "รองรับ alias excludedCardIds และ forbiddenCardIds ในตัวเกม"
     },
     {
       "field": "persistentAfterActivation",
@@ -1428,20 +1554,76 @@
       "note": "ค่าเริ่มต้น false ต้านเฉพาะผลเสีย/ควบคุม"
     },
     {
-      "field": "domainActive",
+      "field": "stackKey",
       "valueType": "string",
-      "meaning": "สกิลทำงานได้เมื่ออาณาเขต ID นี้เปิดแล้ว",
-      "example": "mamonIceDomain",
-      "position": "condition",
-      "note": "ใช้คู่ afterDomainAttacks; ตัวนับเริ่มใหม่หลังเปิดอาณาเขต"
+      "meaning": "ชื่อกลุ่มสแต็กกลาง",
+      "example": "sharedStack",
+      "position": "effect",
+      "note": "เอฟเฟกต์ที่ใช้ key เดียวกันเพิ่มพร้อมกัน"
     },
     {
-      "field": "afterDomainAttacks",
+      "field": "durationTriggers",
       "valueType": "number",
-      "meaning": "จำนวนการโจมตีหลังเปิดอาณาเขตก่อน Active ทำงาน",
+      "meaning": "จำนวนรอบ Active ที่ nullify มีผล",
+      "example": 1,
+      "position": "effect",
+      "note": "ใช้กับ nullifyCardAbilities"
+    },
+    {
+      "field": "triggerImmediately",
+      "valueType": "boolean",
+      "meaning": "ทำให้ Active เป้าหมายพร้อมใช้ในการโจมตีครั้งแรก",
+      "example": true,
+      "position": "effect",
+      "note": "ใช้กับ ignoreAbilityConditions"
+    },
+    {
+      "field": "copiedAbilityDurationAttacks",
+      "valueType": "number",
+      "meaning": "อายุสกิลคัดลอกตามจำนวนการโจมตีผู้รับ",
+      "example": 10,
+      "position": "effect",
+      "note": "copy/steal"
+    },
+    {
+      "field": "copiedAbilityDurationTurns",
+      "valueType": "number",
+      "meaning": "อายุสกิลคัดลอกตามจำนวนเทิร์นรวม",
+      "example": 10,
+      "position": "effect",
+      "note": "copy/steal"
+    },
+    {
+      "field": "copiedAbilityMaxUses",
+      "valueType": "number",
+      "meaning": "จำนวนครั้งสูงสุดที่สกิลคัดลอกใช้ได้",
       "example": 3,
-      "position": "condition",
-      "note": "ค่า 3 = ทำงานในการโจมตีครั้งที่ 4 หลังเปิดอาณาเขต"
+      "position": "effect",
+      "note": "copy/steal"
+    },
+    {
+      "field": "copiedAbilityExpireOnUse",
+      "valueType": "boolean",
+      "meaning": "ใช้สกิลคัดลอกสำเร็จแล้วลบทันที",
+      "example": true,
+      "position": "effect",
+      "note": "copy/steal"
+    },
+    {
+      "field": "replacePreviousCopy",
+      "valueType": "boolean",
+      "meaning": "คัดลอกใหม่แทนสกิลคัดลอกเก่า",
+      "example": true,
+      "position": "effect",
+      "note": "copy/steal"
+    },
+    {
+      "field": "maxCopiedAbilities",
+      "valueType": "number",
+      "meaning": "จำนวนสกิลคัดลอกสูงสุดที่ถือพร้อมกัน",
+      "example": 1,
+      "position": "effect",
+      "note": "copy/steal"
     }
   ],
   "baseStats": [
@@ -2452,15 +2634,15 @@
   ],
   "sourceInfo": {
     "sheetTitle": "Anime Card Collection - ระบบสกิลและเงื่อนไข",
-    "sheetUpdated": "2026-06-27-full-stack-runtime-v52",
-    "gameFile": "Anime_Card_Collection_Unlimited_Runtime_v58.html",
+    "sheetUpdated": "2026-06-30-ability-conditions-v60",
+    "gameFile": "ANIME_CARD_COLLECTION_ability_conditions_v60.html",
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
     "sheetRole": "primary",
-    "builderUpdated": "2026-06-27-unlimited-builder-v53"
+    "builderUpdated": "2026-06-30-ability-builder-v55"
   },
   "meta": {
-    "builderUpdated": "2026-06-27-unlimited-builder-v53"
+    "builderUpdated": "2026-06-30-ability-builder-v55"
   }
 }
 </script>
@@ -2719,7 +2901,7 @@ function addAbility(initial={}){
   const id=++appState.abilitySeq;const card=document.createElement('article');card.className='ability-card';card.dataset.abilityId=id;
   card.innerHTML=`<header class="ability-head"><div class="ability-title"><span class="ability-number">1</span><span>ความสามารถ</span></div><div class="mini-actions"><button class="btn sm ability-up" type="button">↑</button><button class="btn sm ability-down" type="button">↓</button><button class="btn sm danger ability-remove" type="button">ลบ</button></div></header><div class="ability-body"><div class="grid"><div class="field-wrap span-5"><label>ชื่อความสามารถ <span class="req">*</span></label><input class="field ability-name" value="${esc(initial.name||'')}" placeholder="ชื่อสกิล"></div><div class="field-wrap span-3"><label>โหมดที่ทำงาน</label><select class="field ability-mode"><option value="all">ทุกโหมด</option><option value="team">ทีมโชว์เท่านั้น</option><option value="tower">ไต่หอเท่านั้น</option><option value="arena">อารีนาเท่านั้น</option><option value="battle">ไต่หอ + อารีนา</option><option value="teamTower">ทีมโชว์ + ไต่หอ</option><option value="teamArena">ทีมโชว์ + อารีนา</option></select></div><div class="field-wrap span-4"><label>คัทซีน Active</label><select class="field cutscene-mode"><option value="auto">อัตโนมัติจากเกม</option><option value="custom">กำหนดเอง</option><option value="off">ปิดคัทซีนสกิลนี้</option></select></div><div class="field-wrap span-12"><label>คำอธิบาย <span class="req">*</span></label><textarea class="textarea ability-description" placeholder="อธิบายการทำงานให้ผู้เล่นเข้าใจ">${esc(initial.description||'')}</textarea></div></div>
     <div class="custom-cutscene hidden" style="margin-top:10px">${cutsceneFieldsHtml(initial.activeCutscene||{})}</div>
-    <div class="subsection"><div class="subsection-head"><div><strong>เงื่อนไขของความสามารถ</strong><br><span>ใส่หลายข้อได้ ระบบจะรวมเป็น condition เดียว</span></div><button class="btn sm add-condition" type="button">＋ เงื่อนไข</button></div><div class="conditions-list"></div></div>
+    <div class="subsection"><div class="subsection-head"><div><strong>เงื่อนไขของความสามารถ</strong><br><span>ใส่หลายข้อได้ ระบบจะรวมเป็น condition เดียว · afterOwnAttacks ควรใช้คู่ repeat</span></div><button class="btn sm add-condition" type="button">＋ เงื่อนไข / repeat</button></div><div class="conditions-list"></div></div>
     <div class="subsection"><div class="subsection-head"><div><strong>เอฟเฟกต์</strong><br><span>หนึ่งสกิลมีเอฟเฟกต์ได้หลายรายการ</span></div><button class="btn sm green add-effect" type="button">＋ เอฟเฟกต์</button></div><div class="effects-list"></div></div></div>`;
   el('abilitiesContainer').appendChild(card);
   card.querySelector('.ability-mode').value=presetFromModes(initial.activeIn||['team','tower','arena']);
@@ -2740,13 +2922,12 @@ function optionalNumberControlHtml(field,initial){
 }
 function readOptionalNumberControl(scope){const select=scope?.querySelector('.optional-number-preset');if(!select||select.value==='')return null;const value=select.value==='custom'?num(scope.querySelector('.optional-number-custom')?.value):num(select.value);return Math.max(1,int(value,1))}
 function chanceControlHtml(initial=1){
-  const values=[0,.1,.2,.25,.3,.4,.5,.6,.7,.75,.8,.9,1],chosen=Number(initial??1),isPreset=values.includes(chosen);
-  return `<div class="chance-control"><select class="field chance-preset">${values.map(v=>option(v,`${Math.round(v*100)}% (${v})`,isPreset&&v===chosen)).join('')}${option('custom','กำหนดเอง',!isPreset)}</select><input class="field chance-custom${isPreset?' hidden':''}" type="number" min="0" max="100" step="any" value="${isPreset?'':esc(chosen)}" style="margin-top:6px"><small class="hint">ใส่ 0.70 หรือ 70 ก็หมายถึง 70%</small></div>`;
+  const values=[0,.1,.2,.25,.3,.4,.5,.6,.7,.75,.8,.9,1,3,5,9,10,25,50,75,100,125,150,200,300,500],chosen=Number(initial??1),isPreset=values.includes(chosen);
+  const chanceLabel=v=>`${Math.abs(v)>1?v:Math.round(v*100)}% (${v})`;
+  return `<div class="chance-control"><select class="field chance-preset">${values.map(v=>option(v,chanceLabel(v),isPreset&&v===chosen)).join('')}${option('custom','กำหนดเอง',!isPreset)}</select><input class="field chance-custom${isPreset?' hidden':''}" type="number" min="0" step="any" value="${isPreset?'':esc(chosen)}" style="margin-top:6px"><small class="hint">รองรับ 0.70=70%, 70=70%, 150=150% และไม่มีเพดานค่าบวก</small></div>`;
 }
-function readChanceControl(scope,fallback=1){const select=scope?.querySelector('.chance-preset');if(!select)return fallback;let value=select.value==='custom'?num(scope.querySelector('.chance-custom')?.value,fallback):num(select.value,fallback);if(value>1)value/=100;return Math.max(0,Math.min(1,value))}
+function readChanceControl(scope,fallback=1){const select=scope?.querySelector('.chance-preset');if(!select)return fallback;const value=select.value==='custom'?num(scope.querySelector('.chance-custom')?.value,fallback):num(select.value,fallback);return Math.max(0,value)}
 function addEffectRow(container,initial={}){
-  if(initial?.type==='luckRate')initial={...initial,type:'criticalRate'};
-  if(initial?.type==='activeSkillCost')initial={...initial,type:'activeSkillCostCycle'};
   const legacyStackMap={
     teamPowerRate:['powerRateStack','ally'],enemyPowerRate:['powerRateStack','enemy'],selfPowerRate:['powerRateStack','self'],cardPowerRate:['powerRateStack',initial.targetSide||'ally'],
     teamHpRate:['hpRateStack','ally'],enemyHpRate:['hpRateStack','enemy'],selfHpRate:['hpRateStack','self'],cardHpRate:['hpRateStack',initial.targetSide||'ally'],
@@ -2767,18 +2948,20 @@ function addEffectRow(container,initial={}){
   <details class="advanced resistance-options hidden" open><summary>ตั้งค่าต้านสถานะ</summary><div class="grid"><div class="field-wrap span-4"><label>scope</label><select class="field resistance-scope">${option('target','target · กันเอฟเฟกต์ที่เล็งรายตัว',String(initial.scope||'target')==='target')}${option('field','field · กันเอฟเฟกต์ทั้งสนาม',String(initial.scope)==='field')}</select></div><div class="field-wrap span-4"><label>resistBeneficial</label><select class="field resist-beneficial">${option('false','false · กันเฉพาะผลเสีย/ควบคุม',initial.resistBeneficial!==true)}${option('true','true · กันเอฟเฟกต์บวกด้วย',initial.resistBeneficial===true)}</select></div><div class="field-wrap span-4"><label>คำแนะนำ</label><div class="status ok">ไม่เลือกตัวกรอง = ต้านผลเสียทุกชนิด</div></div><div class="field-wrap span-12"><label>resistCategories</label>${createTokenPicker('resistCategories',initial.resistCategories||[],'resistCategories')}</div><div class="field-wrap span-12"><label>resistEffectTypes · ต้าน type โดยตรง</label>${createTokenPicker('effectTypes',initial.resistEffectTypes||[],'resistEffectTypes')}</div><div class="field-wrap span-6"><label>resistAbilityNames · ชื่อสกิลต้นทาง</label>${createTokenPicker('text',initial.resistAbilityNames||[],'resistAbilityNames')}</div><div class="field-wrap span-6"><label>resistSourceCardIds</label>${createTokenPicker('cards',initial.resistSourceCardIds||[],'resistSourceCardIds')}</div></div></details></div>`;
   row.querySelector('.effect-advanced-grid').insertAdjacentHTML('beforeend',`<div class="field-wrap span-6 domain-options hidden"><label>domainId</label><input class="field effect-domain-id" value="${esc(initial.domainId||'')}" placeholder="เช่น mamonIceDomain"><small class="hint">สกิลที่ใช้ domainActive ต้องใส่ ID ให้ตรงกัน</small></div><div class="field-wrap span-3 domain-options hidden"><label>duration</label><select class="field effect-domain-duration">${option('battle','battle · จนจบไฟต์',String(initial.duration||'battle')==='battle')}</select></div>`);
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced nullify-options hidden" open><summary>ตั้งค่า nullify แบบ Active</summary><div class="grid"><div class="field-wrap span-6"><label>durationTriggers</label>${optionalNumberControlHtml('durationTriggers',initial.durationTriggers)}<small class="hint">จำนวนรอบ Active ของการ์ดเป้าหมายที่จะถูกทำให้ไร้ผล</small></div><div class="field-wrap span-6"><div class="status ok">ใช้ร่วมกับ targetSelection ด้านบนได้: random / specific / all</div></div></div></details>`);
+  row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced ignore-options hidden" open><summary>ตั้งค่า ignoreAbilityConditions</summary><div class="grid"><div class="field-wrap span-6"><label>triggerImmediately</label><select class="field ignore-trigger-immediately">${option('false','false · ยกเลิกเฉพาะเงื่อนไขจัดทีม',initial.triggerImmediately!==true)}${option('true','true · Active พร้อมใช้ในการโจมตีครั้งแรก',initial.triggerImmediately===true)}</select></div><div class="field-wrap span-6"><div class="status ok">หลังใช้ครั้งแรก ตัวนับรอบถัดไปกลับไปใช้ afterOwnAttacks เดิม</div></div></div></details>`);
   container.appendChild(row);row.querySelectorAll('.token-picker').forEach(renderTokenPicker);row.querySelector('.effect-target-side').value=initial.targetSide||'';row.querySelector('.effect-target-match').value=initial.targetMatch||'any';renderEffectRow(row,initial.value);return row;
 }
 function valueKind(type){if(noValueEffects.has(type))return 'none';if(flatEffectTypes.has(type))return 'flat';if(integerEffectTypes.has(type))return 'integer';if(rateEffectTypes.has(type)||/Rate/.test(type))return 'rate';return 'number'}
 function effectValuePresets(type,example){
   const kind=valueKind(type);let values=[];
-  if(kind==='rate')values=[-1,-.77,-.65,-.5,-.4,-.3,-.25,-.2,-.15,-.12,-.1,-.08,-.05,.03,.04,.05,.08,.1,.12,.15,.18,.2,.25,.3,.4,.5,.65,.77,1,2,5,7.77];
+  if(['statusResistance','statusResistanceStack'].includes(type))values=[-500,-300,-200,-150,-100,-75,-50,-25,-10,-9,-5,-1,1,3,5,9,10,25,50,75,100,150,200,300,500];
+  else if(kind==='rate')values=[-5,-3,-2,-1,-.77,-.65,-.5,-.4,-.3,-.25,-.2,-.15,-.12,-.1,-.08,-.05,.03,.04,.05,.08,.1,.12,.15,.18,.2,.25,.3,.4,.5,.65,.77,1,2,3,5,7.77];
   else if(kind==='integer')values=[-20,-10,-7,-5,-3,-2,-1,1,2,3,5,7,10,20];
   else if(kind==='flat')values=[-1000000,-500000,-100000,-50000,-10000,-5000,-1000,1000,5000,10000,50000,100000,500000,1000000];
   else values=[-10,-5,-1,.1,.2,.5,1,2,5,10,100];
   if(example!==undefined&&example!==null&&!values.includes(Number(example)))values.push(Number(example));return values.sort((a,b)=>a-b)
 }
-function effectValueLabel(type,value){const n=Number(value);if(valueKind(type)==='rate')return `${n>0?'+':''}${(n*100).toLocaleString('en-US',{maximumFractionDigits:3})}% (${n})`;return `${n>0?'+':''}${formatNumber(n)}`}
+function effectValueLabel(type,value){const n=Number(value);if(['statusResistance','statusResistanceStack'].includes(type)){const percent=Math.abs(n)>=1?n:n*100;return `${percent>0?'+':''}${percent.toLocaleString('en-US',{maximumFractionDigits:3})}% (${n})`;}if(valueKind(type)==='rate')return `${n>0?'+':''}${(n*100).toLocaleString('en-US',{maximumFractionDigits:3})}% (${n})`;return `${n>0?'+':''}${formatNumber(n)}`}
 function syncExcludeSelfControl(row){
   const type=row.querySelector('.effect-type')?.value||'',meta=effectByType.get(type),fields=String(meta?.fields||''),wrap=row.querySelector('.exclude-self-wrap'),select=row.querySelector('.effect-exclude-self');
   if(!wrap||!select)return;
@@ -2834,14 +3017,15 @@ function syncCopiedLifetimePreset(row,applyPreset=false){
 function renderEffectRow(row,initialValue){
   const category=row.querySelector('.effect-category').value,typeSelect=row.querySelector('.effect-type');if(!typeSelect.value&&initialValue===undefined)typeSelect.innerHTML=effectTypeOptions(category,'');
   const type=typeSelect.value,meta=effectByType.get(type),wrap=row.querySelector('.effect-value-wrap'),control=row.querySelector('.effect-value-control'),note=row.querySelector('.effect-note'),summary=row.querySelector('.effect-summary');
-  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack'].includes(type),isNullify=type==='nullifyCardAbilities',isDomain=type==='activateDomain';
+  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain';
   row.querySelector('.selection-options')?.classList.toggle('hidden',!(isTransfer||isResistance||isNullify));
   row.querySelector('.transfer-options')?.classList.toggle('hidden',!isTransfer);
   row.querySelector('.resistance-options')?.classList.toggle('hidden',!isResistance);
   row.querySelectorAll('.domain-options').forEach(box=>box.classList.toggle('hidden',!isDomain));
   row.querySelector('.nullify-options')?.classList.toggle('hidden',!isNullify);
+  row.querySelector('.ignore-options')?.classList.toggle('hidden',!isIgnore);
   if(isTransfer)syncCopiedLifetimePreset(row,false);
-  syncSpecialTargetControls(row,isTransfer||isResistance||isNullify);
+  syncSpecialTargetControls(row,isTransfer||isResistance||isNullify||isIgnore);
   if(!meta){wrap.classList.remove('hidden');control.innerHTML='';note.textContent='เลือกเอฟเฟกต์เพื่อดูวิธีใช้';summary.className='status warn effect-summary';summary.textContent='เลือกเอฟเฟกต์';syncExcludeSelfControl(row);renderOutput();return}
   const kind=valueKind(type);wrap.classList.toggle('hidden',kind==='none');
   if(kind!=='none'){
@@ -2931,6 +3115,11 @@ function readEffectRow(row){
     if(durationTriggers!==null)obj.durationTriggers=durationTriggers;
     if(obj.targetSide==='self'||obj.targetCardIds?.length||obj.targetElements?.length||obj.targetRarities?.length){obj.targetSelection='specific';delete obj.targetCount;}
   }
+  if(type==='ignoreAbilityConditions'){
+    obj.targetSelection=(obj.targetCardIds?.length||obj.targetElements?.length||obj.targetRarities?.length)?'specific':'all';
+    delete obj.targetCount;
+    if(row.querySelector('.ignore-trigger-immediately')?.value==='true')obj.triggerImmediately=true;
+  }
   return obj;
 }
 function readCutscene(card){
@@ -2963,7 +3152,7 @@ function buildCard(){
 function validateAdvancedEffect(effect,abilityIndex,effectIndex){
   const results=[],label=`เอฟเฟกต์ที่ ${effectIndex+1} ของความสามารถที่ ${abilityIndex+1}`;
   if(transferEffectTypes.has(effect.type)){
-    if(!(Number(effect.successRate)>=0&&Number(effect.successRate)<=1))results.push({type:'error',text:`${label}: successRate ต้องอยู่ระหว่าง 0–1 หรือ 0–100%`});
+    if(!Number.isFinite(Number(effect.successRate))||Number(effect.successRate)<0)results.push({type:'error',text:`${label}: successRate ต้องเป็นค่าตั้งแต่ 0 ขึ้นไป; รองรับเกิน 100% เพื่อเก็บแต้มสำรอง`});
     const donorFilters=(effect.targetCardIds?.length||0)+(effect.targetElements?.length||0)+(effect.targetRarities?.length||0);
     if(effect.targetSelection==='specific'&&!donorFilters)results.push({type:'warning',text:`${label}: targetSelection เป็น specific แต่ยังไม่เลือก ID/ธาตุ/ระดับต้นทาง`});
     const abilityFilters=(effect.abilityNames?.length||0)+(effect.abilityNumbers?.length||0)+(effect.abilityIndexes?.length||0)+(effect.abilityEffectTypes?.length||0);
@@ -3081,8 +3270,8 @@ function applyTemplate(key){
   if(key==='copyUseOnceBoth')ability={name:'อาคมก็อปปี้',description:'ทุกครั้งที่โจมตีครบ 10 ครั้ง สุ่มคัดลอกอาคม 1 สกิลจากฝ่ายตนเองหรือฝ่ายตรงข้าม สกิลที่คัดลอกไม่จำกัดเวลา แต่เมื่อเปิดใช้แล้วจะหายและต้องคัดลอกใหม่',activeIn:['tower','arena'],condition:{maxTeamSize:4},effects:[{type:'copyAbilities',targetSide:'both',condition:{afterOwnAttacks:9,repeat:true},targetSelection:'random',targetCount:1,successRate:1,abilitySelection:'random',abilityCount:1,recipientSide:'self',copiedAbilityExpireOnUse:true,copiedAbilityMaxUses:1,maxCopiedAbilities:1,replacePreviousCopy:true}]};
   if(key==='stealSpecificEnemy')ability={name:'ชิงวิชาต้องห้าม',description:'ขโมยความสามารถที่กำหนดจากศัตรูเป้าหมาย มีโอกาสสำเร็จ 60% เมื่อสำเร็จศัตรูจะเสียสกิลนั้นตลอดการต่อสู้',activeIn:['tower','arena'],effects:[{type:'stealAbilities',targetSide:'enemy',targetSelection:'specific',targetCardIds:[],abilitySelection:'specific',abilityNames:[],recipientSide:'self',successRate:.60}]};
   if(key==='copyAllEnemyTeam')ability={name:'คลังวิชาสะท้อนโลก',description:'คัดลอกสกิลแบบสุ่ม 1 สกิลจากศัตรูทุกคน แล้วแจกให้สมาชิกฝ่ายเราทุกคน โอกาสสำเร็จแยกแต่ละสกิล 50%',activeIn:['tower','arena'],effects:[{type:'copyAbilities',targetSide:'enemy',targetSelection:'all',abilitySelection:'random',abilityCount:1,recipientSide:'ally',recipientSelection:'all',successRate:.50}]};
-  if(key==='resistTransferTeam')ability={name:'ผนึกป้องกันวิชา',description:'สมาชิกฝ่ายเราทุกคนมีโอกาส 80% ต้านการคัดลอกหรือขโมยสกิลที่เล็งมายังตนเอง',activeIn:['tower','arena'],effects:[{type:'statusResistance',value:.80,targetSide:'ally',targetSelection:'all',scope:'target',resistEffectTypes:['copyAbilities','stealAbilities']}]};
-  if(key==='resistFieldDebuff')ability={name:'เขตแดนต้านคำสาป',description:'สมาชิกฝ่ายเราทุกคนมีโอกาส 40% ต้านเอฟเฟกต์ลดพลัง เพิ่มคอส ควบคุมสกิล และเอฟเฟกต์ทั้งสนาม',activeIn:['tower','arena'],effects:[{type:'statusResistance',value:.40,targetSide:'ally',targetSelection:'all',scope:'field',resistCategories:['statReduction','cost','abilityControl','transfer']}]};
+  if(key==='resistTransferTeam')ability={name:'ผนึกป้องกันวิชา',description:'สมาชิกฝ่ายเราทุกคนมีโอกาส 80% ต้านการคัดลอกหรือขโมยสกิลที่เล็งมายังตนเอง',activeIn:['tower','arena'],effects:[{type:'statusResistance',value:80,targetSide:'ally',targetSelection:'all',scope:'target',resistEffectTypes:['copyAbilities','stealAbilities']}]};
+  if(key==='resistFieldDebuff')ability={name:'เขตแดนต้านคำสาป',description:'สมาชิกฝ่ายเราทุกคนมีโอกาส 40% ต้านเอฟเฟกต์ลดพลัง เพิ่มคอส ควบคุมสกิล และเอฟเฟกต์ทั้งสนาม',activeIn:['tower','arena'],effects:[{type:'statusResistance',value:40,targetSide:'ally',targetSelection:'all',scope:'field',resistCategories:['statReduction','cost','abilityControl','transfer']}]};
   if(key==='partner')ability={name:'สายสัมพันธ์คู่หู',description:'ความสามารถนี้ทำงานเมื่อมีการ์ดคู่หูที่กำหนดอยู่ในทีม',activeIn:['team','tower','arena'],condition:{anyCardIds:[]},effects:[{type:'selfPowerRate',value:.2}]};
   if(key==='hakariRail')ability={name:'รางดาวซ่อนแอบ',description:"เมื่อจัดเข้าทีมร่วมกับผู้ใช้ไสยเวท 'Kinji Hakari' ทุกครั้งที่การ์ดใบนี้โจมตีครบ 3 ครั้ง การโจมตีที่สกิลทำงานจะเพิ่ม 2 ฮิต เพิ่มคอส Active Skill ของฝ่ายตรงข้าม 2 และลดคอส Active Skill ของ 'Kinji Hakari' ลง 1",activeIn:['team','tower','arena'],condition:{requiredCardIds:[1033],afterOwnAttacks:3,repeat:true},effects:[{type:'nextAttackHits',value:2,targetSide:'self'},{type:'activeSkillCostCycle',value:2,targetSide:'enemy'},{type:'activeSkillCostCycle',value:-1,targetSide:'ally',targetCardIds:[1033]}]};
   if(ability){const cards=[...document.querySelectorAll('.ability-card')];if(cards.length===1){const first=cards[0],empty=!first.querySelector('.ability-name').value.trim()&&!first.querySelector('.ability-description').value.trim()&&![...first.querySelectorAll('.effect-type')].some(x=>x.value);if(empty)first.remove()}addAbility(ability);toast('เพิ่มแม่แบบความสามารถแล้ว ✓')}
