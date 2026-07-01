@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Multi Target + Revive + SPD v58</title>
+  <title>ANIME CARD CODE BUILDER · Taunt + Formation Leader v59</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v58 · MULTI TARGET · REVIVE · SPD · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v59 · TAUNT · MULTI TARGET · LEADER · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -151,7 +151,7 @@
       <div class="section-head"><div><h2>วิธีใช้แบบเร็ว</h2><p>แอปนี้ซิงก์คลังผ่าน Firebase และยังเปิดทำงานแบบ Local สำรองได้เมื่อออฟไลน์</p></div><span class="badge green">CLOUD READY</span></div>
       <div class="help-grid">
         <article class="help-card"><h3>1) สร้างข้อมูลการ์ด</h3><p>กรอก ID และชื่อ เลือกระดับ ธาตุ และเบสสแตตจากดรอปดาวน์ ระบบจะตรวจ ID ซ้ำทันที</p></article>
-        <article class="help-card"><h3>2) เพิ่มหลายสกิล</h3><p>กด <b>เพิ่มความสามารถ</b> แล้วเพิ่มเงื่อนไขและเอฟเฟกต์ได้หลายรายการ ระบบจะสร้างเป็น <code>"abilities": [...]</code></p></article>
+        <article class="help-card"><h3>2) เพิ่มหลายสกิล</h3><p>กด <b>เพิ่มความสามารถ</b> แล้วเพิ่มเงื่อนไขและเอฟเฟกต์ได้หลายรายการ รวม <code>taunt</code> สำหรับบังคับเป้าหมาย ระบบจะสร้างเป็น <code>"abilities": [...]</code></p></article>
         <article class="help-card"><h3>3) คัดลอกไปวาง</h3><p>เลือกรูปแบบ <b>วัตถุการ์ด + จุลภาค</b> แล้วนำโค้ดไปวางภายใน <code>const CARDS = [ ... ]</code> ของเกม</p></article>
         <article class="help-card"><h3>4) อัปเดตฐาน ID</h3><p>เมื่อเกมมีการ์ดใหม่ ให้นำเข้าไฟล์ HTML ล่าสุดในหน้า <b>ฐาน ID</b> แอปจะอ่าน ID เพื่อป้องกันการสร้างซ้ำ</p></article>
         <article class="help-card"><h3>Firebase Cloud Firestore</h3><p>คลังออนไลน์ใช้คอลเลกชัน <code>animeCardCodeBuilderCards</code> และใช้ Card ID เป็น Document ID การแก้ไข ID เดิมจึงอัปเดตข้อมูลใบเดิมแบบเรียลไทม์</p></article><article class="help-card"><h3>ชีทหลักของระบบ</h3><p>ให้อ้างอิง <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener" class="accent"><b>Google Sheet ระบบสกิลและเงื่อนไข</b></a> เป็นข้อมูลหลักสำหรับเอฟเฟกต์ เงื่อนไข และการอัปเดตครั้งถัดไป</p></article>
@@ -1098,6 +1098,16 @@
       "suitableModes": "tower, arena",
       "note": "แต่ละการทำงานเพิ่ม 1 แสต็กจนถึง maxStacks; stackKey เดียวกันใช้ตัวนับร่วมกัน",
       "exampleCode": "{ \"type\":\"speedFlatStack\", \"value\":-5, \"maxStacks\":6, \"stackKey\":\"slowCurse\", \"targetSide\":\"enemy\", \"condition\":{\"onOwnAttack\":true} }"
+    },
+    {
+      "category": "ACTIVE / ควบคุมเป้าหมาย",
+      "type": "taunt",
+      "meaning": "ยั่วยุให้ฝ่ายตรงข้ามเลือกการ์ดเป้าหมายนี้ก่อน",
+      "exampleValue": null,
+      "fields": "condition, targetSide, targetSelection, targetCount, targetCardIds, targetElements, targetRarities, targetMatch, excludeSelf, durationTurns, durationRounds",
+      "suitableModes": "tower, arena",
+      "note": "ตัวที่ติดยั่วยุถูกเลือกก่อนแนวหน้า; การโจมตีหลายเป้าหมายจะเลือกตัวยั่วยุก่อนแล้วเติมเป้าหมายอื่น หากไม่กำหนดระยะเวลาจะใช้ 1 เทิร์นโจมตีของฝ่ายตรงข้าม",
+      "exampleCode": "{ \"type\":\"taunt\", \"targetSide\":\"self\", \"durationTurns\":2, \"condition\":{\"afterOwnAttacks\":2,\"repeat\":true} }"
     }
   ],
   "conditions": [
@@ -2698,10 +2708,10 @@
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
     "sheetRole": "primary",
-    "builderUpdated": "2026-07-01-turn-based-animation-revive-spd-v2"
+    "builderUpdated": "2026-07-01-taunt-free-formation-leader-v4"
   },
   "meta": {
-    "builderUpdated": "2026-07-01-turn-based-animation-revive-spd-v2"
+    "builderUpdated": "2026-07-01-taunt-free-formation-leader-v4"
   }
 }
 </script>
@@ -2715,14 +2725,14 @@ const rarityCodes = Object.keys(DATA.rarities).sort((a,b)=>DATA.rarities[a].orde
 const conditionCatalog = DATA.conditions.filter(x=>x.position==='condition');
 const effectCatalog = DATA.effects;
 const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
-const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain']);
+const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain','taunt']);
 const transferEffectTypes = new Set(['copyAbilities','stealAbilities']);
 const resistanceCategories = ['all','cost','transfer','abilityControl','statReduction','hitReduction','healingReduction','shieldReduction'];
 const stackRateEffectTypes = new Set(['powerRateStack','hpRateStack','defenseRateStack','incomeRateStack','criticalRateStack','dodgeRateStack','blockRateStack','damageTakenRateStack','healingRateStack','shieldRecoveryRateStack','statusResistanceStack','teamPowerRateStack','enemyPowerRateStack','selfPowerRateStack','teamHpRateStack','enemyHpRateStack','selfHpRateStack','teamDefenseRateStack','enemyDefenseRateStack','selfDefenseRateStack','teamIncomeRateStack','enemyIncomeRateStack','selfIncomeRateStack']);
 const stackFlatEffectTypes = new Set(['powerFlatStack','hpFlatStack','defenseFlatStack','incomeFlatStack']);
 const stackIntegerEffectTypes = new Set(['attackHitsStack','shieldHitsStack','activeSkillCostCycleStack','activeSkillCostPermanentStack','speedFlatStack']);
 const stackEffectTypes = new Set([...stackRateEffectTypes,...stackFlatEffectTypes,...stackIntegerEffectTypes,'increaseAttackRateStack']);
-const activeEffectTypes = new Set(['nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack',...stackEffectTypes]);
+const activeEffectTypes = new Set(['nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack','taunt',...stackEffectTypes]);
 const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['criticalRate','luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack','statusResistance','revive','reviveTimedUndying','reviveHitLife',...stackRateEffectTypes]));
 const integerEffectTypes = new Set(['shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost','activeSkillCostCycle','activeSkillCostPermanent','speedFlat','speedFlatStack',...stackIntegerEffectTypes]);
 const flatEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Flat$/.test(t)).concat([...stackFlatEffectTypes]));
@@ -3038,7 +3048,7 @@ function syncSpecialTargetControls(row,isSpecial){
   specialSlot?.classList.toggle('hidden',!isSpecial);
   if(!isSpecial){row.classList.remove('needs-specific-target');return}
   const side=row.querySelector('.effect-target-side');
-  if(side&&!side.value&&transferEffectTypes.has(row.querySelector('.effect-type')?.value||''))side.value='enemy';
+  if(side&&!side.value){const currentType=row.querySelector('.effect-type')?.value||'';if(transferEffectTypes.has(currentType))side.value='enemy';else if(currentType==='taunt')side.value='self';}
   const selection=row.querySelector('.special-target-selection')?.value||'random';
   row.querySelector('.special-target-count-wrap')?.classList.toggle('hidden',selection!=='random');
   row.classList.toggle('needs-specific-target',selection==='specific');
@@ -3077,19 +3087,19 @@ function syncCopiedLifetimePreset(row,applyPreset=false){
 function renderEffectRow(row,initialValue){
   const category=row.querySelector('.effect-category').value,typeSelect=row.querySelector('.effect-type');if(!typeSelect.value&&initialValue===undefined)typeSelect.innerHTML=effectTypeOptions(category,'');
   const type=typeSelect.value,meta=effectByType.get(type),wrap=row.querySelector('.effect-value-wrap'),control=row.querySelector('.effect-value-control'),note=row.querySelector('.effect-note'),summary=row.querySelector('.effect-summary');
-  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain';
+  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain',isTaunt=type==='taunt';
   const isRevive=['revive','reviveTimedUndying','reviveHitLife'].includes(type);
   const isHitLife=type==='reviveHitLife';
   row.querySelector('.revive-survive-hits-wrap')?.classList.toggle('hidden',!isHitLife);
   row.querySelector('.revive-max-triggers-wrap')?.classList.toggle('hidden',!isRevive);
-  row.querySelector('.selection-options')?.classList.toggle('hidden',!(isTransfer||isResistance||isNullify));
+  row.querySelector('.selection-options')?.classList.toggle('hidden',!(isTransfer||isResistance||isNullify||isTaunt));
   row.querySelector('.transfer-options')?.classList.toggle('hidden',!isTransfer);
   row.querySelector('.resistance-options')?.classList.toggle('hidden',!isResistance);
   row.querySelectorAll('.domain-options').forEach(box=>box.classList.toggle('hidden',!isDomain));
   row.querySelector('.nullify-options')?.classList.toggle('hidden',!isNullify);
   row.querySelector('.ignore-options')?.classList.toggle('hidden',!isIgnore);
   if(isTransfer)syncCopiedLifetimePreset(row,false);
-  syncSpecialTargetControls(row,isTransfer||isResistance||isNullify||isIgnore);
+  syncSpecialTargetControls(row,isTransfer||isResistance||isNullify||isIgnore||isTaunt);
   if(!meta){wrap.classList.remove('hidden');control.innerHTML='';note.textContent='เลือกเอฟเฟกต์เพื่อดูวิธีใช้';summary.className='status warn effect-summary';summary.textContent='เลือกเอฟเฟกต์';syncExcludeSelfControl(row);renderOutput();return}
   const kind=valueKind(type);wrap.classList.toggle('hidden',kind==='none');
   if(kind!=='none'){
@@ -3134,7 +3144,7 @@ function readEffectRow(row){
   const supportedFields=String(effectByType.get(type)?.fields||'');
   if(supportedFields.includes('maxStacks'))obj.maxStacks=int(row.querySelector('.effect-max-stacks').value,5);
   if(supportedFields.includes('stackKey'))obj.stackKey=(row.querySelector('.effect-stack-key')?.value||'').trim()||'sharedStack';
-  if(transferEffectTypes.has(type)||type==='statusResistance'||type==='nullifyCardAbilities'){
+  if(transferEffectTypes.has(type)||type==='statusResistance'||type==='nullifyCardAbilities'||type==='taunt'){
     obj.targetSelection=row.querySelector('.special-target-selection').value||'random';
     if(obj.targetSelection==='random'){
       const count=readOptionalNumberControl(row.querySelector('.selection-options .optional-number-control'));if(count!==null)obj.targetCount=count;
@@ -3234,6 +3244,7 @@ function validateAdvancedEffect(effect,abilityIndex,effectIndex){
   if(effect.type==='reviveHitLife'&&(!Number.isInteger(Number(effect.surviveHits))||Number(effect.surviveHits)<1))results.push({type:'error',text:`${label}: reviveHitLife ต้องกำหนด surviveHits ตั้งแต่ 1 ขึ้นไป`});
   if(['revive','reviveTimedUndying','reviveHitLife'].includes(effect.type)&&effect.maxTriggers!==undefined&&(!Number.isInteger(Number(effect.maxTriggers))||Number(effect.maxTriggers)<1))results.push({type:'error',text:`${label}: maxTriggers ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`});
   if(effect.type==='reviveTimedUndying'&&(!Number.isInteger(Number(effect.durationTurns))||Number(effect.durationTurns)<1))results.push({type:'error',text:`${label}: reviveTimedUndying ต้องกำหนด durationTurns ตั้งแต่ 1 ขึ้นไป`});
+  if(effect.type==='taunt'&&effect.durationTurns===undefined&&effect.durationRounds===undefined)results.push({type:'warning',text:`${label}: taunt ไม่ได้กำหนดระยะเวลา Runtime จะใช้ 1 เทิร์นโจมตีของฝ่ายตรงข้าม`});
   ['durationTurns','durationRounds'].forEach(field=>{if(effect[field]!==undefined&&(!Number.isInteger(Number(effect[field]))||Number(effect[field])<1))results.push({type:'error',text:`${label}: ${field} ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`})});
   if(effect.type==='activateDomain'&&!String(effect.domainId||'').trim())results.push({type:'error',text:`${label}: activateDomain ต้องระบุ domainId`});
   if(effect.type==='nullifyCardAbilities'&&effect.durationTriggers!==undefined&&(!Number.isInteger(Number(effect.durationTriggers))||Number(effect.durationTriggers)<1))results.push({type:'error',text:`${label}: durationTriggers ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`});
