@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Ability Conditions v55</title>
+  <title>ANIME CARD CODE BUILDER · Base SPD + Buff Duration v56</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v55 · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v56 · BASE SPD · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -75,7 +75,7 @@
       <div class="builder-layout">
         <div class="work panel">
           <section class="section">
-            <div class="section-head"><div><h2>1. ข้อมูลการ์ด</h2><p>ชื่อและคำอธิบายพิมพ์เอง ส่วนค่าเกมหลักเลือกจากดรอปดาวน์ได้</p></div><span class="badge cyan">STEP 1</span></div>
+            <div class="section-head"><div><h2>1. ข้อมูลการ์ด</h2><p>ชื่อและคำอธิบายพิมพ์เอง ส่วนค่าเกมหลักรวม Base SPD เลือกจากดรอปดาวน์ได้</p></div><span class="badge cyan">STEP 1</span></div>
             <div class="grid">
               <div class="field-wrap span-3"><label for="cardId">Card ID <span class="req">*</span></label><input class="field" id="cardId" type="number" min="0" step="1" placeholder="เช่น 2005"><small class="hint">ตรวจซ้ำกับฐานเกมเดิม ไฟล์นำเข้า และคลังในเครื่อง</small></div>
               <div class="field-wrap span-5"><label for="cardName">ชื่อตัวละคร <span class="req">*</span></label><input class="field" id="cardName" type="text" placeholder="ชื่อที่จะแสดงในเกม"></div>
@@ -1756,7 +1756,7 @@
       "dust": 5,
       "basePower": 1000,
       "baseHp": 5000,
-      "baseDefense": 400,
+      "baseDefense": 400, "baseSpeed": 90,
       "baseIncome": 35,
       "maxLevel": 100,
       "upgradeDustBase": 10,
@@ -1798,7 +1798,7 @@
       "dust": 18,
       "basePower": 3000,
       "baseHp": 15000,
-      "baseDefense": 1200,
+      "baseDefense": 1200, "baseSpeed": 92,
       "baseIncome": 100,
       "maxLevel": 120,
       "upgradeDustBase": 25,
@@ -1838,7 +1838,7 @@
       "dust": 70,
       "basePower": 9000,
       "baseHp": 45000,
-      "baseDefense": 3600,
+      "baseDefense": 3600, "baseSpeed": 94,
       "baseIncome": 280,
       "maxLevel": 140,
       "upgradeDustBase": 70,
@@ -1876,7 +1876,7 @@
       "dust": 280,
       "basePower": 27000,
       "baseHp": 135000,
-      "baseDefense": 10800,
+      "baseDefense": 10800, "baseSpeed": 96,
       "baseIncome": 800,
       "maxLevel": 160,
       "upgradeDustBase": 220,
@@ -1912,7 +1912,7 @@
       "dust": 1500,
       "basePower": 81000,
       "baseHp": 405000,
-      "baseDefense": 32400,
+      "baseDefense": 32400, "baseSpeed": 98,
       "baseIncome": 2300,
       "maxLevel": 180,
       "upgradeDustBase": 750,
@@ -1948,7 +1948,7 @@
       "dust": 9000,
       "basePower": 243000,
       "baseHp": 1215000,
-      "baseDefense": 97200,
+      "baseDefense": 97200, "baseSpeed": 100,
       "baseIncome": 6500,
       "maxLevel": 220,
       "upgradeDustBase": 2800,
@@ -1985,7 +1985,7 @@
       "dust": 50000,
       "basePower": 729000,
       "baseHp": 3645000,
-      "baseDefense": 291600,
+      "baseDefense": 291600, "baseSpeed": 103,
       "baseIncome": 18000,
       "maxLevel": 250,
       "upgradeDustBase": 10000,
@@ -2020,7 +2020,7 @@
       "dust": 100000,
       "basePower": 2187000,
       "baseHp": 10935000,
-      "baseDefense": 874800,
+      "baseDefense": 874800, "baseSpeed": 106,
       "baseIncome": 50000,
       "maxLevel": 300,
       "upgradeDustBase": 20000,
@@ -2767,6 +2767,7 @@ const statDefs=[
   {key:'power',label:'ATK',base:'basePower'},
   {key:'hp',label:'HP',base:'baseHp'},
   {key:'defense',label:'DEF',base:'baseDefense'},
+  {key:'speed',label:'Base SPD',base:'baseSpeed'},
   {key:'incomePerSec',label:'เงินเดือน/วัน',base:'baseIncome',daily:true}
 ];
 function initStats(){
@@ -2942,7 +2943,7 @@ function addEffectRow(container,initial={}){
   if(initial?.maxStacks&&legacyStackMap[initial.type]){const [type,targetSide]=legacyStackMap[initial.type];initial={...initial,type,targetSide:initial.targetSide||targetSide,stackKey:initial.stackKey||'sharedStack'}};
   const meta=effectByType.get(initial.type);const category=meta?.category||'ทั้งหมด';const row=document.createElement('div');row.className='effect-row';
   row.innerHTML=`<button class="btn sm danger row-remove" type="button">×</button><div class="row-pad"><div class="grid"><div class="field-wrap span-4"><label>หมวดเอฟเฟกต์</label><select class="field effect-category">${effectCategories().map(x=>option(x,x,x===category)).join('')}</select></div><div class="field-wrap span-8"><label>ชนิดเอฟเฟกต์ <span class="req">*</span></label><select class="field effect-type">${effectTypeOptions(category,initial.type||'')}</select></div><div class="field-wrap span-4 effect-value-wrap"><label>ค่า value</label><div class="effect-value-control"></div></div><div class="field-wrap span-8"><label>สรุป</label><div class="status warn effect-summary">เลือกเอฟเฟกต์</div></div></div><div class="effect-note">เลือกเอฟเฟกต์เพื่อดูวิธีใช้</div>
-  <details class="advanced effect-advanced"><summary>Active Trigger และตัวเลือกทั่วไป</summary><div class="grid effect-advanced-grid"><div class="field-wrap span-3 target-side-wrap"><label>targetSide</label><select class="field effect-target-side"><option value="">ไม่ระบุ</option><option value="self">self · ตัวเอง</option><option value="ally">ally · ฝ่ายเรา</option><option value="enemy">enemy · ฝ่ายตรงข้าม</option><option value="both">both · ฝ่ายเราและฝ่ายตรงข้าม</option></select></div><div class="field-wrap span-3 exclude-self-wrap hidden"><label>excludeSelf</label><select class="field effect-exclude-self"><option value="">รวมเจ้าของสกิล</option>${option('true','true · เฉพาะเพื่อนร่วมทีม',initial.excludeSelf===true)}</select><small class="hint">ใช้ได้เมื่อ targetSide เป็น ally</small></div><div class="field-wrap span-3 target-match-wrap"><label>targetMatch</label><select class="field effect-target-match"><option value="any">any · ตรงอย่างใดอย่างหนึ่ง</option><option value="all">all · ต้องตรงทุกตัวกรอง</option></select></div><div class="field-wrap span-3"><label>onOwnAttack</label><select class="field effect-on-own-attack">${option('','ไม่ใช้',initial.condition?.onOwnAttack!==true)}${option('true','true · ทำงานทุกการโจมตี',initial.condition?.onOwnAttack===true)}</select></div><div class="field-wrap span-3 effect-trigger-control"><label>afterOwnAttacks</label>${optionalNumberControlHtml('afterOwnAttacks',initial.condition?.afterOwnAttacks)}</div><div class="field-wrap span-3"><label>repeat</label><select class="field effect-repeat">${option('true','วนซ้ำ',initial.condition?.repeat!==false)}${option('false','ครั้งเดียว',initial.condition?.repeat===false)}</select></div><div class="field-wrap span-6 target-cardids-wrap"><label>targetCardIds · เลือก Card ID เป้าหมาย</label>${createTokenPicker('cards',initial.targetCardIds||[],'targetCardIds')}<small class="hint">เลือกจากฐาน หรือพิมพ์ Card ID เองแล้วกดเพิ่ม</small></div><div class="field-wrap span-3 target-elements-wrap"><label>targetElements</label>${createTokenPicker('elements',initial.targetElements||[],'targetElements')}</div><div class="field-wrap span-3 target-rarities-wrap"><label>targetRarities</label>${createTokenPicker('rarities',initial.targetRarities||[],'targetRarities')}</div><div class="field-wrap span-3 persistent-wrap"><label>persistentAfterActivation</label><select class="field effect-persistent"><option value="">ไม่ใส่</option>${option('true','true · ทำต่อเนื่อง',initial.persistentAfterActivation===true)}${option('false','false',initial.persistentAfterActivation===false)}</select></div><div class="field-wrap span-3 max-stacks-wrap"><label>maxStacks</label><select class="field effect-max-stacks">${[1,2,3,4,5,6,7,8,9,10,12,15,20,30,50,99].map(v=>option(v,v,v===num(initial.maxStacks,5))).join('')}</select></div><div class="field-wrap span-3 stack-key-wrap hidden"><label>stackKey</label><input class="field effect-stack-key" value="${esc(initial.stackKey||'')}" placeholder="เช่น drainCurse"><small class="hint">เอฟเฟกต์ที่ใช้ key เดียวกันจะเพิ่มพร้อมกัน 1 ชั้น</small></div></div></details>
+  <details class="advanced effect-advanced"><summary>Active Trigger และตัวเลือกทั่วไป</summary><div class="grid effect-advanced-grid"><div class="field-wrap span-3 target-side-wrap"><label>targetSide</label><select class="field effect-target-side"><option value="">ไม่ระบุ</option><option value="self">self · ตัวเอง</option><option value="ally">ally · ฝ่ายเรา</option><option value="enemy">enemy · ฝ่ายตรงข้าม</option><option value="both">both · ฝ่ายเราและฝ่ายตรงข้าม</option></select></div><div class="field-wrap span-3 exclude-self-wrap hidden"><label>excludeSelf</label><select class="field effect-exclude-self"><option value="">รวมเจ้าของสกิล</option>${option('true','true · เฉพาะเพื่อนร่วมทีม',initial.excludeSelf===true)}</select><small class="hint">ใช้ได้เมื่อ targetSide เป็น ally</small></div><div class="field-wrap span-3 target-match-wrap"><label>targetMatch</label><select class="field effect-target-match"><option value="any">any · ตรงอย่างใดอย่างหนึ่ง</option><option value="all">all · ต้องตรงทุกตัวกรอง</option></select></div><div class="field-wrap span-3"><label>onOwnAttack</label><select class="field effect-on-own-attack">${option('','ไม่ใช้',initial.condition?.onOwnAttack!==true)}${option('true','true · ทำงานทุกการโจมตี',initial.condition?.onOwnAttack===true)}</select></div><div class="field-wrap span-3 effect-trigger-control"><label>afterOwnAttacks</label>${optionalNumberControlHtml('afterOwnAttacks',initial.condition?.afterOwnAttacks)}</div><div class="field-wrap span-3"><label>repeat</label><select class="field effect-repeat">${option('true','วนซ้ำ',initial.condition?.repeat!==false)}${option('false','ครั้งเดียว',initial.condition?.repeat===false)}</select></div><div class="field-wrap span-3 effect-duration-turns-wrap"><label>ระยะเวลา (เทิร์น)</label>${optionalNumberControlHtml('durationTurns',initial.durationTurns)}</div><div class="field-wrap span-3 effect-duration-rounds-wrap"><label>ระยะเวลา (รอบ)</label>${optionalNumberControlHtml('durationRounds',initial.durationRounds)}</div><div class="field-wrap span-6 target-cardids-wrap"><label>targetCardIds · เลือก Card ID เป้าหมาย</label>${createTokenPicker('cards',initial.targetCardIds||[],'targetCardIds')}<small class="hint">เลือกจากฐาน หรือพิมพ์ Card ID เองแล้วกดเพิ่ม</small></div><div class="field-wrap span-3 target-elements-wrap"><label>targetElements</label>${createTokenPicker('elements',initial.targetElements||[],'targetElements')}</div><div class="field-wrap span-3 target-rarities-wrap"><label>targetRarities</label>${createTokenPicker('rarities',initial.targetRarities||[],'targetRarities')}</div><div class="field-wrap span-3 persistent-wrap"><label>persistentAfterActivation</label><select class="field effect-persistent"><option value="">ไม่ใส่</option>${option('true','true · ทำต่อเนื่อง',initial.persistentAfterActivation===true)}${option('false','false',initial.persistentAfterActivation===false)}</select></div><div class="field-wrap span-3 max-stacks-wrap"><label>maxStacks</label><select class="field effect-max-stacks">${[1,2,3,4,5,6,7,8,9,10,12,15,20,30,50,99].map(v=>option(v,v,v===num(initial.maxStacks,5))).join('')}</select></div><div class="field-wrap span-3 stack-key-wrap hidden"><label>stackKey</label><input class="field effect-stack-key" value="${esc(initial.stackKey||'')}" placeholder="เช่น drainCurse"><small class="hint">เอฟเฟกต์ที่ใช้ key เดียวกันจะเพิ่มพร้อมกัน 1 ชั้น</small></div></div></details>
   <details class="advanced selection-options hidden" open><summary>เลือกการ์ดต้นทางของสกิล</summary><div class="grid"><div class="field-wrap span-6"><label>targetSelection</label><select class="field special-target-selection">${option('random','random · สุ่มจากเป้าหมายที่กรองไว้',String(initial.targetSelection||'random')==='random')}${option('specific','specific · เจาะจง Card ID / ธาตุ / ระดับ',String(initial.targetSelection)==='specific')}${option('all','all · ทุกคนที่เข้าเงื่อนไข',String(initial.targetSelection)==='all')}</select></div><div class="field-wrap span-6 special-target-count-wrap"><label>targetCount</label>${optionalNumberControlHtml('targetCount',initial.targetCount??1)}<small class="hint">แสดงเฉพาะการเลือกแบบ random</small></div><div class="special-target-slot span-12"></div><div class="field-wrap span-12"><div class="status warn special-target-help">เลือก specific แล้วต้องเพิ่ม Card ID, ธาตุ หรือระดับอย่างน้อยหนึ่งรายการ</div></div></div></details>
   <details class="advanced transfer-options hidden" open><summary>ตั้งค่าคัดลอก / ขโมยสกิล</summary><div class="grid"><div class="field-wrap span-4"><label>อัตราสำเร็จ successRate</label>${chanceControlHtml(initial.successRate??initial.copyRate??initial.stealRate??1)}</div><div class="field-wrap span-4"><label>abilitySelection</label><select class="field ability-selection">${option('random','random · สุ่มสกิล',String(initial.abilitySelection||'random')==='random')}${option('specific','specific · เลือกตามรายการ',String(initial.abilitySelection)==='specific')}${option('all','all · ทุกสกิล',String(initial.abilitySelection)==='all')}</select></div><div class="field-wrap span-4 ability-count-wrap"><label>abilityCount</label>${optionalNumberControlHtml('abilityCount',initial.abilityCount??1)}</div><div class="field-wrap span-6"><label>abilityNames · ชื่อสกิล</label>${createTokenPicker('text',initial.abilityNames||[],'abilityNames')}</div><div class="field-wrap span-3"><label>abilityNumbers · เริ่มที่ 1</label>${createTokenPicker('numbers',initial.abilityNumbers||[],'abilityNumbers')}</div><div class="field-wrap span-3"><label>abilityIndexes · เริ่มที่ 0</label>${createTokenPicker('numbers',initial.abilityIndexes||[],'abilityIndexes')}</div><div class="field-wrap span-12"><label>abilityEffectTypes · เลือกจากชนิดเอฟเฟกต์</label>${createTokenPicker('effectTypes',initial.abilityEffectTypes||[],'abilityEffectTypes')}</div><div class="field-wrap span-4"><label>recipientSide</label><select class="field recipient-side">${option('self','self · เจ้าของสกิล',String(initial.recipientSide||'self')==='self')}${option('ally','ally · ฝ่ายเรา',String(initial.recipientSide)==='ally')}${option('enemy','enemy · ฝ่ายตรงข้าม',String(initial.recipientSide)==='enemy')}</select></div><div class="field-wrap span-4"><label>recipientSelection</label><select class="field recipient-selection">${option('random','random · สุ่มผู้รับ',String(initial.recipientSelection||'random')==='random')}${option('specific','specific · เจาะจงผู้รับ',String(initial.recipientSelection)==='specific')}${option('all','all · ผู้รับทุกคน',String(initial.recipientSelection)==='all')}</select></div><div class="field-wrap span-4 recipient-count-wrap"><label>recipientCount</label>${optionalNumberControlHtml('recipientCount',initial.recipientCount??1)}</div><div class="field-wrap span-4"><label>recipientMatch</label><select class="field recipient-match">${option('any','any · ตรงอย่างใดอย่างหนึ่ง',String(initial.recipientMatch||'any')==='any')}${option('all','all · ตรงทุกตัวกรอง',String(initial.recipientMatch)==='all')}</select></div><div class="field-wrap span-4"><label>excludeRecipientSelf</label><select class="field exclude-recipient-self">${option('false','false · รวมเจ้าของสกิล',initial.excludeRecipientSelf!==true)}${option('true','true · ไม่รวมเจ้าของสกิล',initial.excludeRecipientSelf===true)}</select></div><div class="field-wrap span-4"><label>includeTransferAbilities</label><select class="field include-transfer">${option('false','false · ป้องกันลูป',initial.includeTransferAbilities!==true)}${option('true','true · อนุญาตสกิล transfer',initial.includeTransferAbilities===true)}</select></div><div class="field-wrap span-12"><label>รูปแบบอายุสกิลคัดลอกแบบด่วน</label><select class="field copied-lifetime-preset">${option('custom','กำหนดเอง / ใช้ค่าด้านล่าง',true)}${option('battle','อยู่จนจบการต่อสู้',false)}${option('useOnce','ใช้แล้วหาย · ไม่จำกัดเวลา ต้องคัดลอกใหม่',false)}${option('attacks10','อยู่ 10 การโจมตีของผู้รับ',false)}${option('turns10','อยู่ 10 เทิร์นรวม',false)}${option('replace','ถือได้ 1 สกิล คัดลอกใหม่แทนของเก่า',false)}</select><small class="hint">เลือกพรีเซ็ตแล้วระบบจะเติมฟิลด์อายุด้านล่างให้อัตโนมัติ</small></div><div class="field-wrap span-3 copied-duration-attacks-wrap"><label>copiedAbilityDurationAttacks</label>${optionalNumberControlHtml('copiedAbilityDurationAttacks',initial.copiedAbilityDurationAttacks)}<small class="hint">หมดหลังผู้รับโจมตีครบจำนวนนี้</small></div><div class="field-wrap span-3 copied-duration-turns-wrap"><label>copiedAbilityDurationTurns</label>${optionalNumberControlHtml('copiedAbilityDurationTurns',initial.copiedAbilityDurationTurns)}<small class="hint">หมดหลังผ่านเทิร์นรวมจำนวนนี้</small></div><div class="field-wrap span-3 copied-max-uses-wrap"><label>copiedAbilityMaxUses</label>${optionalNumberControlHtml('copiedAbilityMaxUses',initial.copiedAbilityMaxUses)}<small class="hint">จำกัดจำนวนครั้งที่ Active เปิดใช้</small></div><div class="field-wrap span-3"><label>copiedAbilityExpireOnUse</label><select class="field copied-expire-on-use">${option('false','false · ไม่หายทันทีหลังใช้',initial.copiedAbilityExpireOnUse!==true)}${option('true','true · ใช้ครั้งเดียวแล้วหาย',initial.copiedAbilityExpireOnUse===true)}</select></div><div class="field-wrap span-4"><label>replacePreviousCopy</label><select class="field replace-previous-copy">${option('false','false · เก็บสกิลเดิมไว้',initial.replacePreviousCopy!==true)}${option('true','true · คัดลอกใหม่แทนของเก่า',initial.replacePreviousCopy===true)}</select></div><div class="field-wrap span-4 max-copied-abilities-wrap"><label>maxCopiedAbilities</label>${optionalNumberControlHtml('maxCopiedAbilities',initial.maxCopiedAbilities)}<small class="hint">จำนวนสกิลคัดลอกสูงสุดต่อผู้รับ</small></div><div class="field-wrap span-4"><label>โหมดแนะนำ</label><div class="status ok copied-lifetime-summary">ค่าไม่กำหนด = อยู่จนจบไฟต์</div></div><div class="field-wrap span-6"><label>recipientCardIds</label>${createTokenPicker('cards',initial.recipientCardIds||[],'recipientCardIds')}</div><div class="field-wrap span-3"><label>recipientElements</label>${createTokenPicker('elements',initial.recipientElements||[],'recipientElements')}</div><div class="field-wrap span-3"><label>recipientRarities</label>${createTokenPicker('rarities',initial.recipientRarities||[],'recipientRarities')}</div></div></details>
   <details class="advanced resistance-options hidden" open><summary>ตั้งค่าต้านสถานะ</summary><div class="grid"><div class="field-wrap span-4"><label>scope</label><select class="field resistance-scope">${option('target','target · กันเอฟเฟกต์ที่เล็งรายตัว',String(initial.scope||'target')==='target')}${option('field','field · กันเอฟเฟกต์ทั้งสนาม',String(initial.scope)==='field')}</select></div><div class="field-wrap span-4"><label>resistBeneficial</label><select class="field resist-beneficial">${option('false','false · กันเฉพาะผลเสีย/ควบคุม',initial.resistBeneficial!==true)}${option('true','true · กันเอฟเฟกต์บวกด้วย',initial.resistBeneficial===true)}</select></div><div class="field-wrap span-4"><label>คำแนะนำ</label><div class="status ok">ไม่เลือกตัวกรอง = ต้านผลเสียทุกชนิด</div></div><div class="field-wrap span-12"><label>resistCategories</label>${createTokenPicker('resistCategories',initial.resistCategories||[],'resistCategories')}</div><div class="field-wrap span-12"><label>resistEffectTypes · ต้าน type โดยตรง</label>${createTokenPicker('effectTypes',initial.resistEffectTypes||[],'resistEffectTypes')}</div><div class="field-wrap span-6"><label>resistAbilityNames · ชื่อสกิลต้นทาง</label>${createTokenPicker('text',initial.resistAbilityNames||[],'resistAbilityNames')}</div><div class="field-wrap span-6"><label>resistSourceCardIds</label>${createTokenPicker('cards',initial.resistSourceCardIds||[],'resistSourceCardIds')}</div></div></details></div>`;
@@ -3063,6 +3064,8 @@ function readEffectRow(row){
   if(onOwnAttack)obj.condition={onOwnAttack:true};
   else if(trigger!==null)obj.condition={afterOwnAttacks:trigger,repeat:row.querySelector('.effect-repeat').value!=='false'};
   const persistent=row.querySelector('.effect-persistent').value;if(persistent!=='')obj.persistentAfterActivation=persistent==='true';
+  const durationTurns=readOptionalNumberControl(row.querySelector('.effect-duration-turns-wrap .optional-number-control'));if(durationTurns!==null)obj.durationTurns=durationTurns;
+  const durationRounds=readOptionalNumberControl(row.querySelector('.effect-duration-rounds-wrap .optional-number-control'));if(durationRounds!==null)obj.durationRounds=durationRounds;
   const supportedFields=String(effectByType.get(type)?.fields||'');
   if(supportedFields.includes('maxStacks'))obj.maxStacks=int(row.querySelector('.effect-max-stacks').value,5);
   if(supportedFields.includes('stackKey'))obj.stackKey=(row.querySelector('.effect-stack-key')?.value||'').trim()||'sharedStack';
@@ -3163,6 +3166,7 @@ function validateAdvancedEffect(effect,abilityIndex,effectIndex){
     if(effect.copiedAbilityExpireOnUse===true&&Number(effect.copiedAbilityMaxUses||1)!==1)results.push({type:'warning',text:`${label}: copiedAbilityExpireOnUse จะบังคับให้หมดหลังใช้ครั้งแรก แม้ copiedAbilityMaxUses จะเป็นค่าอื่น`});
   }
   if(['statusResistance','statusResistanceStack'].includes(effect.type)&&!Number.isFinite(Number(effect.value)))results.push({type:'error',text:`${label}: statusResistance ต้องเป็นตัวเลข (รองรับค่าบวก/ลบโดยไม่มีเพดาน)`});
+  ['durationTurns','durationRounds'].forEach(field=>{if(effect[field]!==undefined&&(!Number.isInteger(Number(effect[field]))||Number(effect[field])<1))results.push({type:'error',text:`${label}: ${field} ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`})});
   if(effect.type==='activateDomain'&&!String(effect.domainId||'').trim())results.push({type:'error',text:`${label}: activateDomain ต้องระบุ domainId`});
   if(effect.type==='nullifyCardAbilities'&&effect.durationTriggers!==undefined&&(!Number.isInteger(Number(effect.durationTriggers))||Number(effect.durationTriggers)<1))results.push({type:'error',text:`${label}: durationTriggers ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`});
   if(effect.type==='nullifyCardAbilities'&&!effect.targetSide)results.push({type:'error',text:`${label}: nullifyCardAbilities ต้องระบุ targetSide`});
