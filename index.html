@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Capture Revive + Balanced Base + Awaken 20 v60</title>
+  <title>ANIME CARD CODE BUILDER · Dust Economy Scale v61</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v60 · CAPTURE REVIVE · AWAKEN 20 · BALANCED BASE · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v61 · DUST ECONOMY · UPGRADE SCALE · AWAKEN 20 · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -1831,8 +1831,8 @@
       "baseSpeed": 90,
       "baseIncome": 80,
       "maxLevel": 100,
-      "upgradeDustBase": 10,
-      "upgradeDustGrowth": 1.025,
+      "upgradeDustBase": 596,
+      "upgradeDustGrowth": 1.010,
       "powerPerLevel": 0.015,
       "incomePerLevel": 0.008,
       "awakenMax": 20,
@@ -1881,8 +1881,8 @@
       "baseSpeed": 92,
       "baseIncome": 100,
       "maxLevel": 120,
-      "upgradeDustBase": 25,
-      "upgradeDustGrowth": 1.032,
+      "upgradeDustBase": 822,
+      "upgradeDustGrowth": 1.011,
       "powerPerLevel": 0.016,
       "incomePerLevel": 0.0085,
       "awakenMax": 20,
@@ -1931,8 +1931,8 @@
       "baseSpeed": 94,
       "baseIncome": 125,
       "maxLevel": 140,
-      "upgradeDustBase": 70,
-      "upgradeDustGrowth": 1.04,
+      "upgradeDustBase": 1130,
+      "upgradeDustGrowth": 1.012,
       "powerPerLevel": 0.0175,
       "incomePerLevel": 0.009,
       "awakenMax": 20,
@@ -1981,8 +1981,8 @@
       "baseSpeed": 96,
       "baseIncome": 155,
       "maxLevel": 160,
-      "upgradeDustBase": 220,
-      "upgradeDustGrowth": 1.052,
+      "upgradeDustBase": 1530,
+      "upgradeDustGrowth": 1.013,
       "powerPerLevel": 0.019,
       "incomePerLevel": 0.0095,
       "awakenMax": 20,
@@ -2031,8 +2031,8 @@
       "baseSpeed": 98,
       "baseIncome": 190,
       "maxLevel": 180,
-      "upgradeDustBase": 750,
-      "upgradeDustGrowth": 1.064,
+      "upgradeDustBase": 1901,
+      "upgradeDustGrowth": 1.014,
       "powerPerLevel": 0.021,
       "incomePerLevel": 0.0105,
       "awakenMax": 20,
@@ -2083,8 +2083,8 @@
       "baseSpeed": 100,
       "baseIncome": 230,
       "maxLevel": 220,
-      "upgradeDustBase": 2800,
-      "upgradeDustGrowth": 1.078,
+      "upgradeDustBase": 1795,
+      "upgradeDustGrowth": 1.015,
       "powerPerLevel": 0.024,
       "incomePerLevel": 0.0115,
       "awakenMax": 20,
@@ -2137,8 +2137,8 @@
       "baseSpeed": 103,
       "baseIncome": 275,
       "maxLevel": 250,
-      "upgradeDustBase": 10000,
-      "upgradeDustGrowth": 1.092,
+      "upgradeDustBase": 1723,
+      "upgradeDustGrowth": 1.016,
       "powerPerLevel": 0.028,
       "incomePerLevel": 0.0125,
       "awakenMax": 20,
@@ -2190,8 +2190,8 @@
       "baseSpeed": 106,
       "baseIncome": 330,
       "maxLevel": 300,
-      "upgradeDustBase": 20000,
-      "upgradeDustGrowth": 1.102,
+      "upgradeDustBase": 1107,
+      "upgradeDustGrowth": 1.017,
       "powerPerLevel": 0.032,
       "incomePerLevel": 0.0215,
       "awakenMax": 20,
@@ -2818,8 +2818,8 @@
   ],
   "sourceInfo": {
     "sheetTitle": "Anime Card Collection - ระบบสกิลและเงื่อนไข",
-    "sheetUpdated": "2026-06-30-ability-conditions-v60",
-    "gameFile": "ANIME_CARD_COLLECTION_ability_conditions_v60.html",
+    "sheetUpdated": "2026-07-02-dust-economy-v61",
+    "gameFile": "ANIME_CARD_COLLECTION_DUST_QOL_TEAM_DETAIL_v6.html",
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
     "sheetRole": "primary",
@@ -3349,7 +3349,7 @@ function readAbilityCard(card){
   if(Object.keys(condition).length)ability.condition=condition;const cs=readCutscene(card);if(cs)ability.activeCutscene=cs;return ability;
 }
 function buildCard(){
-  const id=currentId(),rarity=getRarity(),elements=appState.selectedElements.slice();const card={id:id??0,name:el('cardName').value.trim(),rarity,element:elements.length===1?elements[0]:elements,balanceSchemaVersion:3};
+  const id=currentId(),rarity=getRarity(),elements=appState.selectedElements.slice();const card={id:id??0,name:el('cardName').value.trim(),rarity,element:elements.length===1?elements[0]:elements,balanceSchemaVersion:4};
   statDefs.forEach(def=>card[def.key]=statValue(def));card.normalAttackTargetCount=Math.max(1,Math.min(5,int(el('normalAttackTargetCount')?.value,1)));card.upgradeDustBase=progressionValue('dustBaseSelect','dustBaseCustom',true);card.upgradeDustGrowth=progressionValue('dustGrowthSelect','dustGrowthCustom',false);card.awakenMax=int(el('awakenMaxSelect').value);card.icon=mediaValue('iconMode','iconCustom','.png');card.image=mediaValue('imageMode','imageCustom','.png');
   const optional=[['poster','posterMode','posterCustom','.png'],['video','videoMode','videoCustom','.mp4'],['overlay','overlayMode','overlayCustom','_overlay.png']];optional.forEach(([key,modeId,customId,ext])=>{const value=mediaValue(modeId,customId,ext);if(value)card[key]=value});
   card.abilities=[...document.querySelectorAll('.ability-card')].map(readAbilityCard);return card;
