@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Taunt + Formation Leader v59</title>
+  <title>ANIME CARD CODE BUILDER · Capture Revive + Balanced Base + Awaken 20 v60</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v59 · TAUNT · MULTI TARGET · LEADER · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v60 · CAPTURE REVIVE · AWAKEN 20 · BALANCED BASE · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -151,7 +151,7 @@
       <div class="section-head"><div><h2>วิธีใช้แบบเร็ว</h2><p>แอปนี้ซิงก์คลังผ่าน Firebase และยังเปิดทำงานแบบ Local สำรองได้เมื่อออฟไลน์</p></div><span class="badge green">CLOUD READY</span></div>
       <div class="help-grid">
         <article class="help-card"><h3>1) สร้างข้อมูลการ์ด</h3><p>กรอก ID และชื่อ เลือกระดับ ธาตุ และเบสสแตตจากดรอปดาวน์ ระบบจะตรวจ ID ซ้ำทันที</p></article>
-        <article class="help-card"><h3>2) เพิ่มหลายสกิล</h3><p>กด <b>เพิ่มความสามารถ</b> แล้วเพิ่มเงื่อนไขและเอฟเฟกต์ได้หลายรายการ รวม <code>taunt</code> สำหรับบังคับเป้าหมาย ระบบจะสร้างเป็น <code>"abilities": [...]</code></p></article>
+        <article class="help-card"><h3>2) เพิ่มหลายสกิล</h3><p>กด <b>เพิ่มความสามารถ</b> แล้วเพิ่มเงื่อนไขและเอฟเฟกต์ได้หลายรายการ รวม <code>taunt</code> สำหรับบังคับเป้าหมาย และ <code>captureRevive</code> สำหรับชิงร่างศัตรูที่กำจัดได้ ระบบจะสร้างเป็น <code>"abilities": [...]</code></p></article>
         <article class="help-card"><h3>3) คัดลอกไปวาง</h3><p>เลือกรูปแบบ <b>วัตถุการ์ด + จุลภาค</b> แล้วนำโค้ดไปวางภายใน <code>const CARDS = [ ... ]</code> ของเกม</p></article>
         <article class="help-card"><h3>4) อัปเดตฐาน ID</h3><p>เมื่อเกมมีการ์ดใหม่ ให้นำเข้าไฟล์ HTML ล่าสุดในหน้า <b>ฐาน ID</b> แอปจะอ่าน ID เพื่อป้องกันการสร้างซ้ำ</p></article>
         <article class="help-card"><h3>Firebase Cloud Firestore</h3><p>คลังออนไลน์ใช้คอลเลกชัน <code>animeCardCodeBuilderCards</code> และใช้ Card ID เป็น Document ID การแก้ไข ID เดิมจึงอัปเดตข้อมูลใบเดิมแบบเรียลไทม์</p></article><article class="help-card"><h3>ชีทหลักของระบบ</h3><p>ให้อ้างอิง <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener" class="accent"><b>Google Sheet ระบบสกิลและเงื่อนไข</b></a> เป็นข้อมูลหลักสำหรับเอฟเฟกต์ เงื่อนไข และการอัปเดตครั้งถัดไป</p></article>
@@ -1108,6 +1108,16 @@
       "suitableModes": "tower, arena",
       "note": "ตัวที่ติดยั่วยุถูกเลือกก่อนแนวหน้า; การโจมตีหลายเป้าหมายจะเลือกตัวยั่วยุก่อนแล้วเติมเป้าหมายอื่น หากไม่กำหนดระยะเวลาจะใช้ 1 เทิร์นโจมตีของฝ่ายตรงข้าม",
       "exampleCode": "{ \"type\":\"taunt\", \"targetSide\":\"self\", \"durationTurns\":2, \"condition\":{\"afterOwnAttacks\":2,\"repeat\":true} }"
+    },
+    {
+      "category": "ACTIVE / คืนชีพชิงร่าง",
+      "type": "captureRevive",
+      "meaning": "เมื่อเจ้าของสกิลจัดการศัตรูสำเร็จ มีโอกาสชิงร่างที่หมดสภาพมาคืนชีพต่อสู้ในฝ่ายเรา",
+      "exampleValue": 0.3,
+      "fields": "targetSelection, targetCount, targetCardIds, targetElements, targetRarities, targetMatch, successRate, reviveType, hpRate/value, durationTurns, surviveHits, maxTriggers",
+      "suitableModes": "tower, arena",
+      "note": "ศัตรูต้นทางจะคืนชีพร่างนี้ไม่ได้ระหว่างถูกชิง; เมื่อร่างตายในฝ่ายเรา ศพจะกลับฝ่ายเดิมและคืนชีพได้ตามปกติ",
+      "exampleCode": "{ \"type\":\"captureRevive\", \"targetSelection\":\"random\", \"targetCount\":2, \"successRate\":0.60, \"reviveType\":\"reviveHitLife\", \"value\":0.30, \"surviveHits\":5 }"
     }
   ],
   "conditions": [
@@ -1815,34 +1825,41 @@
       "order": 0,
       "stars": 3,
       "dust": 5,
-      "basePower": 1000,
-      "baseHp": 5000,
-      "baseDefense": 400,
+      "basePower": 12000,
+      "baseHp": 60000,
+      "baseDefense": 4800,
       "baseSpeed": 90,
-      "baseIncome": 35,
+      "baseIncome": 80,
       "maxLevel": 100,
       "upgradeDustBase": 10,
       "upgradeDustGrowth": 1.025,
       "powerPerLevel": 0.015,
       "incomePerLevel": 0.008,
-      "awakenMax": 13,
+      "awakenMax": 20,
       "awakenCopies": [
-        1,
-        1,
-        1,
-        2,
-        2,
-        3,
-        3,
-        4,
-        5,
-        6,
-        7,
         8,
-        10
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
       ],
-      "powerBonus": 0.07,
-      "incomeBonus": 0.05
+      "powerBonus": 0.02,
+      "incomeBonus": 0.0125
     },
     "R": {
       "label": "R",
@@ -1858,9 +1875,9 @@
       "order": 1,
       "stars": 4,
       "dust": 18,
-      "basePower": 3000,
-      "baseHp": 15000,
-      "baseDefense": 1200,
+      "basePower": 14000,
+      "baseHp": 70000,
+      "baseDefense": 5600,
       "baseSpeed": 92,
       "baseIncome": 100,
       "maxLevel": 120,
@@ -1868,22 +1885,31 @@
       "upgradeDustGrowth": 1.032,
       "powerPerLevel": 0.016,
       "incomePerLevel": 0.0085,
-      "awakenMax": 11,
+      "awakenMax": 20,
       "awakenCopies": [
-        1,
-        1,
-        2,
-        2,
-        3,
-        3,
-        4,
-        5,
-        6,
         7,
-        8
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
       ],
-      "powerBonus": 0.09,
-      "incomeBonus": 0.06
+      "powerBonus": 0.0225,
+      "incomeBonus": 0.014
     },
     "SR": {
       "label": "SR",
@@ -1899,30 +1925,41 @@
       "order": 2,
       "stars": 5,
       "dust": 70,
-      "basePower": 9000,
-      "baseHp": 45000,
-      "baseDefense": 3600,
+      "basePower": 16000,
+      "baseHp": 80000,
+      "baseDefense": 6400,
       "baseSpeed": 94,
-      "baseIncome": 280,
+      "baseIncome": 125,
       "maxLevel": 140,
       "upgradeDustBase": 70,
       "upgradeDustGrowth": 1.04,
       "powerPerLevel": 0.0175,
       "incomePerLevel": 0.009,
-      "awakenMax": 9,
+      "awakenMax": 20,
       "awakenCopies": [
-        1,
-        1,
-        2,
-        2,
-        3,
-        4,
-        5,
         6,
-        8
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
       ],
-      "powerBonus": 0.12,
-      "incomeBonus": 0.08
+      "powerBonus": 0.025,
+      "incomeBonus": 0.0155
     },
     "SSR": {
       "label": "SSR",
@@ -1938,28 +1975,41 @@
       "order": 3,
       "stars": 6,
       "dust": 280,
-      "basePower": 27000,
-      "baseHp": 135000,
-      "baseDefense": 10800,
+      "basePower": 18000,
+      "baseHp": 90000,
+      "baseDefense": 7200,
       "baseSpeed": 96,
-      "baseIncome": 800,
+      "baseIncome": 155,
       "maxLevel": 160,
       "upgradeDustBase": 220,
       "upgradeDustGrowth": 1.052,
       "powerPerLevel": 0.019,
       "incomePerLevel": 0.0095,
-      "awakenMax": 7,
+      "awakenMax": 20,
       "awakenCopies": [
-        1,
-        1,
-        2,
-        3,
-        4,
         5,
-        7
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
       ],
-      "powerBonus": 0.17,
-      "incomeBonus": 0.11
+      "powerBonus": 0.0275,
+      "incomeBonus": 0.017
     },
     "UR": {
       "label": "UR",
@@ -1975,26 +2025,41 @@
       "order": 4,
       "stars": 7,
       "dust": 1500,
-      "basePower": 81000,
-      "baseHp": 405000,
-      "baseDefense": 32400,
+      "basePower": 21000,
+      "baseHp": 105000,
+      "baseDefense": 8400,
       "baseSpeed": 98,
-      "baseIncome": 2300,
+      "baseIncome": 190,
       "maxLevel": 180,
       "upgradeDustBase": 750,
       "upgradeDustGrowth": 1.064,
       "powerPerLevel": 0.021,
       "incomePerLevel": 0.0105,
-      "awakenMax": 5,
+      "awakenMax": 20,
       "awakenCopies": [
-        1,
-        1,
-        2,
-        3,
-        5
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
       ],
-      "powerBonus": 0.26,
-      "incomeBonus": 0.17
+      "powerBonus": 0.03,
+      "incomeBonus": 0.019
     },
     "LR": {
       "label": "Legends",
@@ -2012,25 +2077,41 @@
       "order": 5,
       "stars": 8,
       "dust": 9000,
-      "basePower": 243000,
-      "baseHp": 1215000,
-      "baseDefense": 97200,
+      "basePower": 24000,
+      "baseHp": 120000,
+      "baseDefense": 9600,
       "baseSpeed": 100,
-      "baseIncome": 6500,
+      "baseIncome": 230,
       "maxLevel": 220,
       "upgradeDustBase": 2800,
       "upgradeDustGrowth": 1.078,
       "powerPerLevel": 0.024,
       "incomePerLevel": 0.0115,
-      "awakenMax": 4,
+      "awakenMax": 20,
       "awakenCopies": [
-        1,
-        1,
-        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
         3
       ],
-      "powerBonus": 0.38,
-      "incomeBonus": 0.25
+      "powerBonus": 0.0325,
+      "incomeBonus": 0.021
     },
     "SC": {
       "label": "Mystical",
@@ -2050,24 +2131,41 @@
       "order": 6,
       "stars": 10,
       "dust": 50000,
-      "basePower": 729000,
-      "baseHp": 3645000,
-      "baseDefense": 291600,
+      "basePower": 27000,
+      "baseHp": 135000,
+      "baseDefense": 10800,
       "baseSpeed": 103,
-      "baseIncome": 18000,
+      "baseIncome": 275,
       "maxLevel": 250,
       "upgradeDustBase": 10000,
       "upgradeDustGrowth": 1.092,
       "powerPerLevel": 0.028,
       "incomePerLevel": 0.0125,
-      "awakenMax": 3,
+      "awakenMax": 20,
       "awakenCopies": [
-        1,
-        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
         2
       ],
-      "powerBonus": 0.65,
-      "incomeBonus": 0.45
+      "powerBonus": 0.035,
+      "incomeBonus": 0.023
     },
     "EX": {
       "label": "EX",
@@ -2086,24 +2184,41 @@
       "order": 7,
       "stars": 12,
       "dust": 100000,
-      "basePower": 2187000,
-      "baseHp": 10935000,
-      "baseDefense": 874800,
+      "basePower": 30000,
+      "baseHp": 150000,
+      "baseDefense": 12000,
       "baseSpeed": 106,
-      "baseIncome": 50000,
+      "baseIncome": 330,
       "maxLevel": 300,
       "upgradeDustBase": 20000,
       "upgradeDustGrowth": 1.102,
       "powerPerLevel": 0.032,
       "incomePerLevel": 0.0215,
-      "awakenMax": 3,
+      "awakenMax": 20,
       "awakenCopies": [
         1,
         1,
-        2
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
       ],
-      "powerBonus": 0.9,
-      "incomeBonus": 0.7
+      "powerBonus": 0.04,
+      "incomeBonus": 0.025
     }
   },
   "elements": [
@@ -2708,10 +2823,10 @@
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
     "sheetRole": "primary",
-    "builderUpdated": "2026-07-01-taunt-free-formation-leader-v4"
+    "builderUpdated": "2026-07-01-capture-revive-balance-awaken-v5"
   },
   "meta": {
-    "builderUpdated": "2026-07-01-taunt-free-formation-leader-v4"
+    "builderUpdated": "2026-07-01-capture-revive-balance-awaken-v5"
   }
 }
 </script>
@@ -2732,8 +2847,8 @@ const stackRateEffectTypes = new Set(['powerRateStack','hpRateStack','defenseRat
 const stackFlatEffectTypes = new Set(['powerFlatStack','hpFlatStack','defenseFlatStack','incomeFlatStack']);
 const stackIntegerEffectTypes = new Set(['attackHitsStack','shieldHitsStack','activeSkillCostCycleStack','activeSkillCostPermanentStack','speedFlatStack']);
 const stackEffectTypes = new Set([...stackRateEffectTypes,...stackFlatEffectTypes,...stackIntegerEffectTypes,'increaseAttackRateStack']);
-const activeEffectTypes = new Set(['nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack','taunt',...stackEffectTypes]);
-const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['criticalRate','luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack','statusResistance','revive','reviveTimedUndying','reviveHitLife',...stackRateEffectTypes]));
+const activeEffectTypes = new Set(['captureRevive','nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack','taunt',...stackEffectTypes]);
+const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['captureRevive','criticalRate','luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack','statusResistance','revive','reviveTimedUndying','reviveHitLife',...stackRateEffectTypes]));
 const integerEffectTypes = new Set(['shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost','activeSkillCostCycle','activeSkillCostPermanent','speedFlat','speedFlatStack',...stackIntegerEffectTypes]);
 const flatEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Flat$/.test(t)).concat([...stackFlatEffectTypes]));
 const el = id=>document.getElementById(id);
@@ -2861,7 +2976,7 @@ function initProgression(){
   el('dustBaseSelect').innerHTML=dustValues.map(v=>option(v,formatNumber(v),v===cfg.upgradeDustBase)).join('')+option('custom','กำหนดเอง');
   const growthValues=unique(rarityCodes.map(code=>DATA.rarities[code].upgradeDustGrowth).concat([cfg.upgradeDustGrowth])).map(Number).sort((a,b)=>a-b);
   el('dustGrowthSelect').innerHTML=growthValues.map(v=>option(v,String(v),v===cfg.upgradeDustGrowth)).join('')+option('custom','กำหนดเอง');
-  el('awakenMaxSelect').innerHTML=Array.from({length:13},(_,i)=>option(i+1,`${i+1} ขั้น`,i+1===cfg.awakenMax)).join('');
+  el('awakenMaxSelect').innerHTML=Array.from({length:20},(_,i)=>option(i+1,`${i+1} ขั้น`,i+1===cfg.awakenMax)).join('');
   el('dustBaseSelect').value=String(cfg.upgradeDustBase);el('dustGrowthSelect').value=String(cfg.upgradeDustGrowth);el('awakenMaxSelect').value=String(cfg.awakenMax);
   toggleCustomForSelect(el('dustBaseSelect'),'dustBaseCustom');toggleCustomForSelect(el('dustGrowthSelect'),'dustGrowthCustom');
 }
@@ -2949,7 +3064,7 @@ function renderConditionControl(row,field,initialValue){
 function numberPresets(field){
   if(['afterOwnAttacks','afterDomainAttacks'].includes(field))return [1,2,3,4,5,6,7,10,11,15,20,30,50,99];
   if(field==='sourceMinLevel')return [1,10,25,50,75,100,120,140,150,160,180,200,220,250,300];
-  if(field==='sourceMinAwaken')return Array.from({length:13},(_,i)=>i+1);
+  if(field==='sourceMinAwaken')return Array.from({length:20},(_,i)=>i+1);
   if(['minTeamSize','maxTeamSize'].includes(field))return [1,2,3,4,5];
   if(field==='minUniqueElements')return [1,2,3,4,5,6,8,10,12];
   if(field==='count')return [1,2,3,4,5];
@@ -3019,6 +3134,7 @@ function addEffectRow(container,initial={}){
   row.querySelector('.effect-advanced-grid').insertAdjacentHTML('beforeend',`<div class="field-wrap span-6 domain-options hidden"><label>domainId</label><input class="field effect-domain-id" value="${esc(initial.domainId||'')}" placeholder="เช่น mamonIceDomain"><small class="hint">สกิลที่ใช้ domainActive ต้องใส่ ID ให้ตรงกัน</small></div><div class="field-wrap span-3 domain-options hidden"><label>duration</label><select class="field effect-domain-duration">${option('battle','battle · จนจบไฟต์',String(initial.duration||'battle')==='battle')}</select></div>`);
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced nullify-options hidden" open><summary>ตั้งค่า nullify แบบ Active</summary><div class="grid"><div class="field-wrap span-6"><label>durationTriggers</label>${optionalNumberControlHtml('durationTriggers',initial.durationTriggers)}<small class="hint">จำนวนรอบ Active ของการ์ดเป้าหมายที่จะถูกทำให้ไร้ผล</small></div><div class="field-wrap span-6"><div class="status ok">ใช้ร่วมกับ targetSelection ด้านบนได้: random / specific / all</div></div></div></details>`);
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced ignore-options hidden" open><summary>ตั้งค่า ignoreAbilityConditions</summary><div class="grid"><div class="field-wrap span-6"><label>triggerImmediately</label><select class="field ignore-trigger-immediately">${option('false','false · ยกเลิกเฉพาะเงื่อนไขจัดทีม',initial.triggerImmediately!==true)}${option('true','true · Active พร้อมใช้ในการโจมตีครั้งแรก',initial.triggerImmediately===true)}</select></div><div class="field-wrap span-6"><div class="status ok">หลังใช้ครั้งแรก ตัวนับรอบถัดไปกลับไปใช้ afterOwnAttacks เดิม</div></div></div></details>`);
+  row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced capture-options hidden" open><summary>ตั้งค่าชิงร่างศัตรู</summary><div class="grid"><div class="field-wrap span-4"><label>อัตราสำเร็จ successRate</label>${chanceControlHtml(initial.successRate??1)}</div><div class="field-wrap span-4"><label>รูปแบบคืนชีพ reviveType</label><select class="field capture-revive-type">${option('revive','revive · คืนชีพธรรมดา',String(initial.reviveType||'revive')==='revive')}${option('reviveTimedUndying','reviveTimedUndying · อมตะชั่วคราว',String(initial.reviveType)==='reviveTimedUndying')}${option('reviveHitLife','reviveHitLife · ชีวิตตามฮิต',String(initial.reviveType)==='reviveHitLife')}</select></div><div class="field-wrap span-4"><label>maxTriggers · ชิงสำเร็จสูงสุด (ไม่ใส่ = ไม่จำกัด)</label>${optionalNumberControlHtml('maxTriggers',initial.maxTriggers)}</div><div class="field-wrap span-4 capture-duration-wrap"><label>durationTurns</label>${optionalNumberControlHtml('durationTurns',initial.durationTurns??3)}</div><div class="field-wrap span-4 capture-hitlife-wrap"><label>surviveHits</label>${optionalNumberControlHtml('surviveHits',initial.surviveHits??5)}</div><div class="field-wrap span-4"><div class="status ok capture-summary">ศัตรูคืนชีพร่างนี้ไม่ได้ จนกว่าร่างจะตายในฝ่ายเรา</div></div></div></details>`);
   container.appendChild(row);row.querySelectorAll('.token-picker').forEach(renderTokenPicker);row.querySelector('.effect-target-side').value=initial.targetSide||'';row.querySelector('.effect-target-match').value=initial.targetMatch||'any';renderEffectRow(row,initial.value);return row;
 }
 function valueKind(type){if(noValueEffects.has(type))return 'none';if(flatEffectTypes.has(type))return 'flat';if(integerEffectTypes.has(type))return 'integer';if(rateEffectTypes.has(type)||/Rate/.test(type))return 'rate';return 'number'}
@@ -3087,19 +3203,21 @@ function syncCopiedLifetimePreset(row,applyPreset=false){
 function renderEffectRow(row,initialValue){
   const category=row.querySelector('.effect-category').value,typeSelect=row.querySelector('.effect-type');if(!typeSelect.value&&initialValue===undefined)typeSelect.innerHTML=effectTypeOptions(category,'');
   const type=typeSelect.value,meta=effectByType.get(type),wrap=row.querySelector('.effect-value-wrap'),control=row.querySelector('.effect-value-control'),note=row.querySelector('.effect-note'),summary=row.querySelector('.effect-summary');
-  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain',isTaunt=type==='taunt';
+  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain',isTaunt=type==='taunt',isCapture=type==='captureRevive';
   const isRevive=['revive','reviveTimedUndying','reviveHitLife'].includes(type);
   const isHitLife=type==='reviveHitLife';
   row.querySelector('.revive-survive-hits-wrap')?.classList.toggle('hidden',!isHitLife);
   row.querySelector('.revive-max-triggers-wrap')?.classList.toggle('hidden',!isRevive);
-  row.querySelector('.selection-options')?.classList.toggle('hidden',!(isTransfer||isResistance||isNullify||isTaunt));
+  row.querySelector('.selection-options')?.classList.toggle('hidden',!(isTransfer||isResistance||isNullify||isTaunt||isCapture));
   row.querySelector('.transfer-options')?.classList.toggle('hidden',!isTransfer);
   row.querySelector('.resistance-options')?.classList.toggle('hidden',!isResistance);
   row.querySelectorAll('.domain-options').forEach(box=>box.classList.toggle('hidden',!isDomain));
   row.querySelector('.nullify-options')?.classList.toggle('hidden',!isNullify);
   row.querySelector('.ignore-options')?.classList.toggle('hidden',!isIgnore);
+  row.querySelector('.capture-options')?.classList.toggle('hidden',!isCapture);
+  if(isCapture){const rt=row.querySelector('.capture-revive-type')?.value||'revive';row.querySelector('.capture-duration-wrap')?.classList.toggle('hidden',rt!=='reviveTimedUndying');row.querySelector('.capture-hitlife-wrap')?.classList.toggle('hidden',rt!=='reviveHitLife');}
   if(isTransfer)syncCopiedLifetimePreset(row,false);
-  syncSpecialTargetControls(row,isTransfer||isResistance||isNullify||isIgnore||isTaunt);
+  syncSpecialTargetControls(row,isTransfer||isResistance||isNullify||isIgnore||isTaunt||isCapture);
   if(!meta){wrap.classList.remove('hidden');control.innerHTML='';note.textContent='เลือกเอฟเฟกต์เพื่อดูวิธีใช้';summary.className='status warn effect-summary';summary.textContent='เลือกเอฟเฟกต์';syncExcludeSelfControl(row);renderOutput();return}
   const kind=valueKind(type);wrap.classList.toggle('hidden',kind==='none');
   if(kind!=='none'){
@@ -3144,11 +3262,20 @@ function readEffectRow(row){
   const supportedFields=String(effectByType.get(type)?.fields||'');
   if(supportedFields.includes('maxStacks'))obj.maxStacks=int(row.querySelector('.effect-max-stacks').value,5);
   if(supportedFields.includes('stackKey'))obj.stackKey=(row.querySelector('.effect-stack-key')?.value||'').trim()||'sharedStack';
-  if(transferEffectTypes.has(type)||type==='statusResistance'||type==='nullifyCardAbilities'||type==='taunt'){
+  if(transferEffectTypes.has(type)||type==='statusResistance'||type==='nullifyCardAbilities'||type==='taunt'||type==='captureRevive'){
     obj.targetSelection=row.querySelector('.special-target-selection').value||'random';
     if(obj.targetSelection==='random'){
       const count=readOptionalNumberControl(row.querySelector('.selection-options .optional-number-control'));if(count!==null)obj.targetCount=count;
     }
+  }
+  if(type==='captureRevive'){
+    obj.successRate=readChanceControl(row.querySelector('.capture-options'),1);
+    obj.reviveType=row.querySelector('.capture-revive-type')?.value||'revive';
+    const captureMax=readOptionalNumberControl(row.querySelector('.capture-options .optional-number-control'));if(captureMax!==null)obj.maxTriggers=captureMax;
+    const controls=row.querySelectorAll('.capture-options .optional-number-control');
+    if(obj.reviveType==='reviveTimedUndying'){const v=readOptionalNumberControl(controls[1]);if(v!==null)obj.durationTurns=v;delete obj.surviveHits;}
+    if(obj.reviveType==='reviveHitLife'){const v=readOptionalNumberControl(controls[2]);if(v!==null)obj.surviveHits=v;delete obj.durationTurns;}
+    if(!obj.targetSelection)obj.targetSelection='random';
   }
   if(transferEffectTypes.has(type)){
     obj.successRate=readChanceControl(row.querySelector('.transfer-options'),1);
@@ -3222,7 +3349,7 @@ function readAbilityCard(card){
   if(Object.keys(condition).length)ability.condition=condition;const cs=readCutscene(card);if(cs)ability.activeCutscene=cs;return ability;
 }
 function buildCard(){
-  const id=currentId(),rarity=getRarity(),elements=appState.selectedElements.slice();const card={id:id??0,name:el('cardName').value.trim(),rarity,element:elements.length===1?elements[0]:elements};
+  const id=currentId(),rarity=getRarity(),elements=appState.selectedElements.slice();const card={id:id??0,name:el('cardName').value.trim(),rarity,element:elements.length===1?elements[0]:elements,balanceSchemaVersion:3};
   statDefs.forEach(def=>card[def.key]=statValue(def));card.normalAttackTargetCount=Math.max(1,Math.min(5,int(el('normalAttackTargetCount')?.value,1)));card.upgradeDustBase=progressionValue('dustBaseSelect','dustBaseCustom',true);card.upgradeDustGrowth=progressionValue('dustGrowthSelect','dustGrowthCustom',false);card.awakenMax=int(el('awakenMaxSelect').value);card.icon=mediaValue('iconMode','iconCustom','.png');card.image=mediaValue('imageMode','imageCustom','.png');
   const optional=[['poster','posterMode','posterCustom','.png'],['video','videoMode','videoCustom','.mp4'],['overlay','overlayMode','overlayCustom','_overlay.png']];optional.forEach(([key,modeId,customId,ext])=>{const value=mediaValue(modeId,customId,ext);if(value)card[key]=value});
   card.abilities=[...document.querySelectorAll('.ability-card')].map(readAbilityCard);return card;
@@ -3245,6 +3372,14 @@ function validateAdvancedEffect(effect,abilityIndex,effectIndex){
   if(['revive','reviveTimedUndying','reviveHitLife'].includes(effect.type)&&effect.maxTriggers!==undefined&&(!Number.isInteger(Number(effect.maxTriggers))||Number(effect.maxTriggers)<1))results.push({type:'error',text:`${label}: maxTriggers ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`});
   if(effect.type==='reviveTimedUndying'&&(!Number.isInteger(Number(effect.durationTurns))||Number(effect.durationTurns)<1))results.push({type:'error',text:`${label}: reviveTimedUndying ต้องกำหนด durationTurns ตั้งแต่ 1 ขึ้นไป`});
   if(effect.type==='taunt'&&effect.durationTurns===undefined&&effect.durationRounds===undefined)results.push({type:'warning',text:`${label}: taunt ไม่ได้กำหนดระยะเวลา Runtime จะใช้ 1 เทิร์นโจมตีของฝ่ายตรงข้าม`});
+  if(effect.type==='captureRevive'){
+    if(effect.condition?.afterOwnAttacks!==undefined||effect.condition?.onOwnAttack===true)results.push({type:'warning',text:`${label}: captureRevive ทำงานตอนเจ้าของสกิลเป็นผู้สังหาร จึงไม่ใช้ afterOwnAttacks/onOwnAttack ซ้อน`});
+    if(!Number.isFinite(Number(effect.successRate))||Number(effect.successRate)<0)results.push({type:'error',text:`${label}: captureRevive ต้องกำหนด successRate ตั้งแต่ 0 ขึ้นไป`});
+    if(!Number.isInteger(Number(effect.targetCount||1))||Number(effect.targetCount||1)<1||Number(effect.targetCount||1)>5)results.push({type:'error',text:`${label}: targetCount ต้องอยู่ระหว่าง 1–5`});
+    if(!['revive','reviveTimedUndying','reviveHitLife'].includes(String(effect.reviveType||'revive')))results.push({type:'error',text:`${label}: reviveType ไม่ถูกต้อง`});
+    if(effect.reviveType==='reviveTimedUndying'&&(!Number.isInteger(Number(effect.durationTurns))||Number(effect.durationTurns)<1))results.push({type:'error',text:`${label}: รูปแบบอมตะชั่วคราวต้องกำหนด durationTurns`});
+    if(effect.reviveType==='reviveHitLife'&&(!Number.isInteger(Number(effect.surviveHits))||Number(effect.surviveHits)<1))results.push({type:'error',text:`${label}: รูปแบบชีวิตตามฮิตต้องกำหนด surviveHits`});
+  }
   ['durationTurns','durationRounds'].forEach(field=>{if(effect[field]!==undefined&&(!Number.isInteger(Number(effect[field]))||Number(effect[field])<1))results.push({type:'error',text:`${label}: ${field} ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`})});
   if(effect.type==='activateDomain'&&!String(effect.domainId||'').trim())results.push({type:'error',text:`${label}: activateDomain ต้องระบุ domainId`});
   if(effect.type==='nullifyCardAbilities'&&effect.durationTriggers!==undefined&&(!Number.isInteger(Number(effect.durationTriggers))||Number(effect.durationTriggers)<1))results.push({type:'error',text:`${label}: durationTriggers ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`});
@@ -3383,7 +3518,7 @@ function bindEvents(){
   });
   el('abilitiesContainer').addEventListener('change',e=>{
     const row=e.target.closest('.condition-row');if(e.target.classList.contains('condition-field'))renderConditionControl(row,e.target.value);else if(e.target.classList.contains('number-preset')){const input=e.target.closest('.number-control').querySelector('.number-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}
-    const effect=e.target.closest('.effect-row');if(effect&&e.target.classList.contains('effect-category')){effect.querySelector('.effect-type').innerHTML=effectTypeOptions(e.target.value,'');renderEffectRow(effect)}else if(effect&&e.target.classList.contains('effect-type'))renderEffectRow(effect);else if(effect&&e.target.classList.contains('effect-target-side')){syncExcludeSelfControl(effect);renderOutput()}else if(effect&&e.target.classList.contains('special-target-selection')){syncSpecialTargetControls(effect,true);renderOutput()}else if(effect&&e.target.classList.contains('effect-value-select')){effect.querySelector('.effect-value-custom').classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('optional-number-preset')){const input=e.target.closest('.optional-number-control').querySelector('.optional-number-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('chance-preset')){const input=e.target.closest('.chance-control').querySelector('.chance-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('copied-lifetime-preset')){syncCopiedLifetimePreset(effect,true);renderOutput()}else if(effect&&(e.target.classList.contains('copied-expire-on-use')||e.target.classList.contains('replace-previous-copy'))){syncCopiedLifetimePreset(effect,false);renderOutput()}
+    const effect=e.target.closest('.effect-row');if(effect&&e.target.classList.contains('effect-category')){effect.querySelector('.effect-type').innerHTML=effectTypeOptions(e.target.value,'');renderEffectRow(effect)}else if(effect&&e.target.classList.contains('effect-type'))renderEffectRow(effect);else if(effect&&e.target.classList.contains('effect-target-side')){syncExcludeSelfControl(effect);renderOutput()}else if(effect&&e.target.classList.contains('special-target-selection')){syncSpecialTargetControls(effect,true);renderOutput()}else if(effect&&e.target.classList.contains('effect-value-select')){effect.querySelector('.effect-value-custom').classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('optional-number-preset')){const input=e.target.closest('.optional-number-control').querySelector('.optional-number-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('chance-preset')){const input=e.target.closest('.chance-control').querySelector('.chance-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('copied-lifetime-preset')){syncCopiedLifetimePreset(effect,true);renderOutput()}else if(effect&&e.target.classList.contains('capture-revive-type')){renderEffectRow(effect);renderOutput()}else if(effect&&(e.target.classList.contains('copied-expire-on-use')||e.target.classList.contains('replace-previous-copy'))){syncCopiedLifetimePreset(effect,false);renderOutput()}
     const ability=e.target.closest('.ability-card');if(ability&&e.target.classList.contains('cutscene-mode'))ability.querySelector('.custom-cutscene').classList.toggle('hidden',e.target.value!=='custom');renderOutput();
   });
   el('abilitiesContainer').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList.contains('token-custom')){e.preventDefault();addCustomPickerValue(e.target.closest('.token-picker'))}});
