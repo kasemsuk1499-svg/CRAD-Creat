@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Dust Economy Scale v61</title>
+  <title>ANIME CARD CODE BUILDER · Company Support Runtime v64</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v61 · DUST ECONOMY · UPGRADE SCALE · AWAKEN 20 · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v64 · DUST ECONOMY · UPGRADE SCALE · AWAKEN 20 · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -1118,6 +1118,96 @@
       "suitableModes": "tower, arena",
       "note": "ศัตรูต้นทางจะคืนชีพร่างนี้ไม่ได้ระหว่างถูกชิง; เมื่อร่างตายในฝ่ายเรา ศพจะกลับฝ่ายเดิมและคืนชีพได้ตามปกติ",
       "exampleCode": "{ \"type\":\"captureRevive\", \"targetSelection\":\"random\", \"targetCount\":2, \"successRate\":0.60, \"reviveType\":\"reviveHitLife\", \"value\":0.30, \"surviveHits\":5 }"
+    },
+    {
+      "category": "ACTIVE / จังหวะสกิล",
+      "type": "triggerThresholdModifier",
+      "meaning": "เพิ่ม/ลดจำนวนการโจมตีที่ต้องใช้ก่อน Active ทำงานในรอบปัจจุบัน",
+      "exampleValue": -1,
+      "fields": "condition, targetSide, targetCardIds, targetElements, targetRarities",
+      "suitableModes": "tower, arena",
+      "note": "ค่า -1 ทำให้ afterOwnAttacks 3 เหลือ 2 ในรอบถัดไป; ค่าต่ำสุด 1",
+      "exampleCode": "{ \"type\":\"triggerThresholdModifier\", \"value\":-1, \"targetSide\":\"ally\", \"targetCardIds\":[9000] }"
+    },
+    {
+      "category": "ACTIVE / จังหวะสกิล",
+      "type": "triggerThresholdPermanentModifier",
+      "meaning": "เพิ่ม/ลดจำนวนการโจมตีก่อน Active แบบถาวรตลอดการต่อสู้",
+      "exampleValue": -1,
+      "fields": "condition, targetSide, targetCardIds, targetElements, targetRarities",
+      "suitableModes": "tower, arena",
+      "note": "เป็นชื่ออ่านง่ายของ activeSkillCostPermanent และใช้ระบบเดียวกัน",
+      "exampleCode": "{ \"type\":\"triggerThresholdPermanentModifier\", \"value\":-1, \"targetSide\":\"ally\", \"targetCardIds\":[9000] }"
+    },
+    {
+      "category": "ACTIVE / เป้าหมายโจมตี",
+      "type": "nextAttackTargetCount",
+      "meaning": "กำหนดจำนวนเป้าหมายของการโจมตีครั้งที่ Active ทำงาน",
+      "exampleValue": 5,
+      "fields": "condition, targetSide, targetSelection",
+      "suitableModes": "tower, arena",
+      "note": "ค่า 1-5; ใช้ 5 สำหรับโจมตีทั้งทีมในระบบทีม 5 ช่อง",
+      "exampleCode": "{ \"type\":\"nextAttackTargetCount\", \"value\":5, \"condition\":{\"afterOwnAttacks\":3,\"repeat\":true} }"
+    },
+    {
+      "category": "ACTIVE / โจมตีต่อเนื่อง",
+      "type": "followUpAttack",
+      "meaning": "โจมตีติดตามหลังการโจมตีหลักด้วยอัตราพลังและจำนวนฮิตที่กำหนด",
+      "exampleValue": 0.5,
+      "fields": "condition, hits, targetCount, targetSelection, successRate, canCritical, countAsOwnAttack, targetSide",
+      "suitableModes": "tower, arena",
+      "note": "value 0.50 = พลังต่อฮิต 50%; ระบบรวมความเสียหายและแสดงเหตุการณ์ Follow-up แยกในผลต่อสู้",
+      "exampleCode": "{ \"type\":\"followUpAttack\", \"value\":0.50, \"hits\":1, \"targetCount\":1, \"canCritical\":true, \"condition\":{\"afterOwnAttacks\":2,\"repeat\":true} }"
+    },
+    {
+      "category": "ACTIVE / โต้กลับ",
+      "type": "counterAttack",
+      "meaning": "เมื่อเจ้าของสกิลได้รับความเสียหาย จะโจมตีสวนกลับทันที",
+      "exampleValue": 0.8,
+      "fields": "condition, hits, successRate, canCritical, maxActivations, defensePenetrationRate",
+      "suitableModes": "tower, arena",
+      "note": "แนะนำ condition.onDamaged=true; value 0.80 = พลังสวนกลับ 80% ต่อฮิต และไม่เรียก Counter ซ้อนกัน",
+      "exampleCode": "{ \"type\":\"counterAttack\", \"value\":0.80, \"hits\":1, \"successRate\":1, \"condition\":{\"onDamaged\":true,\"maxActivations\":5} }"
+    },
+    {
+      "category": "ACTIVE / ธาตุ",
+      "type": "adaptiveElement",
+      "meaning": "เลือกธาตุของเจ้าของสกิลที่ได้เปรียบเป้าหมายที่สุดอัตโนมัติในการโจมตีครั้งนี้",
+      "exampleValue": null,
+      "fields": "condition, availableElements",
+      "suitableModes": "tower, arena",
+      "note": "ถ้าไม่ใส่ availableElements จะใช้ธาตุทั้งหมดของการ์ดต้นทาง เหมาะกับการ์ดหลายธาตุ",
+      "exampleCode": "{ \"type\":\"adaptiveElement\", \"availableElements\":[\"ไฟ\",\"น้ำ\",\"ลม\"], \"condition\":{\"onOwnAttack\":true} }"
+    },
+    {
+      "category": "ACTIVE / ธาตุ",
+      "type": "multiElementAttack",
+      "meaning": "เปลี่ยนการโจมตีเป็นชุดฮิตหลายธาตุตามลำดับที่กำหนด",
+      "exampleValue": 1,
+      "fields": "condition, attackElements, hitsPerElement, targetCount, canCritical",
+      "suitableModes": "tower, arena",
+      "note": "value หรือ hitsPerElement คือจำนวนฮิตต่อธาตุ; ระบบคำนวณค่าแพ้ทางเฉลี่ยของทุกธาตุ",
+      "exampleCode": "{ \"type\":\"multiElementAttack\", \"value\":1, \"attackElements\":[\"แสง\",\"ไฟ\",\"น้ำ\"], \"targetCount\":3, \"condition\":{\"afterOwnAttacks\":3,\"repeat\":true} }"
+    },
+    {
+      "category": "คริติคอล",
+      "type": "criticalDamageRate",
+      "meaning": "เพิ่ม/ลดความเสียหายคริติคอลของการโจมตีที่เอฟเฟกต์ทำงาน",
+      "exampleValue": 0.3,
+      "fields": "condition, targetSide, targetCardIds, targetElements, targetRarities, durationTurns, durationRounds",
+      "suitableModes": "tower, arena",
+      "note": "0.30 = เพิ่มตัวคูณคริติคอล 30% จากค่าปัจจุบัน",
+      "exampleCode": "{ \"type\":\"criticalDamageRate\", \"value\":0.30, \"targetSide\":\"self\", \"condition\":{\"onOwnAttack\":true} }"
+    },
+    {
+      "category": "เจาะป้องกัน",
+      "type": "defensePenetrationRate",
+      "meaning": "เพิกเฉย DEF ของเป้าหมายตามอัตราที่กำหนด",
+      "exampleValue": 0.25,
+      "fields": "condition, targetSide, targetCardIds, targetElements, targetRarities, durationTurns, durationRounds",
+      "suitableModes": "tower, arena",
+      "note": "0.25 = ใช้ DEF ของเป้าหมายเพียง 75%; ค่าสูงสุดที่มีผล 100%",
+      "exampleCode": "{ \"type\":\"defensePenetrationRate\", \"value\":0.25, \"targetSide\":\"self\", \"condition\":{\"onOwnAttack\":true} }"
     }
   ],
   "conditions": [
@@ -1695,6 +1785,146 @@
       "example": 1,
       "position": "effect",
       "note": "copy/steal"
+    },
+    {
+      "field": "onBattleStart",
+      "valueType": "boolean",
+      "meaning": "ทำงานทันทีเมื่อเริ่มการต่อสู้",
+      "example": true,
+      "position": "condition",
+      "note": "ทำงานครั้งเดียว เว้นแต่ระบบภายนอกรีเซ็ตสกิล"
+    },
+    {
+      "field": "onDamaged",
+      "valueType": "boolean",
+      "meaning": "ทำงานเมื่อเจ้าของสกิลได้รับความเสียหาย",
+      "example": true,
+      "position": "condition",
+      "note": "ใช้กับ counterAttack หรือบัฟหลังถูกโจมตี"
+    },
+    {
+      "field": "afterDamagedHits",
+      "valueType": "number",
+      "meaning": "ทำงานเมื่อสะสมจำนวนฮิตที่ได้รับครบ",
+      "example": 3,
+      "position": "condition",
+      "note": "ใช้ร่วมกับ onDamaged; ฮิตที่โล่รับยังนับ แต่ฮิตที่หลบไม่นับ"
+    },
+    {
+      "field": "onCritical",
+      "valueType": "boolean",
+      "meaning": "ทำงานเมื่อเจ้าของสกิลโจมตีติดคริติคอล",
+      "example": true,
+      "position": "condition",
+      "note": "เอฟเฟกต์ที่ไม่ใช่ Counter จะถูกเตรียมไว้ใช้ในเทิร์นถัดไป"
+    },
+    {
+      "field": "afterCriticalHits",
+      "valueType": "number",
+      "meaning": "ทำงานเมื่อสะสมคริติคอลครบจำนวน",
+      "example": 2,
+      "position": "condition",
+      "note": "ใช้ร่วมกับ onCritical"
+    },
+    {
+      "field": "onAllyActiveSkill",
+      "valueType": "boolean",
+      "meaning": "ทำงานเมื่อฝ่ายเดียวกันเปิดใช้ Active Skill",
+      "example": true,
+      "position": "condition",
+      "note": "นับ Active ของเจ้าของสกิลและเพื่อนร่วมทีม"
+    },
+    {
+      "field": "afterActiveSkills",
+      "valueType": "number",
+      "meaning": "ทำงานเมื่อฝ่ายเดียวกันใช้ Active ครบจำนวน",
+      "example": 3,
+      "position": "condition",
+      "note": "ใช้ร่วมกับ onAllyActiveSkill"
+    },
+    {
+      "field": "onKill",
+      "valueType": "boolean",
+      "meaning": "ทำงานเมื่อเจ้าของสกิลจัดการเป้าหมายสำเร็จ",
+      "example": true,
+      "position": "condition",
+      "note": "ถ้าจัดการหลายเป้าหมายพร้อมกันจะนับตามจำนวนเป้าหมาย"
+    },
+    {
+      "field": "sourceHpBelowRate",
+      "valueType": "number",
+      "meaning": "ทำงานเมื่อ HP เจ้าของสกิลต่ำกว่าหรือเท่ากับอัตรานี้",
+      "example": 0.4,
+      "position": "condition",
+      "note": "0.40 = HP 40%; ใช้เป็นเงื่อนไขเสริมกับ Trigger อื่นได้"
+    },
+    {
+      "field": "sourceHpAboveRate",
+      "valueType": "number",
+      "meaning": "ทำงานเมื่อ HP เจ้าของสกิลสูงกว่าหรือเท่ากับอัตรานี้",
+      "example": 0.8,
+      "position": "condition",
+      "note": "0.80 = HP 80%"
+    },
+    {
+      "field": "targetHpBelowRate",
+      "valueType": "number",
+      "meaning": "ทำงานเมื่อ HP เป้าหมายต่ำกว่าหรือเท่ากับอัตรานี้",
+      "example": 0.3,
+      "position": "condition",
+      "note": "ตรวจเป้าหมายหลักขณะเปิดใช้สกิล"
+    },
+    {
+      "field": "targetHpAboveRate",
+      "valueType": "number",
+      "meaning": "ทำงานเมื่อ HP เป้าหมายสูงกว่าหรือเท่ากับอัตรานี้",
+      "example": 0.7,
+      "position": "condition",
+      "note": "ตรวจเป้าหมายหลักขณะเปิดใช้สกิล"
+    },
+    {
+      "field": "maxActivations",
+      "valueType": "number",
+      "meaning": "จำนวนครั้งสูงสุดที่ Trigger นี้เปิดใช้ได้ต่อการต่อสู้",
+      "example": 1,
+      "position": "condition",
+      "note": "ใช้จำกัด Trigger ทุกประเภท รวม onOwnAttack และเหตุการณ์ใหม่"
+    },
+    {
+      "field": "minCardGroupCount",
+      "valueType": "object",
+      "meaning": "ต้องมีการ์ดจากกลุ่ม ID ที่กำหนดอย่างน้อยตามจำนวน",
+      "example": {
+        "cardIds": [
+          9001,
+          9002,
+          9003,
+          9004,
+          9005,
+          9006
+        ],
+        "count": 1
+      },
+      "position": "condition",
+      "note": "เหมาะกับสกิลหัวหน้าที่สลับโหมดเมื่อมีสมาชิกบริษัทอย่างน้อย 1 คน"
+    },
+    {
+      "field": "maxCardGroupCount",
+      "valueType": "object",
+      "meaning": "จำนวนการ์ดจากกลุ่ม ID ที่กำหนดต้องไม่เกินค่านี้",
+      "example": {
+        "cardIds": [
+          9001,
+          9002,
+          9003,
+          9004,
+          9005,
+          9006
+        ],
+        "count": 0
+      },
+      "position": "condition",
+      "note": "ใช้สร้างโหมดเล่นเดี่ยว: count 0 หมายถึงห้ามมีสมาชิกกลุ่มนี้ในทีม"
     }
   ],
   "baseStats": [
@@ -1832,7 +2062,7 @@
       "baseIncome": 80,
       "maxLevel": 100,
       "upgradeDustBase": 596,
-      "upgradeDustGrowth": 1.010,
+      "upgradeDustGrowth": 1.01,
       "powerPerLevel": 0.015,
       "incomePerLevel": 0.008,
       "awakenMax": 20,
@@ -2818,15 +3048,17 @@
   ],
   "sourceInfo": {
     "sheetTitle": "Anime Card Collection - ระบบสกิลและเงื่อนไข",
-    "sheetUpdated": "2026-07-02-dust-economy-v61",
-    "gameFile": "ANIME_CARD_COLLECTION_DUST_QOL_TEAM_DETAIL_v6.html",
+    "sheetUpdated": "2026-07-03-company-support-v64",
+    "gameFile": "ANIME_CARD_COLLECTION_COMPANY_SUPPORT_v64.html",
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
     "sheetRole": "primary",
-    "builderUpdated": "2026-07-01-capture-revive-balance-awaken-v5"
+    "builderUpdated": "2026-07-03-company-support-v64",
+    "currentEffectCount": 104,
+    "currentConditionCount": 84
   },
   "meta": {
-    "builderUpdated": "2026-07-01-capture-revive-balance-awaken-v5"
+    "builderUpdated": "2026-07-03-company-support-v64"
   }
 }
 </script>
@@ -2840,16 +3072,16 @@ const rarityCodes = Object.keys(DATA.rarities).sort((a,b)=>DATA.rarities[a].orde
 const conditionCatalog = DATA.conditions.filter(x=>x.position==='condition');
 const effectCatalog = DATA.effects;
 const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
-const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain','taunt']);
+const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain','taunt','adaptiveElement']);
 const transferEffectTypes = new Set(['copyAbilities','stealAbilities']);
 const resistanceCategories = ['all','cost','transfer','abilityControl','statReduction','hitReduction','healingReduction','shieldReduction'];
 const stackRateEffectTypes = new Set(['powerRateStack','hpRateStack','defenseRateStack','incomeRateStack','criticalRateStack','dodgeRateStack','blockRateStack','damageTakenRateStack','healingRateStack','shieldRecoveryRateStack','statusResistanceStack','teamPowerRateStack','enemyPowerRateStack','selfPowerRateStack','teamHpRateStack','enemyHpRateStack','selfHpRateStack','teamDefenseRateStack','enemyDefenseRateStack','selfDefenseRateStack','teamIncomeRateStack','enemyIncomeRateStack','selfIncomeRateStack']);
 const stackFlatEffectTypes = new Set(['powerFlatStack','hpFlatStack','defenseFlatStack','incomeFlatStack']);
 const stackIntegerEffectTypes = new Set(['attackHitsStack','shieldHitsStack','activeSkillCostCycleStack','activeSkillCostPermanentStack','speedFlatStack']);
 const stackEffectTypes = new Set([...stackRateEffectTypes,...stackFlatEffectTypes,...stackIntegerEffectTypes,'increaseAttackRateStack']);
-const activeEffectTypes = new Set(['captureRevive','nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack','taunt',...stackEffectTypes]);
-const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['captureRevive','criticalRate','luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack','statusResistance','revive','reviveTimedUndying','reviveHitLife',...stackRateEffectTypes]));
-const integerEffectTypes = new Set(['shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost','activeSkillCostCycle','activeSkillCostPermanent','speedFlat','speedFlatStack',...stackIntegerEffectTypes]);
+const activeEffectTypes = new Set(['captureRevive','nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack','taunt','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','followUpAttack','counterAttack','adaptiveElement','multiElementAttack','criticalDamageRate','defensePenetrationRate',...stackEffectTypes]);
+const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['captureRevive','criticalRate','luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack','statusResistance','revive','reviveTimedUndying','reviveHitLife','followUpAttack','counterAttack','criticalDamageRate','defensePenetrationRate',...stackRateEffectTypes]));
+const integerEffectTypes = new Set(['shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost','activeSkillCostCycle','activeSkillCostPermanent','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','multiElementAttack','speedFlat','speedFlatStack',...stackIntegerEffectTypes]);
 const flatEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Flat$/.test(t)).concat([...stackFlatEffectTypes]));
 const el = id=>document.getElementById(id);
 const appState = {
@@ -3032,7 +3264,7 @@ function conditionGroup(field){
   if(/Rarit/.test(field))return 'ระดับ';
   if(/source|leader/.test(field))return 'เจ้าของสกิล';
   if(/CardIds|Teammate/.test(field))return 'การ์ดร่วมทีม';
-  if(['onOwnAttack','afterOwnAttacks','repeat','domainActive','afterDomainAttacks'].includes(field))return 'Active Skill / อาณาเขต';
+  if(['onOwnAttack','afterOwnAttacks','repeat','domainActive','afterDomainAttacks','onBattleStart','onDamaged','afterDamagedHits','onCritical','afterCriticalHits','onAllyActiveSkill','afterActiveSkills','onKill','sourceHpBelowRate','sourceHpAboveRate','targetHpBelowRate','targetHpAboveRate','maxActivations'].includes(field))return 'Active Skill / เหตุการณ์ / HP';
   return 'ขนาดทีม';
 }
 function conditionOptions(selected=''){
@@ -3057,12 +3289,14 @@ function renderConditionControl(row,field,initialValue){
     host.innerHTML=createTokenPicker(kind,Array.isArray(initialValue)?initialValue:[]);
   } else if(valueType.includes('object')){
     if(field==='minCombinedElementCount')host.innerHTML=`<div class="grid"><div class="span-8">${createTokenPicker('elements',initialValue?.elements||[])}</div><div class="field-wrap span-4"><label>จำนวนรวมขั้นต่ำ</label>${numberControlHtml('count',initialValue?.count)}</div></div>`;
+    else if(['minCardGroupCount','maxCardGroupCount'].includes(field))host.innerHTML=`<div class="grid"><div class="span-8">${createTokenPicker('cards',initialValue?.cardIds||[])}</div><div class="field-wrap span-4"><label>จำนวนการ์ดในกลุ่ม</label>${numberControlHtml('count',initialValue?.count??(field==='maxCardGroupCount'?0:1))}</div></div>`;
     else host.innerHTML=createKeyValuePicker(field,initialValue||{});
   }
   host.querySelectorAll('.token-picker').forEach(renderTokenPicker);host.querySelectorAll('.kv-picker').forEach(renderKvPicker);renderOutput();
 }
 function numberPresets(field){
-  if(['afterOwnAttacks','afterDomainAttacks'].includes(field))return [1,2,3,4,5,6,7,10,11,15,20,30,50,99];
+  if(['afterOwnAttacks','afterDomainAttacks','afterDamagedHits','afterCriticalHits','afterActiveSkills','maxActivations'].includes(field))return [1,2,3,4,5,6,7,10,11,15,20,30,50,99];
+  if(['sourceHpBelowRate','sourceHpAboveRate','targetHpBelowRate','targetHpAboveRate'].includes(field))return [0.1,0.2,0.25,0.3,0.4,0.5,0.6,0.7,0.75,0.8,0.9,1];
   if(field==='sourceMinLevel')return [1,10,25,50,75,100,120,140,150,160,180,200,220,250,300];
   if(field==='sourceMinAwaken')return Array.from({length:20},(_,i)=>i+1);
   if(['minTeamSize','maxTeamSize'].includes(field))return [1,2,3,4,5];
@@ -3128,6 +3362,7 @@ function addEffectRow(container,initial={}){
   const meta=effectByType.get(initial.type);const category=meta?.category||'ทั้งหมด';const row=document.createElement('div');row.className='effect-row';
   row.innerHTML=`<button class="btn sm danger row-remove" type="button">×</button><div class="row-pad"><div class="grid"><div class="field-wrap span-4"><label>หมวดเอฟเฟกต์</label><select class="field effect-category">${effectCategories().map(x=>option(x,x,x===category)).join('')}</select></div><div class="field-wrap span-8"><label>ชนิดเอฟเฟกต์ <span class="req">*</span></label><select class="field effect-type">${effectTypeOptions(category,initial.type||'')}</select></div><div class="field-wrap span-4 effect-value-wrap"><label>ค่า value</label><div class="effect-value-control"></div></div><div class="field-wrap span-8"><label>สรุป</label><div class="status warn effect-summary">เลือกเอฟเฟกต์</div></div></div><div class="effect-note">เลือกเอฟเฟกต์เพื่อดูวิธีใช้</div>
   <details class="advanced effect-advanced"><summary>Active Trigger และตัวเลือกทั่วไป</summary><div class="grid effect-advanced-grid"><div class="field-wrap span-3 target-side-wrap"><label>targetSide</label><select class="field effect-target-side"><option value="">ไม่ระบุ</option><option value="self">self · ตัวเอง</option><option value="ally">ally · ฝ่ายเรา</option><option value="enemy">enemy · ฝ่ายตรงข้าม</option><option value="both">both · ฝ่ายเราและฝ่ายตรงข้าม</option></select></div><div class="field-wrap span-3 exclude-self-wrap hidden"><label>excludeSelf</label><select class="field effect-exclude-self"><option value="">รวมเจ้าของสกิล</option>${option('true','true · เฉพาะเพื่อนร่วมทีม',initial.excludeSelf===true)}</select><small class="hint">ใช้ได้เมื่อ targetSide เป็น ally</small></div><div class="field-wrap span-3 target-match-wrap"><label>targetMatch</label><select class="field effect-target-match"><option value="any">any · ตรงอย่างใดอย่างหนึ่ง</option><option value="all">all · ต้องตรงทุกตัวกรอง</option></select></div><div class="field-wrap span-3"><label>onOwnAttack</label><select class="field effect-on-own-attack">${option('','ไม่ใช้',initial.condition?.onOwnAttack!==true)}${option('true','true · ทำงานทุกการโจมตี',initial.condition?.onOwnAttack===true)}</select></div><div class="field-wrap span-3 effect-trigger-control"><label>afterOwnAttacks</label>${optionalNumberControlHtml('afterOwnAttacks',initial.condition?.afterOwnAttacks)}</div><div class="field-wrap span-3"><label>repeat</label><select class="field effect-repeat">${option('true','วนซ้ำ',initial.condition?.repeat!==false)}${option('false','ครั้งเดียว',initial.condition?.repeat===false)}</select></div><div class="field-wrap span-3 effect-duration-turns-wrap"><label>ระยะเวลา (เทิร์น)</label>${optionalNumberControlHtml('durationTurns',initial.durationTurns)}</div><div class="field-wrap span-3 effect-duration-rounds-wrap"><label>ระยะเวลา (รอบ)</label>${optionalNumberControlHtml('durationRounds',initial.durationRounds)}</div><div class="field-wrap span-3 revive-survive-hits-wrap hidden"><label>surviveHits · จำนวนฮิตก่อนตาย</label>${optionalNumberControlHtml('surviveHits',initial.surviveHits)}</div><div class="field-wrap span-3 revive-max-triggers-wrap hidden"><label>maxTriggers · คืนชีพสูงสุด/เป้าหมาย</label>${optionalNumberControlHtml('maxTriggers',initial.maxTriggers)}</div><div class="field-wrap span-6 target-cardids-wrap"><label>targetCardIds · เลือก Card ID เป้าหมาย</label>${createTokenPicker('cards',initial.targetCardIds||[],'targetCardIds')}<small class="hint">เลือกจากฐาน หรือพิมพ์ Card ID เองแล้วกดเพิ่ม</small></div><div class="field-wrap span-3 target-elements-wrap"><label>targetElements</label>${createTokenPicker('elements',initial.targetElements||[],'targetElements')}</div><div class="field-wrap span-3 target-rarities-wrap"><label>targetRarities</label>${createTokenPicker('rarities',initial.targetRarities||[],'targetRarities')}</div><div class="field-wrap span-3 persistent-wrap"><label>persistentAfterActivation</label><select class="field effect-persistent"><option value="">ไม่ใส่</option>${option('true','true · ทำต่อเนื่อง',initial.persistentAfterActivation===true)}${option('false','false',initial.persistentAfterActivation===false)}</select></div><div class="field-wrap span-3 max-stacks-wrap"><label>maxStacks</label><select class="field effect-max-stacks">${[1,2,3,4,5,6,7,8,9,10,12,15,20,30,50,99].map(v=>option(v,v,v===num(initial.maxStacks,5))).join('')}</select></div><div class="field-wrap span-3 stack-key-wrap hidden"><label>stackKey</label><input class="field effect-stack-key" value="${esc(initial.stackKey||'')}" placeholder="เช่น drainCurse"><small class="hint">เอฟเฟกต์ที่ใช้ key เดียวกันจะเพิ่มพร้อมกัน 1 ชั้น</small></div></div></details>
+  <details class="advanced advanced-combat-options hidden" open><summary>ระบบต่อสู้ขั้นสูง v64</summary><div class="grid"><div class="field-wrap span-4"><label>Trigger เหตุการณ์</label><select class="field effect-event-trigger">${option('', 'ใช้ onOwnAttack / afterOwnAttacks เดิม', !initial.condition?.onBattleStart&&!initial.condition?.onDamaged&&!initial.condition?.onCritical&&!initial.condition?.onAllyActiveSkill&&!initial.condition?.onKill)}${option('battleStart','เริ่มการต่อสู้',initial.condition?.onBattleStart===true)}${option('damaged','เมื่อได้รับความเสียหาย',initial.condition?.onDamaged===true)}${option('critical','เมื่อติดคริติคอล',initial.condition?.onCritical===true)}${option('allyActiveSkill','เมื่อฝ่ายเราใช้ Active',initial.condition?.onAllyActiveSkill===true)}${option('kill','เมื่อจัดการเป้าหมาย',initial.condition?.onKill===true)}${option('hpThreshold','เมื่อ HP ถึงเงื่อนไข',!initial.condition?.onBattleStart&&!initial.condition?.onDamaged&&!initial.condition?.onCritical&&!initial.condition?.onAllyActiveSkill&&!initial.condition?.onKill&&(initial.condition?.sourceHpBelowRate!==undefined||initial.condition?.sourceHpAboveRate!==undefined))}</select></div><div class="field-wrap span-4 advanced-event-every-wrap"><label>จำนวนเหตุการณ์ก่อนทำงาน</label>${optionalNumberControlHtml('afterDamagedHits',initial.condition?.afterDamagedHits??initial.condition?.afterCriticalHits??initial.condition?.afterActiveSkills)}</div><div class="field-wrap span-4"><label>maxActivations</label>${optionalNumberControlHtml('maxActivations',initial.condition?.maxActivations)}</div><div class="field-wrap span-3"><label>sourceHpBelowRate</label><input class="field advanced-source-hp-below" type="number" min="0" max="1" step="0.05" value="${esc(initial.condition?.sourceHpBelowRate??'')}"></div><div class="field-wrap span-3"><label>sourceHpAboveRate</label><input class="field advanced-source-hp-above" type="number" min="0" max="1" step="0.05" value="${esc(initial.condition?.sourceHpAboveRate??'')}"></div><div class="field-wrap span-3"><label>targetHpBelowRate</label><input class="field advanced-target-hp-below" type="number" min="0" max="1" step="0.05" value="${esc(initial.condition?.targetHpBelowRate??'')}"></div><div class="field-wrap span-3"><label>targetHpAboveRate</label><input class="field advanced-target-hp-above" type="number" min="0" max="1" step="0.05" value="${esc(initial.condition?.targetHpAboveRate??'')}"></div><div class="field-wrap span-3 advanced-hits-wrap"><label>hits / hitsPerElement</label><input class="field advanced-hits" type="number" min="1" step="1" value="${esc(initial.hits??initial.hitsPerElement??1)}"></div><div class="field-wrap span-3 advanced-target-count-wrap"><label>targetCount</label><select class="field advanced-target-count">${[1,2,3,4,5].map(v=>option(v,`${v} เป้าหมาย`,v===num(initial.targetCount,1))).join('')}</select></div><div class="field-wrap span-3 advanced-critical-wrap"><label>canCritical</label><select class="field advanced-can-critical">${option('true','true',initial.canCritical!==false)}${option('false','false',initial.canCritical===false)}</select></div><div class="field-wrap span-3 advanced-own-count-wrap"><label>countAsOwnAttack</label><select class="field advanced-count-own">${option('false','false',initial.countAsOwnAttack!==true)}${option('true','true',initial.countAsOwnAttack===true)}</select></div><div class="field-wrap span-4 advanced-success-wrap"><label>successRate</label>${chanceControlHtml(initial.successRate??1)}</div><div class="field-wrap span-4 advanced-attack-elements-wrap"><label>attackElements</label>${createTokenPicker('elements',initial.attackElements||initial.elementSequence||[],'attackElements')}</div><div class="field-wrap span-4 advanced-available-elements-wrap"><label>availableElements</label>${createTokenPicker('elements',initial.availableElements||[],'availableElements')}</div></div></details>
   <details class="advanced selection-options hidden" open><summary>เลือกการ์ดต้นทางของสกิล</summary><div class="grid"><div class="field-wrap span-6"><label>targetSelection</label><select class="field special-target-selection">${option('random','random · สุ่มจากเป้าหมายที่กรองไว้',String(initial.targetSelection||'random')==='random')}${option('specific','specific · เจาะจง Card ID / ธาตุ / ระดับ',String(initial.targetSelection)==='specific')}${option('all','all · ทุกคนที่เข้าเงื่อนไข',String(initial.targetSelection)==='all')}</select></div><div class="field-wrap span-6 special-target-count-wrap"><label>targetCount</label>${optionalNumberControlHtml('targetCount',initial.targetCount??1)}<small class="hint">แสดงเฉพาะการเลือกแบบ random</small></div><div class="special-target-slot span-12"></div><div class="field-wrap span-12"><div class="status warn special-target-help">เลือก specific แล้วต้องเพิ่ม Card ID, ธาตุ หรือระดับอย่างน้อยหนึ่งรายการ</div></div></div></details>
   <details class="advanced transfer-options hidden" open><summary>ตั้งค่าคัดลอก / ขโมยสกิล</summary><div class="grid"><div class="field-wrap span-4"><label>อัตราสำเร็จ successRate</label>${chanceControlHtml(initial.successRate??initial.copyRate??initial.stealRate??1)}</div><div class="field-wrap span-4"><label>abilitySelection</label><select class="field ability-selection">${option('random','random · สุ่มสกิล',String(initial.abilitySelection||'random')==='random')}${option('specific','specific · เลือกตามรายการ',String(initial.abilitySelection)==='specific')}${option('all','all · ทุกสกิล',String(initial.abilitySelection)==='all')}</select></div><div class="field-wrap span-4 ability-count-wrap"><label>abilityCount</label>${optionalNumberControlHtml('abilityCount',initial.abilityCount??1)}</div><div class="field-wrap span-6"><label>abilityNames · ชื่อสกิล</label>${createTokenPicker('text',initial.abilityNames||[],'abilityNames')}</div><div class="field-wrap span-3"><label>abilityNumbers · เริ่มที่ 1</label>${createTokenPicker('numbers',initial.abilityNumbers||[],'abilityNumbers')}</div><div class="field-wrap span-3"><label>abilityIndexes · เริ่มที่ 0</label>${createTokenPicker('numbers',initial.abilityIndexes||[],'abilityIndexes')}</div><div class="field-wrap span-12"><label>abilityEffectTypes · เลือกจากชนิดเอฟเฟกต์</label>${createTokenPicker('effectTypes',initial.abilityEffectTypes||[],'abilityEffectTypes')}</div><div class="field-wrap span-4"><label>recipientSide</label><select class="field recipient-side">${option('self','self · เจ้าของสกิล',String(initial.recipientSide||'self')==='self')}${option('ally','ally · ฝ่ายเรา',String(initial.recipientSide)==='ally')}${option('enemy','enemy · ฝ่ายตรงข้าม',String(initial.recipientSide)==='enemy')}</select></div><div class="field-wrap span-4"><label>recipientSelection</label><select class="field recipient-selection">${option('random','random · สุ่มผู้รับ',String(initial.recipientSelection||'random')==='random')}${option('specific','specific · เจาะจงผู้รับ',String(initial.recipientSelection)==='specific')}${option('all','all · ผู้รับทุกคน',String(initial.recipientSelection)==='all')}</select></div><div class="field-wrap span-4 recipient-count-wrap"><label>recipientCount</label>${optionalNumberControlHtml('recipientCount',initial.recipientCount??1)}</div><div class="field-wrap span-4"><label>recipientMatch</label><select class="field recipient-match">${option('any','any · ตรงอย่างใดอย่างหนึ่ง',String(initial.recipientMatch||'any')==='any')}${option('all','all · ตรงทุกตัวกรอง',String(initial.recipientMatch)==='all')}</select></div><div class="field-wrap span-4"><label>excludeRecipientSelf</label><select class="field exclude-recipient-self">${option('false','false · รวมเจ้าของสกิล',initial.excludeRecipientSelf!==true)}${option('true','true · ไม่รวมเจ้าของสกิล',initial.excludeRecipientSelf===true)}</select></div><div class="field-wrap span-4"><label>includeTransferAbilities</label><select class="field include-transfer">${option('false','false · ป้องกันลูป',initial.includeTransferAbilities!==true)}${option('true','true · อนุญาตสกิล transfer',initial.includeTransferAbilities===true)}</select></div><div class="field-wrap span-12"><label>รูปแบบอายุสกิลคัดลอกแบบด่วน</label><select class="field copied-lifetime-preset">${option('custom','กำหนดเอง / ใช้ค่าด้านล่าง',true)}${option('battle','อยู่จนจบการต่อสู้',false)}${option('useOnce','ใช้แล้วหาย · ไม่จำกัดเวลา ต้องคัดลอกใหม่',false)}${option('attacks10','อยู่ 10 การโจมตีของผู้รับ',false)}${option('turns10','อยู่ 10 เทิร์นรวม',false)}${option('replace','ถือได้ 1 สกิล คัดลอกใหม่แทนของเก่า',false)}</select><small class="hint">เลือกพรีเซ็ตแล้วระบบจะเติมฟิลด์อายุด้านล่างให้อัตโนมัติ</small></div><div class="field-wrap span-3 copied-duration-attacks-wrap"><label>copiedAbilityDurationAttacks</label>${optionalNumberControlHtml('copiedAbilityDurationAttacks',initial.copiedAbilityDurationAttacks)}<small class="hint">หมดหลังผู้รับโจมตีครบจำนวนนี้</small></div><div class="field-wrap span-3 copied-duration-turns-wrap"><label>copiedAbilityDurationTurns</label>${optionalNumberControlHtml('copiedAbilityDurationTurns',initial.copiedAbilityDurationTurns)}<small class="hint">หมดหลังผ่านเทิร์นรวมจำนวนนี้</small></div><div class="field-wrap span-3 copied-max-uses-wrap"><label>copiedAbilityMaxUses</label>${optionalNumberControlHtml('copiedAbilityMaxUses',initial.copiedAbilityMaxUses)}<small class="hint">จำกัดจำนวนครั้งที่ Active เปิดใช้</small></div><div class="field-wrap span-3"><label>copiedAbilityExpireOnUse</label><select class="field copied-expire-on-use">${option('false','false · ไม่หายทันทีหลังใช้',initial.copiedAbilityExpireOnUse!==true)}${option('true','true · ใช้ครั้งเดียวแล้วหาย',initial.copiedAbilityExpireOnUse===true)}</select></div><div class="field-wrap span-4"><label>replacePreviousCopy</label><select class="field replace-previous-copy">${option('false','false · เก็บสกิลเดิมไว้',initial.replacePreviousCopy!==true)}${option('true','true · คัดลอกใหม่แทนของเก่า',initial.replacePreviousCopy===true)}</select></div><div class="field-wrap span-4 max-copied-abilities-wrap"><label>maxCopiedAbilities</label>${optionalNumberControlHtml('maxCopiedAbilities',initial.maxCopiedAbilities)}<small class="hint">จำนวนสกิลคัดลอกสูงสุดต่อผู้รับ</small></div><div class="field-wrap span-4"><label>โหมดแนะนำ</label><div class="status ok copied-lifetime-summary">ค่าไม่กำหนด = อยู่จนจบไฟต์</div></div><div class="field-wrap span-6"><label>recipientCardIds</label>${createTokenPicker('cards',initial.recipientCardIds||[],'recipientCardIds')}</div><div class="field-wrap span-3"><label>recipientElements</label>${createTokenPicker('elements',initial.recipientElements||[],'recipientElements')}</div><div class="field-wrap span-3"><label>recipientRarities</label>${createTokenPicker('rarities',initial.recipientRarities||[],'recipientRarities')}</div></div></details>
   <details class="advanced resistance-options hidden" open><summary>ตั้งค่าต้านสถานะ</summary><div class="grid"><div class="field-wrap span-4"><label>scope</label><select class="field resistance-scope">${option('target','target · กันเอฟเฟกต์ที่เล็งรายตัว',String(initial.scope||'target')==='target')}${option('field','field · กันเอฟเฟกต์ทั้งสนาม',String(initial.scope)==='field')}</select></div><div class="field-wrap span-4"><label>resistBeneficial</label><select class="field resist-beneficial">${option('false','false · กันเฉพาะผลเสีย/ควบคุม',initial.resistBeneficial!==true)}${option('true','true · กันเอฟเฟกต์บวกด้วย',initial.resistBeneficial===true)}</select></div><div class="field-wrap span-4"><label>คำแนะนำ</label><div class="status ok">ไม่เลือกตัวกรอง = ต้านผลเสียทุกชนิด</div></div><div class="field-wrap span-12"><label>resistCategories</label>${createTokenPicker('resistCategories',initial.resistCategories||[],'resistCategories')}</div><div class="field-wrap span-12"><label>resistEffectTypes · ต้าน type โดยตรง</label>${createTokenPicker('effectTypes',initial.resistEffectTypes||[],'resistEffectTypes')}</div><div class="field-wrap span-6"><label>resistAbilityNames · ชื่อสกิลต้นทาง</label>${createTokenPicker('text',initial.resistAbilityNames||[],'resistAbilityNames')}</div><div class="field-wrap span-6"><label>resistSourceCardIds</label>${createTokenPicker('cards',initial.resistSourceCardIds||[],'resistSourceCardIds')}</div></div></details></div>`;
@@ -3205,6 +3440,16 @@ function renderEffectRow(row,initialValue){
   const type=typeSelect.value,meta=effectByType.get(type),wrap=row.querySelector('.effect-value-wrap'),control=row.querySelector('.effect-value-control'),note=row.querySelector('.effect-note'),summary=row.querySelector('.effect-summary');
   const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain',isTaunt=type==='taunt',isCapture=type==='captureRevive';
   const isRevive=['revive','reviveTimedUndying','reviveHitLife'].includes(type);
+  const isAdvancedCombat=['triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','followUpAttack','counterAttack','adaptiveElement','multiElementAttack','criticalDamageRate','defensePenetrationRate'].includes(type);
+  const isAttackAction=['followUpAttack','counterAttack','multiElementAttack'].includes(type);
+  row.querySelector('.advanced-combat-options')?.classList.toggle('hidden',!isAdvancedCombat);
+  row.querySelector('.advanced-hits-wrap')?.classList.toggle('hidden',!isAttackAction);
+  row.querySelector('.advanced-target-count-wrap')?.classList.toggle('hidden',!['followUpAttack','multiElementAttack'].includes(type));
+  row.querySelector('.advanced-critical-wrap')?.classList.toggle('hidden',!isAttackAction);
+  row.querySelector('.advanced-own-count-wrap')?.classList.toggle('hidden',type!=='followUpAttack');
+  row.querySelector('.advanced-success-wrap')?.classList.toggle('hidden',!['followUpAttack','counterAttack'].includes(type));
+  row.querySelector('.advanced-attack-elements-wrap')?.classList.toggle('hidden',type!=='multiElementAttack');
+  row.querySelector('.advanced-available-elements-wrap')?.classList.toggle('hidden',type!=='adaptiveElement');
   const isHitLife=type==='reviveHitLife';
   row.querySelector('.revive-survive-hits-wrap')?.classList.toggle('hidden',!isHitLife);
   row.querySelector('.revive-max-triggers-wrap')?.classList.toggle('hidden',!isRevive);
@@ -3237,6 +3482,7 @@ function readConditionRow(row){
   else if(meta.valueType==='array'){const picker=host.querySelector('.token-picker');value=getPickerValues(picker).map(v=>/CardIds|Teammate/.test(field)?int(v):v)}
   else if(meta.valueType.includes('object')){
     if(field==='minCombinedElementCount'){value={elements:getPickerValues(host.querySelector('.token-picker')),count:int(readNumberControl(host.querySelector('.number-control')))}}
+    else if(['minCardGroupCount','maxCardGroupCount'].includes(field)){value={cardIds:getPickerValues(host.querySelector('.token-picker')).map(int),count:int(readNumberControl(host.querySelector('.number-control')))}}
     else{const picker=host.querySelector('.kv-picker');try{value=JSON.parse(picker.dataset.object||'{}')}catch{value={}}}
   }
   return {field,value};
@@ -3252,13 +3498,22 @@ function readEffectRow(row){
   if((ids.length?1:0)+(elements.length?1:0)+(rarities.length?1:0)>1)obj.targetMatch=row.querySelector('.effect-target-match').value||'any';
   const onOwnAttack=row.querySelector('.effect-on-own-attack')?.value==='true';
   const trigger=readOptionalNumberControl(row.querySelector('.effect-trigger-control'));
-  if(onOwnAttack)obj.condition={onOwnAttack:true};
+  const eventTrigger=row.querySelector('.effect-event-trigger')?.value||'';
+  if(eventTrigger){obj.condition={repeat:row.querySelector('.effect-repeat').value!=='false'};const every=readOptionalNumberControl(row.querySelector('.advanced-event-every-wrap .optional-number-control'));if(eventTrigger==='battleStart')obj.condition.onBattleStart=true;else if(eventTrigger==='damaged'){obj.condition.onDamaged=true;if(every!==null)obj.condition.afterDamagedHits=every;}else if(eventTrigger==='critical'){obj.condition.onCritical=true;if(every!==null)obj.condition.afterCriticalHits=every;}else if(eventTrigger==='allyActiveSkill'){obj.condition.onAllyActiveSkill=true;if(every!==null)obj.condition.afterActiveSkills=every;}else if(eventTrigger==='kill')obj.condition.onKill=true;
+    const hpPairs=[['.advanced-source-hp-below','sourceHpBelowRate'],['.advanced-source-hp-above','sourceHpAboveRate'],['.advanced-target-hp-below','targetHpBelowRate'],['.advanced-target-hp-above','targetHpAboveRate']];hpPairs.forEach(([selector,key])=>{const raw=row.querySelector(selector)?.value;if(raw!==''&&raw!==undefined)obj.condition[key]=Math.max(0,Math.min(1,num(raw)));});const maxAct=readOptionalNumberControl(row.querySelector('.advanced-combat-options .field-wrap:nth-child(3) .optional-number-control'));if(maxAct!==null)obj.condition.maxActivations=maxAct;
+  } else if(onOwnAttack)obj.condition={onOwnAttack:true};
   else if(trigger!==null)obj.condition={afterOwnAttacks:trigger,repeat:row.querySelector('.effect-repeat').value!=='false'};
   const persistent=row.querySelector('.effect-persistent').value;if(persistent!=='')obj.persistentAfterActivation=persistent==='true';
   const durationTurns=readOptionalNumberControl(row.querySelector('.effect-duration-turns-wrap .optional-number-control'));if(durationTurns!==null)obj.durationTurns=durationTurns;
   const durationRounds=readOptionalNumberControl(row.querySelector('.effect-duration-rounds-wrap .optional-number-control'));if(durationRounds!==null)obj.durationRounds=durationRounds;
   if(type==='reviveHitLife'){const surviveHits=readOptionalNumberControl(row.querySelector('.revive-survive-hits-wrap .optional-number-control'));if(surviveHits!==null)obj.surviveHits=surviveHits;}
   if(['revive','reviveTimedUndying','reviveHitLife'].includes(type)){const maxTriggers=readOptionalNumberControl(row.querySelector('.revive-max-triggers-wrap .optional-number-control'));if(maxTriggers!==null)obj.maxTriggers=maxTriggers;}
+  if(['followUpAttack','counterAttack','multiElementAttack'].includes(type)){obj.hits=Math.max(1,int(row.querySelector('.advanced-hits')?.value,1));obj.canCritical=row.querySelector('.advanced-can-critical')?.value!=='false';}
+  if(['followUpAttack','multiElementAttack'].includes(type))obj.targetCount=Math.max(1,Math.min(5,int(row.querySelector('.advanced-target-count')?.value,1)));
+  if(type==='followUpAttack')obj.countAsOwnAttack=row.querySelector('.advanced-count-own')?.value==='true';
+  if(['followUpAttack','counterAttack'].includes(type))obj.successRate=readChanceControl(row.querySelector('.advanced-success-wrap'),1);
+  if(type==='multiElementAttack'){const values=pickerValues('attackElements');if(values.length)obj.attackElements=values;obj.hitsPerElement=obj.hits;}
+  if(type==='adaptiveElement'){const values=pickerValues('availableElements');if(values.length)obj.availableElements=values;}
   const supportedFields=String(effectByType.get(type)?.fields||'');
   if(supportedFields.includes('maxStacks'))obj.maxStacks=int(row.querySelector('.effect-max-stacks').value,5);
   if(supportedFields.includes('stackKey'))obj.stackKey=(row.querySelector('.effect-stack-key')?.value||'').trim()||'sharedStack';
@@ -3518,7 +3773,7 @@ function bindEvents(){
   });
   el('abilitiesContainer').addEventListener('change',e=>{
     const row=e.target.closest('.condition-row');if(e.target.classList.contains('condition-field'))renderConditionControl(row,e.target.value);else if(e.target.classList.contains('number-preset')){const input=e.target.closest('.number-control').querySelector('.number-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}
-    const effect=e.target.closest('.effect-row');if(effect&&e.target.classList.contains('effect-category')){effect.querySelector('.effect-type').innerHTML=effectTypeOptions(e.target.value,'');renderEffectRow(effect)}else if(effect&&e.target.classList.contains('effect-type'))renderEffectRow(effect);else if(effect&&e.target.classList.contains('effect-target-side')){syncExcludeSelfControl(effect);renderOutput()}else if(effect&&e.target.classList.contains('special-target-selection')){syncSpecialTargetControls(effect,true);renderOutput()}else if(effect&&e.target.classList.contains('effect-value-select')){effect.querySelector('.effect-value-custom').classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('optional-number-preset')){const input=e.target.closest('.optional-number-control').querySelector('.optional-number-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('chance-preset')){const input=e.target.closest('.chance-control').querySelector('.chance-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('copied-lifetime-preset')){syncCopiedLifetimePreset(effect,true);renderOutput()}else if(effect&&e.target.classList.contains('capture-revive-type')){renderEffectRow(effect);renderOutput()}else if(effect&&(e.target.classList.contains('copied-expire-on-use')||e.target.classList.contains('replace-previous-copy'))){syncCopiedLifetimePreset(effect,false);renderOutput()}
+    const effect=e.target.closest('.effect-row');if(effect&&e.target.classList.contains('effect-category')){effect.querySelector('.effect-type').innerHTML=effectTypeOptions(e.target.value,'');renderEffectRow(effect)}else if(effect&&e.target.classList.contains('effect-type'))renderEffectRow(effect);else if(effect&&e.target.classList.contains('effect-target-side')){syncExcludeSelfControl(effect);renderOutput()}else if(effect&&e.target.classList.contains('special-target-selection')){syncSpecialTargetControls(effect,true);renderOutput()}else if(effect&&e.target.classList.contains('effect-value-select')){effect.querySelector('.effect-value-custom').classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('optional-number-preset')){const input=e.target.closest('.optional-number-control').querySelector('.optional-number-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('chance-preset')){const input=e.target.closest('.chance-control').querySelector('.chance-custom');input.classList.toggle('hidden',e.target.value!=='custom');renderOutput()}else if(effect&&e.target.classList.contains('copied-lifetime-preset')){syncCopiedLifetimePreset(effect,true);renderOutput()}else if(effect&&(e.target.classList.contains('capture-revive-type')||e.target.classList.contains('effect-event-trigger'))){renderEffectRow(effect);renderOutput()}else if(effect&&(e.target.classList.contains('copied-expire-on-use')||e.target.classList.contains('replace-previous-copy'))){syncCopiedLifetimePreset(effect,false);renderOutput()}
     const ability=e.target.closest('.ability-card');if(ability&&e.target.classList.contains('cutscene-mode'))ability.querySelector('.custom-cutscene').classList.toggle('hidden',e.target.value!=='custom');renderOutput();
   });
   el('abilitiesContainer').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList.contains('token-custom')){e.preventDefault();addCustomPickerValue(e.target.closest('.token-picker'))}});
