@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Status Skill Runtime v67</title>
+  <title>ANIME CARD CODE BUILDER · Status Emoji Runtime v68</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v67 · STATUS SKILLS · BATTLE LOG · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v68 · STATUS EMOJI · BATTLE LOG · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -108,7 +108,7 @@
           <section class="section">
             <div class="section-head"><div><h2>3. ความสามารถ</h2><p>การ์ดหนึ่งใบเพิ่มได้หลายความสามารถ และแต่ละความสามารถเพิ่มได้หลายเอฟเฟกต์</p></div><button class="btn green" id="addAbility" type="button">＋ เพิ่มความสามารถ</button></div>
             <div class="grid" style="margin-bottom:8px">
-              <div class="field-wrap span-5"><label for="abilityTemplate">แม่แบบด่วน</label><select class="field" id="abilityTemplate"><option value="">เลือกแม่แบบ…</option><option value="passiveAtk">Passive · ATK ทีม +20%</option><option value="activeAtk">Active · ครบ 3 ครั้ง ATK +50%</option><option value="activeCrit">Active · ครบ 4 ครั้ง คริติคอล 100%</option><option value="activeExtraHits">Active · ครบ 3 ครั้ง โจมตีเพิ่ม 2 ฮิต</option><option value="activeHeal">Active · ครบ 3 ครั้ง ฟื้น HP 20%</option><option value="onOwnAttackHealCost">ทุกการโจมตี · ฟื้น HP 10% + ลดคอสรอบ 1</option><option value="multiStatStack">เดรนครัส · สแต็กหลายค่า 8 ชั้น</option><option value="activeShield">Active · ครบ 3 ครั้ง ฟื้นโล่ 2 ฮิต</option><option value="enemyDef">ลด DEF ศัตรู 20%</option><option value="critSelf">คริติคอลตนเอง +30%</option><option value="critTeam">คริติคอลทั้งฝ่ายเรา +20%</option><option value="critAllies">คริติคอลเพื่อนร่วมทีม +20% (ไม่รวมตัวเอง)</option><option value="critEnemy">ลดคริติคอลฝ่ายตรงข้าม 25%</option><option value="critGroupAlly">คริติคอลกลุ่มไฟ/EX/SC ฝ่ายเรา +25%</option><option value="critGroupEnemy">ลดคริติคอลกลุ่มไฟ/EX/SC ศัตรู 25%</option><option value="costSelf">ลดคอสรอบปัจจุบัน ตนเอง 1</option><option value="enemyCost">เพิ่มคอสรอบปัจจุบัน ศัตรู 2</option><option value="targetCost">ลดคอสรอบปัจจุบันตาม ID 1</option><option value="costWaterAllies">ลดคอสรอบปัจจุบัน พันธมิตรน้ำ 1</option><option value="costPermanentSelf">ลดคอสถาวร ตนเอง 1</option><option value="blockSelf">บล็อกตนเอง +25%</option><option value="damageReduceTeam">ดาเมจที่ทีมได้รับ -20%</option><option value="dodgeSelf">หลบหลีกตนเอง +20%</option><option value="dodgeEnemyDown">ลดหลบศัตรู 20%</option><option value="copyRandomEnemy">คัดลอกสกิลศัตรูแบบสุ่ม 70%</option><option value="copyUseOnceBoth">อาคมก็อปปี้ · ทั้งสองฝ่าย ใช้แล้วหาย</option><option value="stealSpecificEnemy">ขโมยสกิลศัตรูแบบเจาะจง 60%</option><option value="copyAllEnemyTeam">คัดลอกจากศัตรูทุกคนให้ทั้งทีม 50%</option><option value="resistTransferTeam">ต้านขโมย/คัดลอกทั้งทีม 80%</option><option value="resistFieldDebuff">ต้านดีบัฟทั้งสนาม 40%</option><option value="statusStunTwo">สถานะ · สตั้น 2 เป้าหมาย</option><option value="statusBlindAOE">สถานะ · ตาบอดหมู่ 3 เป้าหมาย</option><option value="statusFreeze">สถานะ · แช่แข็งจนโดนตี</option><option value="statusBurnAOE">สถานะ · เผาไหม้ต่อเนื่อง</option><option value="statusBleed">สถานะ · เลือดไหลกัดกร่อน</option><option value="statusShockChain">สถานะ · ไฟช็อตเชน</option><option value="statusDeathDoom">สถานะ · Doom นับการโจมตี</option><option value="partner">ต้องมีคู่หูตาม Card ID</option><option value="hakariRail">รางดาวซ่อนแอบ · Hakari #1033</option></select></div>
+              <div class="field-wrap span-5"><label for="abilityTemplate">แม่แบบด่วน</label><select class="field" id="abilityTemplate"><option value="">เลือกแม่แบบ…</option><option value="passiveAtk">Passive · ATK ทีม +20%</option><option value="activeAtk">Active · ครบ 3 ครั้ง ATK +50%</option><option value="activeCrit">Active · ครบ 4 ครั้ง คริติคอล 100%</option><option value="activeExtraHits">Active · ครบ 3 ครั้ง โจมตีเพิ่ม 2 ฮิต</option><option value="activeHeal">Active · ครบ 3 ครั้ง ฟื้น HP 20%</option><option value="onOwnAttackHealCost">ทุกการโจมตี · ฟื้น HP 10% + ลดคอสรอบ 1</option><option value="multiStatStack">เดรนครัส · สแต็กหลายค่า 8 ชั้น</option><option value="activeShield">Active · ครบ 3 ครั้ง ฟื้นโล่ 2 ฮิต</option><option value="enemyDef">ลด DEF ศัตรู 20%</option><option value="critSelf">คริติคอลตนเอง +30%</option><option value="critTeam">คริติคอลทั้งฝ่ายเรา +20%</option><option value="critAllies">คริติคอลเพื่อนร่วมทีม +20% (ไม่รวมตัวเอง)</option><option value="critEnemy">ลดคริติคอลฝ่ายตรงข้าม 25%</option><option value="critGroupAlly">คริติคอลกลุ่มไฟ/EX/SC ฝ่ายเรา +25%</option><option value="critGroupEnemy">ลดคริติคอลกลุ่มไฟ/EX/SC ศัตรู 25%</option><option value="costSelf">ลดคอสรอบปัจจุบัน ตนเอง 1</option><option value="enemyCost">เพิ่มคอสรอบปัจจุบัน ศัตรู 2</option><option value="targetCost">ลดคอสรอบปัจจุบันตาม ID 1</option><option value="costWaterAllies">ลดคอสรอบปัจจุบัน พันธมิตรน้ำ 1</option><option value="costPermanentSelf">ลดคอสถาวร ตนเอง 1</option><option value="blockSelf">บล็อกตนเอง +25%</option><option value="damageReduceTeam">ดาเมจที่ทีมได้รับ -20%</option><option value="dodgeSelf">หลบหลีกตนเอง +20%</option><option value="dodgeEnemyDown">ลดหลบศัตรู 20%</option><option value="copyRandomEnemy">คัดลอกสกิลศัตรูแบบสุ่ม 70%</option><option value="copyUseOnceBoth">อาคมก็อปปี้ · ทั้งสองฝ่าย ใช้แล้วหาย</option><option value="stealSpecificEnemy">ขโมยสกิลศัตรูแบบเจาะจง 60%</option><option value="copyAllEnemyTeam">คัดลอกจากศัตรูทุกคนให้ทั้งทีม 50%</option><option value="resistTransferTeam">ต้านขโมย/คัดลอกทั้งทีม 80%</option><option value="resistFieldDebuff">ต้านดีบัฟทั้งสนาม 40%</option><option value="statusStunTwo">สถานะ · สตั้น 2 เป้าหมาย</option><option value="statusBlindAOE">สถานะ · ตาบอดหมู่ 3 เป้าหมาย</option><option value="statusFreeze">สถานะ · แช่แข็งจนโดนตี</option><option value="statusBurnAOE">สถานะ · เผาไหม้ต่อเนื่อง</option><option value="statusBleed">สถานะ · เลือดไหลกัดกร่อน</option><option value="statusShockChain">สถานะ · ไฟช็อตเชน</option><option value="statusDeathDoom">สถานะ · Doom นับการโจมตี</option><option value="statusConditionCancel">สถานะ · 🔓 ยกเลิกเงื่อนไข</option><option value="statusSkillCancel">สถานะ · 🚫 ยกเลิกสกิล</option><option value="statusSkillStolen">สถานะ · 🕸️ ขโมยสกิล</option><option value="statusSkillCopied">สถานะ · 🧬 ก็อปปี้สกิล</option><option value="partner">ต้องมีคู่หูตาม Card ID</option><option value="hakariRail">รางดาวซ่อนแอบ · Hakari #1033</option></select></div>
               <div class="field-wrap span-3"><label>&nbsp;</label><button class="btn gold" id="applyAbilityTemplate" type="button" style="width:100%">ใช้แม่แบบ</button></div>
               <div class="field-wrap span-4"><label>&nbsp;</label><div class="status ok">รองรับ <b id="effectCountInline">49</b> เอฟเฟกต์ · <b id="conditionCountInline">24</b> เงื่อนไข · <b id="effectFieldCountInline">14</b> ฟิลด์เสริม</div></div>
             </div>
@@ -128,7 +128,7 @@
             <button class="btn" id="downloadCard" type="button">⬇ JSON</button>
             <button class="btn danger" id="resetCard" type="button">ล้างฟอร์ม</button>
           </div>
-          <div class="footer-note"><b class="accent">Status Builder v67:</b> ค่า Skill/Stack ไม่มีเพดานบวก; คงไว้เฉพาะค่าต่ำสุดที่ป้องกันสูตรพัง<br>ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล Status v67 · applyStatus / copy / steal / Battle Log</div>
+          <div class="footer-note"><b class="accent">Status Builder v68:</b> ค่า Skill/Stack ไม่มีเพดานบวก; คงไว้เฉพาะค่าต่ำสุดที่ป้องกันสูตรพัง<br>ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล Status Emoji v68 · applyStatus / copy / steal / Battle Log</div>
         </aside>
       </div>
     </section>
@@ -155,7 +155,7 @@
         <article class="help-card"><h3>3) คัดลอกไปวาง</h3><p>เลือกรูปแบบ <b>วัตถุการ์ด + จุลภาค</b> แล้วนำโค้ดไปวางภายใน <code>const CARDS = [ ... ]</code> ของเกม</p></article>
         <article class="help-card"><h3>4) อัปเดตฐาน ID</h3><p>เมื่อเกมมีการ์ดใหม่ ให้นำเข้าไฟล์ HTML ล่าสุดในหน้า <b>ฐาน ID</b> แอปจะอ่าน ID เพื่อป้องกันการสร้างซ้ำ</p></article>
         <article class="help-card"><h3>Firebase Cloud Firestore</h3><p>คลังออนไลน์ใช้คอลเลกชัน <code>animeCardCodeBuilderCards</code> และใช้ Card ID เป็น Document ID การแก้ไข ID เดิมจึงอัปเดตข้อมูลใบเดิมแบบเรียลไทม์</p></article><article class="help-card"><h3>ชีทหลักของระบบ</h3><p>ให้อ้างอิง <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk" target="_blank" rel="noopener" class="accent"><b>Google Sheet ระบบสกิลและเงื่อนไข</b></a> เป็นข้อมูลหลักสำหรับเอฟเฟกต์ เงื่อนไข และการอัปเดตครั้งถัดไป</p></article>
-        <article class="help-card"><h3>การใช้ค่าเปอร์เซ็นต์</h3><p><code>0.20</code> หมายถึง +20%, <code>-0.20</code> หมายถึง -20%, และ <code>7.77</code> หมายถึง +777%</p></article><article class="help-card"><h3>สถานะผิดปกติ v67</h3><p>ใช้ <code>applyStatus</code> เพื่อทำให้เป้าหมาย 1-5 ตัวติด <code>death</code>, <code>stun</code>, <code>blind</code>, <code>freeze</code>, <code>burn</code>, <code>bleed</code>, หรือ <code>shock</code> พร้อมกำหนด <code>successRate</code>, <code>targetCount</code>, <code>durationTurns</code> และค่าพิเศษ เช่น <code>missRate</code>, <code>damageFlat</code>, <code>hpLossRate</code>, <code>chainAfterHits</code></p></article><article class="help-card"><h3>อัตราคริติคอล</h3><p>ใช้ <code>criticalRate</code> สำหรับเรทที่คงอยู่ และใช้ <code>nextAttackCriticalRate</code> สำหรับเรทชั่วคราวเฉพาะการโจมตีที่ Active ทำงาน เช่น <code>1.00</code> คือ +100% แล้วล้างทันทีหลังใช้ เลือก <code>targetSide</code> เป็น self / ally / enemy ได้ ค่า <code>luckRate</code> เดิมยังถูกแปลงเป็นคริติคอลเพื่อรองรับการ์ดเก่า</p></article>
+        <article class="help-card"><h3>การใช้ค่าเปอร์เซ็นต์</h3><p><code>0.20</code> หมายถึง +20%, <code>-0.20</code> หมายถึง -20%, และ <code>7.77</code> หมายถึง +777%</p></article><article class="help-card"><h3>สถานะผิดปกติ v68</h3><p>ใช้ <code>applyStatus</code> เพื่อทำให้เป้าหมาย 1-5 ตัวติด <code>death</code>, <code>stun</code>, <code>blind</code>, <code>freeze</code>, <code>burn</code>, <code>bleed</code>, <code>shock</code>, <code>condition-cancel</code>, <code>skill-cancel</code>, <code>skill-stolen</code>, หรือ <code>skill-copied</code> พร้อมกำหนด <code>successRate</code>, <code>targetCount</code>, <code>durationTurns</code> และค่าพิเศษ เช่น <code>missRate</code>, <code>damageFlat</code>, <code>hpLossRate</code>, <code>chainAfterHits</code> และใช้กับอิโมจิบนหน้าการ์ด เช่น 🔓 🚫 🕸️ 🧬</p></article><article class="help-card"><h3>อัตราคริติคอล</h3><p>ใช้ <code>criticalRate</code> สำหรับเรทที่คงอยู่ และใช้ <code>nextAttackCriticalRate</code> สำหรับเรทชั่วคราวเฉพาะการโจมตีที่ Active ทำงาน เช่น <code>1.00</code> คือ +100% แล้วล้างทันทีหลังใช้ เลือก <code>targetSide</code> เป็น self / ally / enemy ได้ ค่า <code>luckRate</code> เดิมยังถูกแปลงเป็นคริติคอลเพื่อรองรับการ์ดเก่า</p></article>
         <article class="help-card"><h3>Active Skill</h3><p><code>afterOwnAttacks: 3</code> คือสะสมการโจมตีปกติ 3 ครั้ง แล้วเอฟเฟกต์ทำงานในการโจมตีครั้งถัดไป ส่วน <code>repeat: true</code> คือเริ่มนับใหม่วนซ้ำ</p></article><article class="help-card"><h3>คัดลอกและขโมยสกิล</h3><p><code>copyAbilities</code> ทำสำเนาโดยต้นทางยังใช้สกิลได้ ส่วน <code>stealAbilities</code> ทำให้ต้นทางเสียสกิลเมื่อขโมยสำเร็จ เลือกต้นทาง สกิล และผู้รับแบบ <code>random</code>, <code>specific</code> หรือ <code>all</code> ได้ พร้อมกำหนด <code>successRate</code> พร้อมกำหนดอายุด้วย <code>copiedAbilityDurationAttacks</code>, <code>copiedAbilityDurationTurns</code>, <code>copiedAbilityMaxUses</code>, <code>copiedAbilityExpireOnUse</code>, <code>replacePreviousCopy</code> และ <code>maxCopiedAbilities</code></p></article><article class="help-card"><h3>ต้านสถานะ</h3><p><code>statusResistance</code> ใช้เปอร์เซ็นต์พอยต์: <code>1 = 1%</code>, <code>9 = 9%</code>, <code>150 = 150%</code> และยังอ่าน <code>0.50 = 50%</code> สำหรับข้อมูลเก่า ค่าบวกเกิน 100% จะถูกเก็บเป็นแต้มสำรองให้ดีบัฟหักออกได้</p></article><article class="help-card"><h3>โจมตีเพิ่ม / ตีตอบ</h3><p>เลือก <code>nextAttackHits</code> เพื่อเพิ่มฮิตในเทิร์นที่ Active ทำงาน เช่น value <code>2</code> คือเพิ่มอีก 2 ฮิต ระบบปัจจุบันนับเป็นฮิตเสริมในเทิร์นเดิม ไม่ใช่สร้างเทิร์นสวนแยก</p></article>
       </div>
     </section>
@@ -698,12 +698,12 @@
     {
       "category": "สถานะผิดปกติ",
       "type": "applyStatus",
-      "meaning": "โจมตีหรือสกิลมีโอกาสทำให้เป้าหมายติดสถานะผิดปกติ",
+      "meaning": "โจมตีหรือสกิลมีโอกาสทำให้เป้าหมายติดสถานะผิดปกติ/สถานะควบคุมสกิล และแสดงอิโมจิบนหน้าการ์ด",
       "exampleValue": "ไม่ใช้ value",
       "fields": "targetSide, targetSelection, targetCount, successRate, status, durationTurns, condition, deathAfterAttacks, missRate, damageFlat, damageRate, hpLossFlat, hpLossRate, chainAfterHits, chainCount",
       "suitableModes": "tower, arena",
-      "note": "สุ่มแยกต่อเป้าหมายและผ่าน statusResistance ก่อนติดสถานะ; status รองรับ death, stun, blind, freeze, burn, bleed, shock; targetCount รองรับ 1-5",
-      "exampleCode": "{ \"type\":\"applyStatus\", \"status\":\"stun\", \"targetCount\":2, \"successRate\":0.35, \"durationTurns\":1 }"
+      "note": "สุ่มแยกต่อเป้าหมายและผ่าน statusResistance ก่อนติดสถานะ; status รองรับ death, stun, blind, freeze, burn, bleed, shock, condition-cancel, skill-cancel, skill-stolen, skill-copied; targetCount รองรับ 1-5",
+      "exampleCode": "{ \"type\":\"applyStatus\", \"status\":\"skill-cancel\", \"targetCount\":1, \"successRate\":0.70, \"durationTurns\":2 }"
     },
     {
       "category": "อาณาเขต",
@@ -3058,17 +3058,19 @@
   ],
   "sourceInfo": {
     "sheetTitle": "Anime Card Collection - ระบบสกิลและเงื่อนไข",
-    "sheetUpdated": "2026-07-07-status-skill-v67",
+    "sheetUpdated": "2026-07-07-status-emoji-v68",
     "gameFile": "ANIME_CARD_COLLECTION_COMPANY_SUPPORT_v64.html",
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?usp=drivesdk",
     "sheetRole": "primary",
-    "builderUpdated": "2026-07-07-status-skill-v67",
+    "builderUpdated": "2026-07-07-status-emoji-v68",
     "currentEffectCount": 105,
-    "currentConditionCount": 84
+    "currentConditionCount": 84,
+    "statusEmojiUpdated": "2026-07-07-status-emoji-v68"
   },
   "meta": {
-    "builderUpdated": "2026-07-07-status-skill-v67"
+    "builderUpdated": "2026-07-07-status-emoji-v68",
+    "statusEmojiUpdated": "2026-07-07-status-emoji-v68"
   }
 }
 </script>
@@ -3083,7 +3085,33 @@ const conditionCatalog = DATA.conditions.filter(x=>x.position==='condition');
 const effectCatalog = DATA.effects;
 const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
 const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain','taunt','adaptiveElement','applyStatus']);
-const abnormalStatusTypes = ['death','stun','blind','freeze','burn','bleed','shock'];
+const abnormalStatusTypes = ['death','stun','blind','freeze','burn','bleed','shock','condition-cancel','skill-cancel','skill-stolen','skill-copied'];
+const statusUiMap = {
+  death:'☠️ death · เดธ / Doom',
+  stun:'💫 stun · สตั้น',
+  blind:'🌫️ blind · ตาบอด',
+  freeze:'🧊 freeze · แช่แข็ง',
+  burn:'🔥 burn · เผาไหม้',
+  bleed:'🩸 bleed · เลือดไหล',
+  shock:'⚡ shock · ไฟช็อต',
+  'condition-cancel':'🔓 condition-cancel · ยกเลิกเงื่อนไข',
+  'skill-cancel':'🚫 skill-cancel · ยกเลิกสกิล',
+  'skill-stolen':'🕸️ skill-stolen · ขโมยสกิล',
+  'skill-copied':'🧬 skill-copied · ก็อปปี้สกิล'
+};
+const statusSummaryMap = {
+  death:'☠️ เดธ: ติดแล้วนับจำนวนการโจมตีของผู้ติดสถานะ ครบแล้ว KO',
+  stun:'💫 สตั้น: ข้ามเทิร์นและกระทำการไม่ได้',
+  blind:'🌫️ ตาบอด: เพิ่มโอกาสโจมตีพลาดเป้า',
+  freeze:'🧊 แช่แข็ง: หยุดจนกว่าจะโดนโจมตี',
+  burn:'🔥 เผาไหม้: รับ DOT เมื่อมีการโจมตีเกิดขึ้น',
+  bleed:'🩸 เลือดไหล: ลด HP และ Max HP ระหว่างไฟต์',
+  shock:'⚡ ไฟช็อต: ขยับไม่ได้ และโดนตีครบแล้วสุ่มเชนให้พวกเดียวกัน',
+  'condition-cancel':'🔓 ยกเลิกเงื่อนไข: แสดงว่าเป้าหมายโดนยกเลิกเงื่อนไขสกิลชั่วคราว',
+  'skill-cancel':'🚫 ยกเลิกสกิล: แสดงว่าเป้าหมายโดนปิด/ยกเลิกสกิลชั่วคราว',
+  'skill-stolen':'🕸️ ขโมยสกิล: แสดงว่าเป้าหมายโดนขโมยสกิล',
+  'skill-copied':'🧬 ก็อปปี้สกิล: แสดงว่าเป้าหมายโดนก็อปปี้สกิล'
+};
 const transferEffectTypes = new Set(['copyAbilities','stealAbilities']);
 const resistanceCategories = ['all','status','cost','transfer','abilityControl','statReduction','hitReduction','healingReduction','shieldReduction'];
 const stackRateEffectTypes = new Set(['powerRateStack','hpRateStack','defenseRateStack','incomeRateStack','criticalRateStack','dodgeRateStack','blockRateStack','damageTakenRateStack','healingRateStack','shieldRecoveryRateStack','statusResistanceStack','teamPowerRateStack','enemyPowerRateStack','selfPowerRateStack','teamHpRateStack','enemyHpRateStack','selfHpRateStack','teamDefenseRateStack','enemyDefenseRateStack','selfDefenseRateStack','teamIncomeRateStack','enemyIncomeRateStack','selfIncomeRateStack']);
@@ -3381,7 +3409,7 @@ function addEffectRow(container,initial={}){
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced nullify-options hidden" open><summary>ตั้งค่า nullify แบบ Active</summary><div class="grid"><div class="field-wrap span-6"><label>durationTriggers</label>${optionalNumberControlHtml('durationTriggers',initial.durationTriggers)}<small class="hint">จำนวนรอบ Active ของการ์ดเป้าหมายที่จะถูกทำให้ไร้ผล</small></div><div class="field-wrap span-6"><div class="status ok">ใช้ร่วมกับ targetSelection ด้านบนได้: random / specific / all</div></div></div></details>`);
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced ignore-options hidden" open><summary>ตั้งค่า ignoreAbilityConditions</summary><div class="grid"><div class="field-wrap span-6"><label>triggerImmediately</label><select class="field ignore-trigger-immediately">${option('false','false · ยกเลิกเฉพาะเงื่อนไขจัดทีม',initial.triggerImmediately!==true)}${option('true','true · Active พร้อมใช้ในการโจมตีครั้งแรก',initial.triggerImmediately===true)}</select></div><div class="field-wrap span-6"><div class="status ok">หลังใช้ครั้งแรก ตัวนับรอบถัดไปกลับไปใช้ afterOwnAttacks เดิม</div></div></div></details>`);
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced capture-options hidden" open><summary>ตั้งค่าชิงร่างศัตรู</summary><div class="grid"><div class="field-wrap span-4"><label>อัตราสำเร็จ successRate</label>${chanceControlHtml(initial.successRate??1)}</div><div class="field-wrap span-4"><label>รูปแบบคืนชีพ reviveType</label><select class="field capture-revive-type">${option('revive','revive · คืนชีพธรรมดา',String(initial.reviveType||'revive')==='revive')}${option('reviveTimedUndying','reviveTimedUndying · อมตะชั่วคราว',String(initial.reviveType)==='reviveTimedUndying')}${option('reviveHitLife','reviveHitLife · ชีวิตตามฮิต',String(initial.reviveType)==='reviveHitLife')}</select></div><div class="field-wrap span-4"><label>maxTriggers · ชิงสำเร็จสูงสุด (ไม่ใส่ = ไม่จำกัด)</label>${optionalNumberControlHtml('maxTriggers',initial.maxTriggers)}</div><div class="field-wrap span-4 capture-duration-wrap"><label>durationTurns</label>${optionalNumberControlHtml('durationTurns',initial.durationTurns??3)}</div><div class="field-wrap span-4 capture-hitlife-wrap"><label>surviveHits</label>${optionalNumberControlHtml('surviveHits',initial.surviveHits??5)}</div><div class="field-wrap span-4"><div class="status ok capture-summary">ศัตรูคืนชีพร่างนี้ไม่ได้ จนกว่าร่างจะตายในฝ่ายเรา</div></div></div></details>`);
-  row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced status-options hidden" open><summary>ตั้งค่าสถานะผิดปกติ v67</summary><div class="grid"><div class="field-wrap span-3"><label>status</label><select class="field status-kind">${abnormalStatusTypes.map(status=>option(status,({death:'death · เดธ / Doom',stun:'stun · สตั้น',blind:'blind · ตาบอด',freeze:'freeze · แช่แข็ง',burn:'burn · เผาไหม้',bleed:'bleed · เลือดไหล',shock:'shock · ไฟช็อต'})[status]||status,status===String(initial.status||'stun'))).join('')}</select></div><div class="field-wrap span-3"><label>อัตราติด successRate</label>${chanceControlHtml(initial.successRate??initial.statusRate??initial.chance??initial.rate??1)}</div><div class="field-wrap span-3"><label>targetCount</label>${optionalNumberControlHtml('targetCount',initial.targetCount??1)}<small class="hint">จำนวนเป้าหมาย 1-5</small></div><div class="field-wrap span-3"><label>durationTurns</label>${optionalNumberControlHtml('durationTurns',initial.durationTurns)}</div><div class="field-wrap span-3 status-death-wrap"><label>deathAfterAttacks</label>${optionalNumberControlHtml('deathAfterAttacks',initial.deathAfterAttacks??2)}</div><div class="field-wrap span-3 status-blind-wrap"><label>missRate</label>${chanceControlHtml(initial.missRate??0.40)}</div><div class="field-wrap span-3 status-burn-wrap"><label>damageFlat</label><input class="field status-damage-flat" type="number" step="1" value="${esc(initial.damageFlat??'')}"></div><div class="field-wrap span-3 status-burn-wrap"><label>damageRate</label><input class="field status-damage-rate" type="number" min="0" step="0.01" value="${esc(initial.damageRate??'')}"></div><div class="field-wrap span-3 status-bleed-wrap"><label>hpLossFlat</label><input class="field status-hp-loss-flat" type="number" step="1" value="${esc(initial.hpLossFlat??'')}"></div><div class="field-wrap span-3 status-bleed-wrap"><label>hpLossRate</label><input class="field status-hp-loss-rate" type="number" min="0" step="0.01" value="${esc(initial.hpLossRate??0.05)}"></div><div class="field-wrap span-3 status-shock-wrap"><label>chainAfterHits</label>${optionalNumberControlHtml('chainAfterHits',initial.chainAfterHits??3)}</div><div class="field-wrap span-3 status-shock-wrap"><label>chainCount</label>${optionalNumberControlHtml('chainCount',initial.chainCount??1)}</div><div class="field-wrap span-12"><div class="status ok status-summary-v67">applyStatus จะสุ่มติดสถานะตาม successRate และตรวจ statusResistance ก่อนเสมอ</div></div></div></details>`);
+  row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced status-options hidden" open><summary>ตั้งค่าสถานะผิดปกติ v68</summary><div class="grid"><div class="field-wrap span-3"><label>status</label><select class="field status-kind">${abnormalStatusTypes.map(status=>option(status,statusUiMap[status]||status,status===String(initial.status||'stun'))).join('')}</select></div><div class="field-wrap span-3"><label>อัตราติด successRate</label>${chanceControlHtml(initial.successRate??initial.statusRate??initial.chance??initial.rate??1)}</div><div class="field-wrap span-3"><label>targetCount</label>${optionalNumberControlHtml('targetCount',initial.targetCount??1)}<small class="hint">จำนวนเป้าหมาย 1-5</small></div><div class="field-wrap span-3"><label>durationTurns</label>${optionalNumberControlHtml('durationTurns',initial.durationTurns)}</div><div class="field-wrap span-3 status-death-wrap"><label>deathAfterAttacks</label>${optionalNumberControlHtml('deathAfterAttacks',initial.deathAfterAttacks??2)}</div><div class="field-wrap span-3 status-blind-wrap"><label>missRate</label>${chanceControlHtml(initial.missRate??0.40)}</div><div class="field-wrap span-3 status-burn-wrap"><label>damageFlat</label><input class="field status-damage-flat" type="number" step="1" value="${esc(initial.damageFlat??'')}"></div><div class="field-wrap span-3 status-burn-wrap"><label>damageRate</label><input class="field status-damage-rate" type="number" min="0" step="0.01" value="${esc(initial.damageRate??'')}"></div><div class="field-wrap span-3 status-bleed-wrap"><label>hpLossFlat</label><input class="field status-hp-loss-flat" type="number" step="1" value="${esc(initial.hpLossFlat??'')}"></div><div class="field-wrap span-3 status-bleed-wrap"><label>hpLossRate</label><input class="field status-hp-loss-rate" type="number" min="0" step="0.01" value="${esc(initial.hpLossRate??0.05)}"></div><div class="field-wrap span-3 status-shock-wrap"><label>chainAfterHits</label>${optionalNumberControlHtml('chainAfterHits',initial.chainAfterHits??3)}</div><div class="field-wrap span-3 status-shock-wrap"><label>chainCount</label>${optionalNumberControlHtml('chainCount',initial.chainCount??1)}</div><div class="field-wrap span-12"><div class="status ok status-summary-v68">applyStatus จะสุ่มติดสถานะตาม successRate และตรวจ statusResistance ก่อนเสมอ</div></div></div></details>`);
   container.appendChild(row);row.querySelectorAll('.token-picker').forEach(renderTokenPicker);row.querySelector('.effect-target-side').value=initial.targetSide||'';row.querySelector('.effect-target-match').value=initial.targetMatch||'any';renderEffectRow(row,initial.value);return row;
 }
 function valueKind(type){if(noValueEffects.has(type))return 'none';if(flatEffectTypes.has(type))return 'flat';if(integerEffectTypes.has(type))return 'integer';if(rateEffectTypes.has(type)||/Rate/.test(type))return 'rate';return 'number'}
@@ -3439,9 +3467,9 @@ function syncStatusSpecificControls(row){
   if(status==='burn')row.querySelectorAll('.status-burn-wrap').forEach(el=>el.classList.remove('hidden'));
   if(status==='bleed')row.querySelectorAll('.status-bleed-wrap').forEach(el=>el.classList.remove('hidden'));
   if(status==='shock')row.querySelectorAll('.status-shock-wrap').forEach(el=>el.classList.remove('hidden'));
-  const summary=row.querySelector('.status-summary-v67');
+  const summary=row.querySelector('.status-summary-v68');
   if(summary){
-    const map={death:'เดธ: ติดแล้วนับจำนวนการโจมตีของผู้ติดสถานะ ครบแล้ว KO',stun:'สตั้น: ข้ามเทิร์นและกระทำการไม่ได้',blind:'ตาบอด: เพิ่มโอกาสโจมตีพลาดเป้า',freeze:'แช่แข็ง: หยุดจนกว่าจะโดนโจมตี',burn:'เผาไหม้: รับ DOT เมื่อมีการโจมตีเกิดขึ้น',bleed:'เลือดไหล: ลด HP และ Max HP ระหว่างไฟต์',shock:'ไฟช็อต: ขยับไม่ได้ และโดนตีครบแล้วสุ่มเชนให้พวกเดียวกัน'};
+    const map=statusSummaryMap;
     summary.textContent=map[status]||'applyStatus';
   }
 }
@@ -3669,7 +3697,7 @@ function validateAdvancedEffect(effect,abilityIndex,effectIndex){
   }
   if(['statusResistance','statusResistanceStack'].includes(effect.type)&&!Number.isFinite(Number(effect.value)))results.push({type:'error',text:`${label}: statusResistance ต้องเป็นตัวเลข (รองรับค่าบวก/ลบโดยไม่มีเพดาน)`});
   if(effect.type==='applyStatus'){
-    if(!abnormalStatusTypes.includes(String(effect.status||'')))results.push({type:'error',text:`${label}: applyStatus ต้องเลือก status เป็น death/stun/blind/freeze/burn/bleed/shock`});
+    if(!abnormalStatusTypes.includes(String(effect.status||'')))results.push({type:'error',text:`${label}: applyStatus ต้องเลือก status เป็น ${abnormalStatusTypes.join('/')}`});
     if(!Number.isFinite(Number(effect.successRate))||Number(effect.successRate)<0)results.push({type:'error',text:`${label}: successRate ต้องเป็นค่าตั้งแต่ 0 ขึ้นไป`});
     if(!Number.isInteger(Number(effect.targetCount||1))||Number(effect.targetCount||1)<1||Number(effect.targetCount||1)>5)results.push({type:'error',text:`${label}: targetCount ต้องอยู่ระหว่าง 1–5`});
     if(effect.status==='death'&&(!Number.isInteger(Number(effect.deathAfterAttacks))||Number(effect.deathAfterAttacks)<1))results.push({type:'error',text:`${label}: death ต้องกำหนด deathAfterAttacks ตั้งแต่ 1 ขึ้นไป`});
@@ -3808,6 +3836,10 @@ function applyTemplate(key){
   if(key==='statusBleed')ability={name:'บาดแผลกัดกร่อน',description:'ทำให้ศัตรู 2 ตัวเลือดไหล ลด HP และ Max HP 5%',activeIn:['tower','arena'],effects:[{type:'applyStatus',status:'bleed',targetSide:'enemy',targetSelection:'random',targetCount:2,successRate:.35,hpLossRate:.05}]};
   if(key==='statusShockChain')ability={name:'ไฟช็อตเชน',description:'ช็อตศัตรู 1 ตัวให้ขยับไม่ได้ 2 เทิร์น และเมื่อโดนตีครบ 3 hit จะสุ่มเชนให้พวกเดียวกัน 1 ตัว',activeIn:['tower','arena'],effects:[{type:'applyStatus',status:'shock',targetSide:'enemy',targetSelection:'random',targetCount:1,successRate:.40,durationTurns:2,chainAfterHits:3,chainCount:1}]};
   if(key==='statusDeathDoom')ability={name:'ตรามรณะ',description:'ติด Doom แล้วเมื่อเป้าหมายโจมตีครบ 2 ครั้งจะเข้าสู่ KO',activeIn:['tower','arena'],effects:[{type:'applyStatus',status:'death',targetSide:'enemy',targetSelection:'random',targetCount:1,successRate:.25,deathAfterAttacks:2}]};
+  if(key==='statusConditionCancel')ability={name:'ปลดล็อกเงื่อนไขผิดทาง',description:'มีโอกาสทำให้ศัตรู 1 ตัวติดสถานะยกเลิกเงื่อนไข 2 เทิร์น และแสดง 🔓 บนหน้าการ์ด',activeIn:['tower','arena'],effects:[{type:'applyStatus',status:'condition-cancel',targetSide:'enemy',targetSelection:'random',targetCount:1,successRate:.70,durationTurns:2}]};
+  if(key==='statusSkillCancel')ability={name:'ผนึกสกิลฉับพลัน',description:'มีโอกาสทำให้ศัตรู 1 ตัวติดสถานะยกเลิกสกิล 2 เทิร์น และแสดง 🚫 บนหน้าการ์ด',activeIn:['tower','arena'],effects:[{type:'applyStatus',status:'skill-cancel',targetSide:'enemy',targetSelection:'random',targetCount:1,successRate:.70,durationTurns:2}]};
+  if(key==='statusSkillStolen')ability={name:'ตราชิงวิชา',description:'มีโอกาสทำให้ศัตรู 1 ตัวติดสถานะโดนขโมยสกิล 2 เทิร์น และแสดง 🕸️ บนหน้าการ์ด',activeIn:['tower','arena'],effects:[{type:'applyStatus',status:'skill-stolen',targetSide:'enemy',targetSelection:'random',targetCount:1,successRate:.60,durationTurns:2}]};
+  if(key==='statusSkillCopied')ability={name:'ตราก็อปปี้วิชา',description:'มีโอกาสทำให้ศัตรู 1 ตัวติดสถานะโดนก็อปปี้สกิล 2 เทิร์น และแสดง 🧬 บนหน้าการ์ด',activeIn:['tower','arena'],effects:[{type:'applyStatus',status:'skill-copied',targetSide:'enemy',targetSelection:'random',targetCount:1,successRate:.70,durationTurns:2}]};
   if(key==='partner')ability={name:'สายสัมพันธ์คู่หู',description:'ความสามารถนี้ทำงานเมื่อมีการ์ดคู่หูที่กำหนดอยู่ในทีม',activeIn:['team','tower','arena'],condition:{anyCardIds:[]},effects:[{type:'selfPowerRate',value:.2}]};
   if(key==='hakariRail')ability={name:'รางดาวซ่อนแอบ',description:"เมื่อจัดเข้าทีมร่วมกับผู้ใช้ไสยเวท 'Kinji Hakari' ทุกครั้งที่การ์ดใบนี้โจมตีครบ 3 ครั้ง การโจมตีที่สกิลทำงานจะเพิ่ม 2 ฮิต เพิ่มคอส Active Skill ของฝ่ายตรงข้าม 2 และลดคอส Active Skill ของ 'Kinji Hakari' ลง 1",activeIn:['team','tower','arena'],condition:{requiredCardIds:[1033],afterOwnAttacks:3,repeat:true},effects:[{type:'nextAttackHits',value:2,targetSide:'self'},{type:'activeSkillCostCycle',value:2,targetSide:'enemy'},{type:'activeSkillCostCycle',value:-1,targetSide:'ally',targetCardIds:[1033]}]};
   if(ability){const cards=[...document.querySelectorAll('.ability-card')];if(cards.length===1){const first=cards[0],empty=!first.querySelector('.ability-name').value.trim()&&!first.querySelector('.ability-description').value.trim()&&![...first.querySelectorAll('.effect-type')].some(x=>x.value);if(empty)first.remove()}addAbility(ability);toast('เพิ่มแม่แบบความสามารถแล้ว ✓')}
