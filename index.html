@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Runtime v102 · Universal Party Scaling</title>
+  <title>ANIME CARD CODE BUILDER · Runtime v103 · Death Trigger Fix</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v102 · UNIVERSAL PARTY SCALING · AWAKEN · HIT TARGETS</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v103 · DEATH TRIGGER FIX · UNIVERSAL PARTY SCALING</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -141,7 +141,7 @@
             <button class="btn" id="downloadCard" type="button">⬇ card.js</button>
             <button class="btn danger" id="resetCard" type="button">ล้างฟอร์ม</button>
           </div>
-          <div class="footer-note"><b class="accent">Builder v102 · Universal Party Scaling:</b> ค่า Skill/Stack ไม่มีเพดานบวก; คงไว้เฉพาะค่าต่ำสุดที่ป้องกันสูตรพัง<br>AK-IDเดิม · Transform Only · Lv.350 / +20 · 50B Gems · ห้ามเงินอเวก<br>ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล Status Emoji v94 + card.js Export · applyStatus / copy / steal / Battle Log</div>
+          <div class="footer-note"><b class="accent">Builder v103 · Death Trigger Fix:</b> แก้ onDeath / afterDeaths / triggerOn ให้เจนและโหลดกลับได้; ค่า Skill/Stack ไม่มีเพดานบวก; คงไว้เฉพาะค่าต่ำสุดที่ป้องกันสูตรพัง<br>AK-IDเดิม · Transform Only · Lv.350 / +20 · 50B Gems · ห้ามเงินอเวก<br>ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล Status Emoji v94 + card.js Export · applyStatus / copy / steal / Battle Log</div>
         </aside>
       </div>
     </section>
@@ -2047,15 +2047,15 @@
       "position": "condition",
       "field": "onDeath",
       "label": "onDeath · เมื่อตัวละครเจ้าของสกิลตาย",
-      "type": "boolean",
+      "valueType": "boolean",
       "meaning": "ทำให้สกิล/เอฟเฟกต์ทำงานทันทีเมื่อเจ้าของสกิลตายในไฟต์ ใช้ได้กับบัฟ ดีบัฟ ต้านสถานะ ฮีล โล่ รีไวฟ์ และเอฟเฟกต์ที่เลือกเป้าหมาย",
       "example": "true"
     },
     {
       "position": "condition",
       "field": "afterDeaths",
-      "label": "afterDeaths · ตายครบกี่ครั้งจึงทำงาน",
-      "type": "number",
+      "label": "afterDeath / afterDeaths · ตายครบกี่ครั้งจึงทำงาน",
+      "valueType": "number",
       "meaning": "ใช้ร่วมกับ onDeath หรือ triggerOn:'death' เพื่อกำหนดจำนวนครั้งการตายก่อนสกิลทำงาน",
       "example": "1"
     },
@@ -2063,7 +2063,7 @@
       "position": "condition",
       "field": "triggerOn",
       "label": "triggerOn · กำหนด event โดยตรง",
-      "type": "text",
+      "valueType": "string",
       "meaning": "ระบุ event ที่ทำให้สกิลทำงาน เช่น death, battleStart, damaged, critical, allyActiveSkill, kill",
       "example": "death"
     },
@@ -3357,19 +3357,19 @@
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001",
     "sheetRole": "primary",
-    "builderUpdated": "2026-07-11-universal-party-scaling-v102",
+    "builderUpdated": "2026-07-12-death-trigger-fix-v103",
     "currentEffectCount": 107,
     "currentConditionCount": 100,
     "statusEmojiUpdated": "2026-07-07-status-emoji-v68",
     "statusImmunityUpdated": "v85 abnormalStatusResistance no-value + specific statuses + onDeath trigger"
   },
   "meta": {
-    "builderUpdated": "2026-07-11-universal-party-scaling-v102",
+    "builderUpdated": "2026-07-12-death-trigger-fix-v103",
     "statusEmojiUpdated": "2026-07-07-status-emoji-v68",
     "statusImmunityUpdated": "v85 abnormalStatusResistance no-value + specific statuses + onDeath trigger",
     "godRarityAdded": true,
     "godRarityNote": "GOD: no banner guarantee, ultra-low rate, level cap 350, angelic black-white-gold theme.",
-    "version": "v102-universal-party-scaling",
+    "version": "v103-death-trigger-fix",
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001",
     "awakenRarityAdded": true,
     "awakenRarityNote": "AWAKEN: transform-only AK-<sourceId>, Lv.350, awaken +20, 50B Gems first transformation, no money awaken."
@@ -3636,7 +3636,7 @@ function conditionGroup(field){
   if(/Rarit/.test(field))return 'ระดับ';
   if(/source|leader|Revive/.test(field))return 'เจ้าของสกิล';
   if(/CardIds|CardNames|Teammate|Character|Name/.test(field))return 'การ์ดร่วมทีม / ชื่อตัวละคร';
-  if(['onOwnAttack','afterOwnAttacks','repeat','domainActive','afterDomainAttacks','onBattleStart','onDamaged','afterDamagedHits','onCritical','afterCriticalHits','onAllyActiveSkill','afterActiveSkills','onKill','sourceHpBelowRate','sourceHpAboveRate','targetHpBelowRate','targetHpAboveRate','maxActivations'].includes(field))return 'Active Skill / เหตุการณ์ / HP';
+  if(['onOwnAttack','afterOwnAttacks','repeat','domainActive','afterDomainAttacks','onBattleStart','onDamaged','afterDamagedHits','onCritical','afterCriticalHits','onAllyActiveSkill','afterActiveSkills','onKill','afterKills','onDeath','onDead','afterDeaths','afterDeathCount','triggerOn','sourceHpBelowRate','sourceHpAboveRate','targetHpBelowRate','targetHpAboveRate','maxActivations'].includes(field))return 'Active Skill / เหตุการณ์ / HP';
   return 'ขนาดทีม';
 }
 function conditionOptions(selected=''){
@@ -3652,9 +3652,15 @@ function renderConditionControl(row,field,initialValue){
   const host=row.querySelector('.conditional-control'), note=row.querySelector('.condition-note'), meta=conditionCatalog.find(x=>x.field===field);host.innerHTML='';
   if(!meta){note.textContent='เลือกเงื่อนไขเพื่อดูคำอธิบาย';renderOutput();return}
   note.innerHTML=`<b>${esc(meta.meaning)}</b> · ${esc(meta.note||'')} · ตัวอย่าง: ${esc(typeof meta.example==='object'?JSON.stringify(meta.example):meta.example??'-')}`;
-  const valueType=meta.valueType;
-  if(valueType==='boolean')host.innerHTML=`<select class="field condition-boolean">${option('true','ใช่ / true',initialValue===true)}${option('false','ไม่ / false',initialValue===false)}</select>`;
-  else if(valueType==='string'){if(field==='domainActive')host.innerHTML=`<input class="field condition-string" value="${esc(initialValue||'')}" placeholder="เช่น mamonIceDomain">`;else host.innerHTML=`<select class="field condition-string">${getTokenOptions('modes').map(x=>option(x.value,x.label,String(initialValue)===x.value)).join('')}</select>`;}
+  const rawValueType=meta.valueType||meta.type||'';
+  const valueType=rawValueType==='text'?'string':rawValueType;
+  if(valueType==='boolean')host.innerHTML=`<select class="field condition-boolean">${option('true','ใช่ / true',initialValue!==false)}${option('false','ไม่ / false',initialValue===false)}</select>`;
+  else if(valueType==='string'){
+    if(field==='domainActive')host.innerHTML=`<input class="field condition-string" value="${esc(initialValue||'')}" placeholder="เช่น mamonIceDomain">`;
+    else if(field==='triggerOn'){const events=[['death','death · เมื่อตาย'],['battleStart','battleStart · เริ่มการต่อสู้'],['damaged','damaged · เมื่อได้รับความเสียหาย'],['critical','critical · เมื่อติดคริติคอล'],['allyActiveSkill','allyActiveSkill · เมื่อฝ่ายเราใช้ Active'],['kill','kill · เมื่อจัดการเป้าหมาย'],['hpThreshold','hpThreshold · เมื่อ HP ถึงเงื่อนไข'],['ownAttack','ownAttack · ทุกครั้งที่โจมตี'],['nextAttack','nextAttack · เมื่อสะสมการโจมตีครบ']];host.innerHTML=`<select class="field condition-string">${events.map(([value,label])=>option(value,label,String(initialValue||'death')===value)).join('')}</select>`;}
+    else if(field==='mode')host.innerHTML=`<select class="field condition-string">${getTokenOptions('modes').map(x=>option(x.value,x.label,String(initialValue)===x.value)).join('')}</select>`;
+    else host.innerHTML=`<input class="field condition-string" value="${esc(initialValue||'')}" placeholder="กรอกข้อความ">`;
+  }
   else if(valueType==='number')host.innerHTML=numberControlHtml(field,initialValue);
   else if(valueType==='array'){
     let kind='cards';if(/Elements|teamElementsOnly/.test(field))kind='elements';else if(/Rarities/.test(field))kind='rarities';else if(field==='modes')kind='modes';else if(/Names|Characters/.test(field))kind='text';
@@ -3920,11 +3926,12 @@ function renderEffectRow(row,initialValue){
 }
 function readConditionRow(row){
   const field=row.querySelector('.condition-field').value;if(!field)return null;const meta=conditionCatalog.find(x=>x.field===field);if(!meta)return null;const host=row.querySelector('.conditional-control');let value;
-  if(meta.valueType==='boolean')value=host.querySelector('.condition-boolean').value==='true';
-  else if(meta.valueType==='string')value=host.querySelector('.condition-string').value;
-  else if(meta.valueType==='number')value=readNumberControl(host);
-  else if(meta.valueType==='array'){const picker=host.querySelector('.token-picker');value=getPickerValues(picker).map(v=>/CardIds|cardIds|Ids$/.test(field)?int(v):v)}
-  else if(meta.valueType.includes('object')){
+  const rawValueType=meta.valueType||meta.type||'';const valueType=rawValueType==='text'?'string':rawValueType;
+  if(valueType==='boolean')value=host.querySelector('.condition-boolean')?.value==='true';
+  else if(valueType==='string')value=host.querySelector('.condition-string')?.value||'';
+  else if(valueType==='number')value=readNumberControl(host);
+  else if(valueType==='array'){const picker=host.querySelector('.token-picker');value=getPickerValues(picker).map(v=>/CardIds|cardIds|Ids$/.test(field)?int(v):v)}
+  else if(valueType.includes('object')){
     if(field==='minCombinedElementCount'){value={elements:getPickerValues(host.querySelector('.token-picker')),count:int(readNumberControl(host.querySelector('.number-control')))}}
     else if(['minCardGroupCount','maxCardGroupCount'].includes(field)){value={cardIds:getPickerValues(host.querySelector('.token-picker')).map(int),count:int(readNumberControl(host.querySelector('.number-control')))}}
     else{const picker=host.querySelector('.kv-picker');try{value=JSON.parse(picker.dataset.object||'{}')}catch{value={}}}
