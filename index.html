@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Card.js Export Runtime v94</title>
+  <title>ANIME CARD CODE BUILDER · Card.js Export Runtime v96 · Split & Summon</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v95 · EFFECT-SUB CONDITIONS · REVIVE-GATED SKILLS · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v96 · EFFECT-SUB CONDITIONS · REVIVE-GATED SKILLS · FIREBASE CLOUD + LOCAL BACKUP</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -151,7 +151,7 @@
       <div class="section-head"><div><h2>วิธีใช้แบบเร็ว</h2><p>แอปนี้ซิงก์คลังผ่าน Firebase และยังเปิดทำงานแบบ Local สำรองได้เมื่อออฟไลน์</p></div><span class="badge green">CLOUD READY</span></div>
       <div class="help-grid">
         <article class="help-card"><h3>1) สร้างข้อมูลการ์ด</h3><p>กรอก ID และชื่อ เลือกระดับ ธาตุ และเบสสแตตจากดรอปดาวน์ ระบบจะตรวจ ID ซ้ำทันที</p></article>
-        <article class="help-card"><h3>2) เพิ่มหลายสกิล</h3><p>กด <b>เพิ่มความสามารถ</b> แล้วเพิ่มเงื่อนไขและเอฟเฟกต์ได้หลายรายการ รวม <code>taunt</code> สำหรับบังคับเป้าหมาย และ <code>captureRevive</code> สำหรับชิงร่างศัตรูที่กำจัดได้ ระบบจะสร้างเป็น <code>"abilities": [...]</code></p></article>
+        <article class="help-card"><h3>2) เพิ่มหลายสกิล</h3><p>กด <b>เพิ่มความสามารถ</b> แล้วเพิ่มเงื่อนไขและเอฟเฟกต์ได้หลายรายการ รวม <code>taunt</code>, <code>captureRevive</code>, <code>splitClone</code> และ <code>summonCard</code> สำหรับเพิ่มสมาชิกใหม่ลงสนาม ระบบจะสร้างเป็น <code>"abilities": [...]</code></p></article>
         <article class="help-card"><h3>3) คัดลอกไปวาง</h3><p>ค่าเริ่มต้นจะสร้างเป็น <b>ไฟล์ card.js แบบใหม่</b> ห่อด้วย <code>ACC_REGISTER_CARD(...);</code> ให้นำไปวางใน <code>card/ID/card.js</code> แล้วเพิ่ม ID ใน <code>card-manifest.js</code></p></article>
         <article class="help-card"><h3>4) อัปเดตฐาน ID</h3><p>เมื่อเกมมีการ์ดใหม่ ให้นำเข้าไฟล์ HTML ล่าสุดในหน้า <b>ฐาน ID</b> แอปจะอ่าน ID เพื่อป้องกันการสร้างซ้ำ</p></article>
         <article class="help-card"><h3>Firebase Cloud Firestore</h3><p>คลังออนไลน์ใช้คอลเลกชัน <code>animeCardCodeBuilderCards</code> และใช้ Card ID เป็น Document ID การแก้ไข ID เดิมจึงอัปเดตข้อมูลใบเดิมแบบเรียลไทม์</p></article><article class="help-card"><h3>ชีทหลักของระบบ</h3><p>ให้อ้างอิง <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001" target="_blank" rel="noopener" class="accent"><b>Google Sheet ระบบสกิลและเงื่อนไข</b></a> เป็นข้อมูลหลักสำหรับเอฟเฟกต์ เงื่อนไข และการอัปเดตครั้งถัดไป</p></article>
@@ -1138,6 +1138,26 @@
       "suitableModes": "tower, arena",
       "note": "ศัตรูต้นทางจะคืนชีพร่างนี้ไม่ได้ระหว่างถูกชิง; เมื่อร่างตายในฝ่ายเรา ศพจะกลับฝ่ายเดิมและคืนชีพได้ตามปกติ",
       "exampleCode": "{ \"type\":\"captureRevive\", \"targetSelection\":\"random\", \"targetCount\":2, \"successRate\":0.60, \"reviveType\":\"reviveHitLife\", \"value\":0.30, \"surviveHits\":5 }"
+    },
+    {
+      "category": "ACTIVE / แยกร่างและซัมม่อน",
+      "type": "splitClone",
+      "meaning": "สร้างร่างแยกจากผู้ใช้สกิล โดยกำหนดจำนวน ช่องลงสนาม ค่าสเตตัส เป้าหมายโจมตี และสกิลเฉพาะร่างได้",
+      "exampleValue": null,
+      "fields": "condition, count, slotPolicy, successRate, powerRate, hpRate, defenseRate, speedRate, basePower, baseHp, baseDefense, baseSpeed, normalAttackTargetCount, attackHits, canUseAbilities, inheritAbilities, cloneAbilities, maxSpawnDepth",
+      "suitableModes": "tower, arena, worldBoss",
+      "note": "slotPolicy รองรับ newSlot / emptySlot / defeatedSlot / emptyOrDefeated / anyAvailable; หากไม่ใส่ Trigger จะทำงานตอนเริ่มต่อสู้ 1 ครั้ง",
+      "exampleCode": "{ \"type\":\"splitClone\", \"count\":2, \"slotPolicy\":\"emptyOrDefeated\", \"powerRate\":0.50, \"hpRate\":0.40, \"defenseRate\":0.50, \"speedRate\":1, \"normalAttackTargetCount\":2, \"canUseAbilities\":true, \"inheritAbilities\":false, \"cloneAbilities\":[] }"
+    },
+    {
+      "category": "ACTIVE / แยกร่างและซัมม่อน",
+      "type": "summonCard",
+      "meaning": "ซัมม่อนการ์ดตาม Card ID ลงสนาม พร้อมใช้สกิลปกติของการ์ดและเพิ่มสกิลเฉพาะตอนถูกซัมม่อนได้",
+      "exampleValue": null,
+      "fields": "condition, summonCardId, count, slotPolicy, successRate, powerRate, hpRate, defenseRate, speedRate, basePower, baseHp, baseDefense, baseSpeed, normalAttackTargetCount, attackHits, canUseAbilities, useBaseAbilities, summonedAbilities, maxSpawnDepth",
+      "suitableModes": "tower, arena, worldBoss",
+      "note": "ร่างซัมม่อนมี Runtime ID แยกและเข้าคิวตาม SPD ของตัวเอง; useBaseAbilities=true จะใช้สกิลเดิมของการ์ด แล้วต่อด้วย summonedAbilities",
+      "exampleCode": "{ \"type\":\"summonCard\", \"summonCardId\":2003, \"count\":1, \"slotPolicy\":\"newSlot\", \"powerRate\":0.75, \"hpRate\":0.75, \"useBaseAbilities\":true, \"summonedAbilities\":[] }"
     },
     {
       "category": "ACTIVE / จังหวะสกิล",
@@ -3268,19 +3288,19 @@
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001",
     "sheetRole": "primary",
-    "builderUpdated": "2026-07-09-effect-subconditions-v95",
-    "currentEffectCount": 105,
+    "builderUpdated": "2026-07-11-split-summon-v96",
+    "currentEffectCount": 107,
     "currentConditionCount": 100,
     "statusEmojiUpdated": "2026-07-07-status-emoji-v68",
     "statusImmunityUpdated": "v85 abnormalStatusResistance no-value + specific statuses + onDeath trigger"
   },
   "meta": {
-    "builderUpdated": "2026-07-09-effect-subconditions-v95",
+    "builderUpdated": "2026-07-11-split-summon-v96",
     "statusEmojiUpdated": "2026-07-07-status-emoji-v68",
     "statusImmunityUpdated": "v85 abnormalStatusResistance no-value + specific statuses + onDeath trigger",
     "godRarityAdded": true,
     "godRarityNote": "GOD: no banner guarantee, ultra-low rate, level cap 350, angelic black-white-gold theme.",
-    "version": "v95-effect-subconditions-revive-gate",
+    "version": "v96-split-summon-runtime",
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001"
   }
 }
@@ -3295,7 +3315,7 @@ const rarityCodes = Object.keys(DATA.rarities).sort((a,b)=>DATA.rarities[a].orde
 const conditionCatalog = DATA.conditions.filter(x=>x.position==='condition');
 const effectCatalog = DATA.effects;
 const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
-const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain','taunt','adaptiveElement','applyStatus','abnormalStatusResistance']);
+const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain','taunt','adaptiveElement','applyStatus','abnormalStatusResistance','splitClone','summonCard']);
 const abnormalStatusTypes = ['death','stun','blind','freeze','burn','bleed','shock','condition-cancel','skill-cancel','skill-stolen','skill-copied'];
 const statusUiMap = {
   death:'☠️ death · เดธ / Doom',
@@ -3329,7 +3349,7 @@ const stackRateEffectTypes = new Set(['powerRateStack','hpRateStack','defenseRat
 const stackFlatEffectTypes = new Set(['powerFlatStack','hpFlatStack','defenseFlatStack','incomeFlatStack']);
 const stackIntegerEffectTypes = new Set(['attackHitsStack','shieldHitsStack','activeSkillCostCycleStack','activeSkillCostPermanentStack','speedFlatStack']);
 const stackEffectTypes = new Set([...stackRateEffectTypes,...stackFlatEffectTypes,...stackIntegerEffectTypes,'increaseAttackRateStack']);
-const activeEffectTypes = new Set(['applyStatus','captureRevive','nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack','taunt','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','followUpAttack','counterAttack','adaptiveElement','multiElementAttack','criticalDamageRate','defensePenetrationRate',...stackEffectTypes]);
+const activeEffectTypes = new Set(['applyStatus','captureRevive','splitClone','summonCard','nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack','taunt','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','followUpAttack','counterAttack','adaptiveElement','multiElementAttack','criticalDamageRate','defensePenetrationRate',...stackEffectTypes]);
 const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['captureRevive','criticalRate','luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack','statusResistance','revive','reviveTimedUndying','reviveHitLife','followUpAttack','counterAttack','criticalDamageRate','defensePenetrationRate',...stackRateEffectTypes]));
 const integerEffectTypes = new Set(['shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost','activeSkillCostCycle','activeSkillCostPermanent','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','multiElementAttack','speedFlat','speedFlatStack',...stackIntegerEffectTypes]);
 const flatEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Flat$/.test(t)).concat([...stackFlatEffectTypes]));
@@ -3622,6 +3642,29 @@ function addEffectRow(container,initial={}){
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced nullify-options hidden" open><summary>ตั้งค่า nullify แบบ Active</summary><div class="grid"><div class="field-wrap span-6"><label>durationTriggers</label>${optionalNumberControlHtml('durationTriggers',initial.durationTriggers)}<small class="hint">จำนวนรอบ Active ของการ์ดเป้าหมายที่จะถูกทำให้ไร้ผล</small></div><div class="field-wrap span-6"><div class="status ok">ใช้ร่วมกับ targetSelection ด้านบนได้: random / specific / all</div></div></div></details>`);
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced ignore-options hidden" open><summary>ตั้งค่า ignoreAbilityConditions</summary><div class="grid"><div class="field-wrap span-6"><label>triggerImmediately</label><select class="field ignore-trigger-immediately">${option('false','false · ยกเลิกเฉพาะเงื่อนไขจัดทีม',initial.triggerImmediately!==true)}${option('true','true · Active พร้อมใช้ในการโจมตีครั้งแรก',initial.triggerImmediately===true)}</select></div><div class="field-wrap span-6"><div class="status ok">หลังใช้ครั้งแรก ตัวนับรอบถัดไปกลับไปใช้ afterOwnAttacks เดิม</div></div></div></details>`);
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced capture-options hidden" open><summary>ตั้งค่าชิงร่างศัตรู</summary><div class="grid"><div class="field-wrap span-4"><label>อัตราสำเร็จ successRate</label>${chanceControlHtml(initial.successRate??1)}</div><div class="field-wrap span-4"><label>รูปแบบคืนชีพ reviveType</label><select class="field capture-revive-type">${option('revive','revive · คืนชีพธรรมดา',String(initial.reviveType||'revive')==='revive')}${option('reviveTimedUndying','reviveTimedUndying · อมตะชั่วคราว',String(initial.reviveType)==='reviveTimedUndying')}${option('reviveHitLife','reviveHitLife · ชีวิตตามฮิต',String(initial.reviveType)==='reviveHitLife')}</select></div><div class="field-wrap span-4"><label>maxTriggers · ชิงสำเร็จสูงสุด (ไม่ใส่ = ไม่จำกัด)</label>${optionalNumberControlHtml('maxTriggers',initial.maxTriggers)}</div><div class="field-wrap span-4 capture-duration-wrap"><label>durationTurns</label>${optionalNumberControlHtml('durationTurns',initial.durationTurns??3)}</div><div class="field-wrap span-4 capture-hitlife-wrap"><label>surviveHits</label>${optionalNumberControlHtml('surviveHits',initial.surviveHits??5)}</div><div class="field-wrap span-4"><div class="status ok capture-summary">ศัตรูคืนชีพร่างนี้ไม่ได้ จนกว่าร่างจะตายในฝ่ายเรา</div></div></div></details>`);
+
+  row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced spawn-options hidden" open><summary>ตั้งค่าร่างแยก / ร่างซัมม่อน v96</summary><div class="grid">
+    <div class="field-wrap span-3"><label>จำนวนร่าง count</label><input class="field spawn-count" type="number" min="1" max="20" step="1" value="${esc(initial.count??initial.cloneCount??initial.summonCount??1)}"></div>
+    <div class="field-wrap span-4"><label>นโยบายช่อง slotPolicy</label><select class="field spawn-slot-policy">${option('newSlot','newSlot · สร้างช่องใหม่',String(initial.slotPolicy)==='newSlot')}${option('emptySlot','emptySlot · ใช้ช่องว่างเท่านั้น',String(initial.slotPolicy)==='emptySlot')}${option('defeatedSlot','defeatedSlot · แทนผู้หมดสภาพเท่านั้น',String(initial.slotPolicy)==='defeatedSlot')}${option('emptyOrDefeated','emptyOrDefeated · ช่องว่างก่อน แล้วแทนผู้หมดสภาพ',!initial.slotPolicy||String(initial.slotPolicy)==='emptyOrDefeated')}${option('anyAvailable','anyAvailable · ช่องว่าง/หมดสภาพ/สร้างใหม่',String(initial.slotPolicy)==='anyAvailable')}</select></div>
+    <div class="field-wrap span-3 spawn-summon-only"><label>summonCardId</label><input class="field spawn-card-id" type="number" min="0" step="1" value="${esc(initial.summonCardId??'')}" placeholder="เช่น 2003"></div>
+    <div class="field-wrap span-2"><label>successRate</label><input class="field spawn-success-rate" type="number" min="0" step="0.01" value="${esc(initial.successRate??1)}"></div>
+    <div class="field-wrap span-3"><label>Power Rate</label><input class="field spawn-power-rate" type="number" min="0" step="0.01" value="${esc(initial.powerRate??1)}"></div>
+    <div class="field-wrap span-3"><label>HP Rate</label><input class="field spawn-hp-rate" type="number" min="0" step="0.01" value="${esc(initial.hpRate??1)}"></div>
+    <div class="field-wrap span-3"><label>DEF Rate</label><input class="field spawn-defense-rate" type="number" min="0" step="0.01" value="${esc(initial.defenseRate??1)}"></div>
+    <div class="field-wrap span-3"><label>SPD Rate</label><input class="field spawn-speed-rate" type="number" min="0" step="0.01" value="${esc(initial.speedRate??1)}"></div>
+    <div class="field-wrap span-3"><label>Base Power (เว้นว่าง=ใช้ Rate)</label><input class="field spawn-base-power" type="number" min="1" step="1" value="${esc(initial.basePower??'')}"></div>
+    <div class="field-wrap span-3"><label>Base HP</label><input class="field spawn-base-hp" type="number" min="1" step="1" value="${esc(initial.baseHp??'')}"></div>
+    <div class="field-wrap span-3"><label>Base DEF</label><input class="field spawn-base-defense" type="number" min="0" step="1" value="${esc(initial.baseDefense??'')}"></div>
+    <div class="field-wrap span-3"><label>Base SPD</label><input class="field spawn-base-speed" type="number" min="1" step="1" value="${esc(initial.baseSpeed??'')}"></div>
+    <div class="field-wrap span-3"><label>โจมตีปกติกี่เป้าหมาย</label><input class="field spawn-target-count" type="number" min="1" max="5" step="1" value="${esc(initial.normalAttackTargetCount??initial.attackTargetCount??1)}"></div>
+    <div class="field-wrap span-3"><label>จำนวนฮิตโจมตีปกติ</label><input class="field spawn-attack-hits" type="number" min="1" step="1" value="${esc(initial.attackHits??'')}" placeholder="เว้นว่าง=ใช้ต้นฉบับ"></div>
+    <div class="field-wrap span-3"><label>ร่างใช้สกิลได้ไหม</label><select class="field spawn-can-use-abilities">${option('true','true · ใช้สกิลได้',initial.canUseAbilities!==false)}${option('false','false · โจมตีปกติเท่านั้น',initial.canUseAbilities===false)}</select></div>
+    <div class="field-wrap span-3"><label>maxSpawnDepth</label><input class="field spawn-max-depth" type="number" min="1" max="10" step="1" value="${esc(initial.maxSpawnDepth??1)}"><small class="hint">กันการแยกร่าง/ซัมม่อนวนไม่สิ้นสุด</small></div>
+    <div class="field-wrap span-4 spawn-clone-only"><label>สืบทอดสกิลร่างหลัก</label><select class="field spawn-inherit-abilities">${option('false','false · ใช้เฉพาะสกิลร่างแยก',initial.inheritAbilities!==true)}${option('true','true · รวมสกิลร่างหลัก',initial.inheritAbilities===true)}</select></div>
+    <div class="field-wrap span-4 spawn-summon-only"><label>ใช้สกิลปกติของการ์ดที่ซัมม่อน</label><select class="field spawn-use-base-abilities">${option('true','true · ใช้สกิลเดิม + สกิลเพิ่ม',initial.useBaseAbilities!==false)}${option('false','false · ใช้เฉพาะสกิลเพิ่ม',initial.useBaseAbilities===false)}</select></div>
+    <div class="field-wrap span-12"><label class="spawn-abilities-label">สกิลเฉพาะร่าง (JSON Array)</label><textarea class="textarea spawn-abilities-json" spellcheck="false" placeholder='[{"name":"สกิลร่างแยก","activeIn":["tower","arena"],"effects":[]}]'>${esc(JSON.stringify(initial.cloneAbilities||initial.summonedAbilities||[],null,2))}</textarea><small class="hint">ใส่ความสามารถเต็มรูปแบบเป็น Array; ระบบจะเพิ่มจากสกิลปกติตามตัวเลือกด้านบน</small></div>
+    <div class="field-wrap span-12"><div class="status ok spawn-summary">ร่างใหม่มี Runtime ID แยก เข้าคิวตาม SPD และถูกนับเป็นสมาชิกสนามจริง</div></div>
+  </div></details>`);
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced status-options hidden" open><summary>ตั้งค่าสถานะผิดปกติ v68</summary><div class="grid"><div class="field-wrap span-3"><label>status</label><select class="field status-kind">${abnormalStatusTypes.map(status=>option(status,statusUiMap[status]||status,status===String(initial.status||'stun'))).join('')}</select></div><div class="field-wrap span-3"><label>อัตราติด successRate</label>${chanceControlHtml(initial.successRate??initial.statusRate??initial.chance??initial.rate??1)}</div><div class="field-wrap span-3"><label>targetCount</label>${optionalNumberControlHtml('targetCount',initial.targetCount??1)}<small class="hint">จำนวนเป้าหมาย 1-5</small></div><div class="field-wrap span-3"><label>durationTurns</label>${optionalNumberControlHtml('durationTurns',initial.durationTurns)}</div><div class="field-wrap span-3 status-death-wrap"><label>deathAfterAttacks</label>${optionalNumberControlHtml('deathAfterAttacks',initial.deathAfterAttacks??2)}</div><div class="field-wrap span-3 status-blind-wrap"><label>missRate</label>${chanceControlHtml(initial.missRate??0.40)}</div><div class="field-wrap span-3 status-burn-wrap"><label>damageFlat</label><input class="field status-damage-flat" type="number" step="1" value="${esc(initial.damageFlat??'')}"></div><div class="field-wrap span-3 status-burn-wrap"><label>damageRate</label><input class="field status-damage-rate" type="number" min="0" step="0.01" value="${esc(initial.damageRate??'')}"></div><div class="field-wrap span-3 status-bleed-wrap"><label>hpLossFlat</label><input class="field status-hp-loss-flat" type="number" step="1" value="${esc(initial.hpLossFlat??'')}"></div><div class="field-wrap span-3 status-bleed-wrap"><label>hpLossRate</label><input class="field status-hp-loss-rate" type="number" min="0" step="0.01" value="${esc(initial.hpLossRate??0.05)}"></div><div class="field-wrap span-3 status-shock-wrap"><label>chainAfterHits</label>${optionalNumberControlHtml('chainAfterHits',initial.chainAfterHits??3)}</div><div class="field-wrap span-3 status-shock-wrap"><label>chainCount</label>${optionalNumberControlHtml('chainCount',initial.chainCount??1)}</div><div class="field-wrap span-12"><div class="status ok status-summary-v68">applyStatus จะสุ่มติดสถานะตาม successRate และตรวจ statusResistance ก่อนเสมอ</div></div></div></details>`);
   container.appendChild(row);row.querySelectorAll('.token-picker').forEach(renderTokenPicker);row.querySelector('.effect-target-side').value=initial.targetSide||'';row.querySelector('.effect-target-match').value=initial.targetMatch||'any';effectExtraConditionEntries(initial.condition||{}).forEach(([field,value])=>addConditionRow(row.querySelector('.effect-conditions-list'),field,value));renderEffectRow(row,initial.value);return row;
 }
@@ -3710,7 +3753,7 @@ function syncCopiedLifetimePreset(row,applyPreset=false){
 function renderEffectRow(row,initialValue){
   const category=row.querySelector('.effect-category').value,typeSelect=row.querySelector('.effect-type');if(!typeSelect.value&&initialValue===undefined)typeSelect.innerHTML=effectTypeOptions(category,'');
   const type=typeSelect.value,meta=effectByType.get(type),wrap=row.querySelector('.effect-value-wrap'),control=row.querySelector('.effect-value-control'),note=row.querySelector('.effect-note'),summary=row.querySelector('.effect-summary');
-  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack','abnormalStatusResistance'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain',isTaunt=type==='taunt',isCapture=type==='captureRevive',isApplyStatus=type==='applyStatus';
+  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack','abnormalStatusResistance'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain',isTaunt=type==='taunt',isCapture=type==='captureRevive',isApplyStatus=type==='applyStatus',isSpawn=['splitClone','summonCard'].includes(type),isSummon=type==='summonCard';
   const isRevive=['revive','reviveTimedUndying','reviveHitLife'].includes(type);
   const isAdvancedCombat=['triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','followUpAttack','counterAttack','adaptiveElement','multiElementAttack','criticalDamageRate','defensePenetrationRate'].includes(type);
   const isAttackAction=['followUpAttack','counterAttack','multiElementAttack'].includes(type);
@@ -3735,6 +3778,10 @@ function renderEffectRow(row,initialValue){
   row.querySelector('.nullify-options')?.classList.toggle('hidden',!isNullify);
   row.querySelector('.ignore-options')?.classList.toggle('hidden',!isIgnore);
   row.querySelector('.capture-options')?.classList.toggle('hidden',!isCapture);
+  row.querySelector('.spawn-options')?.classList.toggle('hidden',!isSpawn);
+  row.querySelectorAll('.spawn-summon-only').forEach(el=>el.classList.toggle('hidden',!isSummon));
+  row.querySelectorAll('.spawn-clone-only').forEach(el=>el.classList.toggle('hidden',!isSpawn||isSummon));
+  const spawnLabel=row.querySelector('.spawn-abilities-label');if(spawnLabel)spawnLabel.textContent=isSummon?'summonedAbilities · สกิลเพิ่มตอนซัมม่อน (JSON Array)':'cloneAbilities · สกิลเฉพาะร่างแยก (JSON Array)';
   syncStatusSpecificControls(row);
   if(isCapture){const rt=row.querySelector('.capture-revive-type')?.value||'revive';row.querySelector('.capture-duration-wrap')?.classList.toggle('hidden',rt!=='reviveTimedUndying');row.querySelector('.capture-hitlife-wrap')?.classList.toggle('hidden',rt!=='reviveHitLife');}
   if(isTransfer)syncCopiedLifetimePreset(row,false);
@@ -3833,6 +3880,23 @@ function readEffectRow(row){
     if(obj.reviveType==='reviveTimedUndying'){const v=readOptionalNumberControl(controls[1]);if(v!==null)obj.durationTurns=v;delete obj.surviveHits;}
     if(obj.reviveType==='reviveHitLife'){const v=readOptionalNumberControl(controls[2]);if(v!==null)obj.surviveHits=v;delete obj.durationTurns;}
     if(!obj.targetSelection)obj.targetSelection='random';
+  }
+  if(['splitClone','summonCard'].includes(type)){
+    obj.count=Math.max(1,Math.min(20,int(row.querySelector('.spawn-count')?.value,1)));
+    obj.slotPolicy=row.querySelector('.spawn-slot-policy')?.value||'emptyOrDefeated';
+    obj.successRate=Math.max(0,num(row.querySelector('.spawn-success-rate')?.value,1));
+    obj.powerRate=Math.max(0,num(row.querySelector('.spawn-power-rate')?.value,1));
+    obj.hpRate=Math.max(0,num(row.querySelector('.spawn-hp-rate')?.value,1));
+    obj.defenseRate=Math.max(0,num(row.querySelector('.spawn-defense-rate')?.value,1));
+    obj.speedRate=Math.max(0,num(row.querySelector('.spawn-speed-rate')?.value,1));
+    [['basePower','.spawn-base-power'],['baseHp','.spawn-base-hp'],['baseDefense','.spawn-base-defense'],['baseSpeed','.spawn-base-speed'],['attackHits','.spawn-attack-hits']].forEach(([field,selector])=>{const raw=String(row.querySelector(selector)?.value??'').trim();if(raw!==''&&Number.isFinite(Number(raw)))obj[field]=Number(raw)});
+    obj.normalAttackTargetCount=Math.max(1,Math.min(5,int(row.querySelector('.spawn-target-count')?.value,1)));
+    obj.canUseAbilities=row.querySelector('.spawn-can-use-abilities')?.value!=='false';
+    obj.maxSpawnDepth=Math.max(1,Math.min(10,int(row.querySelector('.spawn-max-depth')?.value,1)));
+    if(type==='splitClone')obj.inheritAbilities=row.querySelector('.spawn-inherit-abilities')?.value==='true';
+    else{obj.summonCardId=int(row.querySelector('.spawn-card-id')?.value,0);obj.useBaseAbilities=row.querySelector('.spawn-use-base-abilities')?.value!=='false'}
+    const rawAbilities=String(row.querySelector('.spawn-abilities-json')?.value||'').trim();
+    if(rawAbilities){try{const parsed=JSON.parse(rawAbilities);if(Array.isArray(parsed))obj[type==='summonCard'?'summonedAbilities':'cloneAbilities']=parsed;else Object.defineProperty(obj,'_spawnAbilitiesJsonError',{value:true,enumerable:false});}catch{Object.defineProperty(obj,'_spawnAbilitiesJsonError',{value:true,enumerable:false});}}
   }
   if(transferEffectTypes.has(type)){
     obj.successRate=readChanceControl(row.querySelector('.transfer-options'),1);
@@ -3956,6 +4020,17 @@ function validateAdvancedEffect(effect,abilityIndex,effectIndex){
     if(effect.reviveAttackHits!==undefined&&(!Number.isInteger(Number(effect.reviveAttackHits))||Number(effect.reviveAttackHits)<1))results.push({type:'error',text:`${label}: reviveAttackHits ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`});
   }
   if(effect.type==='taunt'&&effect.durationTurns===undefined&&effect.durationRounds===undefined)results.push({type:'warning',text:`${label}: taunt ไม่ได้กำหนดระยะเวลา Runtime จะใช้ 1 เทิร์นโจมตีของฝ่ายตรงข้าม`});
+  if(['splitClone','summonCard'].includes(effect.type)){
+    if(!Number.isInteger(Number(effect.count))||Number(effect.count)<1||Number(effect.count)>20)results.push({type:'error',text:`${label}: count ต้องเป็นจำนวนเต็ม 1–20`});
+    if(!['newSlot','emptySlot','defeatedSlot','emptyOrDefeated','anyAvailable'].includes(String(effect.slotPolicy||'')))results.push({type:'error',text:`${label}: slotPolicy ไม่ถูกต้อง`});
+    if(effect.type==='summonCard'&&(!Number.isInteger(Number(effect.summonCardId))||Number(effect.summonCardId)<1))results.push({type:'error',text:`${label}: summonCard ต้องระบุ summonCardId ตั้งแต่ 1 ขึ้นไป`});
+    ['powerRate','hpRate','defenseRate','speedRate','successRate'].forEach(field=>{if(!Number.isFinite(Number(effect[field]))||Number(effect[field])<0)results.push({type:'error',text:`${label}: ${field} ต้องเป็นตัวเลขตั้งแต่ 0 ขึ้นไป`})});
+    ['basePower','baseHp','baseDefense','baseSpeed','attackHits'].forEach(field=>{if(effect[field]!==undefined&&(!Number.isFinite(Number(effect[field]))||Number(effect[field])<(field==='baseDefense'?0:1)))results.push({type:'error',text:`${label}: ${field} ไม่ถูกต้อง`})});
+    if(!Number.isInteger(Number(effect.normalAttackTargetCount))||Number(effect.normalAttackTargetCount)<1||Number(effect.normalAttackTargetCount)>5)results.push({type:'error',text:`${label}: normalAttackTargetCount ต้องอยู่ระหว่าง 1–5`});
+    if(!Number.isInteger(Number(effect.maxSpawnDepth))||Number(effect.maxSpawnDepth)<1||Number(effect.maxSpawnDepth)>10)results.push({type:'error',text:`${label}: maxSpawnDepth ต้องอยู่ระหว่าง 1–10`});
+    if(effect._spawnAbilitiesJsonError)results.push({type:'error',text:`${label}: JSON สกิลเฉพาะร่างต้องเป็น Array ที่ถูกต้อง`});
+    const list=effect.type==='summonCard'?effect.summonedAbilities:effect.cloneAbilities;if(list!==undefined&&!Array.isArray(list))results.push({type:'error',text:`${label}: ${effect.type==='summonCard'?'summonedAbilities':'cloneAbilities'} ต้องเป็น Array`});
+  }
   if(effect.type==='captureRevive'){
     if(effect.condition?.afterOwnAttacks!==undefined||effect.condition?.onOwnAttack===true)results.push({type:'warning',text:`${label}: captureRevive ทำงานตอนเจ้าของสกิลเป็นผู้สังหาร จึงไม่ใช้ afterOwnAttacks/onOwnAttack ซ้อน`});
     if(!Number.isFinite(Number(effect.successRate))||Number(effect.successRate)<0)results.push({type:'error',text:`${label}: captureRevive ต้องกำหนด successRate ตั้งแต่ 0 ขึ้นไป`});
