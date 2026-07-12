@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Runtime v103 · Death Trigger Fix</title>
+  <title>ANIME CARD CODE BUILDER · Runtime v104 · AWAKEN Cutscene</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v103 · DEATH TRIGGER FIX · UNIVERSAL PARTY SCALING</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v104 · AWAKEN ACQUISITION CUTSCENE</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -114,6 +114,36 @@
                 <div class="field-wrap span-3"><label for="dustBaseSelect">Dust เริ่มต้น</label><select class="field" id="dustBaseSelect"></select><input class="field hidden" id="dustBaseCustom" type="number" min="0" step="1" style="margin-top:6px"></div>
                 <div class="field-wrap span-3"><label for="dustGrowthSelect">Dust Growth</label><select class="field" id="dustGrowthSelect"></select><input class="field hidden" id="dustGrowthCustom" type="number" min="1" step="0.001" style="margin-top:6px"></div>
                 <div class="field-wrap span-3"><label for="awakenMaxSelect">อเวกสูงสุด</label><select class="field" id="awakenMaxSelect"></select></div>
+              </div>
+            </details>
+
+            <details class="advanced" style="margin-top:12px">
+              <summary>🎬 คัทซีนตอนรับการ์ด · AWAKEN เล่นอัตโนมัติ</summary>
+              <div class="grid" style="margin-top:10px">
+                <div class="field-wrap span-4"><label for="acquisitionCutsceneMode">โหมดคัทซีนตอนรับ</label><select class="field" id="acquisitionCutsceneMode"><option value="auto">อัตโนมัติตามระดับ</option><option value="custom">กำหนดเองสำหรับการ์ดใบนี้</option><option value="off">ปิดคัทซีนเฉพาะใบนี้</option></select><small class="hint">ระดับ AWAKEN จะเล่นคัทซีนหลังเปลี่ยนร่างสำเร็จ แม้ใช้โหมดอัตโนมัติ</small></div>
+                <div class="field-wrap span-8"><label>การทำงาน</label><div class="status ok">EX / AWAKEN / SC / GOD เล่นอัตโนมัติ · ระดับอื่นเลือก “กำหนดเอง” เพื่อเปิดคัทซีนได้</div></div>
+                <div class="field-wrap span-12 hidden" id="acquisitionCutsceneOptions">
+                  <div class="grid">
+                    <div class="field-wrap span-4"><label for="acqCsKicker">Kicker</label><input class="field acquisition-cutscene-field" id="acqCsKicker" placeholder="เช่น SOUL EVOLUTION"></div>
+                    <div class="field-wrap span-4"><label for="acqCsQuote">ประโยคเปิดตัว</label><input class="field acquisition-cutscene-field" id="acqCsQuote" placeholder="ประโยคใหญ่ก่อนเริ่มวิดีโอ"></div>
+                    <div class="field-wrap span-4"><label for="acqCsSubtitle">ข้อความรอง</label><input class="field acquisition-cutscene-field" id="acqCsSubtitle" placeholder="เช่น An Awakened Form Has Been Born"></div>
+                    <div class="field-wrap span-4"><label for="acqCsVideo">Video</label><input class="field acquisition-cutscene-field" id="acqCsVideo" placeholder="เช่น awaken.mp4 หรือ assets/cutscenes/awaken.mp4"></div>
+                    <div class="field-wrap span-4"><label for="acqCsPoster">Poster</label><input class="field acquisition-cutscene-field" id="acqCsPoster" placeholder="เช่น awaken_poster.png"></div>
+                    <div class="field-wrap span-2"><label for="acqCsAccent">Accent</label><input class="field acquisition-cutscene-field" id="acqCsAccent" type="color" value="#c084fc"></div>
+                    <div class="field-wrap span-2"><label for="acqCsAccent2">Accent 2</label><input class="field acquisition-cutscene-field" id="acqCsAccent2" type="color" value="#e9d5ff"></div>
+                    <div class="field-wrap span-3"><label for="acqCsIntroMs">ช่วงเปิดตัว (ms)</label><input class="field acquisition-cutscene-field" id="acqCsIntroMs" type="number" min="500" max="12000" step="100" value="2200"></div>
+                    <div class="field-wrap span-3"><label for="acqCsMaxVideoMs">วิดีโอสูงสุด (ms)</label><input class="field acquisition-cutscene-field" id="acqCsMaxVideoMs" type="number" min="1000" max="120000" step="500" value="14000"></div>
+                    <div class="field-wrap span-3"><label for="acqCsRevealMs">ภาพการ์ดปิดท้าย (ms)</label><input class="field acquisition-cutscene-field" id="acqCsRevealMs" type="number" min="400" max="12000" step="100" value="1900"></div>
+                    <div class="field-wrap span-3"><label for="acqCsFit">Object Fit</label><select class="field acquisition-cutscene-field" id="acqCsFit"><option value="cover">cover · เต็มจอ</option><option value="contain">contain · เห็นครบ</option></select></div>
+                    <div class="field-wrap span-3"><label for="acqCsPosition">ตำแหน่งวิดีโอ</label><select class="field acquisition-cutscene-field" id="acqCsPosition"><option value="center center">center center</option><option value="center top">center top</option><option value="center 20%">center 20%</option><option value="left center">left center</option><option value="right center">right center</option></select></div>
+                    <div class="field-wrap span-3"><label for="acqCsMuted">เสียงเริ่มต้น</label><select class="field acquisition-cutscene-field" id="acqCsMuted"><option value="false">เปิดเสียง</option><option value="true">ปิดเสียง</option></select></div>
+                    <div class="field-wrap span-3"><label for="acqCsVolume">Volume</label><input class="field acquisition-cutscene-field" id="acqCsVolume" type="number" min="0" max="1" step="0.05" value="0.9"></div>
+                    <div class="field-wrap span-3"><label for="acqCsShowCard">ภาพการ์ดหลังคลิป</label><select class="field acquisition-cutscene-field" id="acqCsShowCard"><option value="true">แสดง</option><option value="false">ไม่แสดง</option></select></div>
+                    <div class="field-wrap span-4"><label for="acqCsRevealKicker">Reveal Kicker</label><input class="field acquisition-cutscene-field" id="acqCsRevealKicker" placeholder="เช่น AWAKENING COMPLETE"></div>
+                    <div class="field-wrap span-4"><label for="acqCsRevealTitle">Reveal Title</label><input class="field acquisition-cutscene-field" id="acqCsRevealTitle" placeholder="เช่น AWAKEN ACQUIRED"></div>
+                    <div class="field-wrap span-4"><label for="acqCsRevealText">ข้อความใต้ชื่อการ์ด</label><input class="field acquisition-cutscene-field" id="acqCsRevealText" placeholder="เว้นว่างเพื่อให้เกมสร้างอัตโนมัติ"></div>
+                  </div>
+                </div>
               </div>
             </details>
           </section>
@@ -4117,6 +4147,26 @@ function readAbilityCard(card){
   if(Object.keys(condition).length)ability.condition=condition;const cs=readCutscene(card);if(cs)ability.activeCutscene=cs;return ability;
 }
 function parseCommaText(value){return String(value||'').split(/[,，\n]+/).map(item=>item.trim()).filter(Boolean)}
+function syncAcquisitionCutsceneControls(){
+  const mode=String(el('acquisitionCutsceneMode')?.value||'auto');
+  el('acquisitionCutsceneOptions')?.classList.toggle('hidden',mode!=='custom');
+}
+function readAcquisitionCutscene(){
+  const mode=String(el('acquisitionCutsceneMode')?.value||'auto');
+  if(mode==='auto')return undefined;
+  if(mode==='off')return {enabled:false};
+  const out={enabled:true};
+  const stringFields=[['kicker','acqCsKicker'],['quote','acqCsQuote'],['subtitle','acqCsSubtitle'],['video','acqCsVideo'],['poster','acqCsPoster'],['revealKicker','acqCsRevealKicker'],['revealTitle','acqCsRevealTitle'],['revealText','acqCsRevealText']];
+  stringFields.forEach(([key,id])=>{const value=String(el(id)?.value||'').trim();if(value)out[key]=value});
+  out.accent=el('acqCsAccent')?.value||'#c084fc';out.accent2=el('acqCsAccent2')?.value||'#e9d5ff';out.introMs=int(el('acqCsIntroMs')?.value,2200);out.maxVideoMs=int(el('acqCsMaxVideoMs')?.value,14000);out.revealMs=int(el('acqCsRevealMs')?.value,1900);out.objectFit=el('acqCsFit')?.value==='contain'?'contain':'cover';out.objectPosition=String(el('acqCsPosition')?.value||'center center');out.muted=el('acqCsMuted')?.value==='true';out.volume=num(el('acqCsVolume')?.value,.9);out.showCardAfterVideo=el('acqCsShowCard')?.value!=='false';return out;
+}
+function setAcquisitionCutsceneForm(config){
+  const hasConfig=config&&typeof config==='object';
+  const mode=hasConfig&&config.enabled===false?'off':hasConfig?'custom':'auto';
+  el('acquisitionCutsceneMode').value=mode;
+  const values={acqCsKicker:config?.kicker||'',acqCsQuote:config?.quote||'',acqCsSubtitle:config?.subtitle||'',acqCsVideo:config?.video||'',acqCsPoster:config?.poster||'',acqCsAccent:config?.accent||'#c084fc',acqCsAccent2:config?.accent2||'#e9d5ff',acqCsIntroMs:String(config?.introMs??2200),acqCsMaxVideoMs:String(config?.maxVideoMs??14000),acqCsRevealMs:String(config?.revealMs??1900),acqCsFit:config?.objectFit==='contain'?'contain':'cover',acqCsPosition:config?.objectPosition||'center center',acqCsMuted:String(config?.muted===true),acqCsVolume:String(config?.volume??.9),acqCsShowCard:String(config?.showCardAfterVideo!==false),acqCsRevealKicker:config?.revealKicker||'',acqCsRevealTitle:config?.revealTitle||'',acqCsRevealText:config?.revealText||''};
+  Object.entries(values).forEach(([id,value])=>{if(el(id))el(id).value=String(value)});syncAcquisitionCutsceneControls();
+}
 function normalAttackTargetSelectionValue(){const value=String(el('normalAttackTargetSelection')?.value||'default');return ['default','random','lowHp','highAtk','front','back','specific'].includes(value)?value:'default'}
 function syncNormalTargetSelectionControls(){const specific=normalAttackTargetSelectionValue()==='specific';el('normalTargetSpecificOptions')?.classList.toggle('hidden',!specific);el('normalAttackTargetMatch').disabled=!specific}
 function buildCard(){
@@ -4130,6 +4180,7 @@ function buildCard(){
   }
   statDefs.forEach(def=>card[def.key]=statValue(def));card.normalAttackTargetCount=Math.max(1,Math.min(5,int(el('normalAttackTargetCount')?.value,1)));card.targetSelection=normalAttackTargetSelectionValue();if(card.targetSelection==='specific'){const ids=parseCommaText(el('normalTargetCardIds')?.value).map(value=>Number(value)).filter(value=>Number.isInteger(value)&&value>=1);const elements=parseCommaText(el('normalTargetElements')?.value);const rarities=parseCommaText(el('normalTargetRarities')?.value);if(ids.length)card.targetCardIds=ids;if(elements.length)card.targetElements=elements;if(rarities.length)card.targetRarities=rarities;if((ids.length?1:0)+(elements.length?1:0)+(rarities.length?1:0)>1)card.targetMatch=el('normalAttackTargetMatch')?.value||'any'}card.upgradeDustBase=progressionValue('dustBaseSelect','dustBaseCustom',true);card.upgradeDustGrowth=progressionValue('dustGrowthSelect','dustGrowthCustom',false);card.awakenMax=int(el('awakenMaxSelect').value);card.icon=mediaValue('iconMode','iconCustom','.png');card.image=mediaValue('imageMode','imageCustom','.png');
   const optional=[['poster','posterMode','posterCustom','.png'],['video','videoMode','videoCustom','.mp4'],['overlay','overlayMode','overlayCustom','_overlay.png']];optional.forEach(([key,modeId,customId,ext])=>{const value=mediaValue(modeId,customId,ext);if(value)card[key]=value});
+  const acquisitionCutscene=readAcquisitionCutscene();if(acquisitionCutscene)card.scCutscene=acquisitionCutscene;
   card.abilities=[...document.querySelectorAll('.ability-card')].map(readAbilityCard);return card;
 }
 function validateAdvancedEffect(effect,abilityIndex,effectIndex){
@@ -4234,7 +4285,13 @@ function validateCard(card){
 function isExternalOrAbsolutePath(value){return /^(https?:|data:|blob:|\/)/i.test(String(value||''))}
 function cardFolderPath(card){const id=card&&card.id!==undefined&&card.id!==null&&card.id!==''?String(card.id).trim():'';return id?`card/${id}/`:'card/'}
 function normalizeCardMediaForFolder(card){
-  const out=deepClone(card||{}),base=cardFolderPath(out);['icon','image','poster','video','overlay'].forEach(key=>{const value=out[key];if(!value)return;const raw=String(value).trim();if(!raw){delete out[key];return}if(isExternalOrAbsolutePath(raw)||raw.startsWith('card/')){out[key]=raw;return}if(raw.includes('/')){out[key]=raw;return}out[key]=base+raw});return out;
+  const out=deepClone(card||{}),base=cardFolderPath(out);
+  const normalizeValue=value=>{if(!value)return'';const raw=String(value).trim();if(!raw)return'';if(isExternalOrAbsolutePath(raw)||raw.startsWith('card/')||raw.includes('/'))return raw;return base+raw};
+  ['icon','image','poster','video','overlay'].forEach(key=>{const normalized=normalizeValue(out[key]);if(normalized)out[key]=normalized;else delete out[key]});
+  if(out.scCutscene&&typeof out.scCutscene==='object'){
+    ['video','poster'].forEach(key=>{const normalized=normalizeValue(out.scCutscene[key]);if(normalized)out.scCutscene[key]=normalized;else delete out.scCutscene[key]});
+  }
+  return out;
 }
 function jsObjectLiteral(value){return JSON.stringify(value,null,2).replace(/^(\s*)"([A-Za-z_$][\w$]*)":/gm,'$1$2:')}
 function registerCardText(card){return `ACC_REGISTER_CARD(${jsObjectLiteral(normalizeCardMediaForFolder(card))});`}
@@ -4262,11 +4319,11 @@ function loadCardIntoForm(card,index=null){
   resetForm(false);appState.editingSessionIndex=index;el('cardId').value=card.id;el('cardName').value=card.name||'';el('raritySelect').value=card.rarity||rarityCodes[0];el('awakenSourceId').value=card.awakenSourceId??card.originalCardId??(String(card.id||'').toUpperCase().startsWith('AK-')?String(card.id).slice(3):'');refreshAwakenSourceOptions();el('awakenSourceSelect').value=String(el('awakenSourceId').value||'');syncAwakenSourceControls();el('normalAttackTargetCount').value=String(Math.max(1,Math.min(5,int(card.normalAttackTargetCount??card.attackTargetCount,1))));el('normalAttackTargetSelection').value=['default','random','lowHp','highAtk','front','back','specific'].includes(String(card.targetSelection))?String(card.targetSelection):'default';el('normalAttackTargetMatch').value=String(card.targetMatch||'any')==='all'?'all':'any';el('normalTargetCardIds').value=Array.isArray(card.targetCardIds)?card.targetCardIds.join(', '):'';el('normalTargetElements').value=Array.isArray(card.targetElements)?card.targetElements.join(', '):'';el('normalTargetRarities').value=Array.isArray(card.targetRarities)?card.targetRarities.join(', '):'';syncNormalTargetSelectionControls();appState.selectedElements=Array.isArray(card.element)?card.element.slice():[card.element||'ไร้ธาตุ'];renderElementChips();initProgression();
   statDefs.forEach(def=>{el(`${def.key}Mode`).value='custom';el(`${def.key}Custom`).classList.remove('hidden');const raw=card[def.key]??0;el(`${def.key}Custom`).value=def.daily?Number(raw)*60*60*24:raw});updateStatPreviews();
   el('dustBaseSelect').value='custom';el('dustBaseCustom').classList.remove('hidden');el('dustBaseCustom').value=card.upgradeDustBase??0;el('dustGrowthSelect').value='custom';el('dustGrowthCustom').classList.remove('hidden');el('dustGrowthCustom').value=card.upgradeDustGrowth??1;el('awakenMaxSelect').value=String(card.awakenMax??1);
-  setMediaControl('imageMode','imageCustom',card.image,card.id,'.png');setMediaControl('iconMode','iconCustom',card.icon,card.id,'.png');setMediaControl('posterMode','posterCustom',card.poster,card.id,'.png');setMediaControl('videoMode','videoCustom',card.video,card.id,'.mp4');setMediaControl('overlayMode','overlayCustom',card.overlay,card.id,'_overlay.png');
+  setMediaControl('imageMode','imageCustom',card.image,card.id,'.png');setMediaControl('iconMode','iconCustom',card.icon,card.id,'.png');setMediaControl('posterMode','posterCustom',card.poster,card.id,'.png');setMediaControl('videoMode','videoCustom',card.video,card.id,'.mp4');setMediaControl('overlayMode','overlayCustom',card.overlay,card.id,'_overlay.png');setAcquisitionCutsceneForm(card.scCutscene);
   el('abilitiesContainer').innerHTML='';const abilities=Array.isArray(card.abilities)?card.abilities:(card.ability?[card.ability]:[]);if(abilities.length)abilities.forEach(addAbility);else addAbility();switchTab('builder');window.scrollTo({top:0,behavior:'smooth'});renderOutput();toast(`เปิดแก้ไข #${card.id} แล้ว`)
 }
 function resetForm(showToast=true){
-  appState.editingSessionIndex=null;el('cardId').value='';el('cardName').value='';el('raritySelect').value=rarityCodes.includes('EX')?'EX':rarityCodes[0];el('awakenSourceId').value='';refreshAwakenSourceOptions();el('awakenSourceSelect').value='';syncAwakenSourceControls();el('normalAttackTargetCount').value='1';el('normalAttackTargetSelection').value='default';el('normalAttackTargetMatch').value='any';el('normalTargetCardIds').value='';el('normalTargetElements').value='';el('normalTargetRarities').value='';syncNormalTargetSelectionControls();appState.selectedElements=['ไร้ธาตุ'];renderElementChips();el('globalStatPreset').value='1';applyRarityDefaults();['imageMode','posterMode','videoMode','overlayMode','iconMode'].forEach(id=>{el(id).value=id==='imageMode'?'id':'none';toggleCustomForSelect(el(id),el(id).dataset.target)});document.querySelectorAll('.custom-media').forEach(i=>i.value='');el('abilitiesContainer').innerHTML='';addAbility();el('duplicateOverride').checked=false;renderOutput();if(showToast)toast('เริ่มการ์ดใหม่แล้ว')
+  appState.editingSessionIndex=null;el('cardId').value='';el('cardName').value='';el('raritySelect').value=rarityCodes.includes('EX')?'EX':rarityCodes[0];el('awakenSourceId').value='';refreshAwakenSourceOptions();el('awakenSourceSelect').value='';syncAwakenSourceControls();el('normalAttackTargetCount').value='1';el('normalAttackTargetSelection').value='default';el('normalAttackTargetMatch').value='any';el('normalTargetCardIds').value='';el('normalTargetElements').value='';el('normalTargetRarities').value='';syncNormalTargetSelectionControls();appState.selectedElements=['ไร้ธาตุ'];renderElementChips();el('globalStatPreset').value='1';applyRarityDefaults();['imageMode','posterMode','videoMode','overlayMode','iconMode'].forEach(id=>{el(id).value=id==='imageMode'?'id':'none';toggleCustomForSelect(el(id),el(id).dataset.target)});document.querySelectorAll('.custom-media').forEach(i=>i.value='');setAcquisitionCutsceneForm(undefined);el('abilitiesContainer').innerHTML='';addAbility();el('duplicateOverride').checked=false;renderOutput();if(showToast)toast('เริ่มการ์ดใหม่แล้ว')
 }
 function extractCardsFromText(text){
   const found=[];const add=(item)=>{if(item&&item.id!==undefined&&item.id!==null){const raw=String(item.id).trim(),numeric=Number(raw),id=Number.isFinite(numeric)&&raw!==''?numeric:raw;if(raw!=='')found.push({...deepClone(item),id,name:String(item.name||''),rarity:String(item.rarity||''),element:item.element||''})}};
@@ -4332,7 +4389,7 @@ function bindEvents(){
   document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
   ['cardId','cardName'].forEach(id=>el(id).addEventListener('input',renderOutput));el('raritySelect').addEventListener('change',applyRarityDefaults);el('awakenSourceSelect').addEventListener('change',()=>{el('awakenSourceId').value=el('awakenSourceSelect').value;syncAwakenSourceControls();renderOutput()});el('awakenSourceId').addEventListener('input',()=>{syncAwakenSourceControls();renderOutput()});el('loadAwakenSource').addEventListener('click',loadAwakenSourceTemplate);el('globalStatPreset').addEventListener('change',()=>{updateStatPreviews();renderOutput()});
   el('addElement').addEventListener('click',()=>{const value=el('elementSelect').value;if(!appState.selectedElements.includes(value))appState.selectedElements.push(value);renderElementChips()});el('elementChips').addEventListener('click',e=>{const btn=e.target.closest('[data-remove-element]');if(btn){appState.selectedElements=appState.selectedElements.filter(x=>x!==btn.dataset.removeElement);renderElementChips()}});
-  document.querySelectorAll('.media-mode').forEach(s=>s.addEventListener('change',()=>{toggleCustomForSelect(s,s.dataset.target);renderOutput()}));document.querySelectorAll('.custom-media').forEach(i=>i.addEventListener('input',renderOutput));
+  document.querySelectorAll('.media-mode').forEach(s=>s.addEventListener('change',()=>{toggleCustomForSelect(s,s.dataset.target);renderOutput()}));document.querySelectorAll('.custom-media').forEach(i=>i.addEventListener('input',renderOutput));el('acquisitionCutsceneMode').addEventListener('change',()=>{syncAcquisitionCutsceneControls();renderOutput()});document.querySelectorAll('.acquisition-cutscene-field').forEach(i=>{i.addEventListener(i.tagName==='SELECT'?'change':'input',renderOutput)});
   ['dustBaseSelect','dustGrowthSelect'].forEach(id=>el(id).addEventListener('change',()=>{toggleCustomForSelect(el(id),id==='dustBaseSelect'?'dustBaseCustom':'dustGrowthCustom');renderOutput()}));['dustBaseCustom','dustGrowthCustom'].forEach(id=>el(id).addEventListener('input',renderOutput));el('awakenMaxSelect').addEventListener('change',renderOutput);
   el('addAbility').addEventListener('click',()=>addAbility());el('applyAbilityTemplate').addEventListener('click',()=>applyTemplate(el('abilityTemplate').value));
   el('abilitiesContainer').addEventListener('click',e=>{
@@ -4364,7 +4421,7 @@ function bindEvents(){
   el('chooseImportFile').addEventListener('click',()=>el('importGameFile').click());el('importGameFile').addEventListener('change',async e=>{const file=e.target.files[0];if(file)importCards(extractCardsFromText(await file.text()));e.target.value=''});el('parsePastedDatabase').addEventListener('click',()=>importCards(extractCardsFromText(el('pasteDatabase').value)));el('clearImported').addEventListener('click',()=>{appState.importedCards=[];persist();el('importStatus').className='status warn';el('importStatus').textContent='ล้างข้อมูลนำเข้าแล้ว';renderDatabase();refreshCardPickers();renderOutput()});el('dbSearch').addEventListener('input',renderDatabase);el('dbSourceFilter').addEventListener('change',renderDatabase);
   document.addEventListener('click',e=>{const add=e.target.closest('.token-add');if(add&&!add.closest('#abilitiesContainer')){const picker=add.closest('.token-picker');addPickerValue(picker,picker.querySelector('.token-select').value)}const customAdd=e.target.closest('.token-add-custom');if(customAdd&&!customAdd.closest('#abilitiesContainer'))addCustomPickerValue(customAdd.closest('.token-picker'));const rem=e.target.closest('.token-remove');if(rem&&!rem.closest('#abilitiesContainer'))removePickerValue(rem.closest('.token-picker'),rem.dataset.value)});
 }
-function init(){initHeader();initRarity();initElementPicker();initStats();initProgression();bindEvents();syncNormalTargetSelectionControls();document.querySelectorAll('.media-mode').forEach(s=>toggleCustomForSelect(s,s.dataset.target));addAbility();renderLibrary();renderDatabase();updateStatPreviews();renderOutput();firebaseStatus('connecting');}
+function init(){initHeader();initRarity();initElementPicker();initStats();initProgression();bindEvents();syncNormalTargetSelectionControls();syncAcquisitionCutsceneControls();document.querySelectorAll('.media-mode').forEach(s=>toggleCustomForSelect(s,s.dataset.target));addAbility();renderLibrary();renderDatabase();updateStatPreviews();renderOutput();firebaseStatus('connecting');}
 init();
 </script>
 <script type="module">
