@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Runtime v104 · AWAKEN Cutscene</title>
+  <title>ANIME CARD CODE BUILDER · Runtime v106 · Active Clone Limit</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v104 · AWAKEN ACQUISITION CUTSCENE</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v106 · ACTIVE CLONE LIMIT</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -171,7 +171,7 @@
             <button class="btn" id="downloadCard" type="button">⬇ card.js</button>
             <button class="btn danger" id="resetCard" type="button">ล้างฟอร์ม</button>
           </div>
-          <div class="footer-note"><b class="accent">Builder v103 · Death Trigger Fix:</b> แก้ onDeath / afterDeaths / triggerOn ให้เจนและโหลดกลับได้; ค่า Skill/Stack ไม่มีเพดานบวก; คงไว้เฉพาะค่าต่ำสุดที่ป้องกันสูตรพัง<br>AK-IDเดิม · Transform Only · Lv.350 / +20 · 50B Gems · ห้ามเงินอเวก<br>ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล Status Emoji v94 + card.js Export · applyStatus / copy / steal / Battle Log</div>
+          <div class="footer-note"><b class="accent">Builder v106 · Active Clone Limit:</b> แก้ onDeath / afterDeaths / triggerOn ให้เจนและโหลดกลับได้; ค่า Skill/Stack ไม่มีเพดานบวก; คงไว้เฉพาะค่าต่ำสุดที่ป้องกันสูตรพัง<br>AK-IDเดิม · Transform Only · Lv.350 / +20 · 50B Gems · ห้ามเงินอเวก<br>ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล Status Emoji v94 + card.js Export · applyStatus / copy / steal / Battle Log</div>
         </aside>
       </div>
     </section>
@@ -194,7 +194,7 @@
       <div class="section-head"><div><h2>วิธีใช้แบบเร็ว</h2><p>แอปนี้ซิงก์คลังผ่าน Firebase และยังเปิดทำงานแบบ Local สำรองได้เมื่อออฟไลน์</p></div><span class="badge green">CLOUD READY</span></div>
       <div class="help-grid">
         <article class="help-card"><h3>1) สร้างข้อมูลการ์ด</h3><p>กรอก ID และชื่อ เลือกระดับ ธาตุ และเบสสแตตจากดรอปดาวน์ ระบบจะตรวจ ID ซ้ำทันที</p></article>
-        <article class="help-card"><h3>2) เพิ่มหลายสกิล</h3><p>กด <b>เพิ่มความสามารถ</b> แล้วเพิ่มเงื่อนไขและเอฟเฟกต์ได้หลายรายการ รวม <code>taunt</code>, <code>captureRevive</code>, <code>splitClone</code> และ <code>summonCard</code> สำหรับเพิ่มสมาชิกใหม่ลงสนาม ระบบจะสร้างเป็น <code>"abilities": [...]</code></p></article>
+        <article class="help-card"><h3>2) เพิ่มหลายสกิล</h3><p>กด <b>เพิ่มความสามารถ</b> แล้วเพิ่มเงื่อนไขและเอฟเฟกต์ได้หลายรายการ รวม <code>taunt</code>, <code>captureRevive</code>, <code>splitClone</code> และ <code>summonCard</code> สำหรับเพิ่มสมาชิกใหม่ลงสนาม โดย <code>maxActiveClones</code> จำกัดจำนวนร่างแยกที่ยังมีชีวิตอยู่พร้อมกัน และ <code>maxSpawnDepth</code> จำกัดความลึกของการสร้างร่างต่อกัน ระบบจะสร้างเป็น <code>"abilities": [...]</code></p></article>
         <article class="help-card"><h3>3) คัดลอกไปวาง</h3><p>ค่าเริ่มต้นจะสร้างเป็น <b>ไฟล์ card.js แบบใหม่</b> ห่อด้วย <code>ACC_REGISTER_CARD(...);</code> ให้นำไปวางใน <code>card/ID/card.js</code> แล้วเพิ่ม ID ใน <code>card-manifest.js</code></p></article>
         <article class="help-card"><h3>4) อัปเดตฐาน ID</h3><p>เมื่อเกมมีการ์ดใหม่ ให้นำเข้าไฟล์ HTML ล่าสุดในหน้า <b>ฐาน ID</b> แอปจะอ่าน ID เพื่อป้องกันการสร้างซ้ำ</p></article>
         <article class="help-card"><h3>Firebase Cloud Firestore</h3><p>คลังออนไลน์ใช้คอลเลกชัน <code>animeCardCodeBuilderCards</code> และใช้ Card ID เป็น Document ID การแก้ไข ID เดิมจึงอัปเดตข้อมูลใบเดิมแบบเรียลไทม์</p></article><article class="help-card"><h3>ชีทหลักของระบบ</h3><p>ให้อ้างอิง <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001" target="_blank" rel="noopener" class="accent"><b>Google Sheet ระบบสกิลและเงื่อนไข</b></a> เป็นข้อมูลหลักสำหรับเอฟเฟกต์ เงื่อนไข และการอัปเดตครั้งถัดไป</p></article>
@@ -1187,10 +1187,10 @@
       "type": "splitClone",
       "meaning": "สร้างร่างแยกจากผู้ใช้สกิล โดยกำหนดจำนวน ช่องลงสนาม ค่าสเตตัส เป้าหมายโจมตี และสกิลเฉพาะร่างได้",
       "exampleValue": null,
-      "fields": "condition, count, slotPolicy, successRate, powerRate, hpRate, defenseRate, speedRate, basePower, baseHp, baseDefense, baseSpeed, normalAttackTargetCount, attackHits, canUseAbilities, inheritAbilities, cloneAbilities, maxSpawnDepth",
+      "fields": "condition, count, slotPolicy, successRate, powerRate, hpRate, defenseRate, speedRate, basePower, baseHp, baseDefense, baseSpeed, normalAttackTargetCount, attackHits, canUseAbilities, inheritAbilities, cloneAbilities, maxActiveClones, cloneGroupKey, maxSpawnDepth",
       "suitableModes": "tower, arena, worldBoss",
-      "note": "slotPolicy รองรับ newSlot / emptySlot / defeatedSlot / emptyOrDefeated / anyAvailable; หากไม่ใส่ Trigger จะทำงานตอนเริ่มต่อสู้ 1 ครั้ง",
-      "exampleCode": "{ \"type\":\"splitClone\", \"count\":2, \"slotPolicy\":\"emptyOrDefeated\", \"powerRate\":0.50, \"hpRate\":0.40, \"defenseRate\":0.50, \"speedRate\":1, \"normalAttackTargetCount\":2, \"canUseAbilities\":true, \"inheritAbilities\":false, \"cloneAbilities\":[] }"
+      "note": "maxActiveClones จำกัดจำนวนร่างแยกที่ยังอยู่พร้อมกันใน cloneGroupKey เดียวกัน; ร่างตายแล้วสร้างทดแทนได้เรื่อย ๆ; maxSpawnDepth จำกัดความลึกของการสร้างร่างต่อกัน ไม่ใช่จำนวนร่าง",
+      "exampleCode": "{ \"type\":\"splitClone\", \"count\":1, \"slotPolicy\":\"anyAvailable\", \"powerRate\":0.50, \"hpRate\":0.50, \"defenseRate\":0.50, \"speedRate\":1, \"normalAttackTargetCount\":3, \"canUseAbilities\":false, \"inheritAbilities\":false, \"cloneAbilities\":[], \"maxActiveClones\":5, \"cloneGroupKey\":\"elfaria_ars_weiss\", \"maxSpawnDepth\":1 }"
     },
     {
       "category": "ACTIVE / แยกร่างและซัมม่อน",
@@ -3796,7 +3796,9 @@ function addEffectRow(container,initial={}){
     <div class="field-wrap span-3"><label>โจมตีปกติกี่เป้าหมาย</label><input class="field spawn-target-count" type="number" min="1" max="5" step="1" value="${esc(initial.normalAttackTargetCount??initial.attackTargetCount??1)}"></div>
     <div class="field-wrap span-3"><label>จำนวนฮิตโจมตีปกติ</label><input class="field spawn-attack-hits" type="number" min="1" step="1" value="${esc(initial.attackHits??'')}" placeholder="เว้นว่าง=ใช้ต้นฉบับ"></div>
     <div class="field-wrap span-3"><label>ร่างใช้สกิลได้ไหม</label><select class="field spawn-can-use-abilities">${option('true','true · ใช้สกิลได้',initial.canUseAbilities!==false)}${option('false','false · โจมตีปกติเท่านั้น',initial.canUseAbilities===false)}</select></div>
-    <div class="field-wrap span-3"><label>maxSpawnDepth</label><input class="field spawn-max-depth" type="number" min="1" max="10" step="1" value="${esc(initial.maxSpawnDepth??1)}"><small class="hint">กันการแยกร่าง/ซัมม่อนวนไม่สิ้นสุด</small></div>
+    <div class="field-wrap span-3"><label>maxSpawnDepth</label><input class="field spawn-max-depth" type="number" min="1" max="10" step="1" value="${esc(initial.maxSpawnDepth??1)}"><small class="hint">ความลึกของการสร้างร่างต่อกัน ไม่ใช่จำนวนร่างพร้อมกัน</small></div>
+    <div class="field-wrap span-3 spawn-clone-only"><label>maxActiveClones · ร่างพร้อมกันสูงสุด</label><input class="field spawn-max-active-clones" type="number" min="0" max="100" step="1" value="${esc(initial.maxActiveClones??0)}"><small class="hint">0 = ไม่จำกัด · นับเฉพาะร่างแยกที่ยังมีชีวิตอยู่</small></div>
+    <div class="field-wrap span-6 spawn-clone-only"><label>cloneGroupKey · กลุ่มเพดานร่างแยก</label><input class="field spawn-clone-group-key" maxlength="80" value="${esc(initial.cloneGroupKey??'')}" placeholder="เช่น elfaria_ars_weiss"><small class="hint">คีย์เดียวกันใช้เพดานร่วมกัน; เว้นว่างให้ Runtime แยกตามผู้ใช้สกิลและสกิลนั้น</small></div>
     <div class="field-wrap span-4 spawn-clone-only"><label>สืบทอดสกิลร่างหลัก</label><select class="field spawn-inherit-abilities">${option('false','false · ใช้เฉพาะสกิลร่างแยก',initial.inheritAbilities!==true)}${option('true','true · รวมสกิลร่างหลัก',initial.inheritAbilities===true)}</select></div>
     <div class="field-wrap span-4 spawn-summon-only"><label>ใช้สกิลปกติของการ์ดที่ซัมม่อน</label><select class="field spawn-use-base-abilities">${option('true','true · ใช้สกิลเดิม + สกิลเพิ่ม',initial.useBaseAbilities!==false)}${option('false','false · ใช้เฉพาะสกิลเพิ่ม',initial.useBaseAbilities===false)}</select></div>
     <div class="field-wrap span-12"><label class="spawn-abilities-label">สกิลเฉพาะร่าง (JSON Array)</label><textarea class="textarea spawn-abilities-json" spellcheck="false" placeholder='[{"name":"สกิลร่างแยก","activeIn":["tower","arena"],"effects":[]}]'>${esc(JSON.stringify(initial.cloneAbilities||initial.summonedAbilities||[],null,2))}</textarea><small class="hint">ใส่ความสามารถเต็มรูปแบบเป็น Array; ระบบจะเพิ่มจากสกิลปกติตามตัวเลือกด้านบน</small></div>
@@ -3939,6 +3941,7 @@ function renderEffectRow(row,initialValue){
   row.querySelectorAll('.spawn-summon-only').forEach(el=>el.classList.toggle('hidden',!isSummon));
   row.querySelectorAll('.spawn-clone-only').forEach(el=>el.classList.toggle('hidden',!isSpawn||isSummon));
   const spawnLabel=row.querySelector('.spawn-abilities-label');if(spawnLabel)spawnLabel.textContent=isSummon?'summonedAbilities · สกิลเพิ่มตอนซัมม่อน (JSON Array)':'cloneAbilities · สกิลเฉพาะร่างแยก (JSON Array)';
+  const spawnSummary=row.querySelector('.spawn-summary');if(spawnSummary)spawnSummary.textContent=isSummon?'ร่างซัมม่อนมี Runtime ID แยก เข้าคิวตาม SPD และ maxSpawnDepth จำกัดความลึกการซัมม่อนต่อกัน':'maxActiveClones จำกัดร่างที่ยังมีชีวิตอยู่พร้อมกัน · ร่างตายแล้วสร้างทดแทนได้ · maxSpawnDepth จำกัดความลึกของสายร่าง';
   syncStatusSpecificControls(row);
   if(isCapture){const rt=row.querySelector('.capture-revive-type')?.value||'revive';row.querySelector('.capture-duration-wrap')?.classList.toggle('hidden',rt!=='reviveTimedUndying');row.querySelector('.capture-hitlife-wrap')?.classList.toggle('hidden',rt!=='reviveHitLife');}
   if(isTransfer)syncCopiedLifetimePreset(row,false);
@@ -4057,8 +4060,11 @@ function readEffectRow(row){
     obj.normalAttackTargetCount=Math.max(1,Math.min(5,int(row.querySelector('.spawn-target-count')?.value,1)));
     obj.canUseAbilities=row.querySelector('.spawn-can-use-abilities')?.value!=='false';
     obj.maxSpawnDepth=Math.max(1,Math.min(10,int(row.querySelector('.spawn-max-depth')?.value,1)));
-    if(type==='splitClone')obj.inheritAbilities=row.querySelector('.spawn-inherit-abilities')?.value==='true';
-    else{obj.summonCardId=int(row.querySelector('.spawn-card-id')?.value,0);obj.useBaseAbilities=row.querySelector('.spawn-use-base-abilities')?.value!=='false'}
+    if(type==='splitClone'){
+      obj.inheritAbilities=row.querySelector('.spawn-inherit-abilities')?.value==='true';
+      const maxActiveClones=Math.max(0,Math.min(100,int(row.querySelector('.spawn-max-active-clones')?.value,0)));if(maxActiveClones>0)obj.maxActiveClones=maxActiveClones;
+      const cloneGroupKey=String(row.querySelector('.spawn-clone-group-key')?.value||'').trim();if(cloneGroupKey)obj.cloneGroupKey=cloneGroupKey;
+    }else{obj.summonCardId=int(row.querySelector('.spawn-card-id')?.value,0);obj.useBaseAbilities=row.querySelector('.spawn-use-base-abilities')?.value!=='false'}
     const rawAbilities=String(row.querySelector('.spawn-abilities-json')?.value||'').trim();
     if(rawAbilities){try{const parsed=JSON.parse(rawAbilities);if(Array.isArray(parsed))obj[type==='summonCard'?'summonedAbilities':'cloneAbilities']=parsed;else Object.defineProperty(obj,'_spawnAbilitiesJsonError',{value:true,enumerable:false});}catch{Object.defineProperty(obj,'_spawnAbilitiesJsonError',{value:true,enumerable:false});}}
   }
@@ -4226,6 +4232,8 @@ function validateAdvancedEffect(effect,abilityIndex,effectIndex){
     ['basePower','baseHp','baseDefense','baseSpeed','attackHits'].forEach(field=>{if(effect[field]!==undefined&&(!Number.isFinite(Number(effect[field]))||Number(effect[field])<(field==='baseDefense'?0:1)))results.push({type:'error',text:`${label}: ${field} ไม่ถูกต้อง`})});
     if(!Number.isInteger(Number(effect.normalAttackTargetCount))||Number(effect.normalAttackTargetCount)<1||Number(effect.normalAttackTargetCount)>5)results.push({type:'error',text:`${label}: normalAttackTargetCount ต้องอยู่ระหว่าง 1–5`});
     if(!Number.isInteger(Number(effect.maxSpawnDepth))||Number(effect.maxSpawnDepth)<1||Number(effect.maxSpawnDepth)>10)results.push({type:'error',text:`${label}: maxSpawnDepth ต้องอยู่ระหว่าง 1–10`});
+    if(effect.type==='splitClone'&&effect.maxActiveClones!==undefined&&(!Number.isInteger(Number(effect.maxActiveClones))||Number(effect.maxActiveClones)<1||Number(effect.maxActiveClones)>100))results.push({type:'error',text:`${label}: maxActiveClones ต้องเป็นจำนวนเต็ม 1–100 หรือไม่ระบุเพื่อไม่จำกัด`});
+    if(effect.type==='splitClone'&&effect.cloneGroupKey!==undefined&&String(effect.cloneGroupKey).trim().length>80)results.push({type:'error',text:`${label}: cloneGroupKey ต้องยาวไม่เกิน 80 ตัวอักษร`});
     if(effect._spawnAbilitiesJsonError)results.push({type:'error',text:`${label}: JSON สกิลเฉพาะร่างต้องเป็น Array ที่ถูกต้อง`});
     const list=effect.type==='summonCard'?effect.summonedAbilities:effect.cloneAbilities;if(list!==undefined&&!Array.isArray(list))results.push({type:'error',text:`${label}: ${effect.type==='summonCard'?'summonedAbilities':'cloneAbilities'} ต้องเป็น Array`});
   }
