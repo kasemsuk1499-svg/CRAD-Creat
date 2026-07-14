@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Runtime v109 · Attack Scope + Freeze Shatter</title>
+  <title>ANIME CARD CODE BUILDER · Runtime v110 · Cleanse + Purge + Turn Acceleration</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v109 · ATTACK SCOPE + FREEZE SHATTER</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v110 · CLEANSE + PURGE + TURN ACCELERATION</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -1291,6 +1291,36 @@
       "suitableModes": "tower, arena",
       "note": "0.25 = ใช้ DEF ของเป้าหมายเพียง 75%; ค่าสูงสุดที่มีผล 100%",
       "exampleCode": "{ \"type\":\"defensePenetrationRate\", \"value\":0.25, \"targetSide\":\"self\", \"condition\":{\"onOwnAttack\":true} }"
+    },
+    {
+      "category": "ACTIVE / สถานะและบัพ",
+      "type": "cleanseStatuses",
+      "meaning": "ล้างสถานะผิดปกติของตัวเองหรือเพื่อนร่วมทีมแบบ Active เลือก 1–5 เป้าหมาย สุ่มหรือเจาะจงได้",
+      "exampleValue": "ไม่ใช้ value",
+      "fields": "targetSide, targetSelection, targetCount, targetCardIds, targetElements, targetRarities, targetMatch, statuses, cleanseStatuses, condition",
+      "suitableModes": "team, tower, arena, worldBoss",
+      "note": "ค่าเริ่มต้นล้างสถานะผิดปกติทั้งหมด ยกเว้นสถานะชำระล้าง; ระบุ statuses เมื่อต้องการล้างเฉพาะชนิด",
+      "exampleCode": "{ \"type\":\"cleanseStatuses\", \"targetSide\":\"ally\", \"targetSelection\":\"random\", \"targetCount\":3, \"condition\":{\"afterOwnAttacks\":3,\"repeat\":true} }"
+    },
+    {
+      "category": "สถานะผิดปกติ",
+      "type": "purgeBuffs",
+      "meaning": "ขจัดบัพทั้งหมดและทำให้เป้าหมายติดสถานะชำระล้าง ซึ่งปิดบัพ โล่ ฮิต อมตะ และอัตราเพิ่มต่าง ๆ",
+      "exampleValue": "ไม่ใช้ value",
+      "fields": "targetSide, targetSelection, targetCount, successRate, durationTurns, targetCardIds, targetElements, targetRarities, targetMatch, condition",
+      "suitableModes": "tower, arena, worldBoss",
+      "note": "ไม่กำหนด durationTurns = อยู่จนเป้าหมายตายแล้วคืนชีพ; หากเป้าหมายมีอมตะตามเทิร์นจะตายทันทีเมื่อขจัดบัพสำเร็จ",
+      "exampleCode": "{ \"type\":\"purgeBuffs\", \"targetSide\":\"enemy\", \"targetSelection\":\"specific\", \"targetCount\":2, \"successRate\":100, \"durationTurns\":3 }"
+    },
+    {
+      "category": "ACTIVE / สถานะและบัพ",
+      "type": "accelerateTurnEffects",
+      "meaning": "เร่งตัวนับเทิร์นของบัพ ดีบัพ เดธ อมตะ และเอฟเฟกต์ตามเทิร์นทั้งหมดให้ผ่านเร็วขึ้น",
+      "exampleValue": 2,
+      "fields": "value, turns, targetSide, targetSelection, targetCount, successRate, targetCardIds, targetElements, targetRarities, targetMatch, condition",
+      "suitableModes": "tower, arena, worldBoss",
+      "note": "value คือจำนวนเทิร์นที่เร่ง เช่น เดธเหลือ 2 แล้วเร่ง 2 จะทำงานทันที; อมตะ 3 เทิร์นเร่ง 2 จะเหลือ 1",
+      "exampleCode": "{ \"type\":\"accelerateTurnEffects\", \"value\":2, \"targetSide\":\"enemy\", \"targetSelection\":\"random\", \"targetCount\":5, \"successRate\":75 }"
     }
   ],
   "conditions": [
@@ -3387,19 +3417,19 @@
     "currentCardCount": 95,
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001",
     "sheetRole": "primary",
-    "builderUpdated": "2026-07-12-death-trigger-fix-v103",
-    "currentEffectCount": 107,
+    "builderUpdated": "2026-07-14-cleanse-purge-turn-v110",
+    "currentEffectCount": 111,
     "currentConditionCount": 100,
     "statusEmojiUpdated": "2026-07-07-status-emoji-v68",
     "statusImmunityUpdated": "v85 abnormalStatusResistance no-value + specific statuses + onDeath trigger"
   },
   "meta": {
-    "builderUpdated": "2026-07-12-death-trigger-fix-v103",
+    "builderUpdated": "2026-07-14-cleanse-purge-turn-v110",
     "statusEmojiUpdated": "2026-07-07-status-emoji-v68",
     "statusImmunityUpdated": "v85 abnormalStatusResistance no-value + specific statuses + onDeath trigger",
     "godRarityAdded": true,
     "godRarityNote": "GOD: no banner guarantee, ultra-low rate, level cap 350, angelic black-white-gold theme.",
-    "version": "v103-death-trigger-fix",
+    "version": "v110-cleanse-purge-turn",
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001",
     "awakenRarityAdded": true,
     "awakenRarityNote": "AWAKEN: transform-only AK-<sourceId>, Lv.350, awaken +20, 50B Gems first transformation, no money awaken."
@@ -3416,8 +3446,8 @@ const rarityCodes = Object.keys(DATA.rarities).sort((a,b)=>DATA.rarities[a].orde
 const conditionCatalog = DATA.conditions.filter(x=>x.position==='condition');
 const effectCatalog = DATA.effects;
 const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
-const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain','taunt','adaptiveElement','applyStatus','abnormalStatusResistance','splitClone','summonCard']);
-const abnormalStatusTypes = ['death','stun','blind','freeze','burn','bleed','shock','condition-cancel','skill-cancel','skill-stolen','skill-copied'];
+const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain','taunt','adaptiveElement','applyStatus','abnormalStatusResistance','splitClone','summonCard','cleanseStatuses','purgeBuffs']);
+const abnormalStatusTypes = ['death','stun','blind','freeze','burn','bleed','shock','condition-cancel','skill-cancel','skill-stolen','skill-copied','purification'];
 const statusUiMap = {
   death:'☠️ death · เดธ / Doom',
   stun:'💫 stun · สตั้น',
@@ -3429,7 +3459,8 @@ const statusUiMap = {
   'condition-cancel':'🔓 condition-cancel · ยกเลิกเงื่อนไข',
   'skill-cancel':'🚫 skill-cancel · ยกเลิกสกิล',
   'skill-stolen':'🕸️ skill-stolen · ขโมยสกิล',
-  'skill-copied':'🧬 skill-copied · ก็อปปี้สกิล'
+  'skill-copied':'🧬 skill-copied · ก็อปปี้สกิล',
+  purification:'🫧 purification · ชำระล้าง / ขจัดบัพ'
 };
 const statusSummaryMap = {
   death:'☠️ เดธ: ติดแล้วนับจำนวนการโจมตีของผู้ติดสถานะ ครบแล้ว KO',
@@ -3442,7 +3473,8 @@ const statusSummaryMap = {
   'condition-cancel':'🔓 ยกเลิกเงื่อนไข: แสดงว่าเป้าหมายโดนยกเลิกเงื่อนไขสกิลชั่วคราว',
   'skill-cancel':'🚫 ยกเลิกสกิล: แสดงว่าเป้าหมายโดนปิด/ยกเลิกสกิลชั่วคราว',
   'skill-stolen':'🕸️ ขโมยสกิล: แสดงว่าเป้าหมายโดนขโมยสกิล',
-  'skill-copied':'🧬 ก็อปปี้สกิล: แสดงว่าเป้าหมายโดนก็อปปี้สกิล'
+  'skill-copied':'🧬 ก็อปปี้สกิล: แสดงว่าเป้าหมายโดนก็อปปี้สกิล',
+  purification:'🫧 ชำระล้าง: ขจัดบัพปัจจุบันและปิดบัพใหม่จนหมดเทิร์นหรือจนตายแล้วคืนชีพ'
 };
 const transferEffectTypes = new Set(['copyAbilities','stealAbilities']);
 const resistanceCategories = ['all','abnormalStatus','status','cost','transfer','abilityControl','statReduction','hitReduction','healingReduction','shieldReduction'];
@@ -3450,9 +3482,9 @@ const stackRateEffectTypes = new Set(['powerRateStack','hpRateStack','defenseRat
 const stackFlatEffectTypes = new Set(['powerFlatStack','hpFlatStack','defenseFlatStack','incomeFlatStack']);
 const stackIntegerEffectTypes = new Set(['attackHitsStack','shieldHitsStack','activeSkillCostCycleStack','activeSkillCostPermanentStack','speedFlatStack']);
 const stackEffectTypes = new Set([...stackRateEffectTypes,...stackFlatEffectTypes,...stackIntegerEffectTypes,'increaseAttackRateStack']);
-const activeEffectTypes = new Set(['applyStatus','captureRevive','splitClone','summonCard','nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack','taunt','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','followUpAttack','counterAttack','adaptiveElement','multiElementAttack','criticalDamageRate','defensePenetrationRate',...stackEffectTypes]);
+const activeEffectTypes = new Set(['applyStatus','cleanseStatuses','purgeBuffs','accelerateTurnEffects','captureRevive','splitClone','summonCard','nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack','taunt','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','followUpAttack','counterAttack','adaptiveElement','multiElementAttack','criticalDamageRate','defensePenetrationRate',...stackEffectTypes]);
 const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['captureRevive','criticalRate','luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack','statusResistance','revive','reviveTimedUndying','reviveHitLife','followUpAttack','counterAttack','criticalDamageRate','defensePenetrationRate',...stackRateEffectTypes]));
-const integerEffectTypes = new Set(['shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost','activeSkillCostCycle','activeSkillCostPermanent','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','multiElementAttack','speedFlat','speedFlatStack',...stackIntegerEffectTypes]);
+const integerEffectTypes = new Set(['accelerateTurnEffects','shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost','activeSkillCostCycle','activeSkillCostPermanent','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','multiElementAttack','speedFlat','speedFlatStack',...stackIntegerEffectTypes]);
 const flatEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Flat$/.test(t)).concat([...stackFlatEffectTypes]));
 const el = id=>document.getElementById(id);
 const appState = {
@@ -3805,6 +3837,7 @@ function addEffectRow(container,initial={}){
     <div class="field-wrap span-12"><div class="status ok spawn-summary">ร่างใหม่มี Runtime ID แยก เข้าคิวตาม SPD และถูกนับเป็นสมาชิกสนามจริง</div></div>
   </div></details>`);
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced status-options hidden" open><summary>ตั้งค่าสถานะผิดปกติ v68</summary><div class="grid"><div class="field-wrap span-3"><label>status</label><select class="field status-kind">${abnormalStatusTypes.map(status=>option(status,statusUiMap[status]||status,status===String(initial.status||'stun'))).join('')}</select></div><div class="field-wrap span-3"><label>อัตราติด successRate</label>${chanceControlHtml(initial.successRate??initial.statusRate??initial.chance??initial.rate??1)}</div><div class="field-wrap span-3"><label>targetCount</label>${optionalNumberControlHtml('targetCount',initial.targetCount??1)}<small class="hint">จำนวนเป้าหมาย 1-5</small></div><div class="field-wrap span-3"><label>durationTurns</label>${optionalNumberControlHtml('durationTurns',initial.durationTurns)}</div><div class="field-wrap span-3 status-death-wrap"><label>deathAfterAttacks</label>${optionalNumberControlHtml('deathAfterAttacks',initial.deathAfterAttacks??2)}</div><div class="field-wrap span-3 status-blind-wrap"><label>missRate</label>${chanceControlHtml(initial.missRate??0.40)}</div><div class="field-wrap span-3 status-freeze-wrap"><label>freezeBreakPowerRate</label><input class="field status-freeze-power-rate" type="number" min="0" step="0.01" value="${esc(initial.freezeBreakPowerRate??2)}"><small class="hint">2 = ดาเมจ 200% จาก ATK ผู้ใส่สถานะ และไม่คำนวณ DEF</small></div><div class="field-wrap span-3 status-freeze-wrap status-freeze-chance-wrap"><label>freezeBreakSuccessRate</label>${chanceControlHtml(initial.freezeBreakSuccessRate??1)}<small class="hint">1 = ทำงาน 100% เมื่อเป้าหมายโดนตี</small></div><div class="field-wrap span-3 status-burn-wrap"><label>damageFlat</label><input class="field status-damage-flat" type="number" step="1" value="${esc(initial.damageFlat??'')}"></div><div class="field-wrap span-3 status-burn-wrap"><label>damageRate</label><input class="field status-damage-rate" type="number" min="0" step="0.01" value="${esc(initial.damageRate??'')}"></div><div class="field-wrap span-3 status-bleed-wrap"><label>hpLossFlat</label><input class="field status-hp-loss-flat" type="number" step="1" value="${esc(initial.hpLossFlat??'')}"></div><div class="field-wrap span-3 status-bleed-wrap"><label>hpLossRate</label><input class="field status-hp-loss-rate" type="number" min="0" step="0.01" value="${esc(initial.hpLossRate??0.05)}"></div><div class="field-wrap span-3 status-shock-wrap"><label>chainAfterHits</label>${optionalNumberControlHtml('chainAfterHits',initial.chainAfterHits??3)}</div><div class="field-wrap span-3 status-shock-wrap"><label>chainCount</label>${optionalNumberControlHtml('chainCount',initial.chainCount??1)}</div><div class="field-wrap span-12"><div class="status ok status-summary-v68">applyStatus จะสุ่มติดสถานะตาม successRate และตรวจ statusResistance ก่อนเสมอ</div></div></div></details>`);
+  row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced status-action-options hidden" open><summary>ตั้งค่าล้างสถานะ / ขจัดบัพ / เร่งเทิร์น</summary><div class="grid"><div class="field-wrap span-4 status-action-chance-wrap"><label>อัตราสำเร็จ successRate</label>${chanceControlHtml(initial.successRate??1)}</div><div class="field-wrap span-8 status-action-cleanse-wrap"><label>statuses · เว้นว่าง = ล้างสถานะทั้งหมด</label>${createTokenPicker('statuses',initial.statuses||initial.cleanseStatuses||[],'cleanseStatuses')}<small class="hint">เลือกเฉพาะสถานะที่ต้องการล้าง หรือปล่อยว่างเพื่อล้างทั้งหมด</small></div><div class="field-wrap span-12"><div class="status ok status-action-summary">เลือกเอฟเฟกต์เพื่อดูการทำงาน</div></div></div></details>`);
   container.appendChild(row);row.querySelectorAll('.token-picker').forEach(renderTokenPicker);row.querySelector('.effect-target-side').value=initial.targetSide||'';row.querySelector('.effect-target-match').value=initial.targetMatch||'any';effectExtraConditionEntries(initial.condition||{}).forEach(([field,value])=>addConditionRow(row.querySelector('.effect-conditions-list'),field,value));renderEffectRow(row,initial.value);return row;
 }
 function valueKind(type){if(noValueEffects.has(type))return 'none';if(flatEffectTypes.has(type))return 'flat';if(integerEffectTypes.has(type))return 'integer';if(rateEffectTypes.has(type)||/Rate/.test(type))return 'rate';return 'number'}
@@ -3912,12 +3945,16 @@ function syncCopiedLifetimePreset(row,applyPreset=false){
 function renderEffectRow(row,initialValue){
   const category=row.querySelector('.effect-category').value,typeSelect=row.querySelector('.effect-type');if(!typeSelect.value&&initialValue===undefined)typeSelect.innerHTML=effectTypeOptions(category,'');
   const type=typeSelect.value,meta=effectByType.get(type),wrap=row.querySelector('.effect-value-wrap'),control=row.querySelector('.effect-value-control'),note=row.querySelector('.effect-note'),summary=row.querySelector('.effect-summary');
-  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack','abnormalStatusResistance'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain',isTaunt=type==='taunt',isCapture=type==='captureRevive',isApplyStatus=type==='applyStatus',isSpawn=['splitClone','summonCard'].includes(type),isSummon=type==='summonCard';
+  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack','abnormalStatusResistance'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain',isTaunt=type==='taunt',isCapture=type==='captureRevive',isApplyStatus=type==='applyStatus',isStatusAction=['cleanseStatuses','purgeBuffs','accelerateTurnEffects'].includes(type),isSpawn=['splitClone','summonCard'].includes(type),isSummon=type==='summonCard';
   const supportsTargetSelection=Boolean(type);
   const isRevive=['revive','reviveTimedUndying','reviveHitLife'].includes(type);
   const isAdvancedCombat=['triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','followUpAttack','counterAttack','adaptiveElement','multiElementAttack','criticalDamageRate','defensePenetrationRate'].includes(type);
   const isAttackAction=['followUpAttack','counterAttack','multiElementAttack'].includes(type);
   row.querySelector('.status-options')?.classList.toggle('hidden',!isApplyStatus);
+  row.querySelector('.status-action-options')?.classList.toggle('hidden',!isStatusAction);
+  row.querySelector('.status-action-chance-wrap')?.classList.toggle('hidden',!['purgeBuffs','accelerateTurnEffects'].includes(type));
+  row.querySelector('.status-action-cleanse-wrap')?.classList.toggle('hidden',type!=='cleanseStatuses');
+  const statusActionSummary=row.querySelector('.status-action-summary');if(statusActionSummary){statusActionSummary.textContent=type==='cleanseStatuses'?'ล้างสถานะผิดปกติของเป้าหมายทันที':type==='purgeBuffs'?'ขจัดบัพและติดชำระล้าง · ไม่ใส่ durationTurns = จนตายแล้วคืนชีพ':'เร่งตัวนับทุกเอฟเฟกต์ตามจำนวน value เทิร์น';}
   row.querySelector('.advanced-combat-options')?.classList.toggle('hidden',!isAdvancedCombat);
   row.querySelector('.advanced-hits-wrap')?.classList.toggle('hidden',!isAttackAction);
   row.querySelector('.advanced-target-count-wrap')?.classList.toggle('hidden',!['followUpAttack','multiElementAttack'].includes(type));
@@ -4120,6 +4157,20 @@ function readEffectRow(row){
     if(obj.status==='bleed'){const hpLossFlat=readStatusNumberInput(row,'.status-hp-loss-flat');if(hpLossFlat!==null)obj.hpLossFlat=hpLossFlat;const hpLossRate=readStatusNumberInput(row,'.status-hp-loss-rate');if(hpLossRate!==null)obj.hpLossRate=hpLossRate;}
     if(obj.status==='shock'){const chainAfter=readOptionalNumberControl(row.querySelector('.status-shock-wrap .optional-number-control'));if(chainAfter!==null)obj.chainAfterHits=chainAfter;const shockControls=row.querySelectorAll('.status-shock-wrap .optional-number-control');const chainCount=readOptionalNumberControl(shockControls[1]);if(chainCount!==null)obj.chainCount=chainCount;}
   }
+
+  if(type==='cleanseStatuses'){
+    const statuses=pickerValues('cleanseStatuses');if(statuses.length){obj.statuses=statuses;obj.cleanseStatuses=statuses;}
+    if(!obj.targetSide)obj.targetSide='ally';
+  }
+  if(type==='purgeBuffs'){
+    obj.successRate=readChanceControl(row.querySelector('.status-action-options'),1);
+    if(!obj.targetSide)obj.targetSide='enemy';
+  }
+  if(type==='accelerateTurnEffects'){
+    obj.successRate=readChanceControl(row.querySelector('.status-action-options'),1);
+    obj.turns=Math.max(1,int(obj.value,1));obj.value=obj.turns;
+    if(!obj.targetSide)obj.targetSide='enemy';
+  }
   if(type==='activateDomain'){
     obj.domainId=row.querySelector('.effect-domain-id')?.value.trim()||'';
     obj.duration=row.querySelector('.effect-domain-duration')?.value||'battle';
@@ -4210,6 +4261,12 @@ function validateAdvancedEffect(effect,abilityIndex,effectIndex){
     if(effect.copiedAbilityExpireOnUse===true&&Number(effect.copiedAbilityMaxUses||1)!==1)results.push({type:'warning',text:`${label}: copiedAbilityExpireOnUse จะบังคับให้หมดหลังใช้ครั้งแรก แม้ copiedAbilityMaxUses จะเป็นค่าอื่น`});
   }
   if(['statusResistance','statusResistanceStack'].includes(effect.type)&&!Number.isFinite(Number(effect.value)))results.push({type:'error',text:`${label}: statusResistance ต้องเป็นตัวเลข (รองรับค่าบวก/ลบโดยไม่มีเพดาน)`});
+
+  if(['cleanseStatuses','purgeBuffs','accelerateTurnEffects'].includes(effect.type)){
+    if(!Number.isInteger(Number(effect.targetCount||1))||Number(effect.targetCount||1)<1||Number(effect.targetCount||1)>5)results.push({type:'error',text:`${label}: targetCount ต้องอยู่ระหว่าง 1–5`});
+  }
+  if(['purgeBuffs','accelerateTurnEffects'].includes(effect.type)&&(!Number.isFinite(Number(effect.successRate))||Number(effect.successRate)<0))results.push({type:'error',text:`${label}: successRate ต้องเป็นค่าตั้งแต่ 0 ขึ้นไป`});
+  if(effect.type==='accelerateTurnEffects'&&(!Number.isInteger(Number(effect.value))||Number(effect.value)<1))results.push({type:'error',text:`${label}: value/turns ต้องเป็นจำนวนเต็มตั้งแต่ 1 ขึ้นไป`});
   if(effect.type==='applyStatus'){
     if(!abnormalStatusTypes.includes(String(effect.status||'')))results.push({type:'error',text:`${label}: applyStatus ต้องเลือก status เป็น ${abnormalStatusTypes.join('/')}`});
     if(!Number.isFinite(Number(effect.successRate))||Number(effect.successRate)<0)results.push({type:'error',text:`${label}: successRate ต้องเป็นค่าตั้งแต่ 0 ขึ้นไป`});
