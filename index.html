@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Runtime v110 · Cleanse + Purge + Turn Acceleration</title>
+  <title>ANIME CARD CODE BUILDER · Runtime v111 · Battle Transformation</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v110 · CLEANSE + PURGE + TURN ACCELERATION</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v111 · BATTLE TRANSFORMATION</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -171,7 +171,7 @@
             <button class="btn" id="downloadCard" type="button">⬇ card.js</button>
             <button class="btn danger" id="resetCard" type="button">ล้างฟอร์ม</button>
           </div>
-          <div class="footer-note"><b class="accent">Builder v109 · Attack Scope + Freeze Shatter:</b> แก้ onDeath / afterDeaths / triggerOn ให้เจนและโหลดกลับได้; ค่า Skill/Stack ไม่มีเพดานบวก; คงไว้เฉพาะค่าต่ำสุดที่ป้องกันสูตรพัง<br>AK-IDเดิม · Transform Only · Lv.350 / +20 · 50B Gems · ห้ามเงินอเวก<br>ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล Status Emoji v94 + card.js Export · applyStatus / copy / steal / Battle Log</div>
+          <div class="footer-note"><b class="accent">Builder v111 · Battle Transformation:</b> แก้ onDeath / afterDeaths / triggerOn ให้เจนและโหลดกลับได้; ค่า Skill/Stack ไม่มีเพดานบวก; คงไว้เฉพาะค่าต่ำสุดที่ป้องกันสูตรพัง<br>Battle Transform · เปลี่ยนรูป/สกิลเฉพาะร่าง · เว้น durationTurns = ถาวร<br>ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล Status Emoji v94 + card.js Export · applyStatus / copy / steal / Battle Log</div>
         </aside>
       </div>
     </section>
@@ -199,7 +199,7 @@
         <article class="help-card"><h3>4) อัปเดตฐาน ID</h3><p>เมื่อเกมมีการ์ดใหม่ ให้นำเข้าไฟล์ HTML ล่าสุดในหน้า <b>ฐาน ID</b> แอปจะอ่าน ID เพื่อป้องกันการสร้างซ้ำ</p></article>
         <article class="help-card"><h3>Firebase Cloud Firestore</h3><p>คลังออนไลน์ใช้คอลเลกชัน <code>animeCardCodeBuilderCards</code> และใช้ Card ID เป็น Document ID การแก้ไข ID เดิมจึงอัปเดตข้อมูลใบเดิมแบบเรียลไทม์</p></article><article class="help-card"><h3>ชีทหลักของระบบ</h3><p>ให้อ้างอิง <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001" target="_blank" rel="noopener" class="accent"><b>Google Sheet ระบบสกิลและเงื่อนไข</b></a> เป็นข้อมูลหลักสำหรับเอฟเฟกต์ เงื่อนไข และการอัปเดตครั้งถัดไป</p></article>
         <article class="help-card"><h3>การใช้ค่าเปอร์เซ็นต์</h3><p><code>0.20</code> หมายถึง +20%, <code>-0.20</code> หมายถึง -20%, และ <code>7.77</code> หมายถึง +777%</p></article><article class="help-card"><h3>สถานะผิดปกติ v68</h3><p>ใช้ <code>applyStatus</code> เพื่อทำให้เป้าหมาย 1-5 ตัวติด <code>death</code>, <code>stun</code>, <code>blind</code>, <code>freeze</code>, <code>burn</code>, <code>bleed</code>, <code>shock</code>, <code>condition-cancel</code>, <code>skill-cancel</code>, <code>skill-stolen</code>, หรือ <code>skill-copied</code> พร้อมกำหนด <code>successRate</code>, <code>targetCount</code>, <code>durationTurns</code>; สถานะ freeze รองรับ <code>freezeBreakPowerRate</code> และ <code>freezeBreakSuccessRate</code>; ดาเมจน้ำแข็งแตกไม่คำนวณ DEF; ค่าพิเศษอื่น เช่น <code>missRate</code>, <code>damageFlat</code>, <code>hpLossRate</code>, <code>chainAfterHits</code> และใช้กับอิโมจิบนหน้าการ์ด เช่น 🔓 🚫 🕸️ 🧬</p></article><article class="help-card"><h3>อัตราคริติคอล</h3><p>ใช้ <code>criticalRate</code> สำหรับเรทที่คงอยู่ และใช้ <code>nextAttackCriticalRate</code> สำหรับเรทชั่วคราวเฉพาะการโจมตีที่ Active ทำงาน เช่น <code>1.00</code> คือ +100% แล้วล้างทันทีหลังใช้ เลือก <code>targetSide</code> เป็น self / ally / enemy ได้ ค่า <code>luckRate</code> เดิมยังถูกแปลงเป็นคริติคอลเพื่อรองรับการ์ดเก่า</p></article>
-        <article class="help-card"><h3>Active / Death Trigger</h3><p><code>afterOwnAttacks: 3</code> คือสะสมการโจมตีปกติ 3 ครั้งแล้วเอฟเฟกต์ทำงาน, <code>onBattleStart: true</code> คือเริ่มไฟต์, และ <code>onDeath: true</code> หรือ <code>triggerOn: "death"</code> คือทำงานเมื่อตัวละครเจ้าของสกิลตาย รองรับการเลือกเป้าหมายครบชุดเหมือนเอฟเฟกต์อื่น</p></article><article class="help-card"><h3>คัดลอกและขโมยสกิล</h3><p><code>copyAbilities</code> ทำสำเนาโดยต้นทางยังใช้สกิลได้ ส่วน <code>stealAbilities</code> ทำให้ต้นทางเสียสกิลเมื่อขโมยสำเร็จ เลือกต้นทาง สกิล และผู้รับแบบ <code>random</code>, <code>specific</code>, <code>all</code> หรือ <code>hitTargets</code> ได้ พร้อมกำหนด <code>successRate</code> พร้อมกำหนดอายุด้วย <code>copiedAbilityDurationAttacks</code>, <code>copiedAbilityDurationTurns</code>, <code>copiedAbilityMaxUses</code>, <code>copiedAbilityExpireOnUse</code>, <code>replacePreviousCopy</code> และ <code>maxCopiedAbilities</code></p></article><article class="help-card"><h3>ต้านสถานะ / ต้านผิดปกติ</h3><p><code>abnormalStatusResistance</code> ไม่ต้องใส่ <code>value</code> และต้านสถานะผิดปกติแบบสมบูรณ์ทันที ระบุเฉพาะสถานะได้ด้วย <code>statuses</code> หรือ <code>resistStatuses</code> เช่น <code>stun</code>, <code>freeze</code>, <code>death</code>, <code>skill-cancel</code>; ไม่ระบุ = ต้านทั้งหมด ส่วน <code>statusResistance</code> เดิมยังใช้เปอร์เซ็นต์พอยต์ได้เหมือนเดิม</p></article><article class="help-card"><h3>โจมตีเพิ่ม / ตีตอบ</h3><p>เลือก <code>nextAttackHits</code> เพื่อเพิ่มฮิตในเทิร์นที่ Active ทำงาน เช่น value <code>2</code> คือเพิ่มอีก 2 ฮิต ระบบปัจจุบันนับเป็นฮิตเสริมในเทิร์นเดิม ไม่ใช่สร้างเทิร์นสวนแยก</p></article>
+        <article class="help-card"><h3>Active / Death Trigger</h3><p><code>onDeath: true</code> ทำงานหลังระบบตัดสินว่าตายและก่อนเทิร์นถัดไป ส่วน <code>afterReviveNextAttack: true</code> ทำงานเฉพาะการโจมตีแรกหลังคืนชีพเพียงครั้งเดียว จึงไม่ติดค้างทุกการโจมตี</p></article><article class="help-card"><h3>แปลงร่างระหว่างต่อสู้</h3><p><code>transform</code> เปลี่ยนรูป ชื่อ และโบนัสค่าสถานะ พร้อมเปิด <code>transformedAbilities</code> เฉพาะร่าง กำหนด <code>durationTurns</code> ได้; เว้นว่างหรือ 0 คือถาวรจนจบไฟต์ และใช้ Active Cutscene ของสกิลได้</p></article><article class="help-card"><h3>คัดลอกและขโมยสกิล</h3><p><code>copyAbilities</code> ทำสำเนาโดยต้นทางยังใช้สกิลได้ ส่วน <code>stealAbilities</code> ทำให้ต้นทางเสียสกิลเมื่อขโมยสำเร็จ เลือกต้นทาง สกิล และผู้รับแบบ <code>random</code>, <code>specific</code>, <code>all</code> หรือ <code>hitTargets</code> ได้ พร้อมกำหนด <code>successRate</code> พร้อมกำหนดอายุด้วย <code>copiedAbilityDurationAttacks</code>, <code>copiedAbilityDurationTurns</code>, <code>copiedAbilityMaxUses</code>, <code>copiedAbilityExpireOnUse</code>, <code>replacePreviousCopy</code> และ <code>maxCopiedAbilities</code></p></article><article class="help-card"><h3>ต้านสถานะ / ต้านผิดปกติ</h3><p><code>abnormalStatusResistance</code> ไม่ต้องใส่ <code>value</code> และต้านสถานะผิดปกติแบบสมบูรณ์ทันที ระบุเฉพาะสถานะได้ด้วย <code>statuses</code> หรือ <code>resistStatuses</code> เช่น <code>stun</code>, <code>freeze</code>, <code>death</code>, <code>skill-cancel</code>; ไม่ระบุ = ต้านทั้งหมด ส่วน <code>statusResistance</code> เดิมยังใช้เปอร์เซ็นต์พอยต์ได้เหมือนเดิม</p></article><article class="help-card"><h3>โจมตีเพิ่ม / ตีตอบ</h3><p>เลือก <code>nextAttackHits</code> เพื่อเพิ่มฮิตในเทิร์นที่ Active ทำงาน เช่น value <code>2</code> คือเพิ่มอีก 2 ฮิต ระบบปัจจุบันนับเป็นฮิตเสริมในเทิร์นเดิม ไม่ใช่สร้างเทิร์นสวนแยก</p></article>
       </div>
     </section>
   </main>
@@ -1203,6 +1203,16 @@
       "exampleCode": "{ \"type\":\"summonCard\", \"summonCardId\":2003, \"count\":1, \"slotPolicy\":\"newSlot\", \"powerRate\":0.75, \"hpRate\":0.75, \"useBaseAbilities\":true, \"summonedAbilities\":[] }"
     },
     {
+      "category": "ACTIVE / แปลงร่าง",
+      "type": "transform",
+      "meaning": "แปลงร่างการ์ดระหว่างต่อสู้ เปลี่ยนรูป/ชื่อ เพิ่มค่าสถานะ และเปิดใช้สกิลเฉพาะร่าง",
+      "exampleValue": "ไม่ใช้ value",
+      "fields": "targetSide, targetSelection, targetCount, transformId, transformName, image, durationTurns, bonuses, transformedElements, normalAttackTargetCount, transformedAbilities, transformCutscene",
+      "suitableModes": "tower, arena, worldBoss",
+      "note": "ใช้เงื่อนไขเดิมได้ทุกรูปแบบ; durationTurns เว้นว่างหรือ 0 = ถาวรจนจบไฟต์; เมื่อหมดเวลา รูป ชื่อ ค่าสถานะ และสกิลเฉพาะร่างจะกลับเป็นร่างเดิมอัตโนมัติ; คัทซีนใช้ Active Cutscene ของสกิล หรือ transformCutscene",
+      "exampleCode": "{ \"type\":\"transform\", \"targetSide\":\"self\", \"targetSelection\":\"self\", \"transformId\":\"susanoo\", \"transformName\":\"อิทาจิ — ซูซาโนะโอะ\", \"image\":\"card/4010/4010_transform.png\", \"durationTurns\":5, \"bonuses\":{\"powerRate\":1,\"defenseRate\":1,\"dodgeRate\":0.30}, \"transformedAbilities\":[] }"
+    },
+    {
       "category": "ACTIVE / จังหวะสกิล",
       "type": "triggerThresholdModifier",
       "meaning": "เพิ่ม/ลดจำนวนการโจมตีที่ต้องใช้ก่อน Active ทำงานในรอบปัจจุบัน",
@@ -2108,8 +2118,9 @@
       "field": "onDeath",
       "label": "onDeath · เมื่อตัวละครเจ้าของสกิลตาย",
       "valueType": "boolean",
-      "meaning": "ทำให้สกิล/เอฟเฟกต์ทำงานทันทีเมื่อเจ้าของสกิลตายในไฟต์ ใช้ได้กับบัฟ ดีบัฟ ต้านสถานะ ฮีล โล่ รีไวฟ์ และเอฟเฟกต์ที่เลือกเป้าหมาย",
-      "example": "true"
+      "meaning": "ทำให้สกิล/เอฟเฟกต์ทำงานทันทีหลังระบบตัดสินว่าเจ้าของสกิลตาย (HP ถึง 0) ภายในเหตุการณ์เดียวกัน และก่อนเริ่มเทิร์นถัดไป ไม่ใช่ก่อนตาย",
+      "example": "true",
+      "note": "ใช้กับคืนชีพ บัฟหลังตาย ดีบัฟศัตรู หรือเอฟเฟกต์อื่นได้; หากจะให้ทำงานในการโจมตีแรกหลังคืนชีพ ให้ใช้ afterReviveNextAttack แยกต่างหาก"
     },
     {
       "position": "condition",
@@ -2166,6 +2177,33 @@
       "type": "boolean",
       "meaning": "ถ้า true เมื่อเจ้าของสกิลตาย เอฟเฟกต์ที่ให้ไว้จะหายจากเป้าหมาย",
       "example": "true"
+    },
+    {
+      "position": "condition",
+      "field": "afterReviveNextAttack",
+      "label": "afterReviveNextAttack · การโจมตีแรกหลังคืนชีพ",
+      "valueType": "boolean",
+      "meaning": "ทำงานเฉพาะการโจมตีครั้งแรกหลังเจ้าของสกิลคืนชีพเพียงครั้งเดียว ไม่ติดค้างไปยังการโจมตีครั้งต่อ ๆ ไป",
+      "example": "true",
+      "note": "เหมาะกับดาเมจ/สถานะพิเศษหลังคืนชีพ เช่น ATK +1500% และสตัน 1 เป้าหมายครั้งเดียว"
+    },
+    {
+      "position": "condition",
+      "field": "sourceTransformed",
+      "label": "sourceTransformed · อยู่ในร่างแปลง",
+      "valueType": "boolean",
+      "meaning": "สกิลหรือเอฟเฟกต์ทำงานเฉพาะขณะที่เจ้าของสกิลกำลังแปลงร่าง",
+      "example": "true",
+      "note": "เมื่อหมดเวลาและกลับร่าง เงื่อนไขนี้จะไม่ผ่านทันที"
+    },
+    {
+      "position": "condition",
+      "field": "sourceTransformId",
+      "label": "sourceTransformId · ระบุร่างแปลง",
+      "valueType": "string",
+      "meaning": "สกิลทำงานเฉพาะเมื่อเจ้าของสกิลอยู่ในร่าง transformId ที่กำหนด",
+      "example": "susanoo",
+      "note": "ใช้เมื่อการ์ดเดียวมีหลายร่างแปลง"
     }
   ],
   "baseStats": [
@@ -3446,7 +3484,7 @@ const rarityCodes = Object.keys(DATA.rarities).sort((a,b)=>DATA.rarities[a].orde
 const conditionCatalog = DATA.conditions.filter(x=>x.position==='condition');
 const effectCatalog = DATA.effects;
 const effectByType = new Map(effectCatalog.map(x=>[x.type,x]));
-const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain','taunt','adaptiveElement','applyStatus','abnormalStatusResistance','splitClone','summonCard','cleanseStatuses','purgeBuffs']);
+const noValueEffects = new Set(['nullifyCardAbilities','ignoreAbilityConditions','copyAbilities','stealAbilities','activateDomain','taunt','adaptiveElement','applyStatus','abnormalStatusResistance','splitClone','summonCard','transform','cleanseStatuses','purgeBuffs']);
 const abnormalStatusTypes = ['death','stun','blind','freeze','burn','bleed','shock','condition-cancel','skill-cancel','skill-stolen','skill-copied','purification'];
 const statusUiMap = {
   death:'☠️ death · เดธ / Doom',
@@ -3482,7 +3520,7 @@ const stackRateEffectTypes = new Set(['powerRateStack','hpRateStack','defenseRat
 const stackFlatEffectTypes = new Set(['powerFlatStack','hpFlatStack','defenseFlatStack','incomeFlatStack']);
 const stackIntegerEffectTypes = new Set(['attackHitsStack','shieldHitsStack','activeSkillCostCycleStack','activeSkillCostPermanentStack','speedFlatStack']);
 const stackEffectTypes = new Set([...stackRateEffectTypes,...stackFlatEffectTypes,...stackIntegerEffectTypes,'increaseAttackRateStack']);
-const activeEffectTypes = new Set(['applyStatus','cleanseStatuses','purgeBuffs','accelerateTurnEffects','captureRevive','splitClone','summonCard','nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack','taunt','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','followUpAttack','counterAttack','adaptiveElement','multiElementAttack','criticalDamageRate','defensePenetrationRate',...stackEffectTypes]);
+const activeEffectTypes = new Set(['applyStatus','cleanseStatuses','purgeBuffs','accelerateTurnEffects','captureRevive','splitClone','summonCard','transform','nextAttackPowerRate','nextAttackPowerFlat','nextAttackCriticalRate','healHpRate','healHpFlat','restoreShieldHits','nextAttackHits','increaseMaxHpBaseRate','revive','reviveTimedUndying','reviveHitLife','speedFlat','speedFlatStack','taunt','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','followUpAttack','counterAttack','adaptiveElement','multiElementAttack','criticalDamageRate','defensePenetrationRate',...stackEffectTypes]);
 const rateEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Rate$/.test(t)).concat(['captureRevive','criticalRate','luckRate','gachaRarityRate','increaseMaxHpBaseRate','increaseAttackRateStack','statusResistance','revive','reviveTimedUndying','reviveHitLife','followUpAttack','counterAttack','criticalDamageRate','defensePenetrationRate',...stackRateEffectTypes]));
 const integerEffectTypes = new Set(['accelerateTurnEffects','shieldHits','attackHits','restoreShieldHits','nextAttackHits','selfTriggerReduction','activeSkillCost','activeSkillCostCycle','activeSkillCostPermanent','triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','multiElementAttack','speedFlat','speedFlatStack',...stackIntegerEffectTypes]);
 const flatEffectTypes = new Set(effectCatalog.map(x=>x.type).filter(t=>/Flat$/.test(t)).concat([...stackFlatEffectTypes]));
@@ -3696,7 +3734,7 @@ function conditionGroup(field){
   if(['mode','modes'].includes(field))return 'โหมด';
   if(/Element/.test(field)||field==='teamElementsOnly'||field==='minUniqueElements')return 'ธาตุและทีม';
   if(/Rarit/.test(field))return 'ระดับ';
-  if(/source|leader|Revive/.test(field))return 'เจ้าของสกิล';
+  if(/source|leader|Revive|Transform|Transformed/.test(field))return 'เจ้าของสกิล';
   if(/CardIds|CardNames|Teammate|Character|Name/.test(field))return 'การ์ดร่วมทีม / ชื่อตัวละคร';
   if(['onOwnAttack','afterOwnAttacks','repeat','domainActive','afterDomainAttacks','onBattleStart','onDamaged','afterDamagedHits','onCritical','afterCriticalHits','onAllyActiveSkill','afterActiveSkills','onKill','afterKills','onDeath','onDead','afterDeaths','afterDeathCount','triggerOn','sourceHpBelowRate','sourceHpAboveRate','targetHpBelowRate','targetHpAboveRate','maxActivations'].includes(field))return 'Active Skill / เหตุการณ์ / HP';
   return 'ขนาดทีม';
@@ -3811,6 +3849,18 @@ function addEffectRow(container,initial={}){
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced nullify-options hidden" open><summary>ตั้งค่า nullify แบบ Active</summary><div class="grid"><div class="field-wrap span-6"><label>durationTriggers</label>${optionalNumberControlHtml('durationTriggers',initial.durationTriggers)}<small class="hint">จำนวนรอบ Active ของการ์ดเป้าหมายที่จะถูกทำให้ไร้ผล</small></div><div class="field-wrap span-6"><div class="status ok">ใช้ร่วมกับ targetSelection ด้านบนได้: random / specific / all</div></div></div></details>`);
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced ignore-options hidden" open><summary>ตั้งค่า ignoreAbilityConditions</summary><div class="grid"><div class="field-wrap span-6"><label>triggerImmediately</label><select class="field ignore-trigger-immediately">${option('false','false · ยกเลิกเฉพาะเงื่อนไขจัดทีม',initial.triggerImmediately!==true)}${option('true','true · Active พร้อมใช้ในการโจมตีครั้งแรก',initial.triggerImmediately===true)}</select></div><div class="field-wrap span-6"><div class="status ok">หลังใช้ครั้งแรก ตัวนับรอบถัดไปกลับไปใช้ afterOwnAttacks เดิม</div></div></div></details>`);
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced capture-options hidden" open><summary>ตั้งค่าชิงร่างศัตรู</summary><div class="grid"><div class="field-wrap span-4"><label>อัตราสำเร็จ successRate</label>${chanceControlHtml(initial.successRate??1)}</div><div class="field-wrap span-4"><label>รูปแบบคืนชีพ reviveType</label><select class="field capture-revive-type">${option('revive','revive · คืนชีพธรรมดา',String(initial.reviveType||'revive')==='revive')}${option('reviveTimedUndying','reviveTimedUndying · อมตะชั่วคราว',String(initial.reviveType)==='reviveTimedUndying')}${option('reviveHitLife','reviveHitLife · ชีวิตตามฮิต',String(initial.reviveType)==='reviveHitLife')}</select></div><div class="field-wrap span-4"><label>maxTriggers · ชิงสำเร็จสูงสุด (ไม่ใส่ = ไม่จำกัด)</label>${optionalNumberControlHtml('maxTriggers',initial.maxTriggers)}</div><div class="field-wrap span-4 capture-duration-wrap"><label>durationTurns</label>${optionalNumberControlHtml('durationTurns',initial.durationTurns??3)}</div><div class="field-wrap span-4 capture-hitlife-wrap"><label>surviveHits</label>${optionalNumberControlHtml('surviveHits',initial.surviveHits??5)}</div><div class="field-wrap span-4"><div class="status ok capture-summary">ศัตรูคืนชีพร่างนี้ไม่ได้ จนกว่าร่างจะตายในฝ่ายเรา</div></div></div></details>`);
+
+  row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced transform-options hidden" open><summary>ตั้งค่าการแปลงร่างระหว่างต่อสู้</summary><div class="grid">
+    <div class="field-wrap span-3"><label>transformId</label><input class="field transform-id" value="${esc(initial.transformId??initial.formId??'transform')}" placeholder="เช่น susanoo"></div>
+    <div class="field-wrap span-4"><label>ชื่อร่าง transformName</label><input class="field transform-name" value="${esc(initial.transformName??initial.formName??'')}" placeholder="เช่น อิทาจิ — ซูซาโนะโอะ"></div>
+    <div class="field-wrap span-5"><label>รูปตอนแปลงร่าง image</label><input class="field transform-image" value="${esc(initial.image??initial.transformImage??initial.formImage??'')}" placeholder="card/4010/4010_transform.png"></div>
+    <div class="field-wrap span-6"><label>bonuses · โบนัสเฉพาะร่าง (JSON Object)</label><textarea class="textarea transform-bonuses-json" spellcheck="false" placeholder='{"powerRate":1,"defenseRate":1,"dodgeRate":0.3}'>${esc(JSON.stringify(initial.bonuses??initial.transformBonuses??{},null,2))}</textarea><small class="hint">รองรับ powerRate/powerFlat, hpRate/hpFlat, defenseRate/defenseFlat, speedRate/speedFlat, attackHits, criticalRate, dodgeRate, blockRate, damageTakenRate, healingRate, shieldRecoveryRate</small></div>
+    <div class="field-wrap span-6"><label>transformedAbilities · สกิลเฉพาะตอนแปลงร่าง (JSON Array)</label><textarea class="textarea transformed-abilities-json" spellcheck="false" placeholder='[{"name":"สกิลร่างใหม่","effects":[]}]'>${esc(JSON.stringify(initial.transformedAbilities??initial.formAbilities??initial.transformAbilities??[],null,2))}</textarea><small class="hint">สกิลชุดนี้จะถูกเปิดเมื่อแปลงร่าง และถูกถอดทันทีเมื่อกลับร่าง</small></div>
+    <div class="field-wrap span-4"><label>transformedElements</label>${createTokenPicker('elements',initial.transformedElements||initial.formElements||[],'transformedElements')}</div>
+    <div class="field-wrap span-4"><label>normalAttackTargetCount ตอนแปลงร่าง</label>${optionalNumberControlHtml('normalAttackTargetCount',initial.normalAttackTargetCount??initial.attackTargetCount)}</div>
+    <div class="field-wrap span-4"><div class="status ok transform-summary">ระยะเวลาใช้ช่อง “ระยะเวลา (เทิร์น)” ด้านบน · เว้นว่าง = ถาวร</div></div>
+    <div class="field-wrap span-12"><div class="status warn">คัทซีน: ตั้งในส่วน Active Cutscene ของความสามารถนี้ได้เลย ระบบจะเล่นตอนสกิลแปลงร่างทำงาน</div></div>
+  </div></details>`);
 
   row.querySelector('.row-pad').insertAdjacentHTML('beforeend',`<details class="advanced spawn-options hidden" open><summary>ตั้งค่าร่างแยก / ร่างซัมม่อน v96</summary><div class="grid">
     <div class="field-wrap span-3"><label>จำนวนร่าง count</label><input class="field spawn-count" type="number" min="1" max="20" step="1" value="${esc(initial.count??initial.cloneCount??initial.summonCount??1)}"></div>
@@ -3945,7 +3995,7 @@ function syncCopiedLifetimePreset(row,applyPreset=false){
 function renderEffectRow(row,initialValue){
   const category=row.querySelector('.effect-category').value,typeSelect=row.querySelector('.effect-type');if(!typeSelect.value&&initialValue===undefined)typeSelect.innerHTML=effectTypeOptions(category,'');
   const type=typeSelect.value,meta=effectByType.get(type),wrap=row.querySelector('.effect-value-wrap'),control=row.querySelector('.effect-value-control'),note=row.querySelector('.effect-note'),summary=row.querySelector('.effect-summary');
-  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack','abnormalStatusResistance'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain',isTaunt=type==='taunt',isCapture=type==='captureRevive',isApplyStatus=type==='applyStatus',isStatusAction=['cleanseStatuses','purgeBuffs','accelerateTurnEffects'].includes(type),isSpawn=['splitClone','summonCard'].includes(type),isSummon=type==='summonCard';
+  const isTransfer=transferEffectTypes.has(type),isResistance=['statusResistance','statusResistanceStack','abnormalStatusResistance'].includes(type),isNullify=type==='nullifyCardAbilities',isIgnore=type==='ignoreAbilityConditions',isDomain=type==='activateDomain',isTaunt=type==='taunt',isCapture=type==='captureRevive',isApplyStatus=type==='applyStatus',isStatusAction=['cleanseStatuses','purgeBuffs','accelerateTurnEffects'].includes(type),isSpawn=['splitClone','summonCard'].includes(type),isSummon=type==='summonCard',isTransform=type==='transform';
   const supportsTargetSelection=Boolean(type);
   const isRevive=['revive','reviveTimedUndying','reviveHitLife'].includes(type);
   const isAdvancedCombat=['triggerThresholdModifier','triggerThresholdPermanentModifier','nextAttackTargetCount','followUpAttack','counterAttack','adaptiveElement','multiElementAttack','criticalDamageRate','defensePenetrationRate'].includes(type);
@@ -3976,6 +4026,7 @@ function renderEffectRow(row,initialValue){
   row.querySelector('.ignore-options')?.classList.toggle('hidden',!isIgnore);
   row.querySelector('.capture-options')?.classList.toggle('hidden',!isCapture);
   row.querySelector('.spawn-options')?.classList.toggle('hidden',!isSpawn);
+  row.querySelector('.transform-options')?.classList.toggle('hidden',!isTransform);
   row.querySelectorAll('.spawn-summon-only').forEach(el=>el.classList.toggle('hidden',!isSummon));
   row.querySelectorAll('.spawn-clone-only').forEach(el=>el.classList.toggle('hidden',!isSpawn||isSummon));
   const spawnLabel=row.querySelector('.spawn-abilities-label');if(spawnLabel)spawnLabel.textContent=isSummon?'summonedAbilities · สกิลเพิ่มตอนซัมม่อน (JSON Array)':'cloneAbilities · สกิลเฉพาะร่างแยก (JSON Array)';
@@ -4088,6 +4139,18 @@ function readEffectRow(row){
     if(obj.reviveType==='reviveTimedUndying'){const v=readOptionalNumberControl(controls[1]);if(v!==null)obj.durationTurns=v;delete obj.surviveHits;}
     if(obj.reviveType==='reviveHitLife'){const v=readOptionalNumberControl(controls[2]);if(v!==null)obj.surviveHits=v;delete obj.durationTurns;}
     if(!obj.targetSelection)obj.targetSelection='random';
+  }
+  if(type==='transform'){
+    obj.targetSide='self';obj.targetSelection='self';delete obj.targetCount;
+    obj.transformId=String(row.querySelector('.transform-id')?.value||'transform').trim()||'transform';
+    const transformName=String(row.querySelector('.transform-name')?.value||'').trim();if(transformName)obj.transformName=transformName;
+    const transformImage=String(row.querySelector('.transform-image')?.value||'').trim();if(transformImage)obj.image=transformImage;
+    const transformedElements=pickerValues('transformedElements');if(transformedElements.length)obj.transformedElements=transformedElements;
+    const targetControl=row.querySelector('.transform-options .optional-number-control');const transformedTargetCount=readOptionalNumberControl(targetControl);if(transformedTargetCount!==null)obj.normalAttackTargetCount=Math.max(1,Math.min(5,transformedTargetCount));
+    const bonusText=String(row.querySelector('.transform-bonuses-json')?.value||'').trim();
+    if(bonusText){try{const parsed=JSON.parse(bonusText);if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed))obj.bonuses=parsed;else Object.defineProperty(obj,'_transformBonusesJsonError',{value:true,enumerable:false});}catch{Object.defineProperty(obj,'_transformBonusesJsonError',{value:true,enumerable:false});}}
+    const abilitiesText=String(row.querySelector('.transformed-abilities-json')?.value||'').trim();
+    if(abilitiesText){try{const parsed=JSON.parse(abilitiesText);if(Array.isArray(parsed))obj.transformedAbilities=parsed;else Object.defineProperty(obj,'_transformedAbilitiesJsonError',{value:true,enumerable:false});}catch{Object.defineProperty(obj,'_transformedAbilitiesJsonError',{value:true,enumerable:false});}}
   }
   if(['splitClone','summonCard'].includes(type)){
     obj.count=Math.max(1,Math.min(20,int(row.querySelector('.spawn-count')?.value,1)));
