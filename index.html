@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080b17">
   <meta name="description" content="ANIME CARD COLLECTION — แอปสร้างโค้ดการ์ดและความสามารถแบบออฟไลน์">
-  <title>ANIME CARD CODE BUILDER · Runtime v112 · Skill Attack</title>
+  <title>ANIME CARD CODE BUILDER · Runtime v113 · Rarity Sync</title>
   <style>
     :root{
       color-scheme:dark;
@@ -53,7 +53,7 @@
   <header class="topbar panel">
     <div class="brand">
       <div class="logo">AC</div>
-      <div><small>ABILITY CONDITIONS v112 · SKILL ATTACK</small><h1>ANIME CARD CODE BUILDER</h1></div>
+      <div><small>ABILITY CONDITIONS v113 · RARITY SYNC</small><h1>ANIME CARD CODE BUILDER</h1></div>
     </div>
     <div class="top-actions">
       <div class="count-pill">ฐานปัจจุบัน <b id="headerCurrentCount">0</b> ใบ · เอฟเฟกต์ <b id="headerEffectCount">0</b> แบบ</div>
@@ -171,7 +171,7 @@
             <button class="btn" id="downloadCard" type="button">⬇ card.js</button>
             <button class="btn danger" id="resetCard" type="button">ล้างฟอร์ม</button>
           </div>
-          <div class="footer-note"><b class="accent">Builder v112 · Skill Attack:</b> เพิ่ม skillAttack สำหรับดาเมจและจำนวนเป้าหมายเฉพาะตอนสกิลทำงาน; แยกจาก normalAttackTargetCount; ค่า Skill/Stack ไม่มีเพดานบวก<br>Battle Transform · เปลี่ยนรูป/สกิลเฉพาะร่าง · เว้น durationTurns = ถาวร<br>ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล Status Emoji v94 + card.js Export · applyStatus / copy / steal / Battle Log</div>
+          <div class="footer-note"><b class="accent">Builder v113 · Rarity Sync:</b> ระดับตรงกับเกมหลักแล้ว: SR เขียว, SSR น้ำเงิน, UR ม่วง, ตัด N/R และใช้ชื่อแสดงผล C/B/A/S/SS/SSS/AWAKEN/GOD<br><b class="accent">Skill Attack:</b> เพิ่ม skillAttack สำหรับดาเมจและจำนวนเป้าหมายเฉพาะตอนสกิลทำงาน; แยกจาก normalAttackTargetCount; ค่า Skill/Stack ไม่มีเพดานบวก<br>Battle Transform · เปลี่ยนรูป/สกิลเฉพาะร่าง · เว้น durationTurns = ถาวร<br>ฐานข้อมูลหลัก: <a href="https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001" target="_blank" rel="noopener">Google Sheet ระบบสกิลและเงื่อนไข</a> · ระบบสกิล Status Emoji v94 + card.js Export · applyStatus / copy / steal / Battle Log</div>
         </aside>
       </div>
     </section>
@@ -2219,27 +2219,27 @@
   "baseStats": [
     {
       "order": 1,
-      "code": "N",
-      "label": "N",
-      "rank": 0,
-      "power": 1000,
-      "hp": 5000,
-      "defense": 400,
-      "income": 35,
+      "code": "SR",
+      "label": "C",
+      "rank": 2,
+      "power": 16000,
+      "hp": 80000,
+      "defense": 6400,
+      "income": 125,
       "hpAtk": 5,
       "defAtk": 0.4,
       "turns": 8.333333333,
-      "note": "ระดับเริ่มต้น"
+      "note": "ระดับเริ่มต้นของระบบใหม่"
     },
     {
       "order": 2,
-      "code": "R",
-      "label": "R",
-      "rank": 1,
-      "power": 3000,
-      "hp": 15000,
-      "defense": 1200,
-      "income": 100,
+      "code": "SSR",
+      "label": "B",
+      "rank": 3,
+      "power": 18000,
+      "hp": 90000,
+      "defense": 7200,
+      "income": 155,
       "hpAtk": 5,
       "defAtk": 0.4,
       "turns": 8.333333333,
@@ -2247,13 +2247,13 @@
     },
     {
       "order": 3,
-      "code": "SR",
-      "label": "SR",
-      "rank": 2,
-      "power": 9000,
-      "hp": 45000,
-      "defense": 3600,
-      "income": 280,
+      "code": "UR",
+      "label": "A",
+      "rank": 4,
+      "power": 21000,
+      "hp": 105000,
+      "defense": 8400,
+      "income": 190,
       "hpAtk": 5,
       "defAtk": 0.4,
       "turns": 8.333333333,
@@ -2261,83 +2261,69 @@
     },
     {
       "order": 4,
-      "code": "SSR",
-      "label": "SSR",
-      "rank": 3,
-      "power": 27000,
-      "hp": 135000,
-      "defense": 10800,
-      "income": 800,
-      "hpAtk": 5,
-      "defAtk": 0.4,
-      "turns": 8.333333333,
-      "note": ""
-    },
-    {
-      "order": 5,
-      "code": "UR",
-      "label": "UR",
-      "rank": 4,
-      "power": 81000,
-      "hp": 405000,
-      "defense": 32400,
-      "income": 2300,
-      "hpAtk": 5,
-      "defAtk": 0.4,
-      "turns": 8.333333333,
-      "note": ""
-    },
-    {
-      "order": 6,
       "code": "LR",
-      "label": "Legends",
+      "label": "S",
       "rank": 5,
-      "power": 243000,
-      "hp": 1215000,
-      "defense": 97200,
-      "income": 6500,
+      "power": 24000,
+      "hp": 120000,
+      "defense": 9600,
+      "income": 230,
       "hpAtk": 5,
       "defAtk": 0.4,
       "turns": 8.333333333,
       "note": "ใช้ LR ใน targetRarities"
     },
     {
-      "order": 7,
+      "order": 5,
       "code": "SC",
-      "label": "Mystical",
+      "label": "SS",
       "rank": 6,
-      "power": 729000,
-      "hp": 3645000,
-      "defense": 291600,
-      "income": 18000,
+      "power": 27000,
+      "hp": 135000,
+      "defense": 10800,
+      "income": 275,
       "hpAtk": 5,
       "defAtk": 0.4,
       "turns": 8.333333333,
       "note": "ใช้ SC ใน targetRarities"
     },
     {
-      "order": 8,
+      "order": 6,
       "code": "EX",
-      "label": "EX",
+      "label": "SSS",
       "rank": 7,
-      "power": 2187000,
-      "hp": 10935000,
-      "defense": 874800,
-      "income": 50000,
+      "power": 30000,
+      "hp": 150000,
+      "defense": 12000,
+      "income": 330,
       "hpAtk": 5,
       "defAtk": 0.4,
       "turns": 8.333333333,
-      "note": "รองสูงสุด ก่อน GOD"
+      "note": "ระดับสูงก่อน AWAKEN/GOD"
     },
     {
-      "order": 9,
+      "order": 7,
+      "code": "AWAKEN",
+      "label": "AWAKEN",
+      "rank": 8,
+      "power": 31200,
+      "hp": 156000,
+      "defense": 12480,
+      "income": 345,
+      "hpAtk": 5,
+      "defAtk": 0.4,
+      "turns": 8.333333333,
+      "note": "ร่างแปลงเท่านั้น ไม่เข้ากาชา"
+    },
+    {
+      "order": 8,
       "code": "GOD",
       "label": "GOD",
-      "rank": 8,
-      "power": 2296350,
-      "hp": 11481750,
-      "defense": 918540,
-      "income": 52500,
+      "rank": 9,
+      "power": 31500,
+      "hp": 157500,
+      "defense": 12600,
+      "income": 350,
       "hpAtk": 5,
       "defAtk": 0.4,
       "turns": 8.333333333,
@@ -2345,116 +2331,17 @@
     }
   ],
   "rarities": {
-    "N": {
-      "label": "N",
-      "color": "#94a3b8",
-      "colors": [
-        "#94a3b8",
-        "#0f172a"
-      ],
-      "gradient": "linear-gradient(135deg, #94a3b8, #334155 55%, #020617)",
-      "glow": "#94a3b8",
-      "textColor": "#071019",
-      "order": 0,
-      "stars": 3,
-      "dust": 5,
-      "basePower": 12000,
-      "baseHp": 60000,
-      "baseDefense": 4800,
-      "baseSpeed": 90,
-      "baseIncome": 80,
-      "maxLevel": 100,
-      "upgradeDustBase": 596,
-      "upgradeDustGrowth": 1.01,
-      "powerPerLevel": 0.015,
-      "incomePerLevel": 0.008,
-      "awakenMax": 20,
-      "awakenCopies": [
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8,
-        8
-      ],
-      "powerBonus": 0.02,
-      "incomeBonus": 0.0125
-    },
-    "R": {
-      "label": "R",
-      "color": "#38bdf8",
-      "colors": [
-        "#38bdf8",
-        "#2563eb",
-        "#0f172a"
-      ],
-      "gradient": "linear-gradient(135deg, #38bdf8, #2563eb 58%, #020617)",
-      "glow": "#38bdf8",
-      "textColor": "#06111f",
-      "order": 1,
-      "stars": 4,
-      "dust": 18,
-      "basePower": 14000,
-      "baseHp": 70000,
-      "baseDefense": 5600,
-      "baseSpeed": 92,
-      "baseIncome": 100,
-      "maxLevel": 120,
-      "upgradeDustBase": 822,
-      "upgradeDustGrowth": 1.011,
-      "powerPerLevel": 0.016,
-      "incomePerLevel": 0.0085,
-      "awakenMax": 20,
-      "awakenCopies": [
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7,
-        7
-      ],
-      "powerBonus": 0.0225,
-      "incomeBonus": 0.014
-    },
     "SR": {
-      "label": "SR",
-      "color": "#a78bfa",
+      "label": "C",
+      "color": "#4ade80",
       "colors": [
-        "#a78bfa",
-        "#7c3aed",
-        "#111827"
+        "#86efac",
+        "#22c55e",
+        "#052e16"
       ],
-      "gradient": "linear-gradient(135deg, #c4b5fd, #7c3aed 58%, #111827)",
-      "glow": "#a78bfa",
-      "textColor": "#10051f",
+      "gradient": "linear-gradient(135deg, #bbf7d0 0%, #22c55e 52%, #052e16 100%)",
+      "glow": "#4ade80",
+      "textColor": "#052015",
       "order": 2,
       "stars": 5,
       "dust": 70,
@@ -2495,16 +2382,16 @@
       "incomeBonus": 0.0155
     },
     "SSR": {
-      "label": "SSR",
-      "color": "#fbbf24",
+      "label": "B",
+      "color": "#60a5fa",
       "colors": [
-        "#fde68a",
-        "#f59e0b",
-        "#7c2d12"
+        "#93c5fd",
+        "#2563eb",
+        "#172554"
       ],
-      "gradient": "linear-gradient(135deg, #fde68a, #f59e0b 52%, #7c2d12)",
-      "glow": "#fbbf24",
-      "textColor": "#211500",
+      "gradient": "linear-gradient(135deg, #bfdbfe 0%, #2563eb 54%, #172554 100%)",
+      "glow": "#60a5fa",
+      "textColor": "#06152f",
       "order": 3,
       "stars": 6,
       "dust": 280,
@@ -2545,16 +2432,16 @@
       "incomeBonus": 0.017
     },
     "UR": {
-      "label": "UR",
-      "color": "#fb7185",
+      "label": "A",
+      "color": "#c084fc",
       "colors": [
-        "#fb7185",
-        "#dc2626",
-        "#111827"
+        "#e9d5ff",
+        "#9333ea",
+        "#2e1065"
       ],
-      "gradient": "linear-gradient(135deg, #fb7185, #dc2626 55%, #111827)",
-      "glow": "#fb7185",
-      "textColor": "#21060a",
+      "gradient": "linear-gradient(135deg, #f3e8ff 0%, #9333ea 54%, #2e1065 100%)",
+      "glow": "#c084fc",
+      "textColor": "#210638",
       "order": 4,
       "stars": 7,
       "dust": 1500,
@@ -2595,7 +2482,7 @@
       "incomeBonus": 0.019
     },
     "LR": {
-      "label": "Legends",
+      "label": "S",
       "color": "#FFD700",
       "colors": [
         "#7A4800",
@@ -2647,7 +2534,7 @@
       "incomeBonus": 0.021
     },
     "SC": {
-      "label": "Mystical",
+      "label": "SS",
       "color": "#f5d9ff",
       "colors": [
         "#ff77d9",
@@ -2701,7 +2588,7 @@
       "incomeBonus": 0.023
     },
     "EX": {
-      "label": "EX",
+      "label": "SSS",
       "color": "#d946ef",
       "colors": [
         "#111827",
@@ -3414,48 +3301,6 @@
       "name": "Stark",
       "rarity": "SR",
       "element": "เหล็ก"
-    },
-    {
-      "id": 29,
-      "name": "Monkey D. Luffy",
-      "rarity": "R",
-      "element": "ไฟ"
-    },
-    {
-      "id": 30,
-      "name": "Uzumaki Naruto",
-      "rarity": "R",
-      "element": "ลม"
-    },
-    {
-      "id": 31,
-      "name": "Goku",
-      "rarity": "R",
-      "element": "แสง"
-    },
-    {
-      "id": 32,
-      "name": "Ichigo Kurosaki",
-      "rarity": "R",
-      "element": "น้ำ"
-    },
-    {
-      "id": 33,
-      "name": "Kobi",
-      "rarity": "N",
-      "element": "ไร้ธาตุ"
-    },
-    {
-      "id": 34,
-      "name": "Conan",
-      "rarity": "N",
-      "element": "ไร้ธาตุ"
-    },
-    {
-      "id": 35,
-      "name": "Sung Jinwoo",
-      "rarity": "N",
-      "element": "ไร้ธาตุ"
     }
   ],
   "sourceInfo": {
@@ -3472,15 +3317,16 @@
     "statusImmunityUpdated": "v85 abnormalStatusResistance no-value + specific statuses + onDeath trigger"
   },
   "meta": {
-    "builderUpdated": "2026-07-14-cleanse-purge-turn-v110",
+    "builderUpdated": "2026-07-21-rarity-sync-v113",
     "statusEmojiUpdated": "2026-07-07-status-emoji-v68",
     "statusImmunityUpdated": "v85 abnormalStatusResistance no-value + specific statuses + onDeath trigger",
     "godRarityAdded": true,
     "godRarityNote": "GOD: no banner guarantee, ultra-low rate, level cap 350, angelic black-white-gold theme.",
-    "version": "v110-cleanse-purge-turn",
+    "version": "v113-rarity-sync",
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1c4ZrJspOavPhaYkXB0fsGDWMM7tdsq_GhFiVg-CSPVg/edit?gid=1001#gid=1001",
     "awakenRarityAdded": true,
-    "awakenRarityNote": "AWAKEN: transform-only AK-<sourceId>, Lv.350, awaken +20, 50B Gems first transformation, no money awaken."
+    "awakenRarityNote": "AWAKEN: transform-only AK-<sourceId>, Lv.350, awaken +20, 50B Gems first transformation, no money awaken.",
+    "raritySyncNote": "Synced with game v135: SR green, SSR blue, UR purple; N/R retired; display labels C/B/A/S/SS/SSS/AWAKEN/GOD."
   }
 }
 </script>
